@@ -201,7 +201,7 @@ class _NovaMatriculaState extends State<NovaMatricula> {
 
 
              Padding(
-              padding: EdgeInsets.only(left: 20,bottom: 10),
+              padding: const EdgeInsets.only(left: 20,bottom: 10),
               child: Align(
                 alignment: Alignment.centerLeft,
                   child: Text("Por favor anexa uma cópia da declaração",style: TextStyle(

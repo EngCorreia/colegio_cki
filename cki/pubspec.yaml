@@ -39,6 +39,8 @@ dependencies:
   file_picker: ^3.0.0
   open_file: ^3.3.2
   path_provider:
+  mysql1: ^0.20.0
+  #sql_conn: ^0.0.3
 
 dev_dependencies:
   flutter_test:

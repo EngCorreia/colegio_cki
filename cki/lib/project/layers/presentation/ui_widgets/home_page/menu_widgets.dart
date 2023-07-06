@@ -7,10 +7,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/configuration/configuration.dart';
+import '../../../data/datasource/sql_server_conection/sql_server_conection.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
 import '../contacts/teachers/teachers.dart';
+import '../equipe_list/equipe_list.dart';
 import '../gallery/gallery.dart';
 import '../nova_matricula/new_matricula.dart';
+import '../nova_matricula/new_student.dart';
 import '../splash_widgets/splash_widgets.dart';
 
 
@@ -22,11 +25,13 @@ class MenuWidgets extends StatefulWidget {
 
 class _MenuWidgetsState extends State<MenuWidgets> {
   int _current = 0;
+  var ligacao = Connection();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    ligacao.openDatabase();
   }
 
 
@@ -129,6 +134,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                           color: Colors.black54),
                     ),
                     onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const Equipe()));
 
                     },
                     // Users(userId: UserModel.userId)
@@ -455,7 +461,9 @@ class _MenuWidgetsState extends State<MenuWidgets> {
 
             GestureDetector(
               onTap: () async {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
+                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const NewStudent()));
+
               },
               child: Padding(
                 padding: const EdgeInsets.only(top: 8,left: 90,right: 90,bottom: 5),
