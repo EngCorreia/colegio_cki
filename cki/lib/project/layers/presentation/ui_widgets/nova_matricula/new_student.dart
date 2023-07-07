@@ -23,6 +23,7 @@ class _NewStudentState extends State<NewStudent> {
   // var controller = PageController();
   final controller = PageController(keepPage: true);
   bool isLastPage = false;
+  bool isChecked = false;
   DateTime dateTime = DateTime.now();
   final _textEditingController = TextEditingController();
   List<PlatformFile>? filesList = [];
@@ -49,38 +50,99 @@ class _NewStudentState extends State<NewStudent> {
           controller: controller,
           onPageChanged: (index){
             setState(() {
-              isLastPage = index == 2;
+              isLastPage = index == 3;
             });
           },
           children: [
 
-            Column(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 350,
-                  child: Image.asset("assets/images/ckiLogo.png",fit: BoxFit.fill),
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 30,
+              ),
+              Container(
+                color: Colors.red,
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("TERMOS & CONDIÇÕES",style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20
+                    ),),
+                  )
+              ),
+
+              const SizedBox(
+                height: 10,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 10,right: 10),
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("1. O CKI - Instituição cuja actividade é da área educacional como objectivo de prestação de serviço do ano lectivo 2022/2023,sendo os serviços ministrados em conformidade com o previsto na Legislação de ensino em vigor,no Regulamento Interno do ",style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal
+                    ),)
                 ),
-              ],
-            ),
+              ),
+            ],
+          ),
+        ),
 
 
             SingleChildScrollView(
               child: Column(
                 children: [
 
+                  const SizedBox(
+                    height: 30,
+                  ),
+
+                  Container(
+                      color: Colors.red,
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text("FICHA DE MATRÍCULA",style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20
+                        ),),
+                      )
+                  ),
+
                   Padding(
-                    padding: const EdgeInsets.only(left: 20,top: 4,),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text("Formulário de Admissão",style: TextStyle(
-                          color: Colors.orange,
-                          fontFamily: SettingsCki.segoeEui,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16
-                      ),),
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: 'UNIDADE ESCOLAR',
+                        labelText: 'UNIDADE ESCOLAR',
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
                     ),
                   ),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+
+                  Container(
+                      color: Colors.red,
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text("DADOS PESSOAL DO(A) ALUNO(A)",style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20
+                        ),),
+                      )
+                  ),
+
 
                   const SizedBox(
                     height: 20,
@@ -95,27 +157,6 @@ class _NewStudentState extends State<NewStudent> {
                         hintText: 'Nome do Aluno',
                         labelText: 'Nome do Aluno',
                         prefixIcon: Icon(Icons.person),
-                        // errorText: createContactUser.validateName,
-                      ),
-
-                      onChanged: (value) {
-
-                      },
-                      cursorColor: Colors.indigo,
-                      // validator: createContactUser.validateSalutation,
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        //icon: Icon(Icons.person),
-                        border: OutlineInputBorder(),
-                        hintText: 'Telefone',
-                        labelText: 'Telefone',
-                        prefixIcon: Icon(Icons.call),
-
                         // errorText: createContactUser.validateName,
                       ),
 
@@ -153,6 +194,29 @@ class _NewStudentState extends State<NewStudent> {
                     ),
                   ),
 
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      controller: _textEditingController,
+                      decoration: InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: const OutlineInputBorder(),
+                        //prefixIcon: const Icon(Icons.person), // Add prefix icon
+
+                        hintText: dateTime.toString(),
+                        labelText: "RG/Nº de Registro Certidão Nascimento",
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
@@ -179,9 +243,10 @@ class _NewStudentState extends State<NewStudent> {
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
-                        hintText: 'Nome do Pai',
-                        labelText: 'Nome do Pai',
-                        //prefixIcon: const Icon(Icons.person),
+                        hintText: 'Nome da Mãe',
+                        labelText: 'Nome da Mãe',
+                        prefixIcon: Icon(Icons.person_add_alt),
+
                         // errorText: createContactUser.validateName,
                       ),
 
@@ -199,8 +264,8 @@ class _NewStudentState extends State<NewStudent> {
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
-                        hintText: 'Nome da mãe',
-                        labelText: 'Nome da mãe',
+                        hintText: 'Local de trabalho (nome/endereço)',
+                        labelText: 'Local de trabalho (nome/endereço)',
                         // errorText: createContactUser.validateName,
                       ),
 
@@ -212,22 +277,668 @@ class _NewStudentState extends State<NewStudent> {
                     ),
                   ),
 
-                  /* ElevatedButton(
-                onPressed: () async{
-                  final result = FilePicker.platform.pickFiles();
-                  //if(result == false) return;
-                  // Open file
-                  final file = result.then((value) => value?.files.first);
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'E-mail',
+                        labelText: 'E-mail',
+                        prefixIcon: Icon(Icons.email),
+                        // errorText: createContactUser.validateName,
+                      ),
 
-                  openFile(file);
-                  final newFile = await saveFie(file);
-                },
-                child: Text("Anexo imagens")
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Telefone (fixo/celular)',
+                        labelText: 'Telefone (fixo/celular)',
+                        prefixIcon: Icon(Icons.email),
+                        // errorText: createContactUser.validateName,
+                      ),
+                      onChanged: (value) {
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Nome do Pai',
+                        labelText: 'Nome do Pai',
+                        prefixIcon: Icon(Icons.person_add_alt),
+
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Local de trabalho (nome/endereço)',
+                        labelText: 'Local de trabalho (nome/endereço)',
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'E-mail',
+                        labelText: 'E-mail',
+                        prefixIcon: Icon(Icons.email),
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Telefone (fixo/celular)',
+                        labelText: 'Telefone (fixo/celular)',
+                        prefixIcon: Icon(Icons.email),
+                        // errorText: createContactUser.validateName,
+                      ),
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,bottom: 10),
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Responsável legal que assinará o contrato de prestação de serviço com a Escola",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16
+                        ),)
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Nome',
+                        labelText: 'Nome',
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Observações',
+                        labelText: 'Observações',
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
             ),
 
-            */
+
+            SingleChildScrollView(
+              child: Column(
+                children: [
+
+                  const SizedBox(
+                    height: 30,
+                  ),
 
 
+                  Container(
+                      color: Colors.red,
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text("DADOS DE SAÚDE DO(A) ALUNO(A)",style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18
+                        ),),
+                      )
+                  ),
+
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'É dependente em plano de saúde?Qual?',
+                        labelText: 'É dependente em plano de saúde?Qual?',
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      controller: _textEditingController,
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Tem algum problema de saúde crônico?',
+                        labelText: 'Tem algum problema de saúde crônico?',
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      controller: _textEditingController,
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        //prefixIcon: const Icon(Icons.person), // Add prefix icon
+                        hintText: "Tem alergia(s)? Qual?",
+                        labelText: "Tem alergia(s)? Qual?",
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                          border: OutlineInputBorder(),
+                          hintText: 'Já recebeu diagnóstico médico de deficiência?Qual?',
+                          labelText: 'Já recebeu diagnóstico médico de deficiência?Qual?',
+                        // errorText: createContactUser.validateName,
+                      ),
+                      onChanged: (value) {
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Apresenta alguma dificuldade motora',
+                        labelText: 'Apresenta alguma dificuldade motora',
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 10),
+                    child: Row(
+                      children: [
+                        Text("Está em tratamento médico?"),
+                        Text("Não"),
+                        Checkbox(value: isChecked,
+                            onChanged: (bool? value){
+                          setState(() {
+                            isChecked = value!;
+                          });
+                        }),
+
+                        Text("Sim"),
+                        Checkbox(value: isChecked,
+                            onChanged: (bool? value){
+                              setState(() {
+                                isChecked = value!;
+                              });
+                            }),
+                      ],
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                        child: Text("Está em uso de alguma medicação?")),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 10),
+                    child: Row(
+                      children: [
+                       // Text("Está em uso de alguma medicação?"),
+                        const Text("Não"),
+                        Checkbox(value: isChecked,
+                            onChanged: (bool? value){
+                              setState(() {
+                                isChecked = value!;
+                              });
+                            }),
+
+                        Text("Sim"),
+                        Checkbox(value: isChecked,
+                            onChanged: (bool? value){
+                              setState(() {
+                                isChecked = value!;
+                              });
+                            }),
+                      ],
+                    ),
+                  ),
+
+                  const Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("As vacinas do calendário de vacinação do Ministério da Saúde estão em dia?")),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 10),
+                    child: Row(
+                      children: [
+                        // Text("Está em uso de alguma medicação?"),
+                        const Text("Não"),
+                        Checkbox(value: isChecked,
+                            onChanged: (bool? value){
+                              setState(() {
+                                isChecked = value!;
+                              });
+                            }),
+
+                        Text("Sim"),
+                        Checkbox(value: isChecked,
+                            onChanged: (bool? value){
+                              setState(() {
+                                isChecked = value!;
+                              });
+                            }),
+                      ],
+                    ),
+                  ),
+
+
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Em caso de emergência a quem ligar?',
+                        labelText: 'Em caso de emergência a quem ligar?',
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
+            ),
+
+
+            SingleChildScrollView(
+              child: Column(
+                children: [
+
+                  const SizedBox(
+                    height: 40,
+                  ),
+
+                  Container(
+                      color: Colors.red,
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text("DADOS COMPLEMENTARES DO(A) ALUNO(A)",style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16
+                        ),),
+                      )
+                  ),
+
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  const Padding(
+                    padding: EdgeInsets.only(left: 20,right: 20,bottom: 20),
+                    child: Text("Outras pessoas autorizadas a realizar a condução e a acompanhamento do(a) aluno(a) na chegada e saída da escola",style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14
+                    ),),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Nome',
+                        labelText: 'Nome',
+                        prefixIcon: Icon(Icons.person),
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Telefone (fixo/celular)',
+                        labelText: 'Telefone (fixo/celular)',
+                        prefixIcon: Icon(Icons.call),
+
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Nome',
+                        labelText: 'Nome',
+                        prefixIcon: Icon(Icons.person),
+                        // errorText: createContactUser.validateName,
+                      ),
+
+                      onChanged: (value) {
+
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Telefone (fixo/celular)',
+                        labelText: 'Telefone (fixo/celular)',
+                        prefixIcon: Icon(Icons.call),
+                        // errorText: createContactUser.validateName,
+                      ),
+                      onChanged: (value) {
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Nome',
+                        labelText: 'Nome',
+                        prefixIcon: Icon(Icons.person),
+                        // errorText: createContactUser.validateName,
+                      ),
+                      onChanged: (value) {
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 20),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        //icon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'Telefone (fixo/celular)',
+                        labelText: 'Telefone (fixo/celular)',
+                        prefixIcon: Icon(Icons.call),
+                        // errorText: createContactUser.validateName,
+                      ),
+                      onChanged: (value) {
+                      },
+                      cursorColor: Colors.indigo,
+                      // validator: createContactUser.validateSalutation,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Através da entrega desta ficha abaixo assinada solicito a matrícula do aluno MATEUS DA COSTA\Nna Escola Sesc COLEGIO KALABO INTERNACIONAL,",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold
+                        ),)
+                    ),
+                  ),
+
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20,top: 40),
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text("no grupo",style: TextStyle(
+                                fontFamily: SettingsCki.segoeEui,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold
+                            ),)
+                        ),
+                      ),
+
+                      const SizedBox(width: 15,),
+
+                      Container(
+                        width: 230,
+                        child: TextFormField(
+                        onChanged: (value) {
+                          },
+                          cursorColor: Colors.indigo,
+                        ),
+                      )
+                    ],
+                  ),
+
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20,top: 40),
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text("do Ensino Fundamental para o ano lectivo de",style: TextStyle(
+                                fontFamily: SettingsCki.segoeEui,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold
+                            ),)
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+
+                      SizedBox(
+                        width: 45,
+                        child: TextFormField(
+                          onChanged: (value) {
+                          },
+                          cursorColor: Colors.indigo,
+                        ),
+                      )
+                    ],
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("ciente de que para efectivação da matrícula são INDISPENSÁVEIS o pagamento da 1º mensalidade e a assinatura de contrato de prestação de serviços educacionais.",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold
+                        ),)
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Neste ato informo que estou ciente dos valores a serem pagos e dos termos contidos no contrato a ser assinado.",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold
+                        ),)
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Declaro serem verdadeiras todas as informações por mim prestados nesta ficha de matrícula e informo ser o responsável legal pelo(a) aluno(a).",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold
+                        ),)
+                    ),
+                  ),
+
+
+                  /*
                   Padding(
                     padding: const EdgeInsets.only(left: 20,bottom: 10),
                     child: Align(
@@ -252,7 +963,7 @@ class _NewStudentState extends State<NewStudent> {
                     ),
                   ),
 
-                  Padding(
+                    Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: Row(
                       children: [
@@ -313,22 +1024,14 @@ class _NewStudentState extends State<NewStudent> {
                     ),
                   ):Container(),
 
+                  */
+
                   const SizedBox(
                     height: 20,
                   ),
 
                 ],
               ),
-            ),
-
-            Column(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 350,
-                  child: Image.asset("assets/images/matri.png",fit: BoxFit.fill),
-                ),
-              ],
             ),
           ],
         ),
@@ -342,7 +1045,7 @@ class _NewStudentState extends State<NewStudent> {
                 borderRadius: BorderRadius.circular(0),
               ),
               minimumSize: const Size.fromHeight(800),
-              backgroundColor: Colors.teal.shade700
+              backgroundColor: Colors.orange[900]
           ),
           onPressed: () async {
             final pref = await SharedPreferences.getInstance();
