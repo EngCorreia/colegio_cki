@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "514968028367",
+    "firebase_url": "https://jornal-ea755.firebaseio.com",
+    "project_id": "jornal-ea755",
+    "storage_bucket": "jornal-ea755.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514968028367:android:5723c221119c2324cc63ba",
+        "android_client_info": {
+          "package_name": "com.colegio.cki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514968028367-ocdj0nnb6dgnnv9cofju7sg4p0sj2st5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4Lac9v2LhjBgpg9WMRSaOGBFDI02txcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514968028367-ocdj0nnb6dgnnv9cofju7sg4p0sj2st5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

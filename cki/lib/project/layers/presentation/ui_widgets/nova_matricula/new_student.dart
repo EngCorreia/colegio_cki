@@ -44,6 +44,7 @@ class _NewStudentState extends State<NewStudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     // appBar: AppBar(),
       body: Container(
         padding: const EdgeInsets.only(bottom: 50),
         child: PageView(
@@ -87,6 +88,126 @@ class _NewStudentState extends State<NewStudent> {
                     ),)
                 ),
               ),
+
+              const SizedBox(
+                height: 10,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 10,right: 10),
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("2. Somos uma escola privada a inicio de exercício,com professores qualificados para o ensino actual.",style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal
+                    ),)
+                ),
+              ),
+
+              const SizedBox(
+                height: 10,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 10,right: 10),
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("3. O registro (Confirmação ou Matrícula) é pago depois da aceitação. As vagas são definidas anualmente e anuaciadas pela Direcção da instituição.",style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal
+                    ),)
+                ),
+              ),
+
+
+              const SizedBox(
+                height: 10,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 10,right: 10),
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("4. As matrículas que se encontrarem incompletas (certificados) serão aceites,mais sobre condição de serem regularizadas no prazo 60 dias úteis,sob pena de serem recusadas ou anuladas",style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal
+                    ),)
+                ),
+              ),
+
+              const SizedBox(
+                height: 10,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 10,right: 10),
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("5. Deve ser presente o resultado do teste da Covid-19 até 72 horas antes do início das presenciais caso tenha testado positivo 15 dias antes no inicio das aulas. A Instituição resserva-se o direito de solicitar o teste aleatoriamente ao(s) aluno(s) e/ou a turmas.",style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal
+                    ),)
+                ),
+              ),
+
+              const SizedBox(
+                height: 10,
+              ),
+
+
+              Padding(
+                padding: const EdgeInsets.only(left: 10,right: 10),
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("6. As matrículas que se encontrarem incompletas (certificados) serão aceites,mais sobre condição de serem regularizadas no prazo 60 dias úteis,sob pena de serem recusadas ou anuladas",style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal
+                    ),)
+                ),
+              ),
+
+              const SizedBox(
+                height: 10,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 10,right: 10),
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("7. Deve ser presente o resultado do teste da Covid-19 até 72 horas antes do início das presenciais caso tenha testado positivo 15 dias antes no inicio das aulas. A Instituição resserva-se o direito de solicitar o teste aleatoriamente ao(s) aluno(s) e/ou a turmas.",style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal
+                    ),)
+                ),
+              ),
+
+              const SizedBox(
+                height: 10,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 8,right: 8),
+                child: Row(
+                  children: [
+
+                    Checkbox(value: isChecked,
+                        onChanged: (bool? value){
+                          setState(() {
+                            isChecked = value!;
+                          });
+                        }),
+
+                    const Text("Sim, aceito os termo de condições"),
+                  ],
+                ),
+              ),
+
             ],
           ),
         ),
@@ -100,16 +221,33 @@ class _NewStudentState extends State<NewStudent> {
                     height: 30,
                   ),
 
-                  Container(
-                      color: Colors.red,
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text("FICHA DE MATRÍCULA",style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20
-                        ),),
-                      )
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                           //backgroundColor: Colors.transparent,
+                          child: Image.asset("assets/images/image.png"),
+                        ),
+                      ),
+
+                      const SizedBox(width: 18,),
+
+                      Container(
+                          color: Colors.red,
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text("FICHA DE MATRÍCULA",style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20
+                            ),),
+                          )
+                      ),
+
+                    ],
                   ),
+
+
 
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
@@ -1038,7 +1176,7 @@ class _NewStudentState extends State<NewStudent> {
       ),
 
       bottomSheet: isLastPage ? Container(
-        height: 50,
+        height: 40,
         child: TextButton(
           style: TextButton.styleFrom(
               shape: RoundedRectangleBorder(
@@ -1058,7 +1196,7 @@ class _NewStudentState extends State<NewStudent> {
           ),),
         ),
       ) : Container(
-        height: 50,
+        height: 40,
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1066,15 +1204,15 @@ class _NewStudentState extends State<NewStudent> {
 
             TextButton(onPressed: (){
               controller.jumpToPage(0);
-            }, child: Text("SALTAR"),),
+            }, child: const Text("SALTAR"),),
             Center(
               child: SmoothPageIndicator(
                 controller: controller,
-                count:3,
-                effect: WormEffect(
+                count:4,
+                effect: const WormEffect(
                   spacing: 16,
                   dotColor: Colors.blue,
-                  activeDotColor: Colors.red.shade700,
+                  activeDotColor: Colors.green,
                 ),
                 onDotClicked: (index) => controller.animateToPage(index,
                     duration: const Duration(
@@ -1088,7 +1226,7 @@ class _NewStudentState extends State<NewStudent> {
               controller.nextPage(
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.easeInOut);
-            }, child: Text("COMEÇAR"),),
+            }, child: const Text("COMEÇAR"),),
 
           ],
         ),

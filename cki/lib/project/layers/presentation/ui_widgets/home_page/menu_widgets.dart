@@ -25,13 +25,12 @@ class MenuWidgets extends StatefulWidget {
 
 class _MenuWidgetsState extends State<MenuWidgets> {
   int _current = 0;
-  var ligacao = Connection();
+  var conn = Connection();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    ligacao.openDatabase();
+   // conn.openDatabase();
   }
 
 
@@ -80,12 +79,12 @@ class _MenuWidgetsState extends State<MenuWidgets> {
             fontSize: 16
         ),),
         elevation: 0,
-
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
-              child: Image.asset("assets/images/school.png"),
+             // backgroundColor: Colors.transparent,
+              child: Image.asset("assets/images/image.png"),
             ),
           )
         ],
@@ -100,7 +99,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                 children: <Widget>[
                   UserAccountsDrawerHeader(
                     currentAccountPicture: CircleAvatar(
-                      child: Image.asset("assets/images/graduate.png"),
+                      child: Image.asset("assets/images/image.png"),
                     ),
                     accountName: Text("profile do usuario", style: TextStyle(fontFamily: SettingsCki.segoeEui)),
                     accountEmail: const Text("geral@cki.ao"),
@@ -308,6 +307,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
               },
             ),
 
+            /** primeira opção do menu */
             SpeedDialChild(
               labelWidget: Padding(
                 padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
@@ -426,16 +426,16 @@ class _MenuWidgetsState extends State<MenuWidgets> {
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 4.0,
-                  mainAxisSpacing: 4.0,
-                  mainAxisExtent: 160),
+                  crossAxisSpacing: 1.0,
+                  mainAxisSpacing: 1.0,
+                  mainAxisExtent: 190),
 
               itemBuilder: (_, index) {
                 return Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Center(
                     child: Container(
-                      width: 140,
+                      width: 180,
                       height: 250,
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -474,7 +474,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                     borderRadius: BorderRadius.circular(25),
                     boxShadow: const [
                       BoxShadow(
-                        color: Colors.orange,
+                        color: Colors.white,
                         blurRadius: 1,
                         spreadRadius: 1,
                        // offset: const Offset(2, 2),
@@ -485,7 +485,8 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                     child: Text("Inscriçoes Abertas",style: TextStyle(
                         fontFamily: SettingsCki.segoeEui,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white
+                        color: Colors.white,
+                        fontSize: 16
                     ),),
                   ),
                 ),
