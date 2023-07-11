@@ -46,6 +46,7 @@ dependencies:
   string_validator: ^0.3.0
   fluttertoast: ^8.0.9
   email_validator:
+  google_nav_bar: ^5.0.6
 
 
 dev_dependencies:
