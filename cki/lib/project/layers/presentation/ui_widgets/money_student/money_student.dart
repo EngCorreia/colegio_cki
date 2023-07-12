@@ -24,7 +24,7 @@ class _MoneyStudentState extends State<MoneyStudent> {
         title: Text("Área financeira",style: TextStyle(
             color: Colors.orange[900],
             fontFamily: SettingsCki.segoeEui,
-            fontSize: 15
+            fontSize: 18
         )),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -33,98 +33,145 @@ class _MoneyStudentState extends State<MoneyStudent> {
             child: const Icon(FontAwesomeIcons.graduationCap,color: Colors.black),
           ),
         ),
-        actions:  const [
-          Padding(
+        actions: [
+         /* Padding(
             padding: EdgeInsets.only(right: 20),
             child: Icon(FontAwesomeIcons.moneyBillAlt,color: Colors.green,size: 30,),
+          ),*/
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(
+              // backgroundColor: Colors.transparent,
+              child: Image.asset("assets/images/image.png"),
+            ),
           )
         ],
 
 
       ),
 
-      ///++++++ DRAWER +++++
-      drawer: Drawer(
-        elevation: 1,
-        child: ListView.builder(
-            itemCount: 1,
-            itemBuilder: (context, int index) {
-              return Column(
-                children: <Widget>[
-                  UserAccountsDrawerHeader(
-                    accountName: Text("User profile", style: TextStyle(fontFamily: SettingsCki.segoeEui)),
-                    accountEmail: const Text("user without email address"),
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.settings),
-                    title: Text('Configuração',
-                      style: TextStyle(fontFamily: SettingsCki.segoeEui),
-                    ),
-                    onTap: () {
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
 
-                    },
-                  ),
-                  const Divider(),
-                  ListTile(
-                    leading: const Icon(
-                      Icons.star_border,
-                      color: Colors.orange,
-                    ),
-                    title: Text(
-                      'Favoritos',
-                      style: TextStyle(fontFamily: SettingsCki.segoeEui),
-                    ),
-                    onTap: () {
+            GestureDetector(
+              onTap: () async {
+                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
+                child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(8),
 
-                    },
                   ),
-                  const Divider(),
-                  ListTile(
-                    leading: const Icon(Icons.account_balance),
-                    title: Text('Minha Conta',
-                      style: TextStyle(fontFamily: SettingsCki.segoeEui),
-                    ),
-                    onTap: (){
+                  child: Center(
+                    child:  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Image.asset("assets/images/close-circle.png", width: 30,height: 30,color: Colors.red,),
+                              const SizedBox(width: 18,),
+                              Text("FT FT001/1",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 16
+                              ),),
+                              const SizedBox(width: 10,),
+                              Text("30.000,00 AOA",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 16
+                              ),),
+                              const SizedBox(width: 30,),
 
-                    },
-                    // Users(userId: UserModel.userId)
-                  ),
-                  const Divider(),
-                  ListTile(
-                    leading: const Icon(Icons.notifications),
-                    title: Text('Notificações',
-                      style: TextStyle(fontFamily: SettingsCki.segoeEui),
-                    ),
-                  ),
-                  const Divider(),
-                  ListTile(
-                    onTap: (){
+                              const Icon(FontAwesomeIcons.download,color: Colors.white,)
+                            ],
+                          ),
 
-                    },
-                    leading: const Icon(Icons.privacy_tip),
-                    title: Text('Privacidade',
-                      style: TextStyle(fontFamily: SettingsCki.segoeEui),
+                          Text("Data de emissão: 2023-09-12",style: TextStyle(
+                              fontFamily: SettingsCki.segoeEui,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.white,
+                              fontSize: 16
+                          ),),
+                        ],
+                      ),
                     ),
                   ),
-                  const Divider(),
-                  ListTile(
-                    title: Text(
-                      'Sair',
-                      style: TextStyle(fontFamily: SettingsCki.segoeEui),
-                    ),
-                    onTap: () {
+                ),
+              ),
+            ),
 
-                    },
+
+            GestureDetector(
+              onTap: () async {
+                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
+                child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(8),
+
                   ),
+                  child: Center(
+                    child:  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(FontAwesomeIcons.checkCircle,color: Colors.white,size: 30,),
+                             // Image.asset("assets/images/close-circle.png", width: 30,height: 30,color: Colors.red,),
+                              const SizedBox(width: 18,),
+                              Text("FT FT001/1",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 16
+                              ),),
+                              const SizedBox(width: 10,),
+                              Text("30.000,00 AOA",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 16
+                              ),),
+                              const SizedBox(width: 30,),
 
-                  const Divider(),
-                ],
-              );
-            }),
-      ),
+                              const Icon(FontAwesomeIcons.download,color: Colors.white,)
+                            ],
+                          ),
 
-      body: const SingleChildScrollView(
+                          Text("Data de emissão: 2023-09-12",style: TextStyle(
+                              fontFamily: SettingsCki.segoeEui,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.white,
+                              fontSize: 16
+                          ),),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
 
+
+          ],
+        ),
       ),
     );
   }

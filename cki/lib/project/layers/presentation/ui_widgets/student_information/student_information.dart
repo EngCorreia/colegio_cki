@@ -17,13 +17,14 @@ class _StudentInformationState extends State<StudentInformation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text("Informação do aluno",style: TextStyle(
             color: Colors.orange[900],
             fontFamily: SettingsCki.segoeEui,
-            fontSize: 15
+            fontSize: 18
         )),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -33,100 +34,282 @@ class _StudentInformationState extends State<StudentInformation> {
           ),
         ),
         actions:  [
-          Padding(
+          /*Padding(
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
               backgroundColor: Colors.grey[300],
               child: const Icon(FontAwesomeIcons.infoCircle,color: Colors.black),
             ),
+          )*/
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(
+              // backgroundColor: Colors.transparent,
+              child: Image.asset("assets/images/image.png"),
+            ),
           )
         ],
 
-
       ),
 
-      ///++++++ DRAWER +++++
-      drawer: Drawer(
-        elevation: 1,
-        child: ListView.builder(
-            itemCount: 1,
-            itemBuilder: (context, int index) {
-              return Column(
-                children: <Widget>[
-                  UserAccountsDrawerHeader(
-                    accountName: Text("User profile", style: TextStyle(fontFamily: SettingsCki.segoeEui)),
-                    accountEmail: const Text("user without email address"),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+
+            GestureDetector(
+              onTap: () async {
+                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
+                child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black54,
+                        blurRadius: 1,
+                        spreadRadius: 1,
+                         //offset: const Offset(2, 2),
+                      ),
+                    ],
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.settings),
-                    title: Text('Configuração',
-                      style: TextStyle(fontFamily: SettingsCki.segoeEui),
-                    ),
-                    onTap: () {
+                  child: Center(
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 10,),
+                        Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            //borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black54,
+                                blurRadius: 2,
+                                spreadRadius: 2,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child:  const Padding(
+                            padding: EdgeInsets.all(0.0),
+                            child: Icon(FontAwesomeIcons.calendarAlt,color: Colors.orange,size: 20,),
+                          ),
+                        ),
 
-                    },
-                  ),
-                  const Divider(),
-                  ListTile(
-                    leading: const Icon(
-                      Icons.star_border,
-                      color: Colors.orange,
-                    ),
-                    title: Text(
-                      'Favoritos',
-                      style: TextStyle(fontFamily: SettingsCki.segoeEui),
-                    ),
-                    onTap: () {
+                        const SizedBox(width: 20,),
 
-                    },
-                  ),
-                  const Divider(),
-                  ListTile(
-                    leading: const Icon(Icons.account_balance),
-                    title: Text('Minha Conta',
-                      style: TextStyle(fontFamily: SettingsCki.segoeEui),
-                    ),
-                    onTap: (){
-
-                    },
-                    // Users(userId: UserModel.userId)
-                  ),
-                  const Divider(),
-                  ListTile(
-                    leading: const Icon(Icons.notifications),
-                    title: Text('Notificações',
-                      style: TextStyle(fontFamily: SettingsCki.segoeEui),
+                        Text("Calendario",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.blue,
+                            fontSize: 20
+                        ),),
+                      ],
                     ),
                   ),
-                  const Divider(),
-                  ListTile(
-                    onTap: (){
+                ),
+              ),
+            ),
 
-                    },
-                    leading: const Icon(Icons.privacy_tip),
-                    title: Text('Privacidade',
-                      style: TextStyle(fontFamily: SettingsCki.segoeEui),
+
+            GestureDetector(
+              onTap: () async {
+                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
+                child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black54,
+                        blurRadius: 1,
+                        spreadRadius: 1,
+                        //offset: const Offset(2, 2),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 10,),
+                        Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            //borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black54,
+                                blurRadius: 2,
+                                spreadRadius: 2,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child:  const Padding(
+                            padding: EdgeInsets.all(0.0),
+                            child: Icon(FontAwesomeIcons.chalkboardTeacher,color: Colors.orange,size: 20,),
+                          ),
+                        ),
+
+                        const SizedBox(width: 20,),
+
+                        Text("Professor",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.blue,
+                            fontSize: 20
+                        ),),
+                      ],
                     ),
                   ),
-                  const Divider(),
-                  ListTile(
-                    title: Text(
-                      'Sair',
-                      style: TextStyle(fontFamily: SettingsCki.segoeEui),
-                    ),
-                    onTap: () {
+                ),
+              ),
+            ),
 
-                    },
+
+            GestureDetector(
+              onTap: () async {
+                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
+                child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black54,
+                        blurRadius: 1,
+                        spreadRadius: 1,
+                        //offset: const Offset(2, 2),
+                      ),
+                    ],
                   ),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 10,),
+                        Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            //borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black54,
+                                blurRadius: 2,
+                                spreadRadius: 2,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child:  const Padding(
+                            padding: EdgeInsets.all(0.0),
+                            child: Icon(FontAwesomeIcons.solidStickyNote,color: Colors.orange,size: 20,),
+                          ),
+                        ),
 
-                  const Divider(),
-                ],
-              );
-            }),
-      ),
+                        const SizedBox(width: 20,),
 
-      body: const SingleChildScrollView(
+                        Text("Boletin de nota",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.blue,
+                            fontSize: 20
+                        ),),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
 
+
+            GestureDetector(
+              onTap: () async {
+                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
+                child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black54,
+                        blurRadius: 1,
+                        spreadRadius: 1,
+                        //offset: const Offset(2, 2),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 10,),
+                        Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            //borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black54,
+                                blurRadius: 2,
+                                spreadRadius: 2,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child:  const Padding(
+                            padding: EdgeInsets.all(0.0),
+                            child: Icon(FontAwesomeIcons.calendarAlt,color: Colors.orange,size: 20,),
+                          ),
+                        ),
+
+                        const SizedBox(width: 20,),
+
+                        Text("Assiduidade",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.blue,
+                            fontSize: 20
+                        ),),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+
+          ],
+        ),
       ),
     );
   }

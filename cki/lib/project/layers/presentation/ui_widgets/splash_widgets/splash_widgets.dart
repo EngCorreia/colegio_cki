@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/configuration/configuration.dart';
 import '../index_menu/index_page.dart';
+import '../login_ui/login_ui.dart';
 
 
 class SplashWidgets extends StatefulWidget {
@@ -100,7 +101,7 @@ class _SplashWidgetsState extends State<SplashWidgets> {
             onPressed: () async {
               final pref = await SharedPreferences.getInstance();
               pref.setBool("showHome", true);
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> IndexPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> const Login()));
             },
             child: Text("COMEÇAR",style: TextStyle(
               fontFamily: SettingsCki.segoeEui,

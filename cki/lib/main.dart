@@ -2,6 +2,7 @@
 
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/index_menu/index_page.dart';
+import 'package:cki/project/layers/presentation/ui_widgets/login_ui/login_ui.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/splash_widgets/splash_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         primaryTextTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
         textTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui))
     ),
-        home: showHome! ? IndexPage() : const SplashWidgets(),
+        home: showHome! ? const Login() : const SplashWidgets(),
       //const OnBoardingPage()
       );
 }
