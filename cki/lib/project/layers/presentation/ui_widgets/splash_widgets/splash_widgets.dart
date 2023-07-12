@@ -4,7 +4,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/configuration/configuration.dart';
-import '../index_menu/home_page.dart';
+import '../index_menu/index_page.dart';
+
 
 class SplashWidgets extends StatefulWidget {
   const SplashWidgets({Key? key}) : super(key: key);
@@ -94,7 +95,7 @@ class _SplashWidgetsState extends State<SplashWidgets> {
               borderRadius: BorderRadius.circular(0),
             ),
             minimumSize: const Size.fromHeight(800),
-            backgroundColor: Colors.teal.shade700
+            backgroundColor: Colors.orange
           ),
             onPressed: () async {
               final pref = await SharedPreferences.getInstance();
@@ -102,8 +103,9 @@ class _SplashWidgetsState extends State<SplashWidgets> {
               Navigator.push(context, MaterialPageRoute(builder: (context)=> IndexPage()));
             },
             child: Text("COMEÇAR",style: TextStyle(
+              fontFamily: SettingsCki.segoeEui,
               color: Colors.white,
-              fontFamily: SettingsCki.segoeEui
+              fontSize: 18
             ),),
         ),
       ) : Container(
@@ -115,7 +117,9 @@ class _SplashWidgetsState extends State<SplashWidgets> {
 
             TextButton(onPressed: (){
               controller.jumpToPage(0);
-            }, child: Text("SALTAR"),),
+            }, child: Text("SALTAR",style: TextStyle(
+                fontFamily: SettingsCki.segoeEui
+            ),),),
             Center(
               child: SmoothPageIndicator(
                 controller: controller,
@@ -137,7 +141,9 @@ class _SplashWidgetsState extends State<SplashWidgets> {
               controller.nextPage(
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.easeInOut);
-            }, child: Text("COMEÇAR"),),
+            }, child: Text("COMEÇAR",style: TextStyle(
+                fontFamily: SettingsCki.segoeEui
+            ),),),
 
           ],
         ),

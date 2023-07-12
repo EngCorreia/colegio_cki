@@ -1,34 +1,48 @@
 
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/configuration/configuration.dart';
 
-class Matricula extends StatefulWidget {
-  const Matricula({Key? key}) : super(key: key);
+class StudentInformation extends StatefulWidget {
+  const StudentInformation({Key? key}) : super(key: key);
 
   @override
-  State<Matricula> createState() => _MatriculaState();
+  State<StudentInformation> createState() => _StudentInformationState();
 }
 
-class _MatriculaState extends State<Matricula> {
+class _StudentInformationState extends State<StudentInformation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orange[700],
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text("Fazer inscrições"),
+        title: Text("Informação do aluno",style: TextStyle(
+            color: Colors.orange[900],
+            fontFamily: SettingsCki.segoeEui,
+            fontSize: 15
+        )),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CircleAvatar(
+            backgroundColor: Colors.grey[300],
+            child: const Icon(FontAwesomeIcons.graduationCap,color: Colors.black),
+          ),
+        ),
         actions:  [
-          GestureDetector(
-            onTap: () async {
-              final pref = await SharedPreferences.getInstance();
-              pref.setBool("showHome", false);
-            },
-              child: const Icon(Icons.exit_to_app),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(
+              backgroundColor: Colors.grey[300],
+              child: const Icon(FontAwesomeIcons.infoCircle,color: Colors.black),
+            ),
           )
-
         ],
+
+
       ),
 
       ///++++++ DRAWER +++++

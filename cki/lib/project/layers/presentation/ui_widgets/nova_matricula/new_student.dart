@@ -10,7 +10,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/configuration/configuration.dart';
-import '../index_menu/home_page.dart';
+import '../index_menu/index_page.dart';
+
 
 class NewStudent extends StatefulWidget {
   const NewStudent({Key? key}) : super(key: key);
@@ -1176,7 +1177,7 @@ class _NewStudentState extends State<NewStudent> {
       ),
 
       bottomSheet: isLastPage ? Container(
-        height: 40,
+        height: 50,
         child: TextButton(
           style: TextButton.styleFrom(
               shape: RoundedRectangleBorder(
@@ -1190,21 +1191,20 @@ class _NewStudentState extends State<NewStudent> {
             pref.setBool("showHome", true);
             Navigator.push(context, MaterialPageRoute(builder: (context)=> IndexPage()));
           },
-          child: Text("COMEÇAR",style: TextStyle(
+          child: Text("Fazer Inscrição",style: TextStyle(
               color: Colors.white,
-              fontFamily: SettingsCki.segoeEui
+              fontFamily: SettingsCki.segoeEui,
+            fontWeight: FontWeight.bold,
+            fontSize: 20
           ),),
         ),
       ) : Container(
         height: 40,
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            TextButton(onPressed: (){
-              controller.jumpToPage(0);
-            }, child: const Text("SALTAR"),),
             Center(
               child: SmoothPageIndicator(
                 controller: controller,
@@ -1222,11 +1222,6 @@ class _NewStudentState extends State<NewStudent> {
               ),
             ),
 
-            TextButton(onPressed: (){
-              controller.nextPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut);
-            }, child: const Text("COMEÇAR"),),
 
           ],
         ),

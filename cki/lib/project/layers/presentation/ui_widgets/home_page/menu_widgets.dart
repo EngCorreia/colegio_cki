@@ -72,9 +72,9 @@ class _MenuWidgetsState extends State<MenuWidgets> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         title: Text("Colégio Kalabo Internacional",style: TextStyle(
-            color: Colors.black,
+            color: Colors.orange[900],
             fontFamily: SettingsCki.segoeEui,
             fontSize: 16
         ),),
@@ -101,14 +101,14 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                     currentAccountPicture: CircleAvatar(
                       child: Image.asset("assets/images/image.png"),
                     ),
-                    accountName: Text("profile do usuario", style: TextStyle(fontFamily: SettingsCki.segoeEui)),
-                    accountEmail: const Text("geral@cki.ao"),
+                    accountName: Text("Correia António Chumbo",style: TextStyle(fontFamily: SettingsCki.segoeEui,fontWeight: FontWeight.bold)),
+                    accountEmail: Text("geral@cki.ao", style: TextStyle(fontFamily: SettingsCki.segoeEui)),
                   ),
                   ListTile(
-                    leading: const Icon(Icons.home_outlined,color: Colors.black,),
+                    leading: Icon(Icons.home_outlined,color: Colors.orange[900],),
                     title: Text('Sobre nós',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
-                          color: Colors.black54),
+                          color: Colors.black54,fontWeight: FontWeight.bold),
                     ),
                     onTap: () {
 
@@ -119,7 +119,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                     leading: const Icon(Icons.settings,color: Colors.black,),
                     title: Text('Serviços',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
-                          color: Colors.black54),
+                          color: Colors.black54,fontWeight: FontWeight.bold),
                     ),
                     onTap: () {
 
@@ -130,7 +130,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                     leading: const Icon(Icons.account_balance,color: Colors.black,),
                     title: Text('Equipe',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
-                          color: Colors.black54),
+                          color: Colors.black54,fontWeight: FontWeight.bold),
                     ),
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> const Equipe()));
@@ -143,7 +143,8 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                     leading: const Icon(Icons.photo,color: Colors.black,),
                     title: Text('Galeria',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
-                          color: Colors.black54),
+                          color: Colors.black54,
+                      fontWeight: FontWeight.bold),
                     ),
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> const Gallery()));
@@ -157,7 +158,8 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                     leading: const Icon(Icons.call,color: Colors.black,),
                     title: Text('Contactos',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
-                      color: Colors.black54),
+                      color: Colors.black54,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                   const Divider(),
@@ -189,6 +191,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
             color: Colors.orange,
           ),
           children: [
+            /*
             SpeedDialChild(
               labelWidget: Padding(
                 padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
@@ -247,6 +250,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> const Teachers()));
               },
             ),
+            */
 
             SpeedDialChild(
               labelWidget: Padding(
@@ -279,7 +283,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                         padding: const EdgeInsets.only(left: 10),
                         child: SizedBox(
                             width: 140,
-                            child: Text("Check - out",
+                            child: Text("Área Pedagógica",
                               style: TextStyle(
                                   fontFamily: SettingsCki.segoeEui,
                                   color: Colors.blue),
@@ -289,7 +293,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                         padding: const EdgeInsets.only(left: 10),
                         child: SizedBox(
                             width: 140,
-                            child: Text("Terminar o dia",
+                            child: Text("Saiba mais",
                               style: TextStyle(
                                   fontFamily: SettingsCki.segoeEui,
                                   color: Colors.black,
@@ -300,72 +304,13 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                   ),
                 ),
               ),
-              child: const Icon(FontAwesomeIcons.powerOff, color: Colors.red, size: 20,),
+              child: const Icon(FontAwesomeIcons.graduationCap, color: Colors.blue, size: 20,),
               labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
               onTap: (){
 
               },
             ),
 
-            /** primeira opção do menu */
-            SpeedDialChild(
-              labelWidget: Padding(
-                padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-                child: Container(
-                  height: 45,
-                  width: 150,
-                  alignment: Alignment.centerLeft,
-                  decoration: const BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black45,
-                        blurRadius: 1,
-                      )
-                    ],
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      stops: [0.3, 1],
-                      colors: [Colors.white, Colors.white],
-                    ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: SizedBox(
-                            width: 140,
-                            child: Text("Check - out",
-                              style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  color: Colors.blue),
-                            )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: SizedBox(
-                            width: 140,
-                            child: Text("Terminar o dia",
-                              style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  color: Colors.black,
-                                  fontSize: 10),
-                            )),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              child: const Icon(FontAwesomeIcons.powerOff, color: Colors.red, size: 20,),
-              labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
-              onTap: (){
-
-              },
-            ),
           ],
         ),
 
@@ -484,7 +429,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                   child: Center(
                     child: Text("Inscriçoes Abertas",style: TextStyle(
                         fontFamily: SettingsCki.segoeEui,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.normal,
                         color: Colors.white,
                         fontSize: 16
                     ),),
