@@ -17,12 +17,12 @@ class _EquipeState extends State<Equipe> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text("Nossa equipa"),
+        title: Text("Nossa equipa",style: TextStyle(fontFamily: SettingsCki.segoeEui),),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
-              child: Image.asset("assets/images/user.png"),
+              child: Image.asset("assets/images/image.png"),
             ),
           )
         ],
@@ -45,7 +45,7 @@ class _EquipeState extends State<Equipe> {
           itemBuilder: (_, index) {
             return teamList(index);
           },
-          itemCount: 20,
+          itemCount: 5,
         ),
       ),
     );
@@ -55,7 +55,7 @@ class _EquipeState extends State<Equipe> {
   teamList(int index){
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> const EquipeDetails()));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>  ProfilePage()));
       },
       child: Padding(
         padding: const EdgeInsets.all(4.0),

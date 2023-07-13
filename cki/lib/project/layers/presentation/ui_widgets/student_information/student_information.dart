@@ -19,10 +19,10 @@ class _StudentInformationState extends State<StudentInformation> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.orange[400],
         elevation: 0,
         title: Text("Informação do aluno",style: TextStyle(
-            color: Colors.orange[900],
+            color: Colors.white,
             fontFamily: SettingsCki.segoeEui,
             fontSize: 18
         )),
@@ -60,6 +60,18 @@ class _StudentInformationState extends State<StudentInformation> {
               height: 10,
             ),
 
+            SizedBox(
+              height: 70,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context ,index)=> favoritesUsers(names,index),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+
             GestureDetector(
               onTap: () async {
                 //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
@@ -69,7 +81,7 @@ class _StudentInformationState extends State<StudentInformation> {
                 child: Container(
                   height: 80,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.blue,
                     borderRadius: BorderRadius.circular(5),
                     boxShadow: const [
                       BoxShadow(
@@ -111,7 +123,7 @@ class _StudentInformationState extends State<StudentInformation> {
                         Text("Calendario",style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.normal,
-                            color: Colors.blue,
+                            color: Colors.white,
                             fontSize: 20
                         ),),
                       ],
@@ -131,7 +143,7 @@ class _StudentInformationState extends State<StudentInformation> {
                 child: Container(
                   height: 80,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.green[400],
                     borderRadius: BorderRadius.circular(5),
                     boxShadow: const [
                       BoxShadow(
@@ -173,7 +185,7 @@ class _StudentInformationState extends State<StudentInformation> {
                         Text("Professor",style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.normal,
-                            color: Colors.blue,
+                            color: Colors.white,
                             fontSize: 20
                         ),),
                       ],
@@ -193,7 +205,7 @@ class _StudentInformationState extends State<StudentInformation> {
                 child: Container(
                   height: 80,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.orange[500],
                     borderRadius: BorderRadius.circular(5),
                     boxShadow: const [
                       BoxShadow(
@@ -218,8 +230,8 @@ class _StudentInformationState extends State<StudentInformation> {
                             boxShadow: const [
                               BoxShadow(
                                 color: Colors.black54,
-                                blurRadius: 2,
-                                spreadRadius: 2,
+                                blurRadius: 1,
+                                spreadRadius: 1,
                                 // offset: const Offset(2, 2),
                               ),
                             ],
@@ -235,7 +247,7 @@ class _StudentInformationState extends State<StudentInformation> {
                         Text("Boletin de nota",style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.normal,
-                            color: Colors.blue,
+                            color: Colors.white,
                             fontSize: 20
                         ),),
                       ],
@@ -255,7 +267,7 @@ class _StudentInformationState extends State<StudentInformation> {
                 child: Container(
                   height: 80,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.deepPurple[400],
                     borderRadius: BorderRadius.circular(5),
                     boxShadow: const [
                       BoxShadow(
@@ -297,7 +309,7 @@ class _StudentInformationState extends State<StudentInformation> {
                         Text("Assiduidade",style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.normal,
-                            color: Colors.blue,
+                            color: Colors.white,
                             fontSize: 20
                         ),),
                       ],
@@ -313,4 +325,53 @@ class _StudentInformationState extends State<StudentInformation> {
       ),
     );
   }
+
+  /*............... method to show all employees lists ............. */
+  Widget favoritesUsers(List<String> myFavoriteUserList,int index){
+      return Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+            color: Colors.white,
+            height: 70,
+            child: Stack(
+              alignment: Alignment.bottomLeft,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      CircleAvatar(
+                        radius: 28,
+                        backgroundColor: Colors.green,
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: GestureDetector(
+                      child: Row(
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 26,
+                              child: Image.asset("assets/images/image.png"),
+                            ),
+
+                          ]
+                      ),
+
+                    )
+                ),
+              ],
+            )
+        ),
+      );
+  }
+
+  List<String> names = [];
 }

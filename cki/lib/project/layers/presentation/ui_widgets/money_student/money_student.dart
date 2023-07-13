@@ -19,10 +19,10 @@ class _MoneyStudentState extends State<MoneyStudent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.orange[400],
         elevation: 0,
         title: Text("Área financeira",style: TextStyle(
-            color: Colors.orange[900],
+            color: Colors.white,
             fontFamily: SettingsCki.segoeEui,
             fontSize: 18
         )),

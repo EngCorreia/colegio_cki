@@ -17,10 +17,10 @@ class _NotificationUiState extends State<NotificationUi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.orange[400],
         elevation: 0,
         title: Text("Notificações",style: TextStyle(
-            color: Colors.orange[900],
+            color: Colors.white,
             fontFamily: SettingsCki.segoeEui,
             fontSize: 18
         )),

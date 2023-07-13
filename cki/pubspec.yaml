@@ -47,6 +47,7 @@ dependencies:
   fluttertoast: ^8.0.9
   email_validator:
   google_nav_bar: ^5.0.6
+  lottie: ^2.3.2
 
 
 dev_dependencies:
@@ -70,7 +71,7 @@ flutter:
 
   assets:
     - assets/images/
-  #   - images/a_dot_ham.jpeg
+    - assets/jsons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

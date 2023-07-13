@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/configuration/configuration.dart';
@@ -72,9 +73,9 @@ class _MenuWidgetsState extends State<MenuWidgets> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.orange[400],
         title: Text("Colégio Kalabo Internacional",style: TextStyle(
-            color: Colors.orange[900],
+            color: Colors.white,
             fontFamily: SettingsCki.segoeEui,
             fontSize: 16
         ),),
@@ -304,44 +305,281 @@ class _MenuWidgetsState extends State<MenuWidgets> {
             const SizedBox(
               height: 20,
             ),
-            
-            GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 1.0,
-                  mainAxisSpacing: 1.0,
-                  mainAxisExtent: 190),
 
-              itemBuilder: (_, index) {
-                return Padding(
+            Column(
+              children: [
+                Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Center(
-                    child: Container(
-                      width: 180,
-                      height: 250,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.5),
-                            blurRadius: 1,
-                            spreadRadius: 1,
-                           // offset: const Offset(2, 2),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      GestureDetector(
+                      onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> const Teachers())),
+                        child: Container(
+                          width: 160,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                blurRadius: 1,
+                                spreadRadius: 1,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
                           ),
-                        ],
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 6,
+                              ),
+                              SizedBox(
+                                  height: 70,
+                                  child: Lottie.asset("assets/jsons/animation_lk16ijyi.json"),),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text("Professores",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.bold,
+                                color: Colors.black
+                              ),),
+
+                              Text("Conheça nossos prof..",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black
+                              ),),
+                            ],
+                          ),
+                        ),
                       ),
-                      child: dashboardList(index),
-                    ),
+
+                      Container(
+                        width: 160,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              blurRadius: 1,
+                              spreadRadius: 1,
+                              // offset: const Offset(2, 2),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 6,
+                            ),
+                            SizedBox(
+                              height: 70,
+                              child: Image.asset("assets/images/books.png"),),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text("Calendario",style: TextStyle(
+                                fontFamily: SettingsCki.segoeEui,
+                                fontWeight: FontWeight.bold,
+                              color: Colors.black
+                            ),),
+
+                            Text("Ver calendario",style: TextStyle(
+                                fontFamily: SettingsCki.segoeEui,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black
+                            ),),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                );
-              },
-              itemCount: dashboard.length,
+                ),
+
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        width: 160,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              blurRadius: 1,
+                              spreadRadius: 1,
+                              // offset: const Offset(2, 2),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 6,
+                            ),
+                            SizedBox(
+                              height: 70,
+                              child: Image.asset("assets/images/school.png"),),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text("Salas de aula",style: TextStyle(
+                                fontFamily: SettingsCki.segoeEui,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black
+                            ),),
+
+                            Text("15 Salas de aulas",style: TextStyle(
+                                fontFamily: SettingsCki.segoeEui,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black
+                            ),),
+                          ],
+                        ),
+                      ),
+
+                      Container(
+                        width: 160,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              blurRadius: 1,
+                              spreadRadius: 1,
+                              // offset: const Offset(2, 2),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 6,
+                            ),
+                            SizedBox(
+                              height: 70,
+                              child: Lottie.asset("assets/jsons/animation_lk17zzfn.json"),),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text("Cursos",style: TextStyle(
+                                fontFamily: SettingsCki.segoeEui,
+                                fontWeight: FontWeight.bold
+                            ),),
+
+                            Text("Saíbas sobre cursos",style: TextStyle(
+                                fontFamily: SettingsCki.segoeEui,
+                                fontWeight: FontWeight.normal
+                            ),),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        width: 160,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              blurRadius: 1,
+                              spreadRadius: 1,
+                              // offset: const Offset(2, 2),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 6,
+                            ),
+                            SizedBox(
+                              height: 70,
+                              child: Lottie.asset("assets/jsons/animation_lk15loaz.json"),),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text("Localização",style: TextStyle(
+                                fontFamily: SettingsCki.segoeEui,
+                                fontWeight: FontWeight.bold
+                            ),),
+
+                            Text("Abra o google Map",style: TextStyle(
+                                fontFamily: SettingsCki.segoeEui,
+                                fontWeight: FontWeight.normal
+                            ),),
+                          ],
+                        ),
+                      ),
+
+                      Container(
+                        width: 160,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              blurRadius: 1,
+                              spreadRadius: 1,
+                              // offset: const Offset(2, 2),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 6,
+                            ),
+                            SizedBox(
+                              height: 70,
+                              child: Lottie.asset("assets/jsons/animation_lk17ycvk.json"),),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text("Livros",style: TextStyle(
+                                fontFamily: SettingsCki.segoeEui,
+                                fontWeight: FontWeight.bold
+                            ),),
+
+                            Text("Ler livros",style: TextStyle(
+                                fontFamily: SettingsCki.segoeEui,
+                                fontWeight: FontWeight.normal
+                            ),),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
 
-            const SizedBox(height: 25.0),
+            const SizedBox(height: 10.0),
 
             GestureDetector(
               onTap: () async {
@@ -377,7 +615,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
               ),
             ),
 
-            const SizedBox(height: 25.0),
+            const SizedBox(height: 15.0),
 
           ],
         ),
@@ -386,23 +624,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
   }
 
   final List<Dashboard> dashboard = [
-    Dashboard(
-        image: "assets/images/education.png",
-        tittle: "Professores",
-        subTittle: "25 Professores"
-    ),
 
-    Dashboard(
-        image: "assets/images/school.png",
-        tittle: "Salas de aula",
-        subTittle: "30 salas de aulas"
-    ),
-
-    Dashboard(
-        image: "assets/images/books.png",
-        tittle: "Calendario",
-        subTittle: "Ver calendario"
-    ),
 
     Dashboard(
         image: "assets/images/readingbook.png",
@@ -417,37 +639,5 @@ class _MenuWidgetsState extends State<MenuWidgets> {
     'assets/images/ckiLogo.png',
     'assets/images/colegio.png',
   ];
-
-  dashboardList(int index){
-    return GestureDetector(
-      onTap: (){
-        if(index == 0){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> const Teachers()));
-        }
-      },
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-              height: 70,
-              child: Image.asset(dashboard[index].image)),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(dashboard[index].tittle,style: TextStyle(
-              fontFamily: SettingsCki.segoeEui,
-              fontWeight: FontWeight.bold
-          ),),
-
-          Text(dashboard[index].subTittle,style: TextStyle(
-              fontFamily: SettingsCki.segoeEui,
-              fontWeight: FontWeight.normal
-          ),),
-        ],
-      ),
-    );
-  }
 
 }
