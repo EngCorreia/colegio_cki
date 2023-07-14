@@ -18,13 +18,14 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(
               height: 30,
             ),
-            Center(child: Image.asset("assets/images/image.png",width: 180,height: 180,)),
+            Center(child: Image.asset("assets/images/logo.png",width: 180,height: 180,)),
 
             Text("Colegio kalabo Internacional",style: TextStyle(
               fontFamily: SettingsCki.segoeEui,
@@ -36,7 +37,7 @@ class _LoginState extends State<Login> {
             ),
 
             Padding(
-              padding: const EdgeInsets.only(right: 20,left: 20,
+              padding: const EdgeInsets.only(right: 50,left: 50,
               bottom: 10),
               child: TextFormField(
                // controller: _textEditingController,
@@ -58,7 +59,7 @@ class _LoginState extends State<Login> {
             ),
 
             Padding(
-              padding: const EdgeInsets.only(right: 20,left: 20,bottom: 20),
+              padding: const EdgeInsets.only(right: 50,left: 50,bottom: 20),
               child: TextFormField(
                 // controller: _textEditingController,
                 decoration: const InputDecoration(
@@ -84,11 +85,11 @@ class _LoginState extends State<Login> {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> IndexPage()));
               },
               child: Padding(
-                padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
+                padding: const EdgeInsets.only(top: 8,left: 50,right: 50,bottom: 5),
                 child: Container(
                   height: 55,
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: Colors.blue[900],
                     borderRadius: BorderRadius.circular(5),
                     boxShadow: const [
                       BoxShadow(

@@ -341,7 +341,7 @@ class _StudentInformationState extends State<StudentInformation> {
                   child: Row(
                     // mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
-                    children: <Widget>[
+                    children: const <Widget>[
                       CircleAvatar(
                         radius: 28,
                         backgroundColor: Colors.green,

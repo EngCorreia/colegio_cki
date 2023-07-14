@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/configuration/configuration.dart';
 import '../../../data/datasource/sql_server_conection/sql_server_conection.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
+import '../about_us/about_us.dart';
 import '../contacts/teachers/teachers.dart';
 import '../equipe_list/equipe_list.dart';
 import '../gallery/gallery.dart';
@@ -103,7 +104,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                       child: Image.asset("assets/images/image.png"),
                     ),
                     accountName: Text("Correia António Chumbo",style: TextStyle(fontFamily: SettingsCki.segoeEui,fontWeight: FontWeight.bold)),
-                    accountEmail: Text("geral@cki.ao", style: TextStyle(fontFamily: SettingsCki.segoeEui)),
+                    accountEmail: Text("geral.cki@gmail.com", style: TextStyle(fontFamily: SettingsCki.segoeEui)),
                   ),
                   ListTile(
                     leading: Icon(Icons.home_outlined,color: Colors.orange[900],),
@@ -112,13 +113,14 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                           color: Colors.black54,fontWeight: FontWeight.bold),
                     ),
                     onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const AboutUs()));
 
                     },
                   ),
                   const Divider(),
                   ListTile(
-                    leading: const Icon(Icons.settings,color: Colors.black,),
-                    title: Text('Serviços',
+                    leading: Icon(Icons.settings,color: Colors.orange[900],),
+                    title: Text('Configuração',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
                           color: Colors.black54,fontWeight: FontWeight.bold),
                     ),
@@ -128,7 +130,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                   ),
                   const Divider(),
                   ListTile(
-                    leading: const Icon(Icons.account_balance,color: Colors.black,),
+                    leading: Icon(Icons.account_balance,color: Colors.orange[900],),
                     title: Text('Equipe',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
                           color: Colors.black54,fontWeight: FontWeight.bold),
@@ -141,7 +143,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                   ),
                   const Divider(),
                   ListTile(
-                    leading: const Icon(Icons.photo,color: Colors.black,),
+                    leading: Icon(Icons.photo,color: Colors.orange[900],),
                     title: Text('Galeria',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
                           color: Colors.black54,
@@ -156,7 +158,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                     onTap: (){
 
                     },
-                    leading: const Icon(Icons.call,color: Colors.black,),
+                    leading: Icon(Icons.call,color: Colors.orange[900],),
                     title: Text('Contactos',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
                       color: Colors.black54,
@@ -165,7 +167,8 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                   ),
                   const Divider(),
                   ListTile(
-                    title: Text('Sair', style: TextStyle(fontFamily: SettingsCki.segoeEui),
+                    title: Text('Sair', style: TextStyle(fontFamily: SettingsCki.segoeEui,
+                        color: Colors.red,fontSize: 16,fontWeight: FontWeight.bold),
                     ),
                     onTap: () async {
                       final pref = await SharedPreferences.getInstance();

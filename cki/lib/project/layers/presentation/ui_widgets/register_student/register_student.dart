@@ -18,13 +18,14 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(
               height: 30,
             ),
-            Center(child: Image.asset("assets/images/image.png",width: 180,height: 180,)),
+            Center(child: Image.asset("assets/images/logo.png",width: 180,height: 180,)),
 
             Text("Colegio kalabo Internacional",style: TextStyle(
                 fontFamily: SettingsCki.segoeEui,
@@ -36,7 +37,7 @@ class _RegisterState extends State<Register> {
             ),
 
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(top: 8,left: 40,right: 40,bottom: 5),
               child: TextFormField(
                 // controller: _textEditingController,
                 decoration: const InputDecoration(
@@ -57,7 +58,7 @@ class _RegisterState extends State<Register> {
             ),
 
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(top: 8,left: 40,right: 40,bottom: 5),
               child: TextFormField(
                 // controller: _textEditingController,
                 decoration: const InputDecoration(
@@ -78,7 +79,7 @@ class _RegisterState extends State<Register> {
             ),
 
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(top: 8,left: 40,right: 40,bottom: 5),
               child: TextFormField(
                 // controller: _textEditingController,
                 decoration: const InputDecoration(
@@ -99,7 +100,7 @@ class _RegisterState extends State<Register> {
             ),
 
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(top: 8,left: 40,right: 40,bottom: 5),
               child: TextFormField(
                 // controller: _textEditingController,
                 decoration: const InputDecoration(
@@ -125,7 +126,7 @@ class _RegisterState extends State<Register> {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> IndexPage()));
               },
               child: Padding(
-                padding: const EdgeInsets.only(top: 8,left: 10,right: 10,bottom: 5),
+                padding: const EdgeInsets.only(top: 8,left: 40,right: 40,bottom: 5),
                 child: Container(
                   height: 55,
                   decoration: BoxDecoration(
