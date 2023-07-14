@@ -1,8 +1,10 @@
 
 
 import 'package:cki/project/layers/domain/usecases/save_teachers_usecase/save_teachers_usecase.dart';
-import 'package:cki/project/layers/presentation/ui_widgets/contacts/teachers/teachers.dart';
+
 import 'package:dartz/dartz.dart';
+
+import '../../../presentation/ui_widgets/teachers/teachers.dart';
 
 class SaveTeachersUseCaseImp implements SaveTeachersUseCase{
 

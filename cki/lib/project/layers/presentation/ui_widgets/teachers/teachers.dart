@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/configuration/configuration.dart';
+import '../../../core/configuration/configuration.dart';
 
 class Teachers extends StatefulWidget {
   const Teachers({Key? key}) : super(key: key);

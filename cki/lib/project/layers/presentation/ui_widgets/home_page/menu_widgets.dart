@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cki/project/layers/presentation/ui_widgets/teachers/teachers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,7 +12,7 @@ import '../../../core/configuration/configuration.dart';
 import '../../../data/datasource/sql_server_conection/sql_server_conection.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
 import '../about_us/about_us.dart';
-import '../contacts/teachers/teachers.dart';
+import '../chat_ui/chat_ui.dart';
 import '../equipe_list/equipe_list.dart';
 import '../gallery/gallery.dart';
 import '../nova_matricula/new_matricula.dart';
@@ -130,7 +131,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                   ),
                   const Divider(),
                   ListTile(
-                    leading: Icon(Icons.account_balance,color: Colors.orange[900],),
+                    leading: Icon(FontAwesomeIcons.userGroup,color: Colors.orange[900],),
                     title: Text('Equipe',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
                           color: Colors.black54,fontWeight: FontWeight.bold),
@@ -250,6 +251,67 @@ class _MenuWidgetsState extends State<MenuWidgets> {
               child: const Icon(FontAwesomeIcons.graduationCap, color: Colors.blue, size: 20,),
               labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
               onTap: (){
+
+              },
+            ),
+
+
+            SpeedDialChild(
+              labelWidget: Padding(
+                padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
+                child: Container(
+                  height: 45,
+                  width: 150,
+                  alignment: Alignment.centerLeft,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        blurRadius: 1,
+                      )
+                    ],
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.3, 1],
+                      colors: [Colors.white, Colors.white],
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: SizedBox(
+                            width: 140,
+                            child: Text("Conversas",
+                              style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  color: Colors.blue),
+                            )),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: SizedBox(
+                            width: 140,
+                            child: Text("Fale conosco pelo chat",
+                              style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  color: Colors.black,
+                                  fontSize: 10),
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              child: const Icon(FontAwesomeIcons.facebookMessenger, color: Colors.blue, size: 20,),
+              labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const ChatUi()));
 
               },
             ),
