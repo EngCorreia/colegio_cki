@@ -74,3 +74,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.android.support:multidex:1.0.3'
 }
+
+apply plugin: 'com.google.gms.google-services'

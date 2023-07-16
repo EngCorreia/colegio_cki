@@ -1,6 +1,5 @@
 
-
-import 'package:cki/project/layers/data/datasource/fire_base/seve_new_student/save_new_student.dart';
+import 'package:cki/project/layers/data/datasource/fire_base/save_new_student_datasource/save_new_student_datasource.dart';
 import 'package:cki/project/layers/domain/entities/student_entity/student_data_entity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
@@ -8,7 +7,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/errors/save_student_error.dart';
 import '../../../dto/new_student_dto/new_student_dto.dart';
 
-class NewStudentDataSourceImp implements NewStudentDataSource {
+class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
 
   bool isSaved = false;
 

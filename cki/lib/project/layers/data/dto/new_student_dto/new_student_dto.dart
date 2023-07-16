@@ -151,7 +151,7 @@ class StudentDto extends StudentDataEntity{
   static Map<String,dynamic> fromJson(StudentDataEntity studentDataEntity){
     return {
       "studentName": studentDataEntity.studentName,
-      "date": studentDataEntity.date
+      "date": studentDataEntity.schoolName
     };
   }
 }

@@ -1,15 +1,18 @@
 
 
 import 'package:cki/project/layers/core/configuration/configuration.dart';
-import 'package:cki/project/layers/presentation/ui_widgets/index_menu/index_page.dart';
+import 'package:cki/project/layers/core/init_injection_dependence/init_dependence_injection.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/login_ui/login_ui.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/splash_widgets/splash_widgets.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
 Future<void> main() async {
+  InitStateInjectionDependence();
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   final pref = await SharedPreferences.getInstance();
   final showHome = pref.getBool('showHome') ?? false;
   runApp(MyApp(showHome: showHome,));

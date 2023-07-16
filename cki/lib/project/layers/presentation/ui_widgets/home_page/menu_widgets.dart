@@ -2,21 +2,22 @@ import 'dart:developer';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/teachers/teachers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/configuration/configuration.dart';
-import '../../../data/datasource/sql_server_conection/sql_server_conection.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
+import '../../../domain/entities/student_entity/student_data_entity.dart';
+import '../../controllers/save_new_student_controller/save_new_student_controller.dart';
 import '../about_us/about_us.dart';
 import '../chat_ui/chat_ui.dart';
 import '../equipe_list/equipe_list.dart';
 import '../gallery/gallery.dart';
-import '../nova_matricula/new_matricula.dart';
-import '../nova_matricula/new_student.dart';
 import '../splash_widgets/splash_widgets.dart';
 
 
@@ -28,12 +29,14 @@ class MenuWidgets extends StatefulWidget {
 
 class _MenuWidgetsState extends State<MenuWidgets> {
   int _current = 0;
-  var conn = Connection();
+
+  final _controllerSaveNewStudent = GetIt.I.get<SaveNewStudentController>();
+
 
   @override
   void initState() {
     super.initState();
-   // conn.openDatabase();
+
   }
 
 
@@ -649,7 +652,13 @@ class _MenuWidgetsState extends State<MenuWidgets> {
             GestureDetector(
               onTap: () async {
                 //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const NewStudent()));
+                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NewStudent()));
+                _controllerSaveNewStudent.saveStudent(studentDataEntity: StudentDataEntity(
+                  studentName: "Correia Antonio Chumbo",
+                  schoolName: "Colegio CKI"
+                ));
+
+                const CupertinoActivityIndicator();
 
               },
               child: Padding(
