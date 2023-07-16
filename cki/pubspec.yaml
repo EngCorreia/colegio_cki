@@ -47,6 +47,8 @@ dependencies:
   email_validator:
   google_nav_bar: ^5.0.6
   lottie: ^2.3.2
+  flutter_svg: ^1.1.0 #it helps us to use SVG in our app
+  google_fonts: ^2.3.3 #this allows you to easily use any fonts from fonts.google.com in your Flutter app
 
 
 dev_dependencies:
@@ -71,6 +73,7 @@ flutter:
   assets:
     - assets/images/
     - assets/jsons/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

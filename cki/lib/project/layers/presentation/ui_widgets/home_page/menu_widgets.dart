@@ -16,8 +16,10 @@ import '../../../domain/entities/student_entity/student_data_entity.dart';
 import '../../controllers/save_new_student_controller/save_new_student_controller.dart';
 import '../about_us/about_us.dart';
 import '../chat_ui/chat_ui.dart';
+import '../course/screens/product/products_screen.dart';
 import '../equipe_list/equipe_list.dart';
 import '../gallery/gallery.dart';
+import '../nova_matricula/new_student.dart';
 import '../splash_widgets/splash_widgets.dart';
 
 
@@ -31,13 +33,10 @@ class _MenuWidgetsState extends State<MenuWidgets> {
   int _current = 0;
   final _controllerSaveNewStudent = GetIt.I.get<SaveNewStudentController>();
 
-
   @override
   void initState() {
     super.initState();
-
   }
-
 
   @override
   Widget build(context) {
@@ -515,42 +514,45 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                         ),
                       ),
 
-                      Container(
-                        width: 160,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.5),
-                              blurRadius: 1,
-                              spreadRadius: 1,
-                              // offset: const Offset(2, 2),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 6,
-                            ),
-                            SizedBox(
-                              height: 70,
-                              child: Lottie.asset("assets/jsons/animation_lk17zzfn.json"),),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text("Cursos",style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                fontWeight: FontWeight.bold
-                            ),),
+                      GestureDetector(
+                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen())),
+                        child: Container(
+                          width: 160,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                blurRadius: 1,
+                                spreadRadius: 1,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 6,
+                              ),
+                              SizedBox(
+                                height: 70,
+                                child: Lottie.asset("assets/jsons/animation_lk17zzfn.json"),),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text("Cursos/Classe",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.bold
+                              ),),
 
-                            Text("Saíbas sobre cursos",style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                fontWeight: FontWeight.normal
-                            ),),
-                          ],
+                              Text("Saíbas sobre cursos",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.normal
+                              ),),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -651,13 +653,14 @@ class _MenuWidgetsState extends State<MenuWidgets> {
             GestureDetector(
               onTap: () async {
                 //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
-                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NewStudent()));
-                _controllerSaveNewStudent.saveStudent(studentDataEntity: StudentDataEntity(
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const NewStudent()));
+                /*_controllerSaveNewStudent.saveStudent(studentDataEntity: StudentDataEntity(
                   studentName: "Correia Antonio Chumbo",
                   schoolName: "Colegio CKI"
                 ));
+                */
 
-                const CupertinoActivityIndicator();
+              //  const CupertinoActivityIndicator();
 
               },
               child: Padding(
