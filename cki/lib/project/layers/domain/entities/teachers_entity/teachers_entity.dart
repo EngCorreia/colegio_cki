@@ -1,12 +1,12 @@
 
 
-class Teachers{
+class TeachersEntity{
   String? _name;
   String? _level;
   String? _classTeacher;
   List<String>? _listDeCadeira;
 
-  Teachers({String? name,String? level,String? classTeacher,List<String>? listDeCadeira}){
+  TeachersEntity({String? name,String? level,String? classTeacher,List<String>? listDeCadeira}){
   _name = name;
   _level = level;
   _classTeacher = classTeacher;

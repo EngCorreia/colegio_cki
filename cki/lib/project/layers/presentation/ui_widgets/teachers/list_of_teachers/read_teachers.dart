@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/configuration/configuration.dart';
+import '../../../../core/configuration/configuration.dart';
+import '../add_teacher/add_teacher.dart';
 
 class Teachers extends StatefulWidget {
   const Teachers({Key? key}) : super(key: key);
@@ -57,6 +58,13 @@ class _TeachersState extends State<Teachers> {
             ),
           )
         ],
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> const AddTeacher()));
+        },
+        child: const Icon(Icons.add,color: Colors.white,size: 30,),
       ),
 
       body: SingleChildScrollView(
@@ -144,7 +152,7 @@ class _TeachersState extends State<Teachers> {
                   ),
                 );
               },
-              itemCount: 15,
+              itemCount: 5,
             ),
           ],
         ),

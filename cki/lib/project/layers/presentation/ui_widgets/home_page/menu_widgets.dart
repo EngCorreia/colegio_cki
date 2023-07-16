@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cki/project/layers/presentation/ui_widgets/teachers/teachers.dart';
+import 'package:cki/project/layers/presentation/ui_widgets/teachers/list_of_teachers/read_teachers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -29,7 +29,6 @@ class MenuWidgets extends StatefulWidget {
 
 class _MenuWidgetsState extends State<MenuWidgets> {
   int _current = 0;
-
   final _controllerSaveNewStudent = GetIt.I.get<SaveNewStudentController>();
 
 
