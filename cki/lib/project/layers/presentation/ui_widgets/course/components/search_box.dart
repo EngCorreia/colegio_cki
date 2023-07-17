@@ -14,9 +14,7 @@ class SearchBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(kDefaultPadding),
-      padding: const EdgeInsets.symmetric(
-        horizontal: kDefaultPadding,
-        vertical: kDefaultPadding / 4, // 5 top and bottom
+      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding, vertical: kDefaultPadding / 4, // 5 top and bottom
       ),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.4),

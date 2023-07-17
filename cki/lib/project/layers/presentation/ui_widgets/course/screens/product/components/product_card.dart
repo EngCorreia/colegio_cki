@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
 import '../../../models/product.dart';
+import '../../details/details_screen.dart';
 
 class ProductCard extends StatelessWidget {
   final int itemIndex;
   final Product product;
-  final Function press;
 
   const ProductCard({
-    Key? key, required this.itemIndex, required this.product, required this.press,}) : super(key: key);
+    Key? key, required this.itemIndex, required this.product}) : super(key: key);
 
 
   @override
@@ -16,14 +16,14 @@ class ProductCard extends StatelessWidget {
     // It  will provide us total height and width of our screen
     Size size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         horizontal: kDefaultPadding,
         vertical: kDefaultPadding / 2,
       ),
       // color: Colors.blueAccent,
       height: 160,
       child: InkWell(
-        onTap: ()=> press,
+        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsScreen(product: products[itemIndex],))),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: <Widget>[

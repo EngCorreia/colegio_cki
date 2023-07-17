@@ -10,26 +10,56 @@ class Product {
 List<Product> products = [
   Product(
     id: 1,
-    price: 56,
-    title: "Classic Leather Arm Chair",
+    price: 30000,
+    title: "1ª Classe: kalabo Internacional",
     image: "assets/images/Item_1.png",
     description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
   ),
   Product(
     id: 4,
-    price: 68,
-    title: "Poppy Plastic Tub Chair",
+    price: 30000,
+    title: "2ª Classe: kalabo Internacional",
     image: "assets/images/Item_2.png",
     description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
   ),
   Product(
     id: 9,
-    price: 39,
-    title: "Bar Stool Chair",
+    price: 30000,
+    title: "3ª Classe: kalabo Internacional",
     image: "assets/images/Item_3.png",
     description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
   ),
+
+
+  Product(
+    id: 9,
+    price: 30000,
+    title: "4ª Classe: kalabo Internacional",
+    image: "assets/images/Item_3.png",
+    description:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+  ),
+
+  Product(
+    id: 9,
+    price: 30000,
+    title: "5ª Classe: kalabo Internacional",
+    image: "assets/images/Item_3.png",
+    description:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+  ),
+
+  Product(
+    id: 9,
+    price: 30000,
+    title: "6ª Classe: kalabo Internacional",
+    image: "assets/images/Item_3.png",
+    description:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+  ),
+
+
 ];

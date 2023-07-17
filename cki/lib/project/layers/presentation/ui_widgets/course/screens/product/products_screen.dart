@@ -1,3 +1,4 @@
+import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../constants.dart';
@@ -17,7 +18,8 @@ class ProductsScreen extends StatelessWidget {
     return AppBar(
       elevation: 0,
       centerTitle: false,
-      title: Text('Dashboard'),
+      backgroundColor: kPrimaryColor,
+      title: Text('Cursos e Classes',style: TextStyle(fontFamily: SettingsCki.segoeEui,color: Colors.white),),
       actions: <Widget>[
         IconButton(
           icon: SvgPicture.asset("assets/icons/notification.svg"),

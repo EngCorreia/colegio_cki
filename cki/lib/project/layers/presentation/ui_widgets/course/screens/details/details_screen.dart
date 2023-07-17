@@ -15,9 +15,7 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: buildAppBar(context),
-      body: Body(
-        product: product,
-      ),
+      body: Body(product: product,),
     );
   }
 
@@ -26,15 +24,14 @@ class DetailsScreen extends StatelessWidget {
       backgroundColor: kBackgroundColor,
       elevation: 0,
       leading: IconButton(
-        padding: EdgeInsets.only(left: kDefaultPadding),
+        padding: const EdgeInsets.only(left: kDefaultPadding),
         icon: SvgPicture.asset("assets/icons/back.svg"),
         onPressed: () {
           Navigator.pop(context);
         },
       ),
       centerTitle: false,
-      title: Text(
-        'Back'.toUpperCase(),
+      title: Text('Back'.toUpperCase(),
         style: Theme.of(context).textTheme.bodyText2,
       ),
       actions: <Widget>[
