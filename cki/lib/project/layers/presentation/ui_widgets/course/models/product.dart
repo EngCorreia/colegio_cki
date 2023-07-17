@@ -12,53 +12,53 @@ List<Product> products = [
     id: 1,
     price: 30000,
     title: "1ª Classe: kalabo Internacional",
-    image: "assets/images/Item_1.png",
+    image: "assets/course/course4.png",
     description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+    "Faça agora sua inscrição. Para a 1ª classe temos o seguinte período  Manhã das 8h00 as 12h00 de segunda-feira á sexta-feira",
   ),
   Product(
     id: 4,
     price: 30000,
     title: "2ª Classe: kalabo Internacional",
-    image: "assets/images/Item_2.png",
+    image: "assets/course/course2.png",
     description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+    "Faça agora sua inscrição. Para a 2ª classe temos o seguinte período  Manhã das 8h00 as 12h00 de segunda-feira á sexta-feira",
   ),
   Product(
     id: 9,
     price: 30000,
     title: "3ª Classe: kalabo Internacional",
-    image: "assets/images/Item_3.png",
+    image: "assets/course/course3.png",
     description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+        "Faça agora sua inscrição. Para a 3ª classe temos o seguinte período  Manhã das 8h00 as 12h00 de segunda-feira á sexta-feira",
   ),
 
 
   Product(
-    id: 9,
+    id: 15,
     price: 30000,
     title: "4ª Classe: kalabo Internacional",
-    image: "assets/images/Item_3.png",
+    image: "assets/course/course8.png",
     description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+    "Faça agora sua inscrição. Para a 4ª classe temos o seguinte período  Manhã das 8h00 as 12h00 de segunda-feira á sexta-feira",
   ),
 
   Product(
-    id: 9,
+    id: 11,
     price: 30000,
     title: "5ª Classe: kalabo Internacional",
-    image: "assets/images/Item_3.png",
+    image: "assets/course/course6.png",
     description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+    "Faça agora sua inscrição. Para a 5ª classe temos o seguinte período  Manhã das 8h00 as 12h00 de segunda-feira á sexta-feira",
   ),
 
   Product(
-    id: 9,
+    id: 10,
     price: 30000,
     title: "6ª Classe: kalabo Internacional",
-    image: "assets/images/Item_3.png",
+    image: "assets/course/course5.png",
     description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+    "Faça agora sua inscrição. Para a 6ª classe temos o seguinte período  Manhã das 8h00 as 12h00 de segunda-feira á sexta-feira",
   ),
 
 

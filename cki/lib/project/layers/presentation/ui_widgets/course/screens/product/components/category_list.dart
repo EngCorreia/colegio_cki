@@ -11,7 +11,7 @@ class CategoryList extends StatefulWidget {
 class _CategoryListState extends State<CategoryList> {
   // by default first item will be selected
   int selectedIndex = 0;
-  List categories = ['All', 'Sofa', 'Park bench', 'Armchair'];
+  List categories = ['Todos', '', '', ''];
   @override
   Widget build(BuildContext context) {
     return Container(

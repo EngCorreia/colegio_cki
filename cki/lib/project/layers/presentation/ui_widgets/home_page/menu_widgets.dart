@@ -402,8 +402,8 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                                 height: 6,
                               ),
                               SizedBox(
-                                  height: 70,
-                                  child: Lottie.asset("assets/jsons/animation_lk16ijyi.json"),),
+                                  height: 90,
+                                  child: Image.asset("assets/course/teacher1.png"),),
                               const SizedBox(
                                 height: 10,
                               ),
@@ -444,8 +444,8 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                               height: 6,
                             ),
                             SizedBox(
-                              height: 70,
-                              child: Image.asset("assets/images/books.png"),),
+                              height: 90,
+                              child: Image.asset("assets/course/calendario.png"),),
                             const SizedBox(
                               height: 10,
                             ),
@@ -491,11 +491,12 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                         child: Column(
                           children: [
                             const SizedBox(
-                              height: 6,
+                              height: 0,
                             ),
                             SizedBox(
-                              height: 70,
-                              child: Image.asset("assets/images/school.png"),),
+                              height: 90,
+                              width: MediaQuery.of(context).size.width,
+                              child: Image.asset("assets/course/sala.jpeg",fit: BoxFit.cover,),),
                             const SizedBox(
                               height: 10,
                             ),
@@ -537,8 +538,9 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                                 height: 6,
                               ),
                               SizedBox(
-                                height: 70,
-                                child: Lottie.asset("assets/jsons/animation_lk17zzfn.json"),),
+                                height: 90,
+                                width: MediaQuery.of(context).size.width,
+                                child: Image.asset("assets/course/cursos1.png",width: 200,height: 200,fit: BoxFit.cover,),),
                               const SizedBox(
                                 height: 10,
                               ),
@@ -586,7 +588,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                               height: 6,
                             ),
                             SizedBox(
-                              height: 70,
+                              height: 90,
                               child: Lottie.asset("assets/jsons/animation_lk15loaz.json"),),
                             const SizedBox(
                               height: 10,
@@ -625,8 +627,8 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                               height: 6,
                             ),
                             SizedBox(
-                              height: 70,
-                              child: Lottie.asset("assets/jsons/animation_lk17ycvk.json"),),
+                              height: 90,
+                              child: Image.asset("assets/course/books.png"),),
                             const SizedBox(
                               height: 10,
                             ),

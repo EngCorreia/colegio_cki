@@ -53,7 +53,7 @@ class Body extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '\$${product.price}',
+                    '${product.price} Kzs Inscrição',
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
