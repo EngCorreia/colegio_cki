@@ -16,6 +16,7 @@ import '../../../domain/entities/student_entity/student_data_entity.dart';
 import '../../controllers/save_new_student_controller/save_new_student_controller.dart';
 import '../about_us/about_us.dart';
 import '../chat_ui/chat_ui.dart';
+import '../contacts/contact_ui.dart';
 import '../course/screens/product/products_screen.dart';
 import '../equipe_list/equipe_list.dart';
 import '../gallery/gallery.dart';
@@ -158,6 +159,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                   const Divider(),
                   ListTile(
                     onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const Contact()));
 
                     },
                     leading: Icon(Icons.call,color: Colors.orange[900],),
