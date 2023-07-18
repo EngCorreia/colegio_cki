@@ -1,15 +1,18 @@
 
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 import '../datesheet_screen/data/constList.dart';
 import 'data/assignment_data.dart';
 import 'widgets/assignment_widgets.dart';
 
-class AssignmentScreen extends StatelessWidget {
-  const AssignmentScreen({Key? key}) : super(key: key);
-  static String routeName = 'AssignmentScreen';
+class CalendarScreen extends StatefulWidget {
+  const CalendarScreen({Key? key}) : super(key: key);
 
+  @override
+  State<CalendarScreen> createState() => _CalendarScreenState();
+}
+
+class _CalendarScreenState extends State<CalendarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,8 +41,7 @@ class AssignmentScreen extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.all(kDefaultPadding),
                             decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(kDefaultPadding),
+                              borderRadius: BorderRadius.circular(kDefaultPadding),
                               color: kOtherColor,
                               boxShadow: const [
                                 BoxShadow(

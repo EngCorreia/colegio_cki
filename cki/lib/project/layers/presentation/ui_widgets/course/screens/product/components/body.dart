@@ -1,10 +1,8 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import '../../../components/search_box.dart';
 import '../../../constants.dart';
 import '../../../models/product.dart';
-import '../../details/details_screen.dart';
 import 'category_list.dart';
 import 'product_card.dart';
 

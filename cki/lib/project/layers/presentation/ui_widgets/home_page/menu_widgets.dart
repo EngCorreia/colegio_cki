@@ -15,8 +15,9 @@ import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
 import '../../controllers/save_new_student_controller/save_new_student_controller.dart';
 import '../about_us/about_us.dart';
 import '../books/books.dart';
-import '../calendary_screen/assignment_screen.dart';
+import '../calendary_screen/calendar_screen.dart';
 import '../chat_ui/chat_ui.dart';
+import '../classroom_ui/classroom.dart';
 import '../contacts/contact_ui.dart';
 import '../course/screens/product/products_screen.dart';
 import '../equipe_list/equipe_list.dart';
@@ -429,7 +430,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                       ),
 
                       GestureDetector(
-                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const AssignmentScreen())),
+                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const CalendarScreen())),
                         child: Container(
                           width: 160,
                           height: 150,
@@ -476,56 +477,14 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                 ),
 
 
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        width: 160,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.5),
-                              blurRadius: 1,
-                              spreadRadius: 1,
-                              // offset: const Offset(2, 2),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 0,
-                            ),
-                            SizedBox(
-                              height: 90,
-                              width: MediaQuery.of(context).size.width,
-                              child: Image.asset("assets/course/sala.jpeg",fit: BoxFit.cover,),),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text("Salas de aula",style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black
-                            ),),
-
-                            Text("15 Salas de aulas",style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black
-                            ),),
-                          ],
-                        ),
-                      ),
-
-                      GestureDetector(
-                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen())),
-                        child: Container(
+                GestureDetector(
+                  onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const ClassRoom())),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
                           width: 160,
                           height: 150,
                           decoration: BoxDecoration(
@@ -543,31 +502,76 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                           child: Column(
                             children: [
                               const SizedBox(
-                                height: 6,
+                                height: 0,
                               ),
                               SizedBox(
                                 height: 90,
                                 width: MediaQuery.of(context).size.width,
-                                child: Image.asset("assets/course/cursos1.png",
-                                  width: 200,height: 200,fit: BoxFit.cover,
-                                filterQuality: FilterQuality.high,),),
+                                child: Image.asset("assets/course/sala.jpeg",fit: BoxFit.cover,),),
                               const SizedBox(
                                 height: 10,
                               ),
-                              Text("Cursos/Classe",style: TextStyle(
+                              Text("Salas de aula",style: TextStyle(
                                   fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.bold
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black
                               ),),
 
-                              Text("Saíbas sobre cursos",style: TextStyle(
+                              Text("15 Salas de aulas",style: TextStyle(
                                   fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.normal
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black
                               ),),
                             ],
                           ),
                         ),
-                      ),
-                    ],
+
+                        GestureDetector(
+                          onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen())),
+                          child: Container(
+                            width: 160,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.5),
+                                  blurRadius: 1,
+                                  spreadRadius: 1,
+                                  // offset: const Offset(2, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 6,
+                                ),
+                                SizedBox(
+                                  height: 90,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Image.asset("assets/course/cursos1.png",
+                                    width: 200,height: 200,fit: BoxFit.cover,
+                                  filterQuality: FilterQuality.high,),),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text("Cursos/Classe",style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.bold
+                                ),),
+
+                                Text("Saíbas sobre cursos",style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.normal
+                                ),),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 

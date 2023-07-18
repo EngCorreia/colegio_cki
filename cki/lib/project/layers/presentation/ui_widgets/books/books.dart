@@ -34,7 +34,8 @@ class _BooksState extends State<Books> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Todos livros",style: GoogleFonts.aBeeZee(fontSize: 25,color: Colors.white),),
+              child: Text("Todos livros",style: GoogleFonts.aBeeZee(
+                  fontSize: 23,color: Colors.white),),
             ),
             const SizedBox(
               height: 10,
@@ -85,21 +86,22 @@ class _BooksState extends State<Books> {
 
             SizedBox(
               height: 200,
-              width: double.infinity,
+              //width: double.infinity,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
-                  itemCount: 5,
+                  itemCount: imgList.length,
                   itemBuilder: (context,index)=>
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(5.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: Container(
-                            padding: const EdgeInsets.all(10.0),
-                            height: 200,
-                            width: 170,
+                            padding: const EdgeInsets.all(0.0),
                             color: Colors.amber,
+                            child: Image.asset(imgList[index],
+                              filterQuality: FilterQuality.high,
+                              fit: BoxFit.contain,),
                           ),
                         ),
                       )
@@ -184,8 +186,9 @@ class _BooksState extends State<Books> {
   }
 
   final List<String> imgList = [
-    'assets/images/matri.png',
-    'assets/images/ckiLogo.png',
-    'assets/images/colegio.png',
+    'assets/books/book1.jpg',
+    'assets/books/book2.jpg',
+    'assets/books/book3.png',
+    'assets/books/book4.png',
   ];
 }
