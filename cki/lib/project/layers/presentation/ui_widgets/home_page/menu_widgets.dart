@@ -12,9 +12,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/configuration/configuration.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
-import '../../../domain/entities/student_entity/student_data_entity.dart';
 import '../../controllers/save_new_student_controller/save_new_student_controller.dart';
 import '../about_us/about_us.dart';
+import '../books/books.dart';
+import '../calendary_screen/assignment_screen.dart';
 import '../chat_ui/chat_ui.dart';
 import '../contacts/contact_ui.dart';
 import '../course/screens/product/products_screen.dart';
@@ -332,6 +333,8 @@ class _MenuWidgetsState extends State<MenuWidgets> {
               items: imageSliders,
               options: CarouselOptions(
                   autoPlay: true,
+                  pageSnapping: true,
+                  autoPlayCurve: Curves.fastOutSlowIn,
                   enlargeCenterPage: true,
                   aspectRatio: 2.0,
                   onPageChanged: (index, reason) {
@@ -425,44 +428,47 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                         ),
                       ),
 
-                      Container(
-                        width: 160,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.5),
-                              blurRadius: 1,
-                              spreadRadius: 1,
-                              // offset: const Offset(2, 2),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 6,
-                            ),
-                            SizedBox(
-                              height: 90,
-                              child: Image.asset("assets/course/calendario.png"),),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text("Calendario",style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                fontWeight: FontWeight.bold,
-                              color: Colors.black
-                            ),),
-
-                            Text("Ver calendario",style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                fontWeight: FontWeight.normal,
+                      GestureDetector(
+                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const AssignmentScreen())),
+                        child: Container(
+                          width: 160,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                blurRadius: 1,
+                                spreadRadius: 1,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 6,
+                              ),
+                              SizedBox(
+                                height: 90,
+                                child: Image.asset("assets/course/calendario.png"),),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text("Calendario",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.bold,
                                 color: Colors.black
-                            ),),
-                          ],
+                              ),),
+
+                              Text("Ver calendario",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black
+                              ),),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -542,7 +548,9 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                               SizedBox(
                                 height: 90,
                                 width: MediaQuery.of(context).size.width,
-                                child: Image.asset("assets/course/cursos1.png",width: 200,height: 200,fit: BoxFit.cover,),),
+                                child: Image.asset("assets/course/cursos1.png",
+                                  width: 200,height: 200,fit: BoxFit.cover,
+                                filterQuality: FilterQuality.high,),),
                               const SizedBox(
                                 height: 10,
                               ),
@@ -608,42 +616,45 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                         ),
                       ),
 
-                      Container(
-                        width: 160,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.5),
-                              blurRadius: 1,
-                              spreadRadius: 1,
-                              // offset: const Offset(2, 2),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 6,
-                            ),
-                            SizedBox(
-                              height: 90,
-                              child: Image.asset("assets/course/books.png"),),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text("Livros",style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                fontWeight: FontWeight.bold
-                            ),),
+                      GestureDetector(
+                        onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> const Books())),
+                        child: Container(
+                          width: 160,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                blurRadius: 1,
+                                spreadRadius: 1,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 6,
+                              ),
+                              SizedBox(
+                                height: 90,
+                                child: Image.asset("assets/course/books.png"),),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text("Livros",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.bold
+                              ),),
 
-                            Text("Ler livros",style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                fontWeight: FontWeight.normal
-                            ),),
-                          ],
+                              Text("Ler livros",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.normal
+                              ),),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -656,7 +667,6 @@ class _MenuWidgetsState extends State<MenuWidgets> {
 
             GestureDetector(
               onTap: () async {
-                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> const NewStudent()));
                 /*_controllerSaveNewStudent.saveStudent(studentDataEntity: StudentDataEntity(
                   studentName: "Correia Antonio Chumbo",

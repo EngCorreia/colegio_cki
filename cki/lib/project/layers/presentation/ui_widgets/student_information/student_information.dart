@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/configuration/configuration.dart';
+import '../datesheet_screen/datesheet_screen.dart';
 
 class StudentInformation extends StatefulWidget {
   const StudentInformation({Key? key}) : super(key: key);
@@ -74,6 +75,7 @@ class _StudentInformationState extends State<StudentInformation> {
 
             GestureDetector(
               onTap: () async {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const DateSheetScreen()));
                 //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
               },
               child: Padding(

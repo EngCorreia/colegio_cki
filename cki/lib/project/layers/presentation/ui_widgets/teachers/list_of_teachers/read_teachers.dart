@@ -152,7 +152,7 @@ class _TeachersState extends State<Teachers> {
                   ),
                 );
               },
-              itemCount: 5,
+              itemCount: 20,
             ),
           ],
         ),

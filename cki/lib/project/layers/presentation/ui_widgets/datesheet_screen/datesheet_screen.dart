@@ -1,7 +1,10 @@
-import 'package:brain_school/constants.dart';
-import 'package:brain_school/screens/datesheet_screen/data/datesheet_data.dart';
+
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+
+import 'data/constList.dart';
+import 'data/datesheet_data.dart';
+
 
 class DateSheetScreen extends StatelessWidget {
   const DateSheetScreen({Key? key}) : super(key: key);
@@ -11,27 +14,27 @@ class DateSheetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('DateSheet'),
+        title: const Text('DateSheet'),
       ),
       body: Container(
-        width: 100.w,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: kOtherColor,
-          borderRadius: kTopBorderRadius,
+          borderRadius: BorderRadius.circular(5),
         ),
         child: ListView.builder(
           itemCount: dateSheet.length,
           itemBuilder: (context, index) {
             return Container(
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                   left: kDefaultPadding / 2, right: kDefaultPadding / 2),
-              padding: EdgeInsets.all(kDefaultPadding / 2),
+              padding: const EdgeInsets.all(kDefaultPadding / 2),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 3.h,
+                  const SizedBox(
+                    height: 50,
                     child: Divider(
                       thickness: 1.0,
                     ),
@@ -48,8 +51,7 @@ class DateSheetScreen extends StatelessWidget {
                         children: [
                           Text(
                             dateSheet[index].date.toString(),
-                            style:
-                                Theme.of(context).textTheme.subtitle2!.copyWith(
+                            style: Theme.of(context).textTheme.subtitle2!.copyWith(
                                       color: kTextBlackColor,
                                       fontWeight: FontWeight.w900,
                                     ),
@@ -89,8 +91,8 @@ class DateSheetScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 3.h,
+                  const SizedBox(
+                    height: 20,
                     child: Divider(
                       thickness: 1.0,
                     ),

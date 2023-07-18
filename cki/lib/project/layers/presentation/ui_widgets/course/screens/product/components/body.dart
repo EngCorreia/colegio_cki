@@ -35,6 +35,7 @@ class Body extends StatelessWidget {
                 ),
                 ListView.builder(
                   // here we use our demo procuts list
+                  physics: const BouncingScrollPhysics(),
                   itemCount: products.length,
                   itemBuilder: (context, index) => ProductCard(
                     itemIndex: index,
