@@ -1,4 +1,5 @@
 
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cki/project/layers/presentation/ui_widgets/nova_matricula/read_file.dart';
@@ -17,7 +18,8 @@ import '../index_menu/index_page.dart';
 
 
 class NewStudent extends StatefulWidget {
-  const NewStudent({Key? key}) : super(key: key);
+  final StudentDataEntity studentDataEntity;
+  const NewStudent({Key? key, required this.studentDataEntity}) : super(key: key);
 
   @override
   State<NewStudent> createState() => _NewStudentState();
@@ -304,6 +306,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
+                        widget.studentDataEntity.studentName = value;
 
                       },
                       cursorColor: Colors.indigo,
@@ -330,7 +333,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.date = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -341,19 +344,19 @@ class _NewStudentState extends State<NewStudent> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
-                      controller: _textEditingController,
-                      decoration: InputDecoration(
+                      //controller: _textEditingController,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
-                        border: const OutlineInputBorder(),
+                        border: OutlineInputBorder(),
                         //prefixIcon: const Icon(Icons.person), // Add prefix icon
-
-                        hintText: dateTime.toString(),
+                        hintText: "RG/Nº de Registro Certidão Nascimento",
                         labelText: "RG/Nº de Registro Certidão Nascimento",
                         // errorText: createContactUser.validateName,
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.numberRG = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -373,7 +376,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.address = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -394,7 +397,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.motherName = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -413,7 +416,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.spaceJobMother = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -433,7 +436,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.emailMother = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -443,6 +446,7 @@ class _NewStudentState extends State<NewStudent> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -452,6 +456,7 @@ class _NewStudentState extends State<NewStudent> {
                         // errorText: createContactUser.validateName,
                       ),
                       onChanged: (value) {
+                        widget.studentDataEntity.phoneNumberMother = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -461,6 +466,7 @@ class _NewStudentState extends State<NewStudent> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
+                      keyboardType: TextInputType.name,
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -472,7 +478,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.fatherName = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -482,6 +488,7 @@ class _NewStudentState extends State<NewStudent> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
+                      keyboardType: TextInputType.name,
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -491,7 +498,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.spaceJobFather = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -511,7 +518,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.emailFather = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -521,6 +528,7 @@ class _NewStudentState extends State<NewStudent> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -530,7 +538,7 @@ class _NewStudentState extends State<NewStudent> {
                         // errorText: createContactUser.validateName,
                       ),
                       onChanged: (value) {
-
+                        widget.studentDataEntity.phoneNumberFather = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -562,7 +570,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.responseName = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -581,7 +589,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.responseObs = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -1193,10 +1201,7 @@ class _NewStudentState extends State<NewStudent> {
           onPressed: () async {
             final pref = await SharedPreferences.getInstance();
             pref.setBool("showHome", true);
-            _controllerSaveNewStudent.saveStudent(studentDataEntity: StudentDataEntity(
-                  studentName: "Correia Antonio Chumbo",
-                  schoolName: "Colegio CKI"
-                ));
+            _controllerSaveNewStudent.saveStudent(studentDataEntity: widget.studentDataEntity);
 
           },
           child: Text("Fazer Inscrição",style: TextStyle(
@@ -1247,6 +1252,7 @@ class _NewStudentState extends State<NewStudent> {
       setState(() {
         dateTime = value!;
         _textEditingController.text = value.toString();
+        widget.studentDataEntity.date = value.toString();
       });
     });
   }

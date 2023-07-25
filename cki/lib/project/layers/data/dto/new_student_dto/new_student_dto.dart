@@ -150,8 +150,26 @@ class StudentDto extends StudentDataEntity{
 
   static Map<String,dynamic> fromJson(StudentDataEntity studentDataEntity){
     return {
-      "studentName": studentDataEntity.studentName,
-      "date": studentDataEntity.schoolName
+      // dados pessoais do aluno
+      "nome_aluno": studentDataEntity.studentName,
+      "data_nascimento": studentDataEntity.date,
+      "registro_certidao": studentDataEntity.numberRG,
+      "endereco": studentDataEntity.address,
+      "nome_mae": studentDataEntity.motherName,
+      "mae_trabalho": studentDataEntity.spaceJobMother,
+      "mae_email": studentDataEntity.emailMother,
+      "mae_telefone": studentDataEntity.phoneNumberMother,
+      "nome_pai": studentDataEntity.fatherName,
+      "pai_trabalho": studentDataEntity.spaceJobFather,
+      "pai_email": studentDataEntity.emailFather,
+      "pai_telefone": studentDataEntity.phoneNumberFather,
+      "nome_responsavel": studentDataEntity.responseName,
+      "obs": studentDataEntity.responseObs,
+      "classe": studentDataEntity.responseObs,
+      "classe_id": studentDataEntity.responseObs,
+      // Dados de saude do aluno
+     // "obs": studentDataEntity.responseObs,
+
     };
   }
 }

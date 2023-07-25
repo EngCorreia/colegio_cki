@@ -15,6 +15,7 @@ class StudentDataEntity{
   String? _phoneNumberFather;
   String? _responseName;
   String? _responseObs;
+  String? _classe;
 
 
   StudentDataEntity({String? schoolName,String? studentName,var date,String? numberRG,

@@ -2,6 +2,7 @@ import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../../../domain/entities/student_entity/student_data_entity.dart';
 import '../../../../nova_matricula/new_student.dart';
 import '../../../constants.dart';
 
@@ -13,7 +14,9 @@ class NewStudentButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const NewStudent())),
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> NewStudent(
+        studentDataEntity: StudentDataEntity(),
+      ))),
       child: Center(
         child: Container(
           height: 50,
