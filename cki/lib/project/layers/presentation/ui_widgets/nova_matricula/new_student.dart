@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:cki/project/layers/presentation/ui_widgets/nova_matricula/read_file.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:get_it/get_it.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,6 +11,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/configuration/configuration.dart';
+import '../../../domain/entities/student_entity/student_data_entity.dart';
+import '../../controllers/save_new_student_controller/save_new_student_controller.dart';
 import '../index_menu/index_page.dart';
 
 
@@ -28,6 +31,7 @@ class _NewStudentState extends State<NewStudent> {
   DateTime dateTime = DateTime.now();
   final _textEditingController = TextEditingController();
   List<PlatformFile>? filesList = [];
+  final _controllerSaveNewStudent = GetIt.I.get<SaveNewStudentController>();
 
 
   @override
@@ -1189,7 +1193,11 @@ class _NewStudentState extends State<NewStudent> {
           onPressed: () async {
             final pref = await SharedPreferences.getInstance();
             pref.setBool("showHome", true);
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> IndexPage()));
+            _controllerSaveNewStudent.saveStudent(studentDataEntity: StudentDataEntity(
+                  studentName: "Correia Antonio Chumbo",
+                  schoolName: "Colegio CKI"
+                ));
+
           },
           child: Text("Fazer Inscrição",style: TextStyle(
               color: Colors.white,

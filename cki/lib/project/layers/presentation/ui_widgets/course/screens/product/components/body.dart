@@ -1,12 +1,17 @@
-
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import '../../../../../controllers/save_new_student_controller/save_new_student_controller.dart';
 import '../../../components/search_box.dart';
 import '../../../constants.dart';
 import '../../../models/product.dart';
 import 'category_list.dart';
 import 'product_card.dart';
 
+
+
 class Body extends StatelessWidget {
+
+  Body({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../nova_matricula/new_student.dart';
 import '../../../constants.dart';
 
-class ChatAndAddToCart extends StatelessWidget {
-  const ChatAndAddToCart({
+class NewStudentButton extends StatelessWidget {
+  const NewStudentButton({
     Key? key,
   }) : super(key: key);
 

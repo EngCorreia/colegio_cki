@@ -34,7 +34,6 @@ class MenuWidgets extends StatefulWidget {
 
 class _MenuWidgetsState extends State<MenuWidgets> {
   int _current = 0;
-  final _controllerSaveNewStudent = GetIt.I.get<SaveNewStudentController>();
 
   @override
   void initState() {
@@ -671,12 +670,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
 
             GestureDetector(
               onTap: () async {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const NewStudent()));
-                /*_controllerSaveNewStudent.saveStudent(studentDataEntity: StudentDataEntity(
-                  studentName: "Correia Antonio Chumbo",
-                  schoolName: "Colegio CKI"
-                ));
-                */
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen()));
 
               //  const CupertinoActivityIndicator();
 

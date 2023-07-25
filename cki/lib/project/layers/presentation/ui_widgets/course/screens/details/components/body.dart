@@ -71,7 +71,7 @@ class Body extends StatelessWidget {
                 ],
               ),
             ),
-            const ChatAndAddToCart(),
+            const NewStudentButton(),
           ],
         ),
       ),
