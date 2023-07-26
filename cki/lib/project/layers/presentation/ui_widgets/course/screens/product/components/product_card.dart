@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import '../../../../../../domain/entities/courses_entity/coures_entitiy.dart';
 import '../../../constants.dart';
 import '../../../models/product.dart';
 import '../../details/details_screen.dart';
 
-class ProductCard extends StatelessWidget {
+class CoursesCard extends StatefulWidget {
   final int itemIndex;
-  final Product product;
+  final Course coures;
 
-  const ProductCard({
-    Key? key, required this.itemIndex, required this.product}) : super(key: key);
+  const CoursesCard({
+    Key? key, required this.itemIndex,required this.coures}) : super(key: key);
+
+  @override
+  State<CoursesCard> createState() => _CoursesCardState();
+}
+
+class _CoursesCardState extends State<CoursesCard> {
 
 
+  @override
+  void initState() {
+    super.initState();
+
+  }
   @override
   Widget build(BuildContext context) {
     // It  will provide us total height and width of our screen
@@ -23,7 +36,7 @@ class ProductCard extends StatelessWidget {
       // color: Colors.blueAccent,
       height: 160,
       child: InkWell(
-        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsScreen(product: products[itemIndex],))),
+        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsCourses(coures: widget.coures,))),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: <Widget>[
@@ -32,7 +45,7 @@ class ProductCard extends StatelessWidget {
               height: 136,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(22),
-                color: itemIndex.isEven ? kBlueColor : kSecondaryColor,
+                color: widget.itemIndex.isEven ? kBlueColor : kSecondaryColor,
                 boxShadow: const [kDefaultShadow],
               ),
               child: Container(
@@ -48,13 +61,13 @@ class ProductCard extends StatelessWidget {
               top: 0,
               right: 0,
               child: Hero(
-                tag: '${product.id}',
+                tag: '${widget.coures.id}',
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                   height: 160,
                   // image is square but we add extra 20 + 20 padding thats why width is 200
                   width: 200,
-                  child: Image.asset(product.image!,
+                  child: Image.asset(widget.coures.images!,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -75,7 +88,7 @@ class ProductCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: kDefaultPadding),
-                      child: Text(product.title!,
+                      child: Text("${widget.coures.classeName} Colegio Kalabo Internacional",
                         style: Theme.of(context).textTheme.button,
                       ),
                     ),
@@ -93,10 +106,13 @@ class ProductCard extends StatelessWidget {
                           topRight: Radius.circular(22),
                         ),
                       ),
-                      child: Text("\$${product.price}",
-                        style: Theme.of(context).textTheme.button,
-                      ),
+                      child: Text("\$${widget.coures.prices}",
+                          style: Theme.of(context).textTheme.button,
+                        ),
+
                     ),
+
+
                   ],
                 ),
               ),

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 
+import '../../../../../../domain/entities/courses_entity/coures_entitiy.dart';
 import '../../../constants.dart';
 import '../../../models/product.dart';
 import 'chat_and_add_to_cart.dart';
 import 'list_of_colors.dart';
 import 'product_image.dart';
 
-class Body extends StatelessWidget {
-  final Product product;
-
-  const Body({Key? key, required this.product}) : super(key: key);
+class BodyDetailCourse extends StatelessWidget {
+  final Course coures;
+  const BodyDetailCourse({Key? key, required this.coures}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     // it provide us total height and width
@@ -37,10 +37,10 @@ class Body extends StatelessWidget {
                 children: <Widget>[
                   Center(
                     child: Hero(
-                      tag: '${product.id}',
+                      tag: '${coures.id}',
                       child: ProductPoster(
                         size: size,
-                        image: product.image!,
+                        image:coures.images!,
                       ),
                     ),
                   ),
@@ -48,12 +48,12 @@ class Body extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: kDefaultPadding / 2),
-                    child: Text(product.title!,
+                    child: Text(coures.classeName!,
                       style: Theme.of(context).textTheme.headline6,
                     ),
                   ),
                   Text(
-                    '${product.price} Kzs Inscrição',
+                    '${coures.prices} Kzs Inscrição',
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -63,7 +63,7 @@ class Body extends StatelessWidget {
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
-                    child: Text(product.description!,
+                    child: Text(coures.description!,
                       style: const TextStyle(color: kTextLightColor),
                     ),
                   ),
@@ -71,7 +71,7 @@ class Body extends StatelessWidget {
                 ],
               ),
             ),
-            const NewStudentButton(),
+            NewStudentButton(studentClass: coures.classeName!),
           ],
         ),
       ),

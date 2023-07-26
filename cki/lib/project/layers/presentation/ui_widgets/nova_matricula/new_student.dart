@@ -18,8 +18,9 @@ import '../index_menu/index_page.dart';
 
 
 class NewStudent extends StatefulWidget {
+  final String? studentClass;
   final StudentDataEntity studentDataEntity;
-  const NewStudent({Key? key, required this.studentDataEntity}) : super(key: key);
+  const NewStudent({Key? key, required this.studentDataEntity, this.studentClass}) : super(key: key);
 
   @override
   State<NewStudent> createState() => _NewStudentState();
@@ -39,6 +40,7 @@ class _NewStudentState extends State<NewStudent> {
   @override
   void initState() {
     super.initState();
+    widget.studentDataEntity.classeId = widget.studentClass;
   }
 
 

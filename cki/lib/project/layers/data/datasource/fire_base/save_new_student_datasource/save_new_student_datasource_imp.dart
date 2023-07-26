@@ -15,7 +15,7 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
   Future<Either<SaveStudentError, bool>> call({required StudentDataEntity studentDataEntity}) async{
 
     try{
-      var saveStudentResult = FirebaseFirestore.instance.collection("colegios").doc("kalabo_internacional").collection("students").doc();
+      var saveStudentResult = FirebaseFirestore.instance.collection("colegios").doc("kalabo_internacional").collection("2023_a_2024").doc("cki_2023").collection("estudante").doc();
       var result = StudentDto.fromJson(studentDataEntity);
       if(result.isNotEmpty){
         saveStudentResult.set(result);

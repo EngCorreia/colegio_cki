@@ -320,6 +320,67 @@ class _MenuWidgetsState extends State<MenuWidgets> {
               },
             ),
 
+
+            SpeedDialChild(
+              labelWidget: Padding(
+                padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
+                child: Container(
+                  height: 45,
+                  width: 150,
+                  alignment: Alignment.centerLeft,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        blurRadius: 1,
+                      )
+                    ],
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.3, 1],
+                      colors: [Colors.white, Colors.white],
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: SizedBox(
+                            width: 140,
+                            child: Text("Quadro de honra",
+                              style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  color: Colors.blue),
+                            )),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: SizedBox(
+                            width: 140,
+                            child: Text("Ver alunos quadro de honra",
+                              style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  color: Colors.black,
+                                  fontSize: 10),
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              child: const Icon(FontAwesomeIcons.facebookMessenger, color: Colors.blue, size: 20,),
+              labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const ChatUi()));
+
+              },
+            ),
+
           ],
         ),
 

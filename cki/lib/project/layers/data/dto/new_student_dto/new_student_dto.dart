@@ -18,9 +18,11 @@ class StudentDto extends StudentDataEntity{
   String? _phoneNumberFather;
   String? _responseName;
   String? _responseObs;
+  String? _classeId;
+  String? _periodo;
 
 
-  StudentDto({String? schoolName,String? studentName,var date,String? numberRG,
+  StudentDto({String? classeId,String? periodo,String? schoolName,String? studentName,var date,String? numberRG,
     String? address,String? motherName,String? spaceJobMother,String? emailMother,
     String? phoneNumberMother,String? fatherName,String? spaceJobFather,String? emailFather,
     String? phoneNumberFather,String? responseName,String? responseObs}) : super(
@@ -38,7 +40,9 @@ class StudentDto extends StudentDataEntity{
     schoolName: schoolName,
     spaceJobFather: spaceJobFather,
     spaceJobMother: spaceJobMother,
-    studentName: studentName
+    studentName: studentName,
+      classeId: classeId,
+    periodo: periodo
   ){
     _schoolName = schoolName;
     _studentName = studentName;
@@ -55,6 +59,8 @@ class StudentDto extends StudentDataEntity{
     _phoneNumberFather = phoneNumberFather;
     _responseName = responseName;
     _responseObs = responseObs;
+    _periodo = periodo;
+    _classeId = classeId;
   }
 
 
@@ -148,6 +154,19 @@ class StudentDto extends StudentDataEntity{
     _studentName = value;
   }
 
+
+  String? get classeId => _classeId;
+
+  set classeId(String? value) {
+    _classeId = value;
+  }
+
+  String? get periodo => _periodo;
+
+  set periodo(String? value) {
+    _periodo = value;
+  }
+
   static Map<String,dynamic> fromJson(StudentDataEntity studentDataEntity){
     return {
       // dados pessoais do aluno
@@ -165,11 +184,13 @@ class StudentDto extends StudentDataEntity{
       "pai_telefone": studentDataEntity.phoneNumberFather,
       "nome_responsavel": studentDataEntity.responseName,
       "obs": studentDataEntity.responseObs,
-      "classe": studentDataEntity.responseObs,
-      "classe_id": studentDataEntity.responseObs,
+      "classe": {"classeName": studentDataEntity.classeId,
+                 "periodo": "Manhã"},
+
       // Dados de saude do aluno
      // "obs": studentDataEntity.responseObs,
 
     };
   }
+
 }

@@ -7,14 +7,16 @@ import '../../../../nova_matricula/new_student.dart';
 import '../../../constants.dart';
 
 class NewStudentButton extends StatelessWidget {
+  final String studentClass;
   const NewStudentButton({
-    Key? key,
+    Key? key, required this.studentClass,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> NewStudent(
+          studentClass: studentClass,
         studentDataEntity: StudentDataEntity(),
       ))),
       child: Center(

@@ -24,6 +24,7 @@ dependencies:
   flutter_mobx: ^2.0.2
   smooth_page_indicator: ^1.1.0
   mobx: ^2.0.5
+  rxdart: ^0.26.0
   shared_preferences: ^2.1.1
   dropdownfield2: ^1.0.7
   carousel_slider: ^4.0.0

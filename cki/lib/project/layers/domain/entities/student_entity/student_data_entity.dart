@@ -15,13 +15,14 @@ class StudentDataEntity{
   String? _phoneNumberFather;
   String? _responseName;
   String? _responseObs;
-  String? _classe;
+  String? _classeId;
+  String? _periodo;
 
 
   StudentDataEntity({String? schoolName,String? studentName,var date,String? numberRG,
     String? address,String? motherName,String? spaceJobMother,String? emailMother,
     String? phoneNumberMother,String? fatherName,String? spaceJobFather,String? emailFather,
-    String? phoneNumberFather,String? responseName,String? responseObs}){
+    String? phoneNumberFather,String? responseName,String? responseObs,String? classeId,String? periodo}){
 _schoolName = schoolName;
 _studentName = studentName;
 _date = date;
@@ -37,8 +38,16 @@ _emailFather = emailFather;
 _phoneNumberFather = phoneNumberFather;
 _responseName = responseName;
 _responseObs = responseObs;
+_classeId = classeId;
+_periodo = periodo;
   }
 
+
+  String? get classeId => _classeId;
+
+  set classeId(String? value) {
+    _classeId = value;
+  }
 
   String? get schoolName => _schoolName;
 
@@ -128,5 +137,11 @@ _responseObs = responseObs;
 
   set studentName(String? value) {
     _studentName = value;
+  }
+
+  String? get periodo => _periodo;
+
+  set periodo(String? value) {
+    _periodo = value;
   }
 }

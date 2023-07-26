@@ -3,14 +3,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 
 
+import '../../../../../domain/entities/courses_entity/coures_entitiy.dart';
 import '../../../../controllers/save_new_student_controller/save_new_student_controller.dart';
 import '../../constants.dart';
 import '../../models/product.dart';
 import 'components/body.dart';
 
-class DetailsScreen extends StatelessWidget {
-  final Product product;
-  const DetailsScreen({Key? key, required this.product}) : super(key: key);
+class DetailsCourses extends StatelessWidget {
+  final  Course coures;
+  const DetailsCourses({Key? key, required this.coures}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: buildAppBar(context),
-      body: Body(product: product,),
+      body: BodyDetailCourse(coures: coures,),
     );
   }
 

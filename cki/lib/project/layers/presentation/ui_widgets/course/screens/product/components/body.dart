@@ -1,17 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import '../../../../../../core/listeners/listener.dart';
+import '../../../../../../core/listeners/listenner_classe.dart';
+import '../../../../../controllers/read_course_controller/read_course_controller.dart';
 import '../../../../../controllers/save_new_student_controller/save_new_student_controller.dart';
 import '../../../components/search_box.dart';
 import '../../../constants.dart';
-import '../../../models/product.dart';
 import 'category_list.dart';
 import 'product_card.dart';
 
 
 
-class Body extends StatelessWidget {
+class BodyCourse extends StatefulWidget {
+  const BodyCourse({super.key});
+  @override
+  State<BodyCourse> createState() => _BodyCourseState();
+}
 
-  Body({super.key});
+class _BodyCourseState extends State<BodyCourse> {
+
+  final _controllerReadCourse = GetIt.I.get<ReadCourseController>();
+
+  @override
+  void initState() {
+    super.initState();
+    _controllerReadCourse.readCourse();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +51,21 @@ class Body extends StatelessWidget {
                     ),
                   ),
                 ),
-                ListView.builder(
-                  // here we use our demo procuts list
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: products.length,
-                  itemBuilder: (context, index) => ProductCard(
-                    itemIndex: index,
-                    product: products[index],
+
+
+                Observer(
+                  builder:(_)=> ListView.builder(
+                    // here we use our demo procuts list
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: _controllerReadCourse.courseList.length,
+                    itemBuilder: (context, index) => CoursesCard(
+                      itemIndex: index,
+                      coures: _controllerReadCourse.courseList[index],
+                    ),
                   ),
-                )
+                ),
+
+
               ],
             ),
           ),

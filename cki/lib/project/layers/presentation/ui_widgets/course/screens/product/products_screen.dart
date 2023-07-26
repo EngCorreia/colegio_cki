@@ -1,16 +1,26 @@
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_it/get_it.dart';
+import '../../../../../core/listeners/listenner_classe.dart';
+import '../../../../controllers/read_course_controller/read_course_controller.dart';
 import '../../constants.dart';
 import 'components/body.dart';
 
-class ProductsScreen extends StatelessWidget {
+class ProductsScreen extends StatefulWidget {
+  @override
+  State<ProductsScreen> createState() => _ProductsScreenState();
+}
+
+class _ProductsScreenState extends State<ProductsScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
       backgroundColor: kPrimaryColor,
-      body: Body(),
+      body: const BodyCourse(),
     );
   }
 
