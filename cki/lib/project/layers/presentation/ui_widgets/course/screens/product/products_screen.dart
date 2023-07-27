@@ -1,14 +1,12 @@
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get_it/get_it.dart';
-import '../../../../../core/listeners/listenner_classe.dart';
-import '../../../../controllers/read_course_controller/read_course_controller.dart';
 import '../../constants.dart';
 import 'components/body.dart';
 
 class ProductsScreen extends StatefulWidget {
+  const ProductsScreen({super.key});
+
   @override
   State<ProductsScreen> createState() => _ProductsScreenState();
 }

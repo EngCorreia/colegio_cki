@@ -1,10 +1,7 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../presentation/controllers/read_course_controller/read_course_controller.dart';
-import 'listener.dart';
 
 class ListenerFirebaseImp{
   final controller = GetIt.instance.get<ReadCourseController>();

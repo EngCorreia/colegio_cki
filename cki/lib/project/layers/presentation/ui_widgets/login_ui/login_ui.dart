@@ -1,9 +1,8 @@
 
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
-
-import '../home_page/menu_widgets.dart';
 import '../index_menu/index_page.dart';
 import '../register_student/register_student.dart';
 
@@ -15,6 +14,20 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+      if (!isAllowed) {
+        // This is just a basic example. For real apps, you must show some
+        // friendly dialog box before call the request method.
+        // This is very important to not harm the user experience
+        AwesomeNotifications().requestPermissionToSendNotifications();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
