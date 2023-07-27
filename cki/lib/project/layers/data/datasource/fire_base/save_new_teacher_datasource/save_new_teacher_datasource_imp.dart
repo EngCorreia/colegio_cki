@@ -13,7 +13,7 @@ class CreateNewTeachersDataSourceImp implements CreateNewTeachersDataSource{
   Future<Either<SaveTeacherError, bool>> call({required TeachersEntity teachersEntity}) async{
     try{
       var saveTeacherResult = FirebaseFirestore.instance.collection(Collections.school).doc("kalabo_internacional").
-    collection(Collections.teachers).doc();
+    collection("2023_a_2024").doc("cki_2023").collection("professores").doc();
       var result = TeachersDto.fromJson(teachersEntity: teachersEntity);
       if(result.isNotEmpty){
         saveTeacherResult.set(result);

@@ -7,7 +7,8 @@ import '../../../controllers/save_new_teacher_controller/save_new_teacher_contro
 
 
 class AddTeacher extends StatefulWidget {
-  const AddTeacher({Key? key}) : super(key: key);
+  final TeachersEntity teachersEntity;
+  const AddTeacher({Key? key, required this.teachersEntity}) : super(key: key);
 
   @override
   State<AddTeacher> createState() => _AddTeacherState();
@@ -65,13 +66,13 @@ class _AddTeacherState extends State<AddTeacher> {
                     //icon: Icon(Icons.person),
                     border: OutlineInputBorder(),
                     //prefixIcon: const Icon(Icons.person), // Add prefix icon
-                    hintText: "Número de telefone",
-                    labelText: "Número de telefone",
+                    hintText: "Introduza seu nome",
+                    labelText: "Introduza seu nome",
                     // errorText: createContactUser.validateName,
                   ),
 
                   onChanged: (value) {
-
+                    widget.teachersEntity.name = value;
                   },
                   cursorColor: Colors.indigo,
                   // validator: createContactUser.validateSalutation,
@@ -102,13 +103,13 @@ class _AddTeacherState extends State<AddTeacher> {
                     //icon: Icon(Icons.person),
                     border: OutlineInputBorder(),
                     //prefixIcon: const Icon(Icons.person), // Add prefix icon
-                    hintText: "Número de telefone",
-                    labelText: "Número de telefone",
+                    hintText: "Introduza sua morada",
+                    labelText: "Introduza sua morada",
                     // errorText: createContactUser.validateName,
                   ),
 
                   onChanged: (value) {
-
+                    widget.teachersEntity.classTeacher = value;
                   },
                   cursorColor: Colors.indigo,
                   // validator: createContactUser.validateSalutation,
@@ -138,44 +139,8 @@ class _AddTeacherState extends State<AddTeacher> {
                     //icon: Icon(Icons.person),
                     border: OutlineInputBorder(),
                     //prefixIcon: const Icon(Icons.person), // Add prefix icon
-                    hintText: "Número de telefone",
-                    labelText: "Número de telefone",
-                    // errorText: createContactUser.validateName,
-                  ),
-
-                  onChanged: (value) {
-
-                  },
-                  cursorColor: Colors.indigo,
-                  // validator: createContactUser.validateSalutation,
-                ),
-              ),
-            ),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.only(right: 20,left: 20, bottom: 10),
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.white,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 3,
-                    )
-                  ]),
-              child: Padding(
-                padding: const EdgeInsets.only(right: 0,left: 0,
-                    bottom: 0),
-                child: TextFormField(
-                  // controller: _textEditingController,
-                  decoration: const InputDecoration(
-                    //icon: Icon(Icons.person),
-                    border: OutlineInputBorder(),
-                    //prefixIcon: const Icon(Icons.person), // Add prefix icon
-                    hintText: "Número de telefone",
-                    labelText: "Número de telefone",
+                    hintText: "Introduza número de telefone",
+                    labelText: "Introduza número de telefone",
                     // errorText: createContactUser.validateName,
                   ),
 
@@ -210,8 +175,80 @@ class _AddTeacherState extends State<AddTeacher> {
                     //icon: Icon(Icons.person),
                     border: OutlineInputBorder(),
                     //prefixIcon: const Icon(Icons.person), // Add prefix icon
-                    hintText: "Número de telefone",
-                    labelText: "Número de telefone",
+                    hintText: "Nivel academico",
+                    labelText: "Nivel academico",
+                    // errorText: createContactUser.validateName,
+                  ),
+
+                  onChanged: (value) {
+
+                  },
+                  cursorColor: Colors.indigo,
+                  // validator: createContactUser.validateSalutation,
+                ),
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(right: 20,left: 20, bottom: 10),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.white,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black45,
+                      blurRadius: 3,
+                    )
+                  ]),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 0,left: 0,
+                    bottom: 0),
+                child: TextFormField(
+                  // controller: _textEditingController,
+                  decoration: const InputDecoration(
+                    //icon: Icon(Icons.person),
+                    border: OutlineInputBorder(),
+                    //prefixIcon: const Icon(Icons.person), // Add prefix icon
+                    hintText: "Classe a lecionar",
+                    labelText: "Classe a lecionar",
+                    // errorText: createContactUser.validateName,
+                  ),
+
+                  onChanged: (value) {
+
+                  },
+                  cursorColor: Colors.indigo,
+                  // validator: createContactUser.validateSalutation,
+                ),
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(right: 20,left: 20, bottom: 10),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.white,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black45,
+                      blurRadius: 3,
+                    )
+                  ]),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 0,left: 0,
+                    bottom: 0),
+                child: TextFormField(
+                  // controller: _textEditingController,
+                  decoration: const InputDecoration(
+                    //icon: Icon(Icons.person),
+                    border: OutlineInputBorder(),
+                    //prefixIcon: const Icon(Icons.person), // Add prefix icon
+                    hintText: "Experiençias profissionais",
+                    labelText: "Experiençias profissionais",
                     // errorText: createContactUser.validateName,
                   ),
 

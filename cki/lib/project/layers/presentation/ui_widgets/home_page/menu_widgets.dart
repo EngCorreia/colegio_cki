@@ -1,18 +1,15 @@
 import 'dart:developer';
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cki/project/layers/presentation/ui_widgets/teachers/list_of_teachers/read_teachers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/configuration/configuration.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
-import '../../controllers/save_new_student_controller/save_new_student_controller.dart';
 import '../about_us/about_us.dart';
 import '../books/books.dart';
 import '../calendary_screen/calendar_screen.dart';
@@ -22,8 +19,8 @@ import '../contacts/contact_ui.dart';
 import '../course/screens/product/products_screen.dart';
 import '../equipe_list/equipe_list.dart';
 import '../gallery/gallery.dart';
-import '../nova_matricula/new_student.dart';
 import '../splash_widgets/splash_widgets.dart';
+import '../teachers_ui/list_of_teachers/read_teachers.dart';
 
 
 

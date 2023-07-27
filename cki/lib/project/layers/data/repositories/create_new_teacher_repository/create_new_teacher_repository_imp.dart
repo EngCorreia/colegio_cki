@@ -1,4 +1,3 @@
-import 'package:cki/project/layers/presentation/ui_widgets/teachers/list_of_teachers/read_teachers.dart';
 
 import 'package:dartz/dartz.dart';
 

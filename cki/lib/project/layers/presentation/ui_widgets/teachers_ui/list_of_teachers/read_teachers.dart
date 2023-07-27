@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/configuration/configuration.dart';
+import '../../../../domain/entities/teachers_entity/teachers_entity.dart';
 import '../add_teacher/add_teacher.dart';
 
 class Teachers extends StatefulWidget {
@@ -62,7 +63,7 @@ class _TeachersState extends State<Teachers> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> const AddTeacher()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> AddTeacher(teachersEntity: TeachersEntity(),)));
         },
         child: const Icon(Icons.add,color: Colors.white,size: 30,),
       ),
