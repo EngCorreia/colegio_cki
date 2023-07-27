@@ -25,7 +25,6 @@ class ReadCourseInject{
 
     //usecase
     getIt.registerLazySingleton<ReadCourseUseCase>(() => ReadCourseUseCaseImp(getIt()));
-    getIt.registerLazySingleton<ListenerFirebase>(() => ListenerFirebaseImp());
 
     //controller
     getIt.registerFactory<ReadCourseController>(() => ReadCourseController(getIt()));

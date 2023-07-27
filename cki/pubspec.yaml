@@ -107,3 +107,5 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   #scripts:flutter pub run build_runner watch --delete-conflicting-outputs
   #flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons*
+  #flutter build appbundle --flavor sales -t lib/main_sales.dart
+  #keytool -genkey -alias key -keyalg RSA -keypass shareinemor1 -storepass shareinemor1 -validity 10000 -keystore keystore.jks
