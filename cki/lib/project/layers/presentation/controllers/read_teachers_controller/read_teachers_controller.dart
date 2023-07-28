@@ -1,25 +1,26 @@
 
+import 'dart:developer';
 
-
- import 'dart:developer';
-
-import '../../../core/show_toast_message/show_toast_message.dart';
+import 'package:mobx/mobx.dart';
 import '../../../domain/entities/teachers_entity/teachers_entity.dart';
 import '../../../domain/usecases/read_teacher_list_usecase/read_teacher_list_usecase.dart';
+part 'read_teachers_controller.g.dart';
 
-class ReadTeachersController {
+class ReadTeachersController = _ReadTeachersController with _$ReadTeachersController;
+abstract class _ReadTeachersController with Store {
 
   final ReadTeachersUseCase _readTeachersUseCase;
-  ReadTeachersController(this._readTeachersUseCase);
+  _ReadTeachersController(this._readTeachersUseCase);
 
-  List<TeachersEntity> teacherList = [];
+  @observable
+  ObservableList<TeachersEntity> teacherList = ObservableList();
 
-  Future<void> readCourse() async {
+  Future<void> readAllTeachers() async {
     var result = await _readTeachersUseCase();
     result.fold((error) => log("**** error controller ${error}"),
             (listTeachers){
-              teacherList = listTeachers;
-          ShowToast.show_message_Success("Inscrição feita com sucesso...");
+              teacherList = listTeachers.asObservable();
+         // ShowToast.show_message_Success("Inscrição feita com sucesso...");
         });
   }
 }

@@ -78,7 +78,7 @@ class TeachersDto extends TeachersEntity{
           email: allCourse.data()["email"],
           experience: allCourse.data()["experience"],
           phone: allCourse.data()["phone"],
-          level: allCourse.data()["level"],
+          level: allCourse.data()["teacherLevel"],
           name: allCourse.data()["teacherName"],
           listDeCadeira: allCourse.data()["listDeCadeira"],
       ));

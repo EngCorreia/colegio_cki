@@ -487,6 +487,103 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                       ),
 
                       GestureDetector(
+                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen())),
+                        child: Container(
+                          width: 160,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                blurRadius: 1,
+                                spreadRadius: 1,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 6,
+                              ),
+                              SizedBox(
+                                height: 90,
+                                width: MediaQuery.of(context).size.width,
+                                child: Image.asset("assets/course/cursos1.png",
+                                  width: 200,height: 200,fit: BoxFit.cover,
+                                  filterQuality: FilterQuality.high,),),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text("Cursos/Classe",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.bold
+                              ),),
+
+                              Text("Saíbas sobre cursos",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.normal
+                              ),),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      GestureDetector(
+                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const CalendarScreen())),
+                        child: Container(
+                          width: 160,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                blurRadius: 1,
+                                spreadRadius: 1,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 6,
+                              ),
+                              SizedBox(
+                                height: 90,
+                                child: Image.asset("assets/course/calendario.png"),),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text("Calendario ATL",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black
+                              ),),
+
+                              Text("Ver calendario",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black
+                              ),),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      GestureDetector(
                         onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const CalendarScreen())),
                         child: Container(
                           width: 160,
@@ -517,7 +614,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                               Text("Calendario",style: TextStyle(
                                   fontFamily: SettingsCki.segoeEui,
                                   fontWeight: FontWeight.bold,
-                                color: Colors.black
+                                  color: Colors.black
                               ),),
 
                               Text("Ver calendario",style: TextStyle(
@@ -584,7 +681,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                         ),
 
                         GestureDetector(
-                          onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen())),
+                          onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> const Books())),
                           child: Container(
                             width: 160,
                             height: 150,
@@ -607,19 +704,16 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                                 ),
                                 SizedBox(
                                   height: 90,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Image.asset("assets/course/cursos1.png",
-                                    width: 200,height: 200,fit: BoxFit.cover,
-                                  filterQuality: FilterQuality.high,),),
+                                  child: Image.asset("assets/course/books.png"),),
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                Text("Cursos/Classe",style: TextStyle(
+                                Text("Livros",style: TextStyle(
                                     fontFamily: SettingsCki.segoeEui,
                                     fontWeight: FontWeight.bold
                                 ),),
 
-                                Text("Saíbas sobre cursos",style: TextStyle(
+                                Text("Ler livros",style: TextStyle(
                                     fontFamily: SettingsCki.segoeEui,
                                     fontWeight: FontWeight.normal
                                 ),),
@@ -636,7 +730,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
                         width: 160,
@@ -677,47 +771,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                         ),
                       ),
 
-                      GestureDetector(
-                        onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> const Books())),
-                        child: Container(
-                          width: 160,
-                          height: 150,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.5),
-                                blurRadius: 1,
-                                spreadRadius: 1,
-                                // offset: const Offset(2, 2),
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height: 6,
-                              ),
-                              SizedBox(
-                                height: 90,
-                                child: Image.asset("assets/course/books.png"),),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text("Livros",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.bold
-                              ),),
 
-                              Text("Ler livros",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.normal
-                              ),),
-                            ],
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),

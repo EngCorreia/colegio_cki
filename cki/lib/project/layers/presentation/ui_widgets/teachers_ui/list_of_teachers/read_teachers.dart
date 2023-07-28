@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../../../core/configuration/configuration.dart';
 import '../../../../domain/entities/teachers_entity/teachers_entity.dart';
+import '../../../controllers/read_teachers_controller/read_teachers_controller.dart';
 import '../add_teacher/add_teacher.dart';
 
 class Teachers extends StatefulWidget {
@@ -12,6 +15,15 @@ class Teachers extends StatefulWidget {
 }
 
 class _TeachersState extends State<Teachers> {
+
+  final _teacherListController = GetIt.I.get<ReadTeachersController>();
+
+  @override
+  void initState(){
+    super.initState();
+    _teacherListController.readAllTeachers();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,86 +87,87 @@ class _TeachersState extends State<Teachers> {
               height: 5,
             ),
 
-            GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 4.0,
-                  mainAxisSpacing: 4.0,
-                  mainAxisExtent: 150),
-                 itemBuilder: (_, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Container(
-                    width: 50,
-                    height: 200,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.0),
-                        color: Colors.white,
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black45,
-                            blurRadius: 1,
-                          )
-                        ]),
-                    child: Column(
-                      children: [
-                       // grid_images(index),
-                        SizedBox(
-                            child: Padding(
-                              padding:
-                              const EdgeInsets.all(0.0),
-                              child: Container(
-                                alignment: Alignment.centerLeft,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(
-                                      height: 10,
+          Observer(builder: (_)=>  GridView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 4.0,
+                mainAxisSpacing: 4.0,
+                mainAxisExtent: 150),
+            itemBuilder: (_, index) {
+              return Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Container(
+                  width: 50,
+                  height: 200,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black45,
+                          blurRadius: 1,
+                        )
+                      ]),
+                  child: Column(
+                    children: [
+                      // grid_images(index),
+                      SizedBox(
+                          child: Padding(
+                            padding:
+                            const EdgeInsets.all(0.0),
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  SizedBox(
+                                    // width: MediaQuery.of(context).size.width,
+                                    child: CircleAvatar(
+                                      radius: 35,
+                                      child: Image.asset("assets/images/graduate.png"),
                                     ),
-                                    SizedBox(
-                                       // width: MediaQuery.of(context).size.width,
-                                        child: CircleAvatar(
-                                          radius: 35,
-                                          child: Image.asset("assets/images/graduate.png"),
-                                        ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.center,
-                                      child: Text("Correia Chumbo",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontFamily: SettingsCki.segoeEui,
-                                              fontSize: 12)),
-                                    ),
-                                   const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text("Matemática",
-                                      style: TextStyle(
-                                          color: Colors.blue,
-                                          fontFamily: SettingsCki.segoeEui,
-                                          fontSize: 12),
-                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Text("${_teacherListController.teacherList[index].name}",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontFamily: SettingsCki.segoeEui,
+                                            fontSize: 12)),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text("${_teacherListController.teacherList[index].level}",
+                                    style: TextStyle(
+                                        color: Colors.blue,
+                                        fontFamily: SettingsCki.segoeEui,
+                                        fontSize: 12),
+                                  ),
 
-                                    Text("1º e 2º classe",
-                                      style: TextStyle(
-                                          color: Colors.black54,
-                                          fontFamily: SettingsCki.segoeEui,
-                                          fontSize: 12),
-                                    ),
-                                  ],
-                                ),
+                                  Text("${_teacherListController.teacherList[index].classTeacher}",
+                                    style: TextStyle(
+                                        color: Colors.black54,
+                                        fontFamily: SettingsCki.segoeEui,
+                                        fontSize: 12),
+                                  ),
+                                ],
                               ),
-                            )),
-                      ],
-                    ),
+                            ),
+                          )),
+                    ],
                   ),
-                );
-              },
-              itemCount: 20,
-            ),
+                ),
+              );
+            },
+            itemCount: _teacherListController.teacherList.length,
+          ),
+          ),
           ],
         ),
       ),
