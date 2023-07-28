@@ -9,8 +9,7 @@ import '../../../domain/repositories/read_course_repository/read_course_reposito
 import '../../../domain/usecases/read_course_usecase/read_course_usecase.dart';
 import '../../../domain/usecases/read_course_usecase/read_course_usecase_imp.dart';
 import '../../../presentation/controllers/read_course_controller/read_course_controller.dart';
-import '../../listeners/listener.dart';
-import '../../listeners/listenner_classe.dart';
+
 
 class ReadCourseInject{
 

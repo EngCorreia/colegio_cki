@@ -1,3 +1,4 @@
+import 'package:dropdownfield2/dropdownfield2.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -61,13 +62,14 @@ class _AddTeacherState extends State<AddTeacher> {
                 padding: const EdgeInsets.only(right: 0,left: 0,
                     bottom: 0),
                 child: TextFormField(
+                  keyboardType: TextInputType.text,
                   // controller: _textEditingController,
                   decoration: const InputDecoration(
                     //icon: Icon(Icons.person),
                     border: OutlineInputBorder(),
                     //prefixIcon: const Icon(Icons.person), // Add prefix icon
-                    hintText: "Introduza seu nome",
-                    labelText: "Introduza seu nome",
+                    hintText: "Introduzir nome",
+                    labelText: "Introduzir  nome",
                     // errorText: createContactUser.validateName,
                   ),
 
@@ -98,18 +100,19 @@ class _AddTeacherState extends State<AddTeacher> {
                 padding: const EdgeInsets.only(right: 0,left: 0,
                     bottom: 0),
                 child: TextFormField(
+                  keyboardType: TextInputType.text,
                   // controller: _textEditingController,
                   decoration: const InputDecoration(
                     //icon: Icon(Icons.person),
                     border: OutlineInputBorder(),
                     //prefixIcon: const Icon(Icons.person), // Add prefix icon
-                    hintText: "Introduza sua morada",
-                    labelText: "Introduza sua morada",
+                    hintText: "Introduzir morada",
+                    labelText: "Introduzir morada",
                     // errorText: createContactUser.validateName,
                   ),
 
                   onChanged: (value) {
-                    widget.teachersEntity.classTeacher = value;
+                    widget.teachersEntity.address = value;
                   },
                   cursorColor: Colors.indigo,
                   // validator: createContactUser.validateSalutation,
@@ -134,6 +137,7 @@ class _AddTeacherState extends State<AddTeacher> {
                 padding: const EdgeInsets.only(right: 0,left: 0,
                     bottom: 0),
                 child: TextFormField(
+                  keyboardType: TextInputType.number,
                   // controller: _textEditingController,
                   decoration: const InputDecoration(
                     //icon: Icon(Icons.person),
@@ -145,7 +149,7 @@ class _AddTeacherState extends State<AddTeacher> {
                   ),
 
                   onChanged: (value) {
-
+                    widget.teachersEntity.phone = int.parse(value);
                   },
                   cursorColor: Colors.indigo,
                   // validator: createContactUser.validateSalutation,
@@ -170,18 +174,19 @@ class _AddTeacherState extends State<AddTeacher> {
                 padding: const EdgeInsets.only(right: 0,left: 0,
                     bottom: 0),
                 child: TextFormField(
+                  keyboardType: TextInputType.emailAddress,
                   // controller: _textEditingController,
                   decoration: const InputDecoration(
                     //icon: Icon(Icons.person),
                     border: OutlineInputBorder(),
                     //prefixIcon: const Icon(Icons.person), // Add prefix icon
-                    hintText: "Nivel academico",
-                    labelText: "Nivel academico",
+                    hintText: "Introduzir o email",
+                    labelText: "Introduzir o email",
                     // errorText: createContactUser.validateName,
                   ),
 
                   onChanged: (value) {
-
+                    widget.teachersEntity.email = value;
                   },
                   cursorColor: Colors.indigo,
                   // validator: createContactUser.validateSalutation,
@@ -205,22 +210,49 @@ class _AddTeacherState extends State<AddTeacher> {
               child: Padding(
                 padding: const EdgeInsets.only(right: 0,left: 0,
                     bottom: 0),
-                child: TextFormField(
-                  // controller: _textEditingController,
-                  decoration: const InputDecoration(
-                    //icon: Icon(Icons.person),
-                    border: OutlineInputBorder(),
-                    //prefixIcon: const Icon(Icons.person), // Add prefix icon
-                    hintText: "Classe a lecionar",
-                    labelText: "Classe a lecionar",
-                    // errorText: createContactUser.validateName,
-                  ),
+                child: DropDownField(
+                  textStyle: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui,fontSize: 16),
+                  labelStyle:  TextStyle(color: Colors.black,fontFamily: SettingsCki.segoeEui,fontSize: 16),
+                  onValueChanged: (dynamic value){
+                    String? nivel = value.toString();
+                    widget.teachersEntity.level = nivel;
+                  },
 
-                  onChanged: (value) {
+                  required: false,
+                  hintText: "Nivel academico",
+                  items: academic.map((element) => element.toString().replaceAll("()", "")).toList(),
+                )
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(right: 20,left: 20, bottom: 10),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.white,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black45,
+                      blurRadius: 3,
+                    )
+                  ]),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 0,left: 0,
+                    bottom: 0),
+                child: DropDownField(
+                  textStyle: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui,fontSize: 16),
+                  labelStyle:  TextStyle(color: Colors.black,fontFamily: SettingsCki.segoeEui,fontSize: 16),
+                  onValueChanged: (dynamic value){
+                    String? classe = value.toString();
+                    widget.teachersEntity.classTeacher = classe;
 
                   },
-                  cursorColor: Colors.indigo,
-                  // validator: createContactUser.validateSalutation,
+
+                  required: false,
+                  hintText: "Classe a lecionar",
+                  items: classes.map((element) => element.toString().replaceAll("()", "")).toList(),
                 ),
               ),
             ),
@@ -253,7 +285,7 @@ class _AddTeacherState extends State<AddTeacher> {
                   ),
 
                   onChanged: (value) {
-
+                    widget.teachersEntity.experience = value;
                   },
                   cursorColor: Colors.indigo,
                   // validator: createContactUser.validateSalutation,
@@ -265,11 +297,7 @@ class _AddTeacherState extends State<AddTeacher> {
 
           GestureDetector(
             onTap: () async {
-              _controllerSaveNewTeacher.saveTeacher(teachersEntity: TeachersEntity(
-                name: "Gabriel Chumbo",
-                level: "Licenciado em Direito",
-                classTeacher: "1º classe, 2º classe"
-              ));
+              _controllerSaveNewTeacher.saveTeacher(teachersEntity: widget.teachersEntity);
               Navigator.pop(context);
             },
             child: Padding(
@@ -310,4 +338,26 @@ class _AddTeacherState extends State<AddTeacher> {
       ),
     );
   }
+
+
+  List<String> academic = [
+    "Ensino Médio",
+    "Bacharel",
+    "Licenciatura",
+    "Mestrado",
+    "PHD",
+    "Mestre",
+  ];
+
+  List<String> classes = [
+    "1ª Classe",
+    "2ª Classe",
+    "3ª Classe",
+    "4ª Classe",
+    "5ª Classe",
+    "6ª Classe",
+    "7ª Classe",
+    "8ª Classe",
+    "9ª Classe",
+  ];
 }
