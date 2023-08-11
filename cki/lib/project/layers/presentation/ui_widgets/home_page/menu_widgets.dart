@@ -563,7 +563,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                               ),
                               SizedBox(
                                 height: 90,
-                                child: Image.asset("assets/course/calendario.png"),),
+                                child: Image.asset("assets/classRoom/atl_logo.png"),),
                               const SizedBox(
                                 height: 10,
                               ),
