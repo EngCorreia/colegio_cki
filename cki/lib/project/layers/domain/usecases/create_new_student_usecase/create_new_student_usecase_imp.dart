@@ -12,7 +12,7 @@ class CreateNewStudentUseCaseImp implements CreateNewStudentUseCase{
   CreateNewStudentUseCaseImp(this._createNewStudentRepository);
 
   @override
-  Future<Either<SaveStudentError, bool>> call({required StudentDataEntity studentDataEntity}) async{
-    return await _createNewStudentRepository(studentDataEntity: studentDataEntity);
+  Future<Either<SaveStudentError, bool>> call({required StudentDataEntity studentDataEntity,required int number}) async{
+    return await _createNewStudentRepository(studentDataEntity: studentDataEntity,number: number);
   }
 }

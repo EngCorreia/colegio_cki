@@ -1,5 +1,6 @@
 
 class StudentDataEntity{
+  /* dados pessoas do aluno*/
   String? _schoolName;
   String? _studentName;
   var _date;
@@ -18,11 +19,41 @@ class StudentDataEntity{
   String? _classeId;
   String? _periodo;
 
+  /* dados de saude do aluno*/
+
+  String? _planoDeSaude;
+  String? _problemaCronicoDeSaude;
+  String? _alergia;
+  String? _diagnosticoMedicoDificiencia;
+  String? _dificuldadeMotora;
+  String? _tratamento;
+  String? _medicacao;
+  String? _vacinas;
+  String? _aconpanhamento;
+  String? _numeroDeEmergencia;
+  String? _outraInformacaoDeSaude;
+
+  /* dados complementares do aluno*/
+
+  String? _primeiroNomeComplementares;
+  String? _primeiroTelefoneComplementares;
+  String? _segundoNomeComplementares;
+  String? _segundoTelefoneComplementares;
+  String? _terceiroNomeComplementares;
+  String? _terceiroTelefoneComplementares;
+
+  String? _grupoNumero;
+
+
 
   StudentDataEntity({String? schoolName,String? studentName,var date,String? numberRG,
     String? address,String? motherName,String? spaceJobMother,String? emailMother,
     String? phoneNumberMother,String? fatherName,String? spaceJobFather,String? emailFather,
-    String? phoneNumberFather,String? responseName,String? responseObs,String? classeId,String? periodo}){
+    String? phoneNumberFather,String? responseName,String? responseObs,String? classeId,String? periodo,
+    String? planoDeSaude,String? problemaCronicoDeSaude,String? alergia,String? diagnosticoMedicoDificiencia,String? dificuldadeMotora,
+    String? tratamento,String? medicacao,String? vacinas,String? aconpanhamento,String? numeroDeEmergencia,String? outraInformacaoDeSaude,
+    String? primeiroNomeComplementares,String? primeiroTelefoneComplementares,String? segundoNomeComplementares,String? segundoTelefoneComplementares,
+    String? terceiroNomeComplementares,String? terceiroTelefoneComplementares,String? grupoNumero}){
 _schoolName = schoolName;
 _studentName = studentName;
 _date = date;
@@ -40,8 +71,33 @@ _responseName = responseName;
 _responseObs = responseObs;
 _classeId = classeId;
 _periodo = periodo;
+_planoDeSaude = planoDeSaude;
+_problemaCronicoDeSaude = problemaCronicoDeSaude;
+_alergia = alergia;
+_diagnosticoMedicoDificiencia = diagnosticoMedicoDificiencia;
+_dificuldadeMotora = dificuldadeMotora;
+_tratamento = tratamento;
+_medicacao = medicacao;
+_vacinas = vacinas;
+_aconpanhamento = aconpanhamento;
+_numeroDeEmergencia = numeroDeEmergencia;
+_outraInformacaoDeSaude = outraInformacaoDeSaude;
+_primeiroNomeComplementares = primeiroNomeComplementares;
+_primeiroTelefoneComplementares = primeiroTelefoneComplementares;
+_segundoNomeComplementares = segundoNomeComplementares;
+_segundoTelefoneComplementares = segundoTelefoneComplementares;
+_terceiroNomeComplementares = terceiroNomeComplementares;
+_terceiroTelefoneComplementares = terceiroTelefoneComplementares;
+_grupoNumero = grupoNumero;
+
   }
 
+
+  String? get planoDeSaude => _planoDeSaude;
+
+  set planoDeSaude(String? value) {
+    _planoDeSaude = value;
+  }
 
   String? get classeId => _classeId;
 
@@ -143,5 +199,107 @@ _periodo = periodo;
 
   set periodo(String? value) {
     _periodo = value;
+  }
+
+  String? get problemaCronicoDeSaude => _problemaCronicoDeSaude;
+
+  set problemaCronicoDeSaude(String? value) {
+    _problemaCronicoDeSaude = value;
+  }
+
+  String? get alergia => _alergia;
+
+  set alergia(String? value) {
+    _alergia = value;
+  }
+
+  String? get diagnosticoMedicoDificiencia => _diagnosticoMedicoDificiencia;
+
+  set diagnosticoMedicoDificiencia(String? value) {
+    _diagnosticoMedicoDificiencia = value;
+  }
+
+  String? get dificuldadeMotora => _dificuldadeMotora;
+
+  set dificuldadeMotora(String? value) {
+    _dificuldadeMotora = value;
+  }
+
+  String? get tratamento => _tratamento;
+
+  set tratamento(String? value) {
+    _tratamento = value;
+  }
+
+  String? get medicacao => _medicacao;
+
+  set medicacao(String? value) {
+    _medicacao = value;
+  }
+
+  String? get vacinas => _vacinas;
+
+  set vacinas(String? value) {
+    _vacinas = value;
+  }
+
+  String? get aconpanhamento => _aconpanhamento;
+
+  set aconpanhamento(String? value) {
+    _aconpanhamento = value;
+  }
+
+  String? get numeroDeEmergencia => _numeroDeEmergencia;
+
+  set numeroDeEmergencia(String? value) {
+    _numeroDeEmergencia = value;
+  }
+
+  String? get outraInformacaoDeSaude => _outraInformacaoDeSaude;
+
+  set outraInformacaoDeSaude(String? value) {
+    _outraInformacaoDeSaude = value;
+  }
+
+  String? get primeiroNomeComplementares => _primeiroNomeComplementares;
+
+  set primeiroNomeComplementares(String? value) {
+    _primeiroNomeComplementares = value;
+  }
+
+  String? get primeiroTelefoneComplementares => _primeiroTelefoneComplementares;
+
+  set primeiroTelefoneComplementares(String? value) {
+    _primeiroTelefoneComplementares = value;
+  }
+
+  String? get segundoNomeComplementares => _segundoNomeComplementares;
+
+  set segundoNomeComplementares(String? value) {
+    _segundoNomeComplementares = value;
+  }
+
+  String? get segundoTelefoneComplementares => _segundoTelefoneComplementares;
+
+  set segundoTelefoneComplementares(String? value) {
+    _segundoTelefoneComplementares = value;
+  }
+
+  String? get terceiroNomeComplementares => _terceiroNomeComplementares;
+
+  set terceiroNomeComplementares(String? value) {
+    _terceiroNomeComplementares = value;
+  }
+
+  String? get terceiroTelefoneComplementares => _terceiroTelefoneComplementares;
+
+  set terceiroTelefoneComplementares(String? value) {
+    _terceiroTelefoneComplementares = value;
+  }
+
+  String? get grupoNumero => _grupoNumero;
+
+  set grupoNumero(String? value) {
+    _grupoNumero = value;
   }
 }

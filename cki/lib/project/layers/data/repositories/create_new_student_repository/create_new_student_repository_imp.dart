@@ -13,8 +13,8 @@ class CreateNewStudentRepositoryImp implements CreateNewStudentRepository {
   CreateNewStudentRepositoryImp(this._saveNewStudentDataSource);
 
   @override
-  Future<Either<SaveStudentError, bool>> call({required StudentDataEntity studentDataEntity}) async{
-   return await _saveNewStudentDataSource(studentDataEntity: studentDataEntity);
+  Future<Either<SaveStudentError, bool>> call({required StudentDataEntity studentDataEntity,required int number}) async{
+   return await _saveNewStudentDataSource(studentDataEntity: studentDataEntity,number: number);
   }
 
 }

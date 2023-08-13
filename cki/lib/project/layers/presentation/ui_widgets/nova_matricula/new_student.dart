@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cki/project/layers/presentation/ui_widgets/nova_matricula/read_file.dart';
+import 'package:dropdownfield2/dropdownfield2.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:open_file/open_file.dart';
@@ -13,6 +14,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/configuration/configuration.dart';
 import '../../../domain/entities/student_entity/student_data_entity.dart';
+import '../../controllers/process_number_controller/process_number_controller.dart';
 import '../../controllers/save_new_student_controller/save_new_student_controller.dart';
 import '../index_menu/index_page.dart';
 
@@ -30,16 +32,40 @@ class _NewStudentState extends State<NewStudent> {
   // var controller = PageController();
   final controller = PageController(keepPage: true);
   bool isLastPage = false;
+  var processNumber = ProcessNumberController();
+
   bool isChecked = false;
+  bool isTratamento = false;
+  bool isMedicacao = false;
+  bool isVacina = false;
+  List<bool> tratamentoList = [
+    false,
+    false
+  ];
+
+  List<bool> medicalList = [
+    false,
+    false
+  ];
+
+  List<bool> vacinacaoList = [
+    false,
+    false
+  ];
+
   DateTime dateTime = DateTime.now();
   final _textEditingController = TextEditingController();
   List<PlatformFile>? filesList = [];
   final _controllerSaveNewStudent = GetIt.I.get<SaveNewStudentController>();
+  var numberProcess;
 
+  List<String> periods = ["Manhã","Tarde"];
 
   @override
   void initState() {
     super.initState();
+    numberProcess = processNumber.readNumberOfProcess();
+    log("********************* $num");
     widget.studentDataEntity.classeId = widget.studentClass;
   }
 
@@ -342,6 +368,22 @@ class _NewStudentState extends State<NewStudent> {
                     ),
                   ),
 
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
+                    child: DropDownField(
+                      textStyle: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui,fontSize: 16),
+                      labelStyle:  TextStyle(color: Colors.black,fontFamily: SettingsCki.segoeEui,fontSize: 16),
+                      onValueChanged: (dynamic value){
+                        widget.studentDataEntity.periodo = value;
+                      },
+                      //controller: _customerController,
+                      required: false,
+                      hintText: "Periodo",
+                      items: periods.map((element) => element).toList(),
+                    ),
+                  ),
+
+
 
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
@@ -642,7 +684,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.planoDeSaude = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -663,7 +705,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.problemaCronicoDeSaude = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -685,7 +727,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.alergia = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -703,6 +745,7 @@ class _NewStudentState extends State<NewStudent> {
                         // errorText: createContactUser.validateName,
                       ),
                       onChanged: (value) {
+                        widget.studentDataEntity.diagnosticoMedicoDificiencia = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -721,7 +764,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.dificuldadeMotora = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -730,94 +773,131 @@ class _NewStudentState extends State<NewStudent> {
 
 
                   Padding(
-                    padding: const EdgeInsets.only(left: 20,right: 10),
+                    padding: const EdgeInsets.only(left: 20,right: 20),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Está em tratamento médico?"),
-                        Text("Não"),
-                        Checkbox(value: isChecked,
-                            onChanged: (bool? value){
-                          setState(() {
-                            isChecked = value!;
-                          });
-                        }),
+                        Container(
+                          height: 40,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: ToggleButtons(
+                                disabledColor: Colors.green,
+                                selectedColor: Colors.white,
+                                //borderColor: Colors.green,
+                                fillColor: Colors.blue,
+                              borderRadius: BorderRadius.circular(10),
+                                onPressed: (int value){
+                                  widget.studentDataEntity.tratamento = "Não";
+                                  setState(() {
+                                    if(value == 0){
+                                      tratamentoList[value] = true;
+                                      tratamentoList[value +1] = false;
+                                      widget.studentDataEntity.tratamento = "Não";
+                                    }else{
+                                      tratamentoList[value] = true;
+                                      tratamentoList[value -1] = false;
+                                      widget.studentDataEntity.tratamento = "Sim";
+                                    }
 
-                        Text("Sim"),
-                        Checkbox(value: isChecked,
-                            onChanged: (bool? value){
-                              setState(() {
-                                isChecked = value!;
-                              });
-                            }),
+                                  });
+                                },
+                                isSelected: tratamentoList,
+                                children: const[
+                                  Text("Não"),
+                                  Text("Sim"),
+                                ]),
+                          ),
+                        )
                       ],
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                        child: Text("Está em uso de alguma medicação?")),
-                  ),
+
                   Padding(
-                    padding: const EdgeInsets.only(left: 20,right: 10),
+                    padding: const EdgeInsets.only(left: 20,right: 20),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                       // Text("Está em uso de alguma medicação?"),
-                        const Text("Não"),
-                        Checkbox(value: isChecked,
-                            onChanged: (bool? value){
-                              setState(() {
-                                isChecked = value!;
-                              });
-                            }),
+                        Text("Está em uso alguma medicação?"),
+                        Container(
+                          height: 30,
+                          child: ToggleButtons(
+                              disabledColor: Colors.green,
+                              selectedColor: Colors.white,
+                              //borderColor: Colors.green,
+                              fillColor: Colors.blue,
+                              borderRadius: BorderRadius.circular(10),
+                              onPressed: (int value){
+                                widget.studentDataEntity.medicacao = "Não";
+                                setState(() {
+                                  if(value == 0){
+                                    medicalList[value] = true;
+                                    medicalList[value +1] = false;
+                                    widget.studentDataEntity.medicacao = "Não";
+                                  }else{
+                                    medicalList[value] = true;
+                                    medicalList[value -1] = false;
+                                    widget.studentDataEntity.medicacao = "Sim";
+                                  }
 
-                        Text("Sim"),
-                        Checkbox(value: isChecked,
-                            onChanged: (bool? value){
-                              setState(() {
-                                isChecked = value!;
-                              });
-                            }),
+                                });
+                              },
+                              isSelected: medicalList,
+                              children: const[
+                                Text("Não"),
+                                Text("Sim"),
+                              ]),
+                        )
                       ],
                     ),
                   ),
 
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text("As vacinas do calendário de vacinação do Ministério da Saúde estão em dia?")),
-                  ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 20,right: 10),
+                    padding: const EdgeInsets.only(left: 20,right: 20),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // Text("Está em uso de alguma medicação?"),
-                        const Text("Não"),
-                        Checkbox(value: isChecked,
-                            onChanged: (bool? value){
-                              setState(() {
-                                isChecked = value!;
-                              });
-                            }),
+                        Text("As vacinas do calendário de\nvacinação do Ministérioda Saúde\nestão em dia?"),
+                        Container(
+                          height: 30,
+                          child: ToggleButtons(
+                              disabledColor: Colors.green,
+                              selectedColor: Colors.white,
+                              //borderColor: Colors.green,
+                              fillColor: Colors.blue,
+                              borderRadius: BorderRadius.circular(10),
+                              onPressed: (int value){
+                                widget.studentDataEntity.vacinas = "Não";
+                                setState(() {
+                                  if(value == 0){
+                                    vacinacaoList[value] = true;
+                                    vacinacaoList[value +1] = false;
+                                    widget.studentDataEntity.medicacao = "Não";
+                                  }else{
+                                    vacinacaoList[value] = true;
+                                    vacinacaoList[value -1] = false;
+                                    widget.studentDataEntity.medicacao = "Sim";
+                                  }
 
-                        Text("Sim"),
-                        Checkbox(value: isChecked,
-                            onChanged: (bool? value){
-                              setState(() {
-                                isChecked = value!;
-                              });
-                            }),
+
+                                });
+                              },
+                              isSelected: vacinacaoList,
+                              children: const[
+                                Text("Não"),
+                                Text("Sim"),
+                              ]),
+                        )
                       ],
                     ),
                   ),
-
-
 
 
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -827,7 +907,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.tratamento = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -887,7 +967,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.primeiroNomeComplementares = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -897,6 +977,7 @@ class _NewStudentState extends State<NewStudent> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -908,7 +989,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.primeiroTelefoneComplementares = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -928,7 +1009,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
-
+                        widget.studentDataEntity.segundoNomeComplementares = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -938,6 +1019,7 @@ class _NewStudentState extends State<NewStudent> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -947,6 +1029,7 @@ class _NewStudentState extends State<NewStudent> {
                         // errorText: createContactUser.validateName,
                       ),
                       onChanged: (value) {
+                        widget.studentDataEntity.segundoTelefoneComplementares = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -965,6 +1048,7 @@ class _NewStudentState extends State<NewStudent> {
                         // errorText: createContactUser.validateName,
                       ),
                       onChanged: (value) {
+                        widget.studentDataEntity.terceiroNomeComplementares = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -974,6 +1058,7 @@ class _NewStudentState extends State<NewStudent> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 20),
                     child: TextFormField(
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -983,6 +1068,7 @@ class _NewStudentState extends State<NewStudent> {
                         // errorText: createContactUser.validateName,
                       ),
                       onChanged: (value) {
+                        widget.studentDataEntity.terceiroTelefoneComplementares = value;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -1020,7 +1106,9 @@ class _NewStudentState extends State<NewStudent> {
                       Container(
                         width: 230,
                         child: TextFormField(
+                          keyboardType: TextInputType.number,
                         onChanged: (value) {
+                          widget.studentDataEntity.grupoNumero = value;
                           },
                           cursorColor: Colors.indigo,
                         ),
@@ -1034,25 +1122,14 @@ class _NewStudentState extends State<NewStudent> {
                         padding: const EdgeInsets.only(left: 20,top: 40),
                         child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Text("do Ensino Fundamental para o ano lectivo de",style: TextStyle(
+                            child: Text("do Ensino Fundamental para o ano lectivo de 2023",style: TextStyle(
                                 fontFamily: SettingsCki.segoeEui,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold
                             ),)
                         ),
                       ),
-                      const SizedBox(
-                        width: 5,
-                      ),
 
-                      SizedBox(
-                        width: 45,
-                        child: TextFormField(
-                          onChanged: (value) {
-                          },
-                          cursorColor: Colors.indigo,
-                        ),
-                      )
                     ],
                   ),
 
@@ -1089,7 +1166,6 @@ class _NewStudentState extends State<NewStudent> {
                         ),)
                     ),
                   ),
-
 
                   /*
                   Padding(
@@ -1203,7 +1279,7 @@ class _NewStudentState extends State<NewStudent> {
           onPressed: () async {
             final pref = await SharedPreferences.getInstance();
             pref.setBool("showHome", true);
-            _controllerSaveNewStudent.saveStudent(studentDataEntity: widget.studentDataEntity);
+            _controllerSaveNewStudent.saveStudent(studentDataEntity: widget.studentDataEntity,number: numberProcess);
 
           },
           child: Text("Fazer Inscrição",style: TextStyle(

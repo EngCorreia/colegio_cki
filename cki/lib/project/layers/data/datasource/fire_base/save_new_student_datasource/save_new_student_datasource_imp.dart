@@ -12,11 +12,11 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
   bool isSaved = false;
 
   @override
-  Future<Either<SaveStudentError, bool>> call({required StudentDataEntity studentDataEntity}) async{
+  Future<Either<SaveStudentError, bool>> call({required StudentDataEntity studentDataEntity,required int number}) async{
 
     try{
       var saveStudentResult = FirebaseFirestore.instance.collection("colegios").doc("kalabo_internacional").collection("2023_a_2024").doc("cki_2023").collection("estudante").doc();
-      var result = StudentDto.fromJson(studentDataEntity);
+      var result = StudentDto.fromJson(studentDataEntity,number);
       if(result.isNotEmpty){
         saveStudentResult.set(result);
         isSaved = true;
