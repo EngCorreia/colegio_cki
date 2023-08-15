@@ -65,7 +65,6 @@ class _NewStudentState extends State<NewStudent> {
   void initState() {
     super.initState();
     numberProcess = processNumber.readNumberOfProcess();
-    log("********************* $num");
     widget.studentDataEntity.classeId = widget.studentClass;
   }
 
@@ -695,7 +694,7 @@ class _NewStudentState extends State<NewStudent> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
-                      controller: _textEditingController,
+                      //controller: _textEditingController,
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -716,7 +715,7 @@ class _NewStudentState extends State<NewStudent> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
-                      controller: _textEditingController,
+                     // controller: _textEditingController,
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),

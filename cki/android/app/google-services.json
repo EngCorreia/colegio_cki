@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "514968028367-84sjm37rl330ko14dm3lcerkrrloabqd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.colegio.cki",
+            "certificate_hash": "c889d5e663c9630ec61e084e653e17da2273134e"
+          }
+        },
+        {
           "client_id": "514968028367-ocdj0nnb6dgnnv9cofju7sg4p0sj2st5.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -3,7 +3,7 @@
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/core/init_injection_dependence/init_dependence_injection.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/course/screens/product/products_screen.dart';
-import 'package:cki/project/layers/presentation/ui_widgets/login_ui/login_ui.dart';
+import 'package:cki/project/layers/presentation/ui_widgets/login_ui/registerscreen.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/splash_widgets/splash_widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ Future<void> main() async {
             channelKey: 'basic_channel',
             channelName: 'Basic notifications',
             channelDescription: 'Notification channel for basic tests',
-            defaultColor: Color(0xFF9D50DD),
+            defaultColor: const Color(0xFF9D50DD),
             ledColor: Colors.white)
       ],
       // Channel groups are only visual and are not required
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
         primaryTextTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
         textTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui))
     ),
-        home: showHome! ? const Login() : const SplashWidgets(),
+        home: showHome! ? const RegisterScreen() : const SplashWidgets(),
       //const OnBoardingPage()
       );
 }

@@ -28,7 +28,7 @@ class NewStudentButton extends StatelessWidget {
             vertical: kDefaultPadding / 2,
           ),
           decoration: BoxDecoration(
-            color: Color(0xFFFCBF1E),
+            color: const Color(0xFFFCBF1E),
             borderRadius: BorderRadius.circular(30),
           ),
           child: Center(child: Text("Faça agora sua inscrição",style: TextStyle(

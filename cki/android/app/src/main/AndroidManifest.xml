@@ -13,6 +13,12 @@
         android:label="cki"
         android:name="${applicationName}"
         android:icon="@mipmap/image">
+
+       <meta-data
+           android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyA7DlllUUtkjK7_Gnx16FXkLQW661BL-BA"/>
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
