@@ -19,6 +19,7 @@ import '../contacts/contact_ui.dart';
 import '../course/screens/product/products_screen.dart';
 import '../equipe_list/equipe_list.dart';
 import '../gallery/gallery.dart';
+import '../googleMap/cki_location.dart';
 import '../splash_widgets/splash_widgets.dart';
 import '../teachers_ui/list_of_teachers/read_teachers.dart';
 
@@ -92,6 +93,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
           )
         ],
       ),
+
 
       drawer: Drawer(
         elevation: 1,
@@ -726,53 +728,55 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                   ),
                 ),
 
+                GestureDetector(
+                  onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const CkiLocation())),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 160,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                blurRadius: 1,
+                                spreadRadius: 1,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 6,
+                              ),
+                              SizedBox(
+                                height: 90,
+                                child: Lottie.asset("assets/jsons/animation_lk15loaz.json"),),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text("Localização",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.bold
+                              ),),
 
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 160,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.5),
-                              blurRadius: 1,
-                              spreadRadius: 1,
-                              // offset: const Offset(2, 2),
-                            ),
-                          ],
+                              Text("Abra o google Map",style: TextStyle(
+                                  fontFamily: SettingsCki.segoeEui,
+                                  fontWeight: FontWeight.normal
+                              ),),
+                            ],
+                          ),
                         ),
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 6,
-                            ),
-                            SizedBox(
-                              height: 90,
-                              child: Lottie.asset("assets/jsons/animation_lk15loaz.json"),),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text("Localização",style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                fontWeight: FontWeight.bold
-                            ),),
-
-                            Text("Abra o google Map",style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                fontWeight: FontWeight.normal
-                            ),),
-                          ],
-                        ),
-                      ),
 
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
