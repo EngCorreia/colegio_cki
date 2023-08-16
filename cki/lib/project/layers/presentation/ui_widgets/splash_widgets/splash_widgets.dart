@@ -101,7 +101,7 @@ class _SplashWidgetsState extends State<SplashWidgets> {
           ),
             onPressed: () async {
               final pref = await SharedPreferences.getInstance();
-              pref.setBool("showHome", true);
+              pref.setString("login", "login");
               Navigator.push(context, MaterialPageRoute(builder: (context)=> const RegisterScreen()));
             },
             child: Text("COMEÇAR",style: TextStyle(

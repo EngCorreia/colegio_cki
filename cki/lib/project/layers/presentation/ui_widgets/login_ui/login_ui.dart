@@ -1,150 +1,76 @@
 
 
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:cki/project/layers/core/configuration/configuration.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../index_menu/index_page.dart';
-import '../register_student/register_student.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
-
+class PhoneAuthScreen1 extends StatefulWidget {
   @override
-  State<Login> createState() => _LoginState();
+  _PhoneAuthScreenState createState() => _PhoneAuthScreenState();
 }
 
-class _LoginState extends State<Login> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-      if (!isAllowed) {
-        // This is just a basic example. For real apps, you must show some
-        // friendly dialog box before call the request method.
-        // This is very important to not harm the user experience
-        AwesomeNotifications().requestPermissionToSendNotifications();
-      }
-    });
+class _PhoneAuthScreenState extends State<PhoneAuthScreen1> {
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  String _verificationId = "";
+
+  Future<void> _verifyPhoneNumber(String phoneNumber) async {
+    await _auth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        // Automatic verification if you're using a physical device
+        // This callback is only called on Android.
+        await _auth.signInWithCredential(credential);
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        // Handle verification failure
+        print(e.message);
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        // Save the verification ID to use later
+        _verificationId = verificationId;
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        // Called when the automatic code retrieval has timed out
+        _verificationId = verificationId;
+      },
+    );
+  }
+
+  Future<void> _signInWithPhoneNumber(String smsCode) async {
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: _verificationId,
+        smsCode: smsCode,
+      );
+      await _auth.signInWithCredential(credential);
+      print("Logged in successfully!");
+    } catch (e) {
+      print("Error: $e");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
+      appBar: AppBar(
+        title: Text("Phone Auth Demo"),
+      ),
+      body: Center(
         child: Column(
-          children: [
-            const SizedBox(
-              height: 30,
-            ),
-            Center(child: Image.asset("assets/images/logo.png",width: 180,height: 180,)),
-
-            Text("Colegio kalabo Internacional",style: TextStyle(
-              fontFamily: SettingsCki.segoeEui,
-              fontSize: 20
-            ),),
-
-            const SizedBox(
-              height: 30,
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(right: 50,left: 50,
-              bottom: 10),
-              child: TextFormField(
-               // controller: _textEditingController,
-                decoration: const InputDecoration(
-                  //icon: Icon(Icons.person),
-                  border: OutlineInputBorder(),
-                  //prefixIcon: const Icon(Icons.person), // Add prefix icon
-                  hintText: "Número de telefone",
-                  labelText: "Número de telefone",
-                  // errorText: createContactUser.validateName,
-                ),
-
-                onChanged: (value) {
-
-                },
-                cursorColor: Colors.indigo,
-                // validator: createContactUser.validateSalutation,
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(right: 50,left: 50,bottom: 20),
-              child: TextFormField(
-                // controller: _textEditingController,
-                decoration: const InputDecoration(
-                  //icon: Icon(Icons.person),
-                  border: OutlineInputBorder(),
-                  //prefixIcon: const Icon(Icons.person), // Add prefix icon
-                  hintText: "Senha",
-                  labelText: "Senha",
-                  // errorText: createContactUser.validateName,
-                ),
-
-                onChanged: (value) {
-
-                },
-                cursorColor: Colors.indigo,
-                // validator: createContactUser.validateSalutation,
-              ),
-            ),
-
-            
-            GestureDetector(
-              onTap: () async {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> IndexPage()));
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                _verifyPhoneNumber("+244951121433"); // Replace with the desired phone number
               },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8,left: 50,right: 50,bottom: 5),
-                child: Container(
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Colors.blue[900],
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.white,
-                        blurRadius: 1,
-                        spreadRadius: 1,
-                        // offset: const Offset(2, 2),
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text("ENTRAR",style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.white,
-                        fontSize: 16
-                    ),),
-                  ),
-                ),
-              ),
+              child: Text("Send Verification Code"),
             ),
-
-            const Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Divider(),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                _signInWithPhoneNumber("123456"); // Replace with the received SMS code
+              },
+              child: Text("Sign In with SMS Code"),
             ),
-            
-            GestureDetector(
-              onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const Register())),
-              child: SizedBox(
-                height: 50,
-                width: 200,
-                child: Center(
-                  child: Text("Criar conta",style: TextStyle(
-                    fontFamily: SettingsCki.segoeEui,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w300
-                  ),),
-                ),
-              ),
-            )
-
           ],
         ),
       ),

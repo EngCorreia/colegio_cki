@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -33,11 +34,18 @@ class MenuWidgets extends StatefulWidget {
 class _MenuWidgetsState extends State<MenuWidgets> {
   int _current = 0;
 
-  @override
-  void initState() {
-    super.initState();
+  void userAuth(){
+    var d = FirebaseAuth.instance.currentUser;
+    log("----- ${d?.uid}");
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    userAuth();
+
+  }
   @override
   Widget build(context) {
     final List<Widget> imageSliders = imgList.map((item) => Container(

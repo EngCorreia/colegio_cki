@@ -1,9 +1,12 @@
 
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../index_menu/index_page.dart';
 
 
@@ -32,8 +35,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Future<void> verifyPhone(String number) async {
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: number,
-      timeout: const Duration(seconds: 40),
+      timeout: const Duration(seconds: 60),
       verificationCompleted: (PhoneAuthCredential credential) {
+        log("////////////// ${credential.smsCode}");
         showSnackBarText("Autenticado com sucesso");
       },
       verificationFailed: (FirebaseAuthException e) {
@@ -46,19 +50,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
           screenState = 1;
         });
       },
+
       codeAutoRetrievalTimeout: (String verificationId) {
-        showSnackBarText("Timeout!");
+        showSnackBarText("Ops o tempo espirou");
       },
+
     );
   }
 
   Future<void> verifyOTP() async {
     await FirebaseAuth.instance.signInWithCredential(
-      PhoneAuthProvider.credential(verificationId: verID, smsCode: otpPin,),).whenComplete(() {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => IndexPage(),),);
+      PhoneAuthProvider.credential(verificationId: verID, smsCode: otpPin,),).then((value) async {
+        //log("*************** ${value.user?.phoneNumber}");
+        final pref = await SharedPreferences.getInstance();
+        pref.setString("login", "logged");
+        Navigator.pop(context);
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => IndexPage(),),);
     });
   }
-
+//Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => IndexPage(),),);
   @override
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
@@ -127,9 +137,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onTap: () {
                             if(screenState == 0) {
                               if(usernameController.text.isEmpty) {
-                                showSnackBarText("Username is still empty!");
+                                showSnackBarText("Nome do encarregado vazio");
                               } else if(phoneController.text.isEmpty) {
-                                showSnackBarText("Phone number is still empty!");
+                                showSnackBarText("Numero de telefone vazio");
                               } else {
                                 verifyPhone(countryDial+phoneController.text);
                               }

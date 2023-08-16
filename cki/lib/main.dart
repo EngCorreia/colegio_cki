@@ -1,8 +1,11 @@
 
 
+import 'dart:developer';
+
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/core/init_injection_dependence/init_dependence_injection.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/course/screens/product/products_screen.dart';
+import 'package:cki/project/layers/presentation/ui_widgets/index_menu/index_page.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/login_ui/registerscreen.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/splash_widgets/splash_widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -44,15 +47,14 @@ Future<void> main() async {
     ProductsScreen();
   }
   final pref = await SharedPreferences.getInstance();
-  final showHome = pref.getBool('showHome') ?? false;
-  runApp(MyApp(showHome: showHome,));
+  final show = pref.getString("login") ?? "";
+  runApp(MyApp(showHome: show,));
 }
 
 class MyApp extends StatelessWidget {
 
-  final bool? showHome;
+  final String? showHome;
   const MyApp({super.key, this.showHome});
-
 
   @override
   Widget build(BuildContext context) => MaterialApp(
@@ -66,7 +68,18 @@ class MyApp extends StatelessWidget {
         primaryTextTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
         textTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui))
     ),
-        home: showHome! ? const RegisterScreen() : const SplashWidgets(),
+        home: getState(showHome!),
       //const OnBoardingPage()
       );
+
+  Widget getState(String name) {
+    log("======== $name");
+    if(name == "login"){
+      return const RegisterScreen();
+    }else if(name == "logged"){
+      return IndexPage();
+    }else{
+      return const SplashWidgets();
+    }
+  }
 }

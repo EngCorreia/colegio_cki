@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../home_page/menu_widgets.dart';
 import '../index_menu/index_page.dart';
 import '../login_ui/login_ui.dart';
+import '../login_ui/registerscreen.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -156,7 +157,7 @@ class _RegisterState extends State<Register> {
 
 
             GestureDetector(
-              onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const Login())),
+              onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const RegisterScreen())),
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: SizedBox(
