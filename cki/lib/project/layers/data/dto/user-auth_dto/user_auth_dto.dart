@@ -1,6 +1,8 @@
 
 
-class UserAuthEntity{
+import '../../../domain/entities/user_auth-entity/user_auth_entity.dart';
+
+class UserAuthDto extends UserAuthEntity{
   String? _displayName;
   String? _email;
   String? _phoneNumber;
@@ -8,14 +10,20 @@ class UserAuthEntity{
   String? _uid;
 
 
-  UserAuthEntity({String? displayName,String? email,String? phoneNumber,
-    String? photoURL,String? uid}){
+  UserAuthDto({String? displayName,String? email,String? phoneNumber,
+    String? photoURL,String? uid}) : super(
+    email: email,
+    displayName: displayName,
+    phoneNumber: phoneNumber,
+    photoURL: photoURL,
+    uid: uid
+  ){
     _displayName = displayName;
     _email = email;
     _phoneNumber = phoneNumber;
     _photoURL = photoURL;
     _uid = uid;
-}
+  }
 
 
 
@@ -47,5 +55,15 @@ class UserAuthEntity{
 
   set email(String? value) {
     _email = value;
+  }
+
+  factory UserAuthDto.fromJson(){
+    return UserAuthDto(
+      uid: "",
+      photoURL: "",
+      phoneNumber: "",
+      displayName: "",
+      email: ""
+    );
   }
 }
