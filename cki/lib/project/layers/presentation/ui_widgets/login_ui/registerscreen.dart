@@ -3,10 +3,12 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../controllers/login_controller/Login_controller.dart';
 import '../index_menu/index_page.dart';
 
 
@@ -20,6 +22,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  final loginController = GetIt.I.get<LoginController>();
   double screenHeight = 0;
   double screenWidth = 0;
   double bottom = 0;
@@ -37,7 +40,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       phoneNumber: number,
       timeout: const Duration(seconds: 60),
       verificationCompleted: (PhoneAuthCredential credential) {
-        log("////////////// ${credential.smsCode}");
         showSnackBarText("Autenticado com sucesso");
       },
       verificationFailed: (FirebaseAuthException e) {
@@ -62,6 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     await FirebaseAuth.instance.signInWithCredential(
       PhoneAuthProvider.credential(verificationId: verID, smsCode: otpPin,),).then((value) async {
         //log("*************** ${value.user?.phoneNumber}");
+
         final pref = await SharedPreferences.getInstance();
         pref.setString("login", "logged");
         Navigator.pop(context);
@@ -145,6 +148,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               }
                             } else {
                               if(otpPin.length >= 6) {
+                                loginController.loginUser();
                                 verifyOTP();
                               } else {
                                 showSnackBarText("Introduza o código corretamente");
