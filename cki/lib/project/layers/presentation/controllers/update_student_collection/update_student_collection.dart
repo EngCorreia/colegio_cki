@@ -4,14 +4,15 @@ import '../../../core/const_strings/user_information.dart';
 
 class UpdateStudentInformation{
 
-  Future<void> updateStudent({required String classe}) async{
+  Future<void> updateStudent({required String userId}) async{
     try{
-      var updateStudent = FirebaseFirestore.instance.collection("student").doc(StudentInformation.userID);
+
+      var updateStudent = FirebaseFirestore.instance.collection("student").doc(userId);
       Map<String,dynamic> student = {
-        "nome": "",
-        "userID": "",
-        "photo": "",
-        "phoneNumber": "",
+        "nome": StudentInformation.name,
+        "userID": StudentInformation.userID,
+        "photo": StudentInformation.photo,
+        "phoneNumber": StudentInformation.phoneNumber,
       };
 
       updateStudent.update(student);
