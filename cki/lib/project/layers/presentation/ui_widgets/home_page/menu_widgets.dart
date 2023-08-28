@@ -10,6 +10,7 @@ import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/configuration/configuration.dart';
+import '../../../core/const_strings/user_information.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
 import '../about_us/about_us.dart';
 import '../area_pedagogica/area_pedagogica.dart';
@@ -26,7 +27,6 @@ import '../splash_widgets/splash_widgets.dart';
 import '../teachers_ui/list_of_teachers/read_teachers.dart';
 
 
-
 class MenuWidgets extends StatefulWidget {
   @override
   _MenuWidgetsState createState() => _MenuWidgetsState();
@@ -36,8 +36,12 @@ class _MenuWidgetsState extends State<MenuWidgets> {
   int _current = 0;
 
   void userAuth(){
-    var d = FirebaseAuth.instance.currentUser;
-    log("----- ${d?.uid}");
+    var user = FirebaseAuth.instance.currentUser;
+    StudentInformation.name = user?.displayName ?? "";
+    StudentInformation.userID = user?.uid ?? "";
+    StudentInformation.phoneNumber = user?.phoneNumber ?? "";
+    StudentInformation.photo = user?.photoURL ?? "";
+    log("----- user ID => ${StudentInformation.userID}");
   }
 
   @override
@@ -184,6 +188,8 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                         color: Colors.red,fontSize: 16,fontWeight: FontWeight.bold),
                     ),
                     onTap: () async {
+                      var d = FirebaseAuth.instance;
+                      await d.signOut();
                       final pref = await SharedPreferences.getInstance();
                       pref.setBool("showHome", false);
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> SplashWidgets()));

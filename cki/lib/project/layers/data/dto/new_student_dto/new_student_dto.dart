@@ -1,3 +1,4 @@
+import '../../../core/const_strings/user_information.dart';
 import '../../../domain/entities/student_entity/student_data_entity.dart';
 
 
@@ -346,6 +347,7 @@ class StudentDto extends StudentDataEntity{
   static Map<String,dynamic> fromJson(StudentDataEntity studentDataEntity , int number,String classe){
     return {
       // dados pessoais do aluno
+      "criado_por": StudentInformation.userID,
       "nome_aluno": studentDataEntity.studentName,
       "data_nascimento": studentDataEntity.date,
       "registro_certidao": studentDataEntity.numberRG,

@@ -18,7 +18,11 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text("Area Administrativa"),
+        title: Text("Área Administrativa ",style: TextStyle(
+          fontFamily: SettingsCki.segoeEui,
+          color: Colors.white,
+          fontSize: 18
+        ),),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -83,339 +87,379 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Container(
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 1,
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [Colors.white, Colors.white],
+          GestureDetector(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+              classeName: "2º_classe",
+            ))),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        blurRadius: 1,
+                      )
+                    ],
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.3, 1],
+                      colors: [Colors.white, Colors.white],
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: Image.asset("assets/course/course2.png"),
-                  ),
-                  title: Text("Alunos matriculados 2º classe",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.blue),
-                  ),
-                  subtitle: Text("Todos alunos matriculado",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.black,
-                        fontSize: 10),
-                  ),
-                )
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Image.asset("assets/course/course2.png"),
+                    ),
+                    title: Text("Alunos matriculados 2º classe",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.blue),
+                    ),
+                    subtitle: Text("Todos alunos matriculado",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.black,
+                          fontSize: 10),
+                    ),
+                  )
 
+              ),
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Container(
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 1,
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [Colors.white, Colors.white],
+          GestureDetector(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+              classeName: "3º_classe",
+            ))),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        blurRadius: 1,
+                      )
+                    ],
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.3, 1],
+                      colors: [Colors.white, Colors.white],
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: Image.asset("assets/course/course3.png"),
-                  ),
-                  title: Text("Alunos matriculados 3º classe",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.blue),
-                  ),
-                  subtitle: Text("Todos alunos matriculado",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.black,
-                        fontSize: 10),
-                  ),
-                )
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Image.asset("assets/course/course3.png"),
+                    ),
+                    title: Text("Alunos matriculados 3º classe",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.blue),
+                    ),
+                    subtitle: Text("Todos alunos matriculado",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.black,
+                          fontSize: 10),
+                    ),
+                  )
 
+              ),
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Container(
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 1,
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [Colors.white, Colors.white],
+          GestureDetector(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+              classeName: "4º_classe",
+            ))),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        blurRadius: 1,
+                      )
+                    ],
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.3, 1],
+                      colors: [Colors.white, Colors.white],
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: Image.asset("assets/course/course8.png"),
-                  ),
-                  title: Text("Alunos matriculados 4º classe",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.blue),
-                  ),
-                  subtitle: Text("Todos alunos matriculado",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.black,
-                        fontSize: 10),
-                  ),
-                )
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Image.asset("assets/course/course8.png"),
+                    ),
+                    title: Text("Alunos matriculados 4º classe",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.blue),
+                    ),
+                    subtitle: Text("Todos alunos matriculado",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.black,
+                          fontSize: 10),
+                    ),
+                  )
 
+              ),
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Container(
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 1,
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [Colors.white, Colors.white],
+          GestureDetector(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+              classeName: "5º_classe",
+            ))),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        blurRadius: 1,
+                      )
+                    ],
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.3, 1],
+                      colors: [Colors.white, Colors.white],
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: Image.asset("assets/course/course6.png"),
-                  ),
-                  title: Text("Alunos matriculados 5º classe",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.blue),
-                  ),
-                  subtitle: Text("Todos alunos matriculado",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.black,
-                        fontSize: 10),
-                  ),
-                )
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Image.asset("assets/course/course6.png"),
+                    ),
+                    title: Text("Alunos matriculados 5º classe",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.blue),
+                    ),
+                    subtitle: Text("Todos alunos matriculado",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.black,
+                          fontSize: 10),
+                    ),
+                  )
 
+              ),
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Container(
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 1,
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [Colors.white, Colors.white],
+          GestureDetector(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+              classeName: "6º_classe",
+            ))),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        blurRadius: 1,
+                      )
+                    ],
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.3, 1],
+                      colors: [Colors.white, Colors.white],
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: Image.asset("assets/course/course5.png"),
-                  ),
-                  title: Text("Alunos matriculados 6º classe",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.blue),
-                  ),
-                  subtitle: Text("Todos alunos matriculado",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.black,
-                        fontSize: 10),
-                  ),
-                )
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Image.asset("assets/course/course5.png"),
+                    ),
+                    title: Text("Alunos matriculados 6º classe",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.blue),
+                    ),
+                    subtitle: Text("Todos alunos matriculado",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.black,
+                          fontSize: 10),
+                    ),
+                  )
 
+              ),
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Container(
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 1,
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [Colors.white, Colors.white],
+          GestureDetector(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+              classeName: "7º_classe",
+            ))),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        blurRadius: 1,
+                      )
+                    ],
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.3, 1],
+                      colors: [Colors.white, Colors.white],
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: Image.asset("assets/course/course2.png"),
-                  ),
-                  title: Text("Alunos matriculados 7º classe",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.blue),
-                  ),
-                  subtitle: Text("Todos alunos matriculado",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.black,
-                        fontSize: 10),
-                  ),
-                )
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Image.asset("assets/course/course2.png"),
+                    ),
+                    title: Text("Alunos matriculados 7º classe",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.blue),
+                    ),
+                    subtitle: Text("Todos alunos matriculado",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.black,
+                          fontSize: 10),
+                    ),
+                  )
 
+              ),
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Container(
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 1,
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [Colors.white, Colors.white],
+          GestureDetector(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+              classeName: "8º_classe",
+            ))),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        blurRadius: 1,
+                      )
+                    ],
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.3, 1],
+                      colors: [Colors.white, Colors.white],
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: Image.asset("assets/course/course6.png"),
-                  ),
-                  title: Text("Alunos matriculados 8º classe",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.blue),
-                  ),
-                  subtitle: Text("Todos alunos matriculado",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.black,
-                        fontSize: 10),
-                  ),
-                )
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Image.asset("assets/course/course6.png"),
+                    ),
+                    title: Text("Alunos matriculados 8º classe",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.blue),
+                    ),
+                    subtitle: Text("Todos alunos matriculado",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.black,
+                          fontSize: 10),
+                    ),
+                  )
 
+              ),
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Container(
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 1,
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [Colors.white, Colors.white],
+          GestureDetector(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+              classeName: "9º_classe",
+            ))),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        blurRadius: 1,
+                      )
+                    ],
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.3, 1],
+                      colors: [Colors.white, Colors.white],
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: Image.asset("assets/course/course5.png"),
-                  ),
-                  title: Text("Alunos matriculados 9º classe",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.blue),
-                  ),
-                  subtitle: Text("Todos alunos matriculado",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.black,
-                        fontSize: 10),
-                  ),
-                )
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Image.asset("assets/course/course5.png"),
+                    ),
+                    title: Text("Alunos matriculados 9º classe",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.blue),
+                    ),
+                    subtitle: Text("Todos alunos matriculado",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.black,
+                          fontSize: 10),
+                    ),
+                  )
 
+              ),
             ),
           ),
 

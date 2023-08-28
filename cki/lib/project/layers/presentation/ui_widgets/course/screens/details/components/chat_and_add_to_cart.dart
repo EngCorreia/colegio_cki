@@ -17,7 +17,7 @@ class NewStudentButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> NewStudent(
           studentClass: studentClass,
-        studentDataEntity: StudentDataEntity(),
+          studentDataEntity: StudentDataEntity(),
       ))),
       child: Center(
         child: Container(
