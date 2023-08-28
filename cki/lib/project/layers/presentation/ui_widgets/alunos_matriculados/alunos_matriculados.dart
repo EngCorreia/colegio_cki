@@ -55,8 +55,8 @@ class _AlunosMatriculadosState extends State<AlunosMatriculados> {
                 child: Image.asset("assets/images/image.png"),
               ),
               title: Text("${lista.studenteList[index].studentName}"),
-              subtitle: Text("${lista.studenteList[index].phoneNumberFather}"),
-              trailing: const Icon(Icons.edit,color: Colors.green,),
+              subtitle: Text("${lista.studenteList[index].phoneNumberFather}   ( Sem Sala )"),
+              trailing: const Icon(Icons.edit,color: Colors.blue,),
             )) : Center(
               child: Container(
               child: Column(

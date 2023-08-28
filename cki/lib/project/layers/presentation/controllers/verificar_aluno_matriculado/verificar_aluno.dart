@@ -1,7 +1,4 @@
 
-
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobx/mobx.dart';
 
@@ -42,5 +39,4 @@ abstract class _VerificarAlunosMatriculado with Store{
     },
     "numeroProcesso" : number
     */
-
 }
