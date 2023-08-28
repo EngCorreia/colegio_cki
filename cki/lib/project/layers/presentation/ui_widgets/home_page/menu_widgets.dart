@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/configuration/configuration.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
 import '../about_us/about_us.dart';
+import '../area_pedagogica/area_pedagogica.dart';
 import '../books/books.dart';
 import '../calendary_screen/calendar_screen.dart';
 import '../chat_ui/chat_ui.dart';
@@ -262,7 +263,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
               child: const Icon(FontAwesomeIcons.graduationCap, color: Colors.blue, size: 20,),
               labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
               onTap: (){
-
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const AreaPedagogica()));
               },
             ),
 

@@ -1278,7 +1278,7 @@ class _NewStudentState extends State<NewStudent> {
           onPressed: () async {
             final pref = await SharedPreferences.getInstance();
             pref.setBool("showHome", true);
-            _controllerSaveNewStudent.saveStudent(studentDataEntity: widget.studentDataEntity,number: numberProcess);
+            _controllerSaveNewStudent.saveStudent(studentDataEntity: widget.studentDataEntity,number: 10,classe: "1º_classe");
 
           },
           child: Text("Fazer Inscrição",style: TextStyle(

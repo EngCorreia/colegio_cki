@@ -3,5 +3,5 @@ import '../../../../core/errors/save_student_error.dart';
 import '../../../../domain/entities/student_entity/student_data_entity.dart';
 
 abstract class SaveNewStudentDataSource {
-  Future<Either<SaveStudentError,bool>> call({required StudentDataEntity studentDataEntity,required int number});
+  Future<Either<SaveStudentError,bool>> call({required StudentDataEntity studentDataEntity,required int number,required String classe});
 }

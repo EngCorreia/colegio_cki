@@ -343,7 +343,7 @@ class StudentDto extends StudentDataEntity{
   }
 
 
-  static Map<String,dynamic> fromJson(StudentDataEntity studentDataEntity , int number){
+  static Map<String,dynamic> fromJson(StudentDataEntity studentDataEntity , int number,String classe){
     return {
       // dados pessoais do aluno
       "nome_aluno": studentDataEntity.studentName,

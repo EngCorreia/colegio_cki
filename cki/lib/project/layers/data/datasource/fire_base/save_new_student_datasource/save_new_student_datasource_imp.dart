@@ -4,6 +4,7 @@ import 'package:cki/project/layers/domain/entities/student_entity/student_data_e
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/const_strings/const_strings.dart';
 import '../../../../core/errors/save_student_error.dart';
 import '../../../dto/new_student_dto/new_student_dto.dart';
 
@@ -12,11 +13,13 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
   bool isSaved = false;
 
   @override
-  Future<Either<SaveStudentError, bool>> call({required StudentDataEntity studentDataEntity,required int number}) async{
+  Future<Either<SaveStudentError, bool>> call({required StudentDataEntity studentDataEntity,required int number,required String classe}) async{
 
     try{
-      var saveStudentResult = FirebaseFirestore.instance.collection("colegios").doc("kalabo_internacional").collection("2023_a_2024").doc("cki_2023").collection("estudante").doc();
-      var result = StudentDto.fromJson(studentDataEntity,number);
+      var saveStudentResult = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+      collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection(Collections.collectionStudentRegister)
+          .doc(Collections.collectionMatricula).collection(classe).doc();
+      var result = StudentDto.fromJson(studentDataEntity,number,classe);
       if(result.isNotEmpty){
         saveStudentResult.set(result);
         isSaved = true;
