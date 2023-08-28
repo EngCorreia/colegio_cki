@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../core/const_strings/const_strings.dart';
+import '../../../core/show_toast_message/show_toast_message.dart';
 import '../../../domain/entities/student_entity/student_data_entity.dart';
 part 'alunos_matriculados_controller.g.dart';
 
@@ -70,8 +71,8 @@ abstract class _AlunosMatriculado with Store{
        }
      });
    }catch(e){
-
-
+     log(e.toString());
+     ShowToast.show_error(e.toString());
    }
   }
 /*"classe": {"classeName": studentDataEntity.classeId,
