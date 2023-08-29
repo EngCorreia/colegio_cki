@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/configuration/configuration.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
+import '../../controllers/update_student_collection/update_student_collection.dart';
 import '../about_us/about_us.dart';
 import '../area_pedagogica/area_pedagogica.dart';
 import '../books/books.dart';
@@ -34,7 +35,7 @@ class MenuWidgets extends StatefulWidget {
 
 class _MenuWidgetsState extends State<MenuWidgets> {
   int _current = 0;
-
+  var dd = UpdateStudentInformation();
   void userAuth(){
     var user = FirebaseAuth.instance.currentUser;
     StudentInformation.name = user?.displayName ?? "";
@@ -48,9 +49,10 @@ class _MenuWidgetsState extends State<MenuWidgets> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    userAuth();
-
+    dd.updateStudent(userId: StudentInformation.userID);
   }
+
+
   @override
   Widget build(context) {
     final List<Widget> imageSliders = imgList.map((item) => Container(

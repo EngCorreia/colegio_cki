@@ -24,7 +24,7 @@ class _IndexPageState extends State<IndexPage> {
     firstFlowPagesList.clear();
     firstFlowPagesList
       ..add(MenuWidgets())
-      ..add(const StudentInformation())
+      ..add(const StudentInformationUi())
       ..add(const MoneyStudent())
       ..add(const NotificationUi());
   }

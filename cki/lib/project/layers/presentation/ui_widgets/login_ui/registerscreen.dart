@@ -8,7 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../core/const_strings/user_information.dart';
 import '../../controllers/login_controller/Login_controller.dart';
+import '../../controllers/update_student_collection/update_student_collection.dart';
 import '../index_menu/index_page.dart';
 
 
@@ -26,14 +28,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
   double screenHeight = 0;
   double screenWidth = 0;
   double bottom = 0;
-
   String otpPin = " ";
   String countryDial = "+244";
   String verID = " ";
-
   int screenState = 0;
-
   Color blue = const Color(0xff8cccff);
+
+
+
+
+  void userAuth({UserCredential? userCredential}){
+   // var user = FirebaseAuth.instance.currentUser;
+    StudentInformation.name = userCredential?.user?.displayName;
+    StudentInformation.userID = userCredential?.user?.uid ?? "";
+    StudentInformation.phoneNumber = userCredential?.user?.phoneNumber ?? "";
+    StudentInformation.photo = userCredential?.user?.photoURL ?? "";
+    log("----- user ID => ${userCredential?.user?.uid}");
+  }
 
   Future<void> verifyPhone(String number) async {
     await FirebaseAuth.instance.verifyPhoneNumber(
@@ -64,6 +75,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     await FirebaseAuth.instance.signInWithCredential(
       PhoneAuthProvider.credential(verificationId: verID, smsCode: otpPin,),).then((value) async {
         //log("*************** ${value.user?.phoneNumber}");
+        userAuth(userCredential: value);
+        var dd = UpdateStudentInformation();
+        dd.updateStudent(userId: StudentInformation.userID);
 
         final pref = await SharedPreferences.getInstance();
         pref.setString("login", "logged");

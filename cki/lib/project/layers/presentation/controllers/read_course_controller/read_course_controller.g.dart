@@ -25,10 +25,27 @@ mixin _$ReadCourseController on _ReadCourseController, Store {
     });
   }
 
+  late final _$statusAtom =
+      Atom(name: '_ReadCourseController.status', context: context);
+
+  @override
+  String? get status {
+    _$statusAtom.reportRead();
+    return super.status;
+  }
+
+  @override
+  set status(String? value) {
+    _$statusAtom.reportWrite(value, super.status, () {
+      super.status = value;
+    });
+  }
+
   @override
   String toString() {
     return '''
-courseList: ${courseList}
+courseList: ${courseList},
+status: ${status}
     ''';
   }
 }

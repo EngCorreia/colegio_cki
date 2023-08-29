@@ -5,16 +5,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/configuration/configuration.dart';
+import '../../../core/const_strings/user_information.dart';
+import '../../controllers/update_student_collection/update_student_collection.dart';
 import '../datesheet_screen/datesheet_screen.dart';
 
-class StudentInformation extends StatefulWidget {
-  const StudentInformation({Key? key}) : super(key: key);
+class StudentInformationUi extends StatefulWidget {
+  const StudentInformationUi({Key? key}) : super(key: key);
 
   @override
-  State<StudentInformation> createState() => _StudentInformationState();
+  State<StudentInformationUi> createState() => _StudentInformationUiState();
 }
 
-class _StudentInformationState extends State<StudentInformation> {
+class _StudentInformationUiState extends State<StudentInformationUi> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

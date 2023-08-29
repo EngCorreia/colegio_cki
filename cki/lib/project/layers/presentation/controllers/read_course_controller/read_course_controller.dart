@@ -17,13 +17,18 @@ abstract class _ReadCourseController with Store{
 
   @observable
   ObservableList<Course> courseList = ObservableList();
+  @observable
+  String? status = "";
 
   Future<void> readCourse() async {
     var result = await _readCourseUseCase();
-    result.fold((error) => log("**** error controller ${error}"),
+    result.fold((error) {
+      status = error.toString();
+      log("**** error controller ${error}");
+    },
             (success){
               courseList = success.asObservable();
-              ShowToast.show_message_Success("Inscrição feita com sucesso... ${courseList[0].prices}");
+              status = "done";
         });
   }
 }

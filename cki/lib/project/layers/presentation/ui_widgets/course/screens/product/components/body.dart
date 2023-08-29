@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -54,13 +55,18 @@ class _BodyCourseState extends State<BodyCourse> {
 
 
                 Observer(
-                  builder:(_)=> ListView.builder(
+                  builder:(_)=> _controllerReadCourse.status != "" ? ListView.builder(
                     // here we use our demo procuts list
                     physics: const BouncingScrollPhysics(),
                     itemCount: _controllerReadCourse.courseList.length,
                     itemBuilder: (context, index) => CoursesCard(
                       itemIndex: index,
                       coures: _controllerReadCourse.courseList[index],
+                    ),
+                  ): const Center(
+                    child: CupertinoActivityIndicator(
+                      radius: 15,
+                      color: Colors.black,
                     ),
                   ),
                 ),
