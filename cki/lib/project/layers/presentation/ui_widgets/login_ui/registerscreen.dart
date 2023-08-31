@@ -81,7 +81,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
         final pref = await SharedPreferences.getInstance();
         pref.setString("login", "logged");
-        Navigator.pop(context);
+
+        // ignore: use_build_context_synchronously
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => IndexPage(),),);
     });
   }

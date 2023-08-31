@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../../../../domain/entities/courses_entity/coures_entitiy.dart';
 import '../../../constants.dart';
-import '../../../models/product.dart';
 import '../../details/details_screen.dart';
 
 class CoursesCard extends StatefulWidget {
