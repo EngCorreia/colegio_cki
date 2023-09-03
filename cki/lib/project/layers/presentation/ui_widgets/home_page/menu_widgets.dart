@@ -803,10 +803,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
 
             GestureDetector(
               onTap: () async {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen()));
-
-              //  const CupertinoActivityIndicator();
-
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const ProductsScreen()));
               },
               child: Padding(
                 padding: const EdgeInsets.only(top: 8,left: 90,right: 90,bottom: 5),
