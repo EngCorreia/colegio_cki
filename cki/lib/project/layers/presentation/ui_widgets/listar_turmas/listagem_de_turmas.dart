@@ -5,7 +5,6 @@ import '../../../core/configuration/configuration.dart';
 
 class ListagemDeTurmas extends StatefulWidget {
   const ListagemDeTurmas({Key? key}) : super(key: key);
-
   @override
   State<ListagemDeTurmas> createState() => _ListagemDeTurmasState();
 }
