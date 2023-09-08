@@ -9,6 +9,7 @@ class Collections{
   static const String collectionAnoLectivo = "2023_a_2024";
   static const String collectionStudentRegister = "alunos_matriculados";
   static const String collectionMatricula = "matricula";
+  static const String collectionTurmas = "turmas";
   static const String collectionStudent = "estudante";
   static const String collectionPrimeira = "1º_classe";
   static const String collectionSegunda = "2º_classe";

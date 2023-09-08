@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../core/configuration/configuration.dart';
 import '../alunos_matriculados/alunos_matriculados.dart';
 import '../cadastrar_turma/cadatrar_turma_ui.dart';
+import '../listar_turmas/listagem_de_turmas.dart';
 
 class AreaPedagogica extends StatefulWidget {
   const AreaPedagogica({Key? key}) : super(key: key);
@@ -140,7 +141,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
                       padding: const EdgeInsets.only(left: 10),
                       child: SizedBox(
                           width: 140,
-                          child: Text("Editar alunos",
+                          child: Text("Listagem de turma",
                             style: TextStyle(
                                 fontFamily: SettingsCki.segoeEui,
                                 color: Colors.blue),
@@ -150,7 +151,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
                       padding: const EdgeInsets.only(left: 10),
                       child: SizedBox(
                           width: 140,
-                          child: Text("Editar alunos matriculados",
+                          child: Text("Lista das turmas cadastrados",
                             style: TextStyle(
                                 fontFamily: SettingsCki.segoeEui,
                                 color: Colors.black,
@@ -164,6 +165,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
             child: const Icon(FontAwesomeIcons.facebookMessenger, color: Colors.blue, size: 20,),
             labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
             onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> const ListagemDeTurmas()));
             },
           ),
 

@@ -1,8 +1,11 @@
 
+import 'package:cki/project/layers/core/show_toast_message/show_toast_message.dart';
 import 'package:dropdownfield2/dropdownfield2.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/configuration/configuration.dart';
+import '../../../domain/entities/turmas_entity/turmas_entity.dart';
+import '../../controllers/save_turma_controller/save_turma_controller.dart';
 
 class CadastrarTurmas extends StatefulWidget {
   const CadastrarTurmas({Key? key}) : super(key: key);
@@ -12,6 +15,8 @@ class CadastrarTurmas extends StatefulWidget {
 }
 
 class _CadastrarTurmasState extends State<CadastrarTurmas> {
+  TurmaEntity turmaEntity = TurmaEntity();
+  var save = SaveTurma();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +52,8 @@ class _CadastrarTurmasState extends State<CadastrarTurmas> {
                       labelStyle:  TextStyle(color: Colors.black,fontFamily: SettingsCki.segoeEui,fontSize: 16),
                       onValueChanged: (dynamic value){
                         String? nivel = value.toString();
-                        // widget.teachersEntity.level = nivel;
+                        List<String> salas = nivel.split("Sala");
+                        turmaEntity.sala = int.parse(salas[1]);
                       },
 
                       required: false,
@@ -87,7 +93,7 @@ class _CadastrarTurmasState extends State<CadastrarTurmas> {
                     ),
 
                     onChanged: (value) {
-
+                      turmaEntity.nome = value.toString();
                     },
                     cursorColor: Colors.indigo,
                     // validator: createContactUser.validateSalutation,
@@ -116,10 +122,8 @@ class _CadastrarTurmasState extends State<CadastrarTurmas> {
                       textStyle: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui,fontSize: 16),
                       labelStyle:  TextStyle(color: Colors.black,fontFamily: SettingsCki.segoeEui,fontSize: 16),
                       onValueChanged: (dynamic value){
-                        String? nivel = value.toString();
-                       // widget.teachersEntity.level = nivel;
+                        turmaEntity.classe = value.toString();
                       },
-
                       required: false,
                       hintText: "Classe",
                       items: classes.map((element) => element.toString()).toList(),
@@ -148,10 +152,8 @@ class _CadastrarTurmasState extends State<CadastrarTurmas> {
                       textStyle: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui,fontSize: 16),
                       labelStyle:  TextStyle(color: Colors.black,fontFamily: SettingsCki.segoeEui,fontSize: 16),
                       onValueChanged: (dynamic value){
-                        String? nivel = value.toString();
-                        // widget.teachersEntity.level = nivel;
+                        turmaEntity.periodo = value.toString();
                       },
-
                       required: false,
                       hintText: "Periodo",
                       items: period.map((element) => element.toString()).toList(),
@@ -198,6 +200,20 @@ class _CadastrarTurmasState extends State<CadastrarTurmas> {
 
                 GestureDetector(
                   onTap: () async {
+                    if(turmaEntity.sala == null || turmaEntity.sala == 0){
+                      ShowToast.show_error("O campo Sala não pode esta vázio");
+                    }else if(turmaEntity.nome == null || turmaEntity.nome == ""){
+                      ShowToast.show_error("O Nome da sala não pode esta vázio");
+                    }else if(turmaEntity.classe == null || turmaEntity.classe == ""){
+                      ShowToast.show_error("O campo classe não pode esta vázio");
+                    }else if(turmaEntity.periodo == null || turmaEntity.periodo == ""){
+                      ShowToast.show_error("O campo Periodo não pode esta vázio");
+                    }else{
+                      save.salvar(turmaEntity: turmaEntity);
+                      ShowToast.show_message_Success("Turma gravada com sucesso");
+                      Navigator.pop(context);
+                    }
+
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8,left: 10,right: 10,bottom: 5),

@@ -29,9 +29,9 @@ abstract class _AlunosMatriculado with Store{
      readStudentResult.listen((resultSet) {
        studenteList.clear();
        for(var student in resultSet.docs){
-        // Map<String,dynamic>? listToJson = resultSet.data();
          if(student.exists){
              studentDataEntity = StudentDataEntity(
+               id: student.id,
                studentName:  student["nome_aluno"],
                date: student["data_nascimento"],
                numberRG: student["registro_certidao"],

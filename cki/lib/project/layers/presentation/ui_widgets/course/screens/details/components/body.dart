@@ -88,8 +88,8 @@ class _BodyDetailCourseState extends State<BodyDetailCourse> {
                 ],
               ),
             ),
-            Observer(builder: (_) => verificacao.isStudent == true ? myButton():
-            NewStudentButton(studentClass: widget.coures.classeName!),),
+            //Observer(builder: (_) => verificacao.isStudent == true ? myButton():
+            NewStudentButton(studentClass: widget.coures.classeName!),
 
           ],
         ),

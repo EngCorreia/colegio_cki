@@ -1,6 +1,7 @@
 
 class StudentDataEntity{
   /* dados pessoas do aluno*/
+  String? _id;
   String? _schoolName;
   String? _studentName;
   var _date;
@@ -46,7 +47,7 @@ class StudentDataEntity{
 
 
 
-  StudentDataEntity({String? schoolName,String? studentName,var date,String? numberRG,
+  StudentDataEntity({String? schoolName,String? studentName,var date,String? numberRG,String? id,
     String? address,String? motherName,String? spaceJobMother,String? emailMother,
     String? phoneNumberMother,String? fatherName,String? spaceJobFather,String? emailFather,
     String? phoneNumberFather,String? responseName,String? responseObs,String? classeId,String? periodo,
@@ -56,6 +57,7 @@ class StudentDataEntity{
     String? terceiroNomeComplementares,String? terceiroTelefoneComplementares,String? grupoNumero}){
 _schoolName = schoolName;
 _studentName = studentName;
+_id = id;
 _date = date;
 _numberRG = numberRG;
 _address = address;
