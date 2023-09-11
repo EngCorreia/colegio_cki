@@ -3,6 +3,7 @@
 import 'dart:developer';
 
 import 'package:cki/project/layers/core/configuration/configuration.dart';
+import 'package:cki/project/layers/core/show_toast_message/show_toast_message.dart';
 import 'package:dropdownfield2/dropdownfield2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -23,6 +24,8 @@ class _AlunosMatriculadosState extends State<AlunosMatriculados> {
 
   var lista = AlunosMatriculado();
   var  lerTurmas = Listagem();
+  var idTurma;
+  var turmaValue;
 
   @override
   void initState() {
@@ -50,9 +53,19 @@ class _AlunosMatriculadosState extends State<AlunosMatriculados> {
                 ),))),
           ),
 
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.repeat_one_on_sharp,color: Colors.blue,size: 30,),
+          GestureDetector(
+            onTap: (){
+              if(lista.studenteList.isEmpty){
+                ShowToast.show_error("Não existe alunos matriculas neste classe");
+              }else{
+                lista.adicionarTurmasAlunosMatriculados(classe: widget.classeName,turmaValue: turmaValue,listaDeAluno: lista.studenteList,
+                    turmaId: idTurma.first.id);
+              }
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(Icons.repeat_one_on_sharp,color: Colors.blue,size: 30,),
+            ),
           )
         ],
       ),
@@ -79,9 +92,9 @@ class _AlunosMatriculadosState extends State<AlunosMatriculados> {
                       labelStyle:  TextStyle(color: Colors.black,fontFamily: SettingsCki.segoeEui,fontSize: 16),
                       onValueChanged: (dynamic value){
                         String? nivel = value.toString();
+                        turmaValue = nivel;
                         var d = nivel.toString().split(" ");
-                        var id = lerTurmas.turmaList.where((element) => element.periodo == d[4] && element.sala == int.parse(d[3]));
-                        log("*****************+ ${id.first.id}");
+                        idTurma = lerTurmas.turmaList.where((element) => element.periodo == d[4] && element.sala == int.parse(d[3]));
                       },
                       required: false,
                       hintText: "Atribuição de turmas",
@@ -99,7 +112,7 @@ class _AlunosMatriculadosState extends State<AlunosMatriculados> {
                       child: Image.asset("assets/images/image.png"),
                     ),
                     title: Text("${lista.studenteList[index].studentName}"),
-                    subtitle: Text("${lista.studenteList[index].phoneNumberFather}   ( Sem Sala )"),
+                    subtitle: Text("${lista.studenteList[index].turmaAluno ?? "Aluno sem sala"}"),
                     trailing: const Icon(Icons.edit,color: Colors.blue,),
                   )),
             ),

@@ -5,6 +5,8 @@ class StudentDataEntity{
   String? _schoolName;
   String? _studentName;
   var _date;
+  var _turmaAluno;
+  var _turmaId;
   String? _numberRG;
   String? _address;
   String? _motherName;
@@ -48,13 +50,15 @@ class StudentDataEntity{
 
 
   StudentDataEntity({String? schoolName,String? studentName,var date,String? numberRG,String? id,
-    String? address,String? motherName,String? spaceJobMother,String? emailMother,
+    String? address,String? motherName,String? spaceJobMother,String? emailMother,var turmaAluno,var turmaId,
     String? phoneNumberMother,String? fatherName,String? spaceJobFather,String? emailFather,
     String? phoneNumberFather,String? responseName,String? responseObs,String? classeId,String? periodo,
     String? planoDeSaude,String? problemaCronicoDeSaude,String? alergia,String? diagnosticoMedicoDificiencia,String? dificuldadeMotora,
     String? tratamento,String? medicacao,String? vacinas,String? aconpanhamento,String? numeroDeEmergencia,String? outraInformacaoDeSaude,
     String? primeiroNomeComplementares,String? primeiroTelefoneComplementares,String? segundoNomeComplementares,String? segundoTelefoneComplementares,
     String? terceiroNomeComplementares,String? terceiroTelefoneComplementares,String? grupoNumero}){
+    _turmaAluno = turmaAluno;
+    _turmaId = turmaId;
 _schoolName = schoolName;
 _studentName = studentName;
 _id = id;
@@ -94,6 +98,17 @@ _grupoNumero = grupoNumero;
 
   }
 
+  get turmaAluno => _turmaAluno;
+
+  set turmaAluno(value) {
+    _turmaAluno = value;
+  }
+
+  String? get id => _id;
+
+  set id(String? value) {
+    _id = value;
+  }
 
   String? get planoDeSaude => _planoDeSaude;
 
@@ -303,5 +318,11 @@ _grupoNumero = grupoNumero;
 
   set grupoNumero(String? value) {
     _grupoNumero = value;
+  }
+
+  get turmaId => _turmaId;
+
+  set turmaId(value) {
+    _turmaId = value;
   }
 }

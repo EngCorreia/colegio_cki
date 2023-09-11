@@ -32,6 +32,8 @@ abstract class _AlunosMatriculado with Store{
          if(student.exists){
              studentDataEntity = StudentDataEntity(
                id: student.id,
+               turmaAluno: student["turmaAluno"] ?? "",
+               turmaId: student["turmaId"] ?? "",
                studentName:  student["nome_aluno"],
                date: student["data_nascimento"],
                numberRG: student["registro_certidao"],
@@ -75,10 +77,29 @@ abstract class _AlunosMatriculado with Store{
      ShowToast.show_error(e.toString());
    }
   }
-/*"classe": {"classeName": studentDataEntity.classeId,
-    "periodo": studentDataEntity.periodo,
-    },
-    "numeroProcesso" : number
-    */
+
+
+
+  Future<void> adicionarTurmasAlunosMatriculados({required String classe,
+    required List<StudentDataEntity> listaDeAluno,required String turmaValue,required String turmaId}) async{
+    try{
+
+      for(var listas in listaDeAluno){
+        var readStudentResult = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+        collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection(Collections.collectionStudentRegister)
+            .doc(Collections.collectionMatricula).collection(classe).doc(listas.id);
+
+        Map<String,dynamic>? updates = {
+          "turmaAluno": turmaValue,
+          "turmaId": turmaId
+        };
+        readStudentResult.update(updates);
+        ShowToast.show_message_Success("Turma adicionado com sucesso por favor fecha");
+      }
+    }catch(e){
+      log(e.toString());
+      ShowToast.show_error(e.toString());
+    }
+  }
 
 }
