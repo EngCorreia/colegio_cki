@@ -1,7 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../core/configuration/configuration.dart';
+import '../../../domain/entities/lista_turma_entity/lista_turma_entity.dart';
+import '../../controllers/listagem_de_turma_controller/listagem_de_turma_controller.dart';
 
 class ListagemDeTurmas extends StatefulWidget {
   const ListagemDeTurmas({Key? key}) : super(key: key);
@@ -11,6 +14,14 @@ class ListagemDeTurmas extends StatefulWidget {
 }
 
 class _ListagemDeTurmasState extends State<ListagemDeTurmas> {
+
+  var  lerTurmas = Listagem();
+
+  @override
+  void initState() {
+    super.initState();
+    lerTurmas.leituraLista();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,23 +30,27 @@ class _ListagemDeTurmasState extends State<ListagemDeTurmas> {
         title: const Text("Lista das turmas"),
       ),
 
-      body: ListView.builder(
-             itemCount: 8,
-            itemBuilder: (context,index) => turmas()
+      body: Observer(
+        builder: (_)=>ListView.builder(
+            itemCount: lerTurmas.turmaList.length,
+            itemBuilder: (context,index){
+              var turm = lerTurmas.turmaList[index];
+              return turmas(turmaEntity:  turm);
+            }
         ),
+      )
 
     );
   }
 
 
-  Widget turmas(){
+  Widget turmas({required TurmaEntity turmaEntity}){
     return  GestureDetector(
       //onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> const Teachers())),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
           width: 160,
-          height: 150,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
@@ -67,7 +82,7 @@ class _ListagemDeTurmasState extends State<ListagemDeTurmas> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("Professores",style: TextStyle(
+                child: Text("${turmaEntity.classe}  Classe  ${turmaEntity.periodo}",style: TextStyle(
                     fontFamily: SettingsCki.segoeEui,
                     fontWeight: FontWeight.bold,
                     color: Colors.black
@@ -76,12 +91,22 @@ class _ListagemDeTurmasState extends State<ListagemDeTurmas> {
 
               Padding(
                 padding: const EdgeInsets.only(left: 8,right: 8,bottom: 8),
-                child: Text("Conheça nossos prof..",style: TextStyle(
+                child: Text("Nome da turma: ${turmaEntity.nome}",style: TextStyle(
                     fontFamily: SettingsCki.segoeEui,
                     fontWeight: FontWeight.normal,
                     color: Colors.black
                 ),),
               ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 8,right: 8,bottom: 8),
+                child: Text("Sala: ${turmaEntity.sala}",style: TextStyle(
+                    fontFamily: SettingsCki.segoeEui,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black
+                ),),
+              ),
+
             ],
           ),
         ),

@@ -17,7 +17,6 @@ class ReadCourseDataSourceImp implements ReadCourseDataSource{
       var readCourseResult = await FirebaseFirestore.instance.collection("colegios").doc("kalabo_internacional")
           .collection("2023_a_2024").doc("cki_2023").collection("cursos").orderBy("id").get();
       var list = courseDto.fromJsonList(readCourseResult.docs);
-
       return Right(list);
     } on Exception {
       return Left(Exception());

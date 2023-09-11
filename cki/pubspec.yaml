@@ -58,7 +58,7 @@ dependencies:
   pin_code_fields: ^7.4.0
   flutter_polyline_points: ^1.0.0
   flutter_svg: ^1.1.0 #it helps us to use SVG in our app
-  google_fonts: ^2.3.3 #this allows you to easily use any fonts from fonts.google.com in your Flutter app
+  #google_fonts: ^2.3.3 #this allows you to easily use any fonts from fonts.google.com in your Flutter app
 
 
 dev_dependencies:

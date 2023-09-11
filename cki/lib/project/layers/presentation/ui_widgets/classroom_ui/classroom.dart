@@ -1,11 +1,7 @@
 
-
-
-
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 class ClassRoom extends StatefulWidget {
   const ClassRoom({Key? key}) : super(key: key);
@@ -41,9 +37,9 @@ class _ClassRoomState extends State<ClassRoom> {
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Salas de aula",style: GoogleFonts.aBeeZee(fontSize: 25,color: Colors.white),),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Salas de aula",style: TextStyle(fontSize: 25,color: Colors.white),),
             ),
 
             SizedBox(

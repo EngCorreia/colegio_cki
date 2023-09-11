@@ -3,7 +3,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Books extends StatefulWidget {
   const Books({Key? key}) : super(key: key);
@@ -32,9 +31,9 @@ class _BooksState extends State<Books> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Todos livros",style: GoogleFonts.aBeeZee(
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Todos livros",style: TextStyle(
                   fontSize: 23,color: Colors.white),),
             ),
             const SizedBox(
@@ -74,9 +73,9 @@ class _BooksState extends State<Books> {
 
             const SizedBox(height: 4,),
 
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Livros de Ciências",style: GoogleFonts.aBeeZee(
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Livros de Ciências",style: TextStyle(
                 fontSize: 22,
                   color: Colors.white
               ),),
@@ -110,9 +109,9 @@ class _BooksState extends State<Books> {
 
             const SizedBox(height: 5,),
 
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Livros de História",style: GoogleFonts.aBeeZee(
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Livros de História",style: TextStyle(
                 fontSize: 22,
                   color: Colors.white,
               ),),
@@ -145,9 +144,9 @@ class _BooksState extends State<Books> {
 
             const SizedBox(height: 5,),
 
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Livros de língua portuguesa",style: GoogleFonts.aBeeZee(
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Livros de língua portuguesa",style: TextStyle(
                 fontSize: 22,
                 color: Colors.white,
               ),),
