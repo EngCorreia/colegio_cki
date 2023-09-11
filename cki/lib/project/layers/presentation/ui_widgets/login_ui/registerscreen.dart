@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -178,9 +177,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               color: Colors.blue[900],
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text("CONTINUA",
-                                style: GoogleFonts.montserrat(
+                                style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 1.5,
@@ -214,8 +213,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Nome do encarregado",
-          style: GoogleFonts.montserrat(
+        const Text("Nome do encarregado",
+          style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.bold,
           ),
@@ -233,8 +232,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
         const SizedBox(height: 16,),
-        Text("Número de telefone",
-          style: GoogleFonts.montserrat(
+        const Text("Número de telefone",
+          style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.bold,
           ),
@@ -270,24 +269,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
           textAlign: TextAlign.center,
           text: TextSpan(
             children: [
-              TextSpan(
+              const TextSpan(
                 text: "Já enviamos o código para ",
-                style: GoogleFonts.montserrat(
+                style: TextStyle(
                   color: Colors.black87,
                   fontSize: 18,
                 ),
               ),
               TextSpan(
                 text: countryDial + phoneController.text,
-                style: GoogleFonts.montserrat(
+                style: const TextStyle(
                   color: Colors.black87,
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
               ),
-              TextSpan(
+              const TextSpan(
                 text: "\nIntroduza o código aqui e continua...",
-                style: GoogleFonts.montserrat(
+                style: TextStyle(
                   color: Colors.black87,
                   fontSize: 12,
                 ),
@@ -314,9 +313,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         RichText(
           text: TextSpan(
             children: [
-              TextSpan(
+              const TextSpan(
                 text: "Não recebeu o codigo? ",
-                style: GoogleFonts.montserrat(
+                style: TextStyle(
                   color: Colors.black87,
                   fontSize: 12,
                 ),
@@ -328,8 +327,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       screenState = 0;
                     });
                   },
-                  child: Text("Reiniciar",
-                    style: GoogleFonts.montserrat(
+                  child: const Text("Reiniciar",
+                    style: TextStyle(
                       color: Colors.black87,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,

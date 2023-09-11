@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 //colors
@@ -42,11 +41,6 @@ final kBottomBorderRadius = BorderRadius.only(
   Radius.circular(SizerUtil.deviceType == DeviceType.tablet ? 40 : 20),
 );
 
-final kInputTextStyle = GoogleFonts.poppins(
-    color: kTextBlackColor,
-    fontSize: 11.sp,
-    fontWeight: FontWeight.w500
-);
 
 //validation for mobile
 const String mobilePattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
