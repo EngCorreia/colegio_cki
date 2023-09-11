@@ -104,9 +104,8 @@ class _AlunosMatriculadosState extends State<AlunosMatriculados> {
                   )),
             ),
           ],
-        ) : Center(
-              child: Container(
-              child: const Column(
+        ) : const Center(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(FontAwesomeIcons.graduationCap,size: 100,color: Colors.grey,),
@@ -120,7 +119,6 @@ class _AlunosMatriculadosState extends State<AlunosMatriculados> {
                   ),),
                 ],
               ),
-          ),
             ),
 
       ),
