@@ -47,8 +47,8 @@ class _MenuWidgetsState extends State<MenuWidgets> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    userAuth();
     dd.updateStudent(userId: StudentInformation.userID);
   }
 

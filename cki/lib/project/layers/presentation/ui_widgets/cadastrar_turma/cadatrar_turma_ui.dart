@@ -168,6 +168,7 @@ class _CadastrarTurmasState extends State<CadastrarTurmas> {
               children: [
                 GestureDetector(
                   onTap: () async {
+                    Navigator.pop(context);
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8,left: 10,right: 10,bottom: 5),
@@ -255,7 +256,7 @@ class _CadastrarTurmasState extends State<CadastrarTurmas> {
   List<String> classes = ["1º_classe","2º_classe","3º_classe","4º_classe",
     "5º_classe","6º_classe","7º_classe","8º_classe","9º_classe"];
 
-  List<String> period = ["Manhã","Tarde"];
+  List<String> period = ["Manhã","Tarde","Noite"];
   List<String> sala = ["Sala 1","Sala 2","Sala 3","Sala 4","Sala 5","Sala 6",
     "Sala 7","Sala 8","Sala 9","Sala 10","Sala 11","Sala 12","Sala 13","Sala 14","Sala 15"];
 }

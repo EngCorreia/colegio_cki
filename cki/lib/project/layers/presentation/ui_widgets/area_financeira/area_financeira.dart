@@ -4,18 +4,18 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../core/configuration/configuration.dart';
 import '../alunos_matriculados/alunos_matriculados.dart';
-import '../area_financeira/area_financeira.dart';
+import '../area_pedagogica/dividas_mensal.dart';
 import '../cadastrar_turma/cadatrar_turma_ui.dart';
 import '../listar_turmas/listagem_de_turmas.dart';
 
-class AreaPedagogica extends StatefulWidget {
-  const AreaPedagogica({Key? key}) : super(key: key);
+class AreaFinanceira extends StatefulWidget {
+  const AreaFinanceira({Key? key}) : super(key: key);
 
   @override
-  State<AreaPedagogica> createState() => _AreaPedagogicaState();
+  State<AreaFinanceira> createState() => _AreaFinanceiraState();
 }
 
-class _AreaPedagogicaState extends State<AreaPedagogica> {
+class _AreaFinanceiraState extends State<AreaFinanceira> {
 
 
   @override
@@ -23,10 +23,12 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text("Área Administrativa ",style: TextStyle(
-          fontFamily: SettingsCki.segoeEui,
-          color: Colors.white,
-          fontSize: 18
+        backgroundColor: Colors.green,
+        title: Text("Área Financeira",style: TextStyle(
+            fontFamily: SettingsCki.segoeEui,
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold
         ),),
         actions: [
           Padding(
@@ -39,314 +41,61 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
         ],
       ),
 
-      floatingActionButton: SpeedDial(
-        onOpen: () {
-
-        },
-        backgroundColor: Colors.white,
-        animatedIcon: AnimatedIcons.menu_close,
-        overlayOpacity: 0.7,
-        animatedIconTheme: const IconThemeData(
-          size: 30.0,
-          color: Colors.orange,
-        ),
-        children: [
-          SpeedDialChild(
-            labelWidget: Padding(
-              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-              child: Container(
-                height: 45,
-                width: 150,
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 1,
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [Colors.white, Colors.white],
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: SizedBox(
-                          width: 140,
-                          child: Text("Área Pedagógica",
-                            style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                color: Colors.blue),
-                          )),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: SizedBox(
-                          width: 140,
-                          child: Text("Saiba mais",
-                            style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                color: Colors.black,
-                                fontSize: 10),
-                          )),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            child: const Icon(FontAwesomeIcons.graduationCap, color: Colors.pink, size: 20,),
-            labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
-            onTap: (){
-            //  Navigator.push(context, MaterialPageRoute(builder: (context)=> const AreaPedagogica()));
-            },
-          ),
-
-          SpeedDialChild(
-            labelWidget: Padding(
-              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-              child: Container(
-                height: 45,
-                width: 150,
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 1,
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [Colors.white, Colors.white],
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: SizedBox(
-                          width: 140,
-                          child: Text("Finanças",
-                            style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                color: Colors.blue),
-                          )),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: SizedBox(
-                          width: 140,
-                          child: Text("Lista financeira",
-                            style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                color: Colors.black,
-                                fontSize: 10),
-                          )),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            child: const Icon(FontAwesomeIcons.moneyBillTransfer, color: Colors.green, size: 20,),
-            labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> const AreaFinanceira()));
-            },
-          ),
-
-          SpeedDialChild(
-            labelWidget: Padding(
-              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-              child: Container(
-                height: 45,
-                width: 150,
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 1,
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [Colors.white, Colors.white],
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: SizedBox(
-                          width: 140,
-                          child: Text("Listagem de turma",
-                            style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                color: Colors.blue),
-                          )),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: SizedBox(
-                          width: 140,
-                          child: Text("Lista das turmas cadastrados",
-                            style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                color: Colors.black,
-                                fontSize: 10),
-                          )),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            child: const Icon(FontAwesomeIcons.facebookMessenger, color: Colors.blue, size: 20,),
-            labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> const ListagemDeTurmas()));
-            },
-          ),
-
-
-          SpeedDialChild(
-            labelWidget: Padding(
-              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-              child: Container(
-                height: 45,
-                width: 150,
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 1,
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [Colors.white, Colors.white],
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: SizedBox(
-                          width: 140,
-                          child: Text("Editar turmas",
-                            style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                color: Colors.blue),
-                          )),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: SizedBox(
-                          width: 140,
-                          child: Text("Cadastro de turmas",
-                            style: TextStyle(
-                                fontFamily: SettingsCki.segoeEui,
-                                color: Colors.black,
-                                fontSize: 10),
-                          )),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            child: const Icon(FontAwesomeIcons.facebookMessenger, color: Colors.orange, size: 20,),
-            labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> const CadastrarTurmas()));
-
-            },
-          ),
-
-        ],
-      ),
-
       body: ListView(
         children: [
           const SizedBox(
             height: 10,
           ),
           GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
               classeName: "1º_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
               child: Container(
-                alignment: Alignment.centerLeft,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 1,
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 1],
-                    colors: [Colors.white, Colors.white],
+                  alignment: Alignment.centerLeft,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        blurRadius: 1,
+                      )
+                    ],
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.3, 1],
+                      colors: [Colors.white, Colors.white],
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    // backgroundColor: Colors.transparent,
-                    child: Image.asset("assets/course/course4.png"),
-                  ),
-                  title: Text("Alunos matriculados 1º classe",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.blue),
-                  ),
-                  subtitle: Text("Todos alunos matriculado",
-                    style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        color: Colors.black,
-                        fontSize: 10),
-                  ),
-                )
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      // backgroundColor: Colors.transparent,
+                      child: Image.asset("assets/course/course4.png"),
+                    ),
+                    title: Text("Alunos matriculados 1º classe",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.blue),
+                    ),
+                    subtitle: Text("Todos alunos matriculado",
+                      style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          color: Colors.black,
+                          fontSize: 10),
+                    ),
+                  )
 
               ),
             ),
           ),
 
           GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
               classeName: "2º_classe",
             ))),
             child: Padding(
@@ -393,7 +142,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
           ),
 
           GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
               classeName: "3º_classe",
             ))),
             child: Padding(
@@ -440,7 +189,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
           ),
 
           GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
               classeName: "4º_classe",
             ))),
             child: Padding(
@@ -487,7 +236,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
           ),
 
           GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
               classeName: "5º_classe",
             ))),
             child: Padding(
@@ -534,7 +283,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
           ),
 
           GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
               classeName: "6º_classe",
             ))),
             child: Padding(
@@ -581,7 +330,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
           ),
 
           GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
               classeName: "7º_classe",
             ))),
             child: Padding(
@@ -628,7 +377,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
           ),
 
           GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
               classeName: "8º_classe",
             ))),
             child: Padding(
@@ -675,7 +424,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
           ),
 
           GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
               classeName: "9º_classe",
             ))),
             child: Padding(
