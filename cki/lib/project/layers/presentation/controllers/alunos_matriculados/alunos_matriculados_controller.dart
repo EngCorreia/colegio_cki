@@ -32,6 +32,7 @@ abstract class _AlunosMatriculado with Store{
          if(student.exists){
              studentDataEntity = StudentDataEntity(
                id: student.id,
+               status: student.data()["status"] != null ? student["status"] ?? 0 : 0,
                assignedTo: student.data()["criado_por"] != null ? student["criado_por"] ?? "" : "",
                turmaAluno: student.data()["turmaAluno"] != null ? student["turmaAluno"] ?? "aluno sem turma" : "aluno sem turma",
                turmaId: student.data()["turmaId"] != null ? student["turmaId"] ?? "aluno sem turma" : "aluno sem turma",

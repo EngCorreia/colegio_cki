@@ -125,7 +125,8 @@ class _DividasMensalState extends State<DividasMensal> {
                     ),
                     title: Text("${lista.studenteList[index].studentName}"),
                     subtitle: Text("${lista.studenteList[index].turmaAluno ?? "Aluno sem sala"}"),
-                    trailing: const Icon(Icons.edit,color: Colors.blue,),
+                    trailing:lista.studenteList[index].status == 0 ? const Icon(Icons.info_outline_rounded,color: Colors.red,):
+                    const Icon(FontAwesomeIcons.checkCircle,color: Colors.blue,),
                   )),
             ),
           ],

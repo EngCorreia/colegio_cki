@@ -47,6 +47,7 @@ class StudentDataEntity{
   String? _terceiroTelefoneComplementares;
 
   String? _grupoNumero;
+  int? _status;
 
 
   StudentDataEntity({String? schoolName,String? studentName,var date,String? numberRG,String? id,
@@ -56,8 +57,9 @@ class StudentDataEntity{
     String? planoDeSaude,String? problemaCronicoDeSaude,String? alergia,String? diagnosticoMedicoDificiencia,String? dificuldadeMotora,
     String? tratamento,String? medicacao,String? vacinas,String? aconpanhamento,String? numeroDeEmergencia,String? outraInformacaoDeSaude,
     String? primeiroNomeComplementares,String? primeiroTelefoneComplementares,String? segundoNomeComplementares,String? segundoTelefoneComplementares,
-    String? terceiroNomeComplementares,String? terceiroTelefoneComplementares,String? grupoNumero,String? assignedTo}){
+    String? terceiroNomeComplementares,String? terceiroTelefoneComplementares,String? grupoNumero,String? assignedTo,int? status}){
     _turmaAluno = turmaAluno;
+    _status = status;
     _turmaId = turmaId;
     _assignedTo = assignedTo;
 _schoolName = schoolName;
@@ -97,6 +99,13 @@ _terceiroNomeComplementares = terceiroNomeComplementares;
 _terceiroTelefoneComplementares = terceiroTelefoneComplementares;
 _grupoNumero = grupoNumero;
 
+  }
+
+
+  int? get status => _status;
+
+  set status(int? value) {
+    _status = value;
   }
 
   get turmaAluno => _turmaAluno;
