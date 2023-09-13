@@ -63,7 +63,6 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
               Map<String,dynamic> newUpadte = {
                 "filhos": [financas],
               };
-
               gravaFinancas.set(newUpadte);
             }
           });

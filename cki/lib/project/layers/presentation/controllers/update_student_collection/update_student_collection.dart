@@ -11,7 +11,7 @@ class UpdateStudentInformation{
     try{
       var checkStudent = await FirebaseFirestore.instance.collection("student").doc(userId).get();
       if(checkStudent.exists){
-        ShowToast.show_error("existe");
+       // ShowToast.show_error("existe");
       }else{
         var updateStudent = FirebaseFirestore.instance.collection("student").doc(userId);
         Map<String,dynamic> student = {

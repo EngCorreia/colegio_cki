@@ -4,6 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/configuration/configuration.dart';
+import '../area_financeira_aluno/area_financeira_aluno.dart';
 import '../home_page/menu_widgets.dart';
 import '../money_student/money_student.dart';
 import '../notification_student/notification.dart';
@@ -25,7 +26,7 @@ class _IndexPageState extends State<IndexPage> {
     firstFlowPagesList
       ..add(MenuWidgets())
       ..add(const StudentInformationUi())
-      ..add(const MoneyStudent())
+      ..add(const FinancasAluno())
       ..add(const NotificationUi());
   }
 
