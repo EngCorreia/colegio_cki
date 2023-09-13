@@ -84,6 +84,45 @@ abstract class _AreaFinanceiraAluno with Store {
     }
   }
 
+
+  Future<void> editControlFinance({required String studentId,required String fatherId}) async{
+    try{
+      var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+      collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("financas")
+          .doc(fatherId).collection(studentId).orderBy("id").snapshots();
+      gravaFinancas.listen((resultSet) {
+        var list = resultSet.docs.length;
+        if( list == 0){
+          var myDay = Timestamp.now().toDate().month;
+          var gravaFinancasAluno = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+          collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("financas")
+              .doc(fatherId).collection(studentId).doc(converteDay(day: myDay));
+          Map<String,dynamic> mes = {
+            "valorPago":0,
+            "status":0,
+            "dia": Timestamp.now(),
+            "id": myDay
+          };
+          gravaFinancasAluno.set(mes);
+
+        }else{
+          paymentList.clear();
+          for(var lists in resultSet.docs){
+            payment = Payment(
+              date: lists["dia"],
+              status: lists["status"],
+              value: lists["valorPago"],
+            );
+            paymentList.add(payment!);
+          }
+        }
+      });
+    }catch(e){
+      log(e.toString());
+      ShowToast.show_error(e.toString());
+    }
+  }
+
   String converteDay({required int day}){
 
     if(day == 1){

@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../controllers/alunos_matriculados/alunos_matriculados_controller.dart';
 import '../../controllers/listagem_de_turma_controller/listagem_de_turma_controller.dart';
+import 'cobrar_mensalidade_ui.dart';
 
 class DividasMensal extends StatefulWidget {
   final String classeName;
@@ -109,6 +110,15 @@ class _DividasMensalState extends State<DividasMensal> {
               child: ListView.builder(
                   itemCount: lista.studenteList.length,
                   itemBuilder: (context,index)=> ListTile(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                        CobrancaMensalidade(
+                          studentName: lista.studenteList[index].studentName!,
+                        idAluno: lista.studenteList[index].id!,
+                        fatherId: lista.studenteList[index].assignedTo!,
+                      )));
+
+                    },
                     leading: CircleAvatar(
                       // backgroundColor: Colors.transparent,
                       child: Image.asset("assets/images/image.png"),

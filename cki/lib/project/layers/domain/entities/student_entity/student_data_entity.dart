@@ -2,6 +2,7 @@
 class StudentDataEntity{
   /* dados pessoas do aluno*/
   String? _id;
+  String? _assignedTo;
   String? _schoolName;
   String? _studentName;
   var _date;
@@ -48,7 +49,6 @@ class StudentDataEntity{
   String? _grupoNumero;
 
 
-
   StudentDataEntity({String? schoolName,String? studentName,var date,String? numberRG,String? id,
     String? address,String? motherName,String? spaceJobMother,String? emailMother,var turmaAluno,var turmaId,
     String? phoneNumberMother,String? fatherName,String? spaceJobFather,String? emailFather,
@@ -56,9 +56,10 @@ class StudentDataEntity{
     String? planoDeSaude,String? problemaCronicoDeSaude,String? alergia,String? diagnosticoMedicoDificiencia,String? dificuldadeMotora,
     String? tratamento,String? medicacao,String? vacinas,String? aconpanhamento,String? numeroDeEmergencia,String? outraInformacaoDeSaude,
     String? primeiroNomeComplementares,String? primeiroTelefoneComplementares,String? segundoNomeComplementares,String? segundoTelefoneComplementares,
-    String? terceiroNomeComplementares,String? terceiroTelefoneComplementares,String? grupoNumero}){
+    String? terceiroNomeComplementares,String? terceiroTelefoneComplementares,String? grupoNumero,String? assignedTo}){
     _turmaAluno = turmaAluno;
     _turmaId = turmaId;
+    _assignedTo = assignedTo;
 _schoolName = schoolName;
 _studentName = studentName;
 _id = id;
@@ -324,5 +325,11 @@ _grupoNumero = grupoNumero;
 
   set turmaId(value) {
     _turmaId = value;
+  }
+
+  String? get assignedTo => _assignedTo;
+
+  set assignedTo(String? value) {
+    _assignedTo = value;
   }
 }

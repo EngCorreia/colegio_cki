@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../core/configuration/configuration.dart';
-import '../alunos_matriculados/alunos_matriculados.dart';
 import '../area_pedagogica/dividas_mensal.dart';
-import '../cadastrar_turma/cadatrar_turma_ui.dart';
-import '../listar_turmas/listagem_de_turmas.dart';
+
 
 class AreaFinanceira extends StatefulWidget {
   const AreaFinanceira({Key? key}) : super(key: key);
