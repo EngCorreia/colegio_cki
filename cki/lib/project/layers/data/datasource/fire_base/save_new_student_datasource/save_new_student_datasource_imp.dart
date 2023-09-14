@@ -12,8 +12,6 @@ import '../../../../core/errors/save_student_error.dart';
 import '../../../dto/new_student_dto/new_student_dto.dart';
 
 class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
-
-
   bool isSaved = false;
   var studentId;
 

@@ -109,6 +109,7 @@ abstract class _AreaFinanceiraAluno with Store {
           paymentList.clear();
           for(var lists in resultSet.docs){
             payment = Payment(
+              idDocument: lists.id,
               date: lists["dia"],
               status: lists["status"],
               value: lists["valorPago"],
@@ -117,6 +118,23 @@ abstract class _AreaFinanceiraAluno with Store {
           }
         }
       });
+    }catch(e){
+      log(e.toString());
+      ShowToast.show_error(e.toString());
+    }
+  }
+
+
+  Future<void> editControlFinanceStatus({required String studentId,required String fatherId,required String documentId,required int status}) async{
+    try{
+      var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+      collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("financas")
+          .doc(fatherId).collection(studentId).doc(documentId);
+      Map<String,dynamic> mes = {
+        //"valorPago":0,
+        "status":status,
+      };
+      gravaFinancas.update(mes);
     }catch(e){
       log(e.toString());
       ShowToast.show_error(e.toString());
