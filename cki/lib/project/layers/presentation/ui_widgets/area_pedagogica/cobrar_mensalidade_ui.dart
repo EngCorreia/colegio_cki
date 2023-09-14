@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/configuration/configuration.dart';
 import '../../../domain/entities/pagamento_entity/pagamento_entity.dart';
@@ -20,10 +20,12 @@ class CobrancaMensalidade extends StatefulWidget {
 
 class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
   var financa = AreaFinanceiraAluno();
+  var data;
 
   @override
   void initState() {
     super.initState();
+    data = DateTime.now();
     financa.editControlFinance(studentId: widget.idAluno,fatherId: widget.fatherId);
   }
 
@@ -47,6 +49,14 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
               ),
             )
           ],
+        ),
+
+
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+
+          },
+          child: const Icon(Icons.add,color: Colors.white,size: 35,),
         ),
 
         body: Observer(
@@ -78,7 +88,7 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text("Caros encarregados, vimos por esta informar que as aulas para o ano lectivo 2023 começam aos 03/09/2023",style: TextStyle(
+                Text("Por favor seleciona uma das opções a baixo.",style: TextStyle(
                     color: Colors.black54,
                     fontSize: 16,
                     fontWeight: FontWeight.normal,
@@ -90,7 +100,7 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
 
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text("Data 12/07/2023   Hora: 15h34",style: TextStyle(
+                  child: Text("Data : ${payment.date.toDate()}",style: TextStyle(
                       color: Colors.black54,
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
@@ -187,7 +197,6 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
               ],
             ),
 
-
           ],
 
         ));
@@ -196,7 +205,7 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
       child: Padding(
         padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
         child: Container(
-          height: 95,
+          height: 150,
           decoration: BoxDecoration(
             color: Colors.green,
             borderRadius: BorderRadius.circular(8),
@@ -209,17 +218,17 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
                 children: [
                   Row(
                     children: [
-                      const Icon(FontAwesomeIcons.checkCircle,color: Colors.white,size: 30,),
+                      const Icon(FontAwesomeIcons.circleCheck,color: Colors.white,size: 30,),
                       // Image.asset("assets/images/close-circle.png", width: 30,height: 30,color: Colors.red,),
-                      const SizedBox(width: 18,),
-                      Text("FT FT001/1",style: TextStyle(
+                      const SizedBox(width: 5,),
+                      Text("FT FT001/1-",style: TextStyle(
                           fontFamily: SettingsCki.segoeEui,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                           fontSize: 16
                       ),),
-                      const SizedBox(width: 10,),
-                      Text("${payment.value} AOA",style: TextStyle(
+                      const SizedBox(width: 1,),
+                      Text("${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(payment.value)} AOA",style: TextStyle(
                           fontFamily: SettingsCki.segoeEui,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -230,15 +239,35 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
                       const Icon(FontAwesomeIcons.download,color: Colors.white,)
                     ],
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8,left: 10,right: 10,bottom: 5),
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.blue[200],
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.white,
+                            blurRadius: 1,
+                            spreadRadius: 1,
+                            // offset: const Offset(2, 2),
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: Text("Data: ${payment.date.toDate()}",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontSize: 16
+                        ),),
+                      ),
+                    ),
+                  ),
+               // Exemplo de saída: "14 de setembro de 2023"
 
-                  Text("Data: ${payment.date.toDate()}",style: TextStyle(
-                      fontFamily: SettingsCki.segoeEui,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.white,
-                      fontSize: 16
-                  ),),
-
-                  Text("status: Mensalidade Paga  ",style: TextStyle(
+                  Text("status: Mensalidade de ${payment.idDocument.toString().toUpperCase()} 2023 / 2024  Paga  ",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -256,7 +285,7 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
           icon: GestureDetector(
               onTap: ()=> Navigator.pop(context),
               child: Image.asset("assets/images/close-circle.png", width: 45,height: 45,color: Colors.red,)),
-          title: Text("INÍCIO DO ANO LECTIVO 2023",style: TextStyle(
+          title: Text("MENSALIDADE DE ${payment.date.toDate()}",style: TextStyle(
               color: Colors.blue,
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -267,7 +296,7 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text("Caros encarregados, vimos por esta informar que as aulas para o ano lectivo 2023 começam aos 03/09/2023",style: TextStyle(
+                Text("Por favor seleciona uma das opções a baixo.",style: TextStyle(
                     color: Colors.black54,
                     fontSize: 16,
                     fontWeight: FontWeight.normal,
@@ -279,7 +308,7 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
 
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text("Data 12/07/2023   Hora: 15h34",style: TextStyle(
+                  child: Text("Data : ${payment.date.toDate()}",style: TextStyle(
                       color: Colors.black54,
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
@@ -381,7 +410,7 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
       child: Padding(
         padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
         child: Container(
-          height: 95,
+          height: 150,
           decoration: BoxDecoration(
             color: Colors.red[900],
             borderRadius: BorderRadius.circular(8),
@@ -396,15 +425,15 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
                     children: [
                       Image.asset("assets/images/close-circle.png", width: 30,height: 30,color: Colors.white,),
                       // Image.asset("assets/images/close-circle.png", width: 30,height: 30,color: Colors.red,),
-                      const SizedBox(width: 18,),
-                      Text("FT FT001/1",style: TextStyle(
+                      const SizedBox(width: 5,),
+                      Text("FT FT001/1-",style: TextStyle(
                           fontFamily: SettingsCki.segoeEui,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                           fontSize: 16
                       ),),
-                      const SizedBox(width: 10,),
-                      Text("${payment.value} AOA",style: TextStyle(
+                      const SizedBox(width: 1,),
+                      Text("${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(payment.value)} AOA",style: TextStyle(
                           fontFamily: SettingsCki.segoeEui,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -416,23 +445,40 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
                     ],
                   ),
 
-                  Text("Data: ${payment.date.toDate()}",style: TextStyle(
-                      fontFamily: SettingsCki.segoeEui,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.white,
-                      fontSize: 16
-                  ),),
-
-
                   Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text("status: Mensalidade Não paga",style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 18
-                    ),),
+                    padding: const EdgeInsets.only(top: 8,left: 10,right: 10,bottom: 5),
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.blue[200],
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.white,
+                            blurRadius: 1,
+                            spreadRadius: 1,
+                            // offset: const Offset(2, 2),
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: Text("Data: ${payment.date.toDate()}",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontSize: 16
+                        ),),
+                      ),
+                    ),
                   ),
+
+
+                  Text("status: Mensalidade de ${payment.idDocument.toString().toUpperCase()} 2023 / 2024  Não Paga  ",style: TextStyle(
+                      fontFamily: SettingsCki.segoeEui,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 18
+                  ),),
                 ],
               ),
             ),

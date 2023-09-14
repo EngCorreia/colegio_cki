@@ -130,11 +130,23 @@ abstract class _AreaFinanceiraAluno with Store {
       var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
       collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("financas")
           .doc(fatherId).collection(studentId).doc(documentId);
-      Map<String,dynamic> mes = {
-        //"valorPago":0,
-        "status":status,
-      };
-      gravaFinancas.update(mes);
+      if(status == 0){
+        Map<String,dynamic> mes = {
+          //"valorPago":0,
+          "status":status,
+        };
+
+        gravaFinancas.update(mes);
+      }else{
+        Map<String,dynamic> mes = {
+          "dia": Timestamp.now(),
+          "status":status,
+        };
+
+        gravaFinancas.update(mes);
+      }
+
+
     }catch(e){
       log(e.toString());
       ShowToast.show_error(e.toString());

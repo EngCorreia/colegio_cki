@@ -11,6 +11,7 @@ import 'package:cki/project/layers/presentation/ui_widgets/splash_widgets/splash
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:intl/date_symbol_data_file.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -18,6 +19,7 @@ Future<void> main() async {
   InitStateInjectionDependence();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  initializeDateFormatting('en_US', "");
   AwesomeNotifications().initialize(
     // set the icon to null if you want to use the default app icon
       'resource://drawable/res_app_icon',
@@ -57,20 +59,22 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key, this.showHome});
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
+  Widget build(BuildContext context){
+    return MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'Colegio CKI',
     theme: ThemeData(
-        primaryColor: Colors.white,
-        backgroundColor: Colors.white,
-        primarySwatch: Colors.orange,
-        primaryIconTheme: const IconThemeData(color: Colors.black54),
-        primaryTextTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
-        textTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui))
+    primaryColor: Colors.white,
+    backgroundColor: Colors.white,
+    primarySwatch: Colors.orange,
+    primaryIconTheme: const IconThemeData(color: Colors.black54),
+    primaryTextTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
+    textTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui))
     ),
-        home: getState(showHome!),
-      //const OnBoardingPage()
-      );
+    home: getState(showHome!),
+  //const OnBoardingPage()
+  );
+  }
 
   Widget getState(String name) {
     log("======== $name");
