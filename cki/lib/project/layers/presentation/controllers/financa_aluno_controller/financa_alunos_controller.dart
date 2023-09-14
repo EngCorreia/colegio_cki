@@ -34,7 +34,6 @@ abstract class _AreaFinanceiraAluno with Store {
         if(resultSet.exists){
           Map<String,dynamic>? financas = resultSet.data();
           if(financas != null){
-           // log("************* ${financas["filhos"]}");
             list = financas["filhos"];
           }
         }
@@ -70,6 +69,7 @@ abstract class _AreaFinanceiraAluno with Store {
           paymentList.clear();
           for(var lists in resultSet.docs){
             payment = Payment(
+              idDocument: lists.id,
               date: lists["dia"],
               status: lists["status"],
               value: lists["valorPago"],
@@ -125,7 +125,8 @@ abstract class _AreaFinanceiraAluno with Store {
   }
 
 
-  Future<void> editControlFinanceStatus({required String studentId,required String fatherId,required String documentId,required int status}) async{
+  Future<void> editControlFinanceStatus({required String studentId,required String fatherId,
+    required String documentId,required int status,required String classe}) async{
     try{
       var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
       collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("financas")
@@ -142,11 +143,19 @@ abstract class _AreaFinanceiraAluno with Store {
           "dia": Timestamp.now(),
           "status":status,
         };
-
         gravaFinancas.update(mes);
       }
 
-
+      var readStudentResult = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+      collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection(Collections.collectionStudentRegister)
+          .doc(Collections.collectionMatricula).collection(classe).doc(studentId);
+      if(status == 0){
+        Map<String,dynamic> mes = {
+          "status": 0,
+        };
+        readStudentResult.update(mes);
+      }else{
+      }
     }catch(e){
       log(e.toString());
       ShowToast.show_error(e.toString());

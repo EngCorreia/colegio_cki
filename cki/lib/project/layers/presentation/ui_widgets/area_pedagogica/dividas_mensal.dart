@@ -116,6 +116,7 @@ class _DividasMensalState extends State<DividasMensal> {
                           studentName: lista.studenteList[index].studentName!,
                         idAluno: lista.studenteList[index].id!,
                         fatherId: lista.studenteList[index].assignedTo!,
+                          studentClass: widget.classeName,
                       )));
 
                     },

@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/configuration/configuration.dart';
@@ -121,7 +122,7 @@ class _MoneyStudentState extends State<MoneyStudent> {
       child: Padding(
         padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
         child: Container(
-          height: 95,
+          height: 130,
           decoration: BoxDecoration(
             color: Colors.green,
             borderRadius: BorderRadius.circular(8),
@@ -134,9 +135,9 @@ class _MoneyStudentState extends State<MoneyStudent> {
                 children: [
                   Row(
                     children: [
-                      const Icon(FontAwesomeIcons.checkCircle,color: Colors.white,size: 30,),
+                      const Icon(FontAwesomeIcons.circleCheck,color: Colors.white,size: 30,),
                       // Image.asset("assets/images/close-circle.png", width: 30,height: 30,color: Colors.red,),
-                      const SizedBox(width: 18,),
+                      const SizedBox(width: 5,),
                       Text("FT FT001/1",style: TextStyle(
                           fontFamily: SettingsCki.segoeEui,
                           fontWeight: FontWeight.bold,
@@ -144,13 +145,13 @@ class _MoneyStudentState extends State<MoneyStudent> {
                           fontSize: 16
                       ),),
                       const SizedBox(width: 10,),
-                     Text("${payment.value} AOA",style: TextStyle(
+                     Text("${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(payment.value)} AOA",style: TextStyle(
                           fontFamily: SettingsCki.segoeEui,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                           fontSize: 16
                       ),),
-                      const SizedBox(width: 30,),
+                      const SizedBox(width: 15,),
 
                       const Icon(FontAwesomeIcons.download,color: Colors.white,)
                     ],
@@ -163,7 +164,7 @@ class _MoneyStudentState extends State<MoneyStudent> {
                       fontSize: 16
                   ),),
 
-                  Text("status: Mensalidade Paga  ",style: TextStyle(
+                  Text("status: Mensalidade de ${payment.idDocument.toString().toUpperCase()} 2023 / 2024 Paga",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -182,7 +183,7 @@ class _MoneyStudentState extends State<MoneyStudent> {
       child: Padding(
         padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
         child: Container(
-          height: 95,
+          height: 150,
           decoration: BoxDecoration(
             color: Colors.red[900],
             borderRadius: BorderRadius.circular(8),
@@ -197,15 +198,15 @@ class _MoneyStudentState extends State<MoneyStudent> {
                     children: [
                      Image.asset("assets/images/close-circle.png", width: 30,height: 30,color: Colors.white,),
                       // Image.asset("assets/images/close-circle.png", width: 30,height: 30,color: Colors.red,),
-                      const SizedBox(width: 18,),
+                      const SizedBox(width: 8,),
                       Text("FT FT001/1",style: TextStyle(
                           fontFamily: SettingsCki.segoeEui,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                           fontSize: 16
                       ),),
-                      const SizedBox(width: 10,),
-                      Text("${payment.value} AOA",style: TextStyle(
+                      const SizedBox(width: 1,),
+                      Text("${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(payment.value)} AOA",style: TextStyle(
                           fontFamily: SettingsCki.segoeEui,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -227,7 +228,7 @@ class _MoneyStudentState extends State<MoneyStudent> {
 
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
-                    child: Text("status: Mensalidade Não paga",style: TextStyle(
+                    child: Text("status: Mensalidade de ${payment.idDocument.toString().toUpperCase()} 2023 / 2024 Não paga",style: TextStyle(
                         fontFamily: SettingsCki.segoeEui,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,

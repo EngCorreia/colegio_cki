@@ -73,7 +73,28 @@ abstract class _AlunosMatriculado with Store{
              studenteList.add(studentDataEntity!);
            }
        }
+       for(var list in studenteList){
+         var gravaFinancasAluno = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+         collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("financas")
+             .doc(list.assignedTo).collection(list.id!).snapshots();
+
+         gravaFinancasAluno.listen((event) {
+           var d = event.docs;
+           var ss = d.map((e) => e.data()["status"]);
+           var status = ss.toList().contains(0);
+           if(status == false){
+             var readStudentResult = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+             collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection(Collections.collectionStudentRegister)
+                 .doc(Collections.collectionMatricula).collection(classe).doc(list.id!);
+             Map<String,dynamic> statusCode = {
+               "status" : 1
+             };
+             readStudentResult.update(statusCode);
+           }
+         });
+       }
      });
+
    }catch(e){
      log(e.toString());
      ShowToast.show_error(e.toString());

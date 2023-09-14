@@ -11,7 +11,8 @@ class CobrancaMensalidade extends StatefulWidget {
   final String idAluno;
   final String fatherId;
   final String studentName;
-  const CobrancaMensalidade({super.key, required this.idAluno, required this.fatherId, required this.studentName});
+  final String studentClass;
+  const CobrancaMensalidade({super.key, required this.idAluno, required this.fatherId, required this.studentName, required this.studentClass});
 
   @override
   State<CobrancaMensalidade> createState() => _CobrancaMensalidadeState();
@@ -83,7 +84,7 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
               fontWeight: FontWeight.bold,
               fontFamily: SettingsCki.segoeEui
           ),),
-          content: Container(
+          content: SizedBox(
             height: 120,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -123,6 +124,7 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
                       status: 0,
                       studentId: widget.idAluno,
                       documentId: payment.idDocument!,
+                        classe: widget.studentClass
                     );
                     Navigator.pop(context);
                   },
@@ -162,6 +164,8 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
                       status: 1,
                       studentId: widget.idAluno,
                       documentId: payment.idDocument!,
+                        classe: widget.studentClass
+
                     );
                     Navigator.pop(context);
                   },
@@ -329,6 +333,7 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
                       status: 0,
                       studentId: widget.idAluno,
                       documentId: payment.idDocument!,
+                        classe: widget.studentClass
                     );
                     Navigator.pop(context);
                   },
@@ -368,6 +373,7 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
                       status: 1,
                       studentId: widget.idAluno,
                       documentId: payment.idDocument!,
+                      classe: widget.studentClass
                     );
                     Navigator.pop(context);
                   },
