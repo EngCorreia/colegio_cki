@@ -14,6 +14,7 @@ import '../../../core/const_strings/user_information.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
 import '../../controllers/update_student_collection/update_student_collection.dart';
 import '../about_us/about_us.dart';
+import '../area_financeira/area_financeira.dart';
 import '../area_pedagogica/area_pedagogica.dart';
 import '../books/books.dart';
 import '../calendary_screen/calendar_screen.dart';
@@ -42,7 +43,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
     StudentInformation.userID = user?.uid ?? "";
     StudentInformation.phoneNumber = user?.phoneNumber ?? "";
     StudentInformation.photo = user?.photoURL ?? "";
-    log("----- user ID => ${StudentInformation.userID}");
+   // log("----- user ID => ${StudentInformation.userID}");
   }
 
   @override
@@ -271,7 +272,14 @@ class _MenuWidgetsState extends State<MenuWidgets> {
               child: const Icon(FontAwesomeIcons.graduationCap, color: Colors.blue, size: 20,),
               labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const AreaPedagogica()));
+                showModalBottomSheet(context: context,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(20)
+                      )
+                    ),
+                    builder: (context)=> buildSheet());
+
               },
             ),
 
@@ -842,20 +850,72 @@ class _MenuWidgetsState extends State<MenuWidgets> {
   }
 
   final List<Dashboard> dashboard = [
-
-
     Dashboard(
         image: "assets/images/readingbook.png",
         tittle: "Classes",
         subTittle: "Listagem de classes"
     ),
-
   ];
 
   final List<String> imgList = [
-    'assets/images/matri.png',
-    'assets/images/ckiLogo.png',
-    'assets/images/colegio.png',
+    'assets/images/cki2.png',
+    'assets/images/cki1.png',
+    'assets/images/cki3.png',
+    'assets/images/cki4.png',
+    'assets/images/cki5.png',
+    'assets/images/cki6.png',
+    'assets/images/cki7.png',
+    'assets/images/cki8.png',
   ];
+
+  buildSheet() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+
+        ListTile(
+          onTap: (){
+            Navigator.pop(context);
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> const AreaPedagogica()));
+          },
+          leading: ClipOval(
+              child: Image.asset("assets/images/colegio.png",width: 40,height: 40,),
+            ),
+          title: Text("Alunos Matriculados",style: TextStyle(
+            fontFamily: SettingsCki.segoeEui,
+            color: Colors.blue[900],
+            fontWeight: FontWeight.w900,
+            fontSize: 18
+          ),),
+          subtitle: Text("Lista de todos alunos matriculados",style: TextStyle(
+            fontFamily: SettingsCki.segoeEui,
+          ),),
+
+        ),
+
+        const Divider(),
+        ListTile(
+          onTap: (){
+            Navigator.pop(context);
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> const AreaFinanceira()));
+         },
+          leading: ClipOval(
+            child: Image.asset("assets/images/money-bag.png",width: 40,height: 40,),
+          ),
+          title: Text("Área Financeiras",style: TextStyle(
+              fontFamily: SettingsCki.segoeEui,
+              color: Colors.green[900],
+              fontWeight: FontWeight.w900,
+              fontSize: 18
+          ),),
+          subtitle: Text("Lista de cobranças",style: TextStyle(
+              fontFamily: SettingsCki.segoeEui,
+          ),),
+
+        ),
+
+      ],
+    );
+  }
 
 }

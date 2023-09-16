@@ -64,11 +64,18 @@ class _TurmasDosAlunosState extends State<TurmasDosAlunos> {
                   itemCount: lista.studenteList.length,
                   itemBuilder: (context,index)=> ListTile(
                     leading: CircleAvatar(
+                      radius: 30,
                       // backgroundColor: Colors.transparent,
                       child: Image.asset("assets/images/image.png"),
                     ),
-                    title: Text("${lista.studenteList[index].studentName}"),
-                    subtitle: Text("${lista.studenteList[index].turmaAluno ?? "Aluno sem sala"}"),
+                    title: Text("${lista.studenteList[index].studentName}",style: TextStyle(
+                      fontFamily: SettingsCki.segoeEui,
+                      color: Colors.blue[900],
+                      fontSize: 18
+                    ),),
+                    subtitle: Text("${lista.studenteList[index].turmaAluno ?? "Aluno sem sala"}",style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                    ),),
                    // trailing: const Icon(Icons.edit,color: Colors.blue,),
                   )),
             ),

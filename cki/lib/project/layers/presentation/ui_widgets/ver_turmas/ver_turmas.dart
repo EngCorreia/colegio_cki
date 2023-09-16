@@ -40,14 +40,14 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
 
           actions: [
 
-            Padding(
+            Observer(builder: (_)=>Padding(
               padding: const EdgeInsets.only(top: 15),
               child: Text("${financa.list.length} Filho(s)",style: TextStyle(
                   fontFamily: SettingsCki.segoeEui,
                   fontSize: 18,
                   fontWeight: FontWeight.bold
               ),),
-            ),
+            ),),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CircleAvatar(
