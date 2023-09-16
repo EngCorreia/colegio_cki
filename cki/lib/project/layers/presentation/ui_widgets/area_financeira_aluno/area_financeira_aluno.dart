@@ -31,7 +31,7 @@ class _FinancasAlunoState extends State<FinancasAluno> {
       appBar: AppBar(
         backgroundColor: Colors.orange[400],
         elevation: 0,
-        title: Text("Área financeira (Filhos)",style: TextStyle(
+        title: Text("Área Financeira",style: TextStyle(
             color: Colors.white,
             fontFamily: SettingsCki.segoeEui,
             fontSize: 18
@@ -98,6 +98,11 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                       color: Colors.black
+                    ),),
+                    subtitle: Text("${financa.list[index]["classe"]}",style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.lightBlueAccent
                     ),),
                   )
               ),

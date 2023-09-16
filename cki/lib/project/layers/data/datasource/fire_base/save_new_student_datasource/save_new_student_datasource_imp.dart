@@ -38,6 +38,8 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
                 Map<String,dynamic> financas = {
                   "idAluno": studentId,
                   "nomeAluno": result["nome_aluno"],
+                  "classe": classe,
+                  "dia": Timestamp.now()
                 };
                 resultSet.add(financas);
                 var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).

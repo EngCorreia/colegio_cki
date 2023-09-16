@@ -18,7 +18,6 @@ class CobrancaMensalidade extends StatefulWidget {
   State<CobrancaMensalidade> createState() => _CobrancaMensalidadeState();
 }
 
-
 class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
   var financa = AreaFinanceiraAluno();
   var data;

@@ -8,6 +8,7 @@ import '../../../core/configuration/configuration.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../controllers/update_student_collection/update_student_collection.dart';
 import '../datesheet_screen/datesheet_screen.dart';
+import '../ver_turmas/ver_turmas.dart';
 
 class StudentInformationUi extends StatefulWidget {
   const StudentInformationUi({Key? key}) : super(key: key);
@@ -74,6 +75,67 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
             ),
             const SizedBox(
               height: 10,
+            ),
+
+            GestureDetector(
+              onTap: () async {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const ListaDeTurmas()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
+                child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple[400],
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black54,
+                        blurRadius: 1,
+                        spreadRadius: 1,
+                        //offset: const Offset(2, 2),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 10,),
+                        Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            //borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black54,
+                                blurRadius: 2,
+                                spreadRadius: 2,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child:  const Padding(
+                            padding: EdgeInsets.all(0.0),
+                            child: Icon(FontAwesomeIcons.calendarAlt,color: Colors.orange,size: 20,),
+                          ),
+                        ),
+
+                        const SizedBox(width: 20,),
+
+                        Text("Ver Turma",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white,
+                            fontSize: 20
+                        ),),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
 
             GestureDetector(
@@ -250,68 +312,6 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
                         const SizedBox(width: 20,),
 
                         Text("Boletin de nota",style: TextStyle(
-                            fontFamily: SettingsCki.segoeEui,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.white,
-                            fontSize: 20
-                        ),),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-
-            GestureDetector(
-              onTap: () async {
-                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
-                child: Container(
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurple[400],
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black54,
-                        blurRadius: 1,
-                        spreadRadius: 1,
-                        //offset: const Offset(2, 2),
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Row(
-                      children: [
-                        const SizedBox(width: 10,),
-                        Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            //borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
-                            borderRadius: BorderRadius.circular(25),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black54,
-                                blurRadius: 2,
-                                spreadRadius: 2,
-                                // offset: const Offset(2, 2),
-                              ),
-                            ],
-                          ),
-                          child:  const Padding(
-                            padding: EdgeInsets.all(0.0),
-                            child: Icon(FontAwesomeIcons.calendarAlt,color: Colors.orange,size: 20,),
-                          ),
-                        ),
-
-                        const SizedBox(width: 20,),
-
-                        Text("Assiduidade",style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.normal,
                             color: Colors.white,

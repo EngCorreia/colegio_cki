@@ -43,7 +43,6 @@ class _ListagemDeTurmasState extends State<ListagemDeTurmas> {
     );
   }
 
-
   Widget turmas({required TurmaEntity turmaEntity}){
     return  GestureDetector(
       //onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> const Teachers())),
