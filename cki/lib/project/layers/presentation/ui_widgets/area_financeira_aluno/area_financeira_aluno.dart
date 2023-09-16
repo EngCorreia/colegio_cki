@@ -4,6 +4,7 @@ import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
 import '../money_student/money_student.dart';
@@ -64,18 +65,64 @@ class _FinancasAlunoState extends State<FinancasAluno> {
         builder: (_)=>Column(
           children: [
 
-            Container(
-              height: 50,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.orange[400],
-              child: Center(
-                child: Text("${financa.list.length} Filho(s) Matriculado(s)",style: TextStyle(
-                  fontFamily: SettingsCki.segoeEui,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold
-                ),),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                height: 50,
+                width: MediaQuery.of(context).size.width,
+                color: Colors.orange[400],
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Icon(Icons.people),
+                    Text("${financa.list.length} Filho(s)",style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal
+                    ),),
+
+                    Text("Fale conosco ligando",style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal
+                    ),),
+
+                    GestureDetector(
+                      onTap: () {
+                        customLaunch('+2449516528575');
+                        },
+                        child: const Icon(Icons.call,color: Colors.cyanAccent,size: 30,)),
+                  ],
+                ),
+
               ),
             ),
+
+             /*
+             Container(
+                height: 50,
+                width: MediaQuery.of(context).size.width,
+                color: Colors.orange[400],
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    const Icon(Icons.email),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text("Envia um e-email para nós",style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal
+                    ),),
+                  ],
+                )
+
+              ),
+            */
+
 
             Expanded(
               child: ListView.builder(
@@ -113,4 +160,13 @@ class _FinancasAlunoState extends State<FinancasAluno> {
 
     );
   }
+
+  void customLaunch(command) async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: command,
+    );
+    await launchUrl(launchUri);
+  }
+
 }
