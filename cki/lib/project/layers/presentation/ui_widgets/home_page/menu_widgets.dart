@@ -53,7 +53,6 @@ class _MenuWidgetsState extends State<MenuWidgets> {
     dd.updateStudent(userId: StudentInformation.userID);
   }
 
-
   @override
   Widget build(context) {
     final List<Widget> imageSliders = imgList.map((item) => Container(
@@ -910,6 +909,28 @@ class _MenuWidgetsState extends State<MenuWidgets> {
           ),),
           subtitle: Text("Lista de cobranças",style: TextStyle(
               fontFamily: SettingsCki.segoeEui,
+          ),),
+
+        ),
+
+        const Divider(),
+
+        ListTile(
+          onTap: (){
+            Navigator.pop(context);
+           // Navigator.push(context, MaterialPageRoute(builder: (context)=> const AreaFinanceira()));
+          },
+          leading: ClipOval(
+            child: Image.asset("assets/images/report.png",width: 40,height: 40,),
+          ),
+          title: Text("Relatório Financeiro",style: TextStyle(
+              fontFamily: SettingsCki.segoeEui,
+              color: Colors.green[900],
+              fontWeight: FontWeight.w900,
+              fontSize: 18
+          ),),
+          subtitle: Text("Estatistica financeira",style: TextStyle(
+            fontFamily: SettingsCki.segoeEui,
           ),),
 
         ),
