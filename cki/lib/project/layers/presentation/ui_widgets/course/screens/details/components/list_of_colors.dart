@@ -10,11 +10,11 @@ class ListOfColors extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: kDefaultPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
+        children: <Widget>[
           ColorDot(
             fillColor: Color(0xFF80989A),
             isSelected: true,

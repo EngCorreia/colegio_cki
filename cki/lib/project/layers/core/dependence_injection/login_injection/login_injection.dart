@@ -8,7 +8,7 @@ import '../../../data/repositories/login_repository/login_repository_imp.dart';
 import '../../../domain/repositories/login_repository/login_repository.dart';
 import '../../../domain/usecases/login_usecase/login_usecase.dart';
 import '../../../domain/usecases/login_usecase/login_usecase_imp.dart';
-import '../../../presentation/controllers/login_controller/Login_controller.dart';
+import '../../../presentation/controllers/login_controller/login_controller.dart';
 
 class LoginInject{
 

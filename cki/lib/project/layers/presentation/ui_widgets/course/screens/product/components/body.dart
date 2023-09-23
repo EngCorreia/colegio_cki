@@ -32,7 +32,7 @@ class _BodyCourseState extends State<BodyCourse> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      bottom: false,
+      bottom:false,
       child: Column(
         children: <Widget>[
           SearchBox(onChanged: (value) {}),

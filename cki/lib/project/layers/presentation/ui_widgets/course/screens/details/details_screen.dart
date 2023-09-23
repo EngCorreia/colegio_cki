@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get_it/get_it.dart';
-
 
 import '../../../../../domain/entities/courses_entity/coures_entitiy.dart';
-import '../../../../controllers/save_new_student_controller/save_new_student_controller.dart';
 import '../../constants.dart';
-import '../../models/product.dart';
 import 'components/body.dart';
 
 class DetailsCourses extends StatelessWidget {
@@ -15,7 +11,6 @@ class DetailsCourses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: buildAppBar(context),

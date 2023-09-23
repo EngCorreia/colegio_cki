@@ -1,6 +1,7 @@
 
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -8,7 +9,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/const_strings/user_information.dart';
-import '../../controllers/login_controller/Login_controller.dart';
+import '../../controllers/login_controller/login_controller.dart';
 import '../../controllers/update_student_collection/update_student_collection.dart';
 import '../index_menu/index_page.dart';
 
@@ -42,10 +43,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
     StudentInformation.userID = userCredential?.user?.uid ?? "";
     StudentInformation.phoneNumber = userCredential?.user?.phoneNumber ?? "";
     StudentInformation.photo = userCredential?.user?.photoURL ?? "";
-    log("----- user ID => ${userCredential?.user?.uid}");
+   // log("----- user ID => ${userCredential?.user?.uid}");
   }
 
   Future<void> verifyPhone(String number) async {
+    log("******************* $number");
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: number,
       timeout: const Duration(seconds: 60),
@@ -62,30 +64,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
           screenState = 1;
         });
       },
-
       codeAutoRetrievalTimeout: (String verificationId) {
         showSnackBarText("Ops o tempo espirou");
       },
-
     );
   }
 
   Future<void> verifyOTP() async {
     await FirebaseAuth.instance.signInWithCredential(
       PhoneAuthProvider.credential(verificationId: verID, smsCode: otpPin,),).then((value) async {
-        //log("*************** ${value.user?.phoneNumber}");
         userAuth(userCredential: value);
-        var dd = UpdateStudentInformation();
-        dd.updateStudent(userId: StudentInformation.userID);
-
+        var updateStudentCollections = UpdateStudentInformation();
+        updateStudentCollections.updateStudent(userId: StudentInformation.userID,name: usernameController.text);
         final pref = await SharedPreferences.getInstance();
         pref.setString("login", "logged");
-
-        // ignore: use_build_context_synchronously
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => IndexPage(),),);
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => IndexPage()));
     });
   }
-//Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => IndexPage(),),);
+
   @override
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;

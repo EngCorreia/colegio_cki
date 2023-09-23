@@ -58,6 +58,7 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
               Map<String,dynamic> financas = {
                 "idAluno": studentId,
                 "nomeAluno": result["nome_aluno"],
+                "dia": Timestamp.now()
               };
 
               Map<String,dynamic> newUpadte = {

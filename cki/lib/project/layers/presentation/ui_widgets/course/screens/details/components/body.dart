@@ -1,14 +1,11 @@
 import 'package:cki/project/layers/core/show_toast_message/show_toast_message.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-
 
 import '../../../../../../core/configuration/configuration.dart';
 import '../../../../../../core/const_strings/user_information.dart';
 import '../../../../../../domain/entities/courses_entity/coures_entitiy.dart';
 import '../../../../../controllers/verificar_aluno_matriculado/verificar_aluno.dart';
 import '../../../constants.dart';
-import '../../../models/product.dart';
 import 'chat_and_add_to_cart.dart';
 import 'list_of_colors.dart';
 import 'product_image.dart';
