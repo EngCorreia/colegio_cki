@@ -1,8 +1,6 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobx/mobx.dart';
-
 import '../../../core/const_strings/const_strings.dart';
 import '../../../core/show_toast_message/show_toast_message.dart';
 import '../../../domain/entities/lista_turma_entity/lista_turma_entity.dart';
