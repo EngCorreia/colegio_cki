@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../../../core/configuration/configuration.dart';
 import '../../../../domain/entities/teachers_entity/teachers_entity.dart';
+import '../../../controllers/login_controller/controller_login.dart';
 import '../../../controllers/read_teachers_controller/read_teachers_controller.dart';
 import '../add_teacher/add_teacher.dart';
 
@@ -17,11 +18,13 @@ class Teachers extends StatefulWidget {
 class _TeachersState extends State<Teachers> {
 
   final _teacherListController = GetIt.I.get<ReadTeachersController>();
+  final loginController = LoginControl();
 
   @override
   void initState(){
     super.initState();
     _teacherListController.readAllTeachers();
+    loginController.loginUserStatus();
   }
 
   @override
@@ -73,12 +76,15 @@ class _TeachersState extends State<Teachers> {
         ],
       ),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> AddTeacher(teachersEntity: TeachersEntity(),)));
-        },
-        child: const Icon(Icons.add,color: Colors.white,size: 30,),
+      floatingActionButton: Observer(
+        builder: (_)=> loginController.newStatusUser == 1 ? FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> AddTeacher(teachersEntity: TeachersEntity(),)));
+          },
+          child: const Icon(Icons.add,color: Colors.white,size: 30,),
+        ):Container(),
       ),
+
 
       body: SingleChildScrollView(
         child: Column(

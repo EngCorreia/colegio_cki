@@ -91,7 +91,8 @@ class StudentDto extends StudentDataEntity{
     terceiroNomeComplementares: terceiroNomeComplementares,
     terceiroTelefoneComplementares: terceiroTelefoneComplementares,
     tratamento: tratamento,
-    vacinas: vacinas
+    vacinas: vacinas,
+      status: 0
 
   ){
     _schoolName = schoolName;
@@ -362,9 +363,6 @@ class StudentDto extends StudentDataEntity{
       "pai_telefone": studentDataEntity.phoneNumberFather,
       "nome_responsavel": studentDataEntity.responseName,
       "obs": studentDataEntity.responseObs,
-      "classe": {"classeName": studentDataEntity.classeId,
-                 "periodo": studentDataEntity.periodo,
-      },
       "plano_de_saude": studentDataEntity.planoDeSaude,
       "problema_cronico": studentDataEntity.problemaCronicoDeSaude,
       "alergia": studentDataEntity.alergia,
@@ -384,9 +382,6 @@ class StudentDto extends StudentDataEntity{
       "telefone3_pessoa_autorizada": studentDataEntity.terceiroTelefoneComplementares,
       "grupo_numero": studentDataEntity.grupoNumero,
       "numeroProcesso" : number
-
-      // Dados de saude do aluno
-     // "obs": studentDataEntity.responseObs,
 
     };
   }

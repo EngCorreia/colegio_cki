@@ -98,32 +98,6 @@ class _FinancasAlunoState extends State<FinancasAluno> {
               ),
             ),
 
-             /*
-             Container(
-                height: 50,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.orange[400],
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    const Icon(Icons.email),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Text("Envia um e-email para nós",style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        fontSize: 18,
-                        fontWeight: FontWeight.normal
-                    ),),
-                  ],
-                )
-
-              ),
-            */
-
-
             Expanded(
               child: ListView.builder(
                   itemCount: financa.list.length,

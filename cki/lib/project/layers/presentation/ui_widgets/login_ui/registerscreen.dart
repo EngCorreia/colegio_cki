@@ -1,7 +1,6 @@
 
 import 'dart:developer';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -33,6 +32,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String verID = " ";
   int screenState = 0;
   Color blue = const Color(0xff8cccff);
+  var name;
 
 
 
@@ -43,11 +43,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
     StudentInformation.userID = userCredential?.user?.uid ?? "";
     StudentInformation.phoneNumber = userCredential?.user?.phoneNumber ?? "";
     StudentInformation.photo = userCredential?.user?.photoURL ?? "";
-   // log("----- user ID => ${userCredential?.user?.uid}");
+    log("----- user ID => ${userCredential?.user?.uid}");
   }
 
   Future<void> verifyPhone(String number) async {
-    log("******************* $number");
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: number,
       timeout: const Duration(seconds: 60),
@@ -75,7 +74,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       PhoneAuthProvider.credential(verificationId: verID, smsCode: otpPin,),).then((value) async {
         userAuth(userCredential: value);
         var updateStudentCollections = UpdateStudentInformation();
-        updateStudentCollections.updateStudent(userId: StudentInformation.userID,name: usernameController.text);
+        updateStudentCollections.updateStudent(userId: StudentInformation.userID,name: name);
         final pref = await SharedPreferences.getInstance();
         pref.setString("login", "logged");
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => IndexPage()));
@@ -226,6 +225,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               horizontal: 16,
             ),
           ),
+          onChanged: (value){
+            name = value;
+          },
         ),
         const SizedBox(height: 16,),
         const Text("Número de telefone",

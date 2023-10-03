@@ -15,7 +15,7 @@ class UpdateStudentInformation{
       }else{
         var updateStudent = FirebaseFirestore.instance.collection("student").doc(userId);
         Map<String,dynamic> student = {
-          "nome": name,
+          "nome": name ?? "",
           "userID": StudentInformation.userID,
           "photo": StudentInformation.photo,
           "phoneNumber": StudentInformation.phoneNumber,

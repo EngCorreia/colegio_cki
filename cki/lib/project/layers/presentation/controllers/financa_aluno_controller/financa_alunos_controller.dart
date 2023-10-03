@@ -32,6 +32,7 @@ abstract class _AreaFinanceiraAluno with Store {
           .doc(StudentInformation.userID).snapshots();
       gravaFinancas.listen((resultSet) {
         if(resultSet.exists){
+          list.clear();
           Map<String,dynamic>? financas = resultSet.data();
           if(financas != null){
             list = financas["filhos"];
@@ -59,7 +60,7 @@ abstract class _AreaFinanceiraAluno with Store {
               .doc(StudentInformation.userID).collection(studentId).doc(converteDay(day: myDay));
           Map<String,dynamic> mes = {
             "valorPago":0,
-            "status":0,
+            "status": 0,
             "dia": Timestamp.now(),
             "id": myDay
           };
@@ -98,8 +99,8 @@ abstract class _AreaFinanceiraAluno with Store {
           collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("financas")
               .doc(fatherId).collection(studentId).doc(converteDay(day: myDay));
           Map<String,dynamic> mes = {
-            "valorPago":0,
-            "status":0,
+            "valorPago": 0,
+            "status": 0,
             "dia": Timestamp.now(),
             "id": myDay
           };
@@ -134,14 +135,14 @@ abstract class _AreaFinanceiraAluno with Store {
       if(status == 0){
         Map<String,dynamic> mes = {
           //"valorPago":0,
-          "status":status,
+          "status": status,
         };
 
         gravaFinancas.update(mes);
       }else{
         Map<String,dynamic> mes = {
           "dia": Timestamp.now(),
-          "status":status,
+          "status": status,
         };
         gravaFinancas.update(mes);
       }

@@ -58,6 +58,7 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
               Map<String,dynamic> financas = {
                 "idAluno": studentId,
                 "nomeAluno": result["nome_aluno"],
+                "classe": classe,
                 "dia": Timestamp.now()
               };
 
@@ -65,6 +66,7 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
                 "filhos": [financas],
               };
               gravaFinancas.set(newUpadte);
+              readed = true;
             }
           });
 

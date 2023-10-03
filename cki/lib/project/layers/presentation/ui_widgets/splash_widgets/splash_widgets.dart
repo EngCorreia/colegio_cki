@@ -21,13 +21,6 @@ class _SplashWidgetsState extends State<SplashWidgets> {
   final controller = PageController(keepPage: true);
   bool isLastPage = false;
 
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-
   @override
   void dispose() {
     super.dispose();
