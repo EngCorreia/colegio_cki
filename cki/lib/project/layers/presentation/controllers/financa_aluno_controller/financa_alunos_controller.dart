@@ -20,10 +20,24 @@ abstract class _AreaFinanceiraAluno with Store {
   Payment? payment;
 
   @observable
+  int? total = 0;
+
+  @observable
+  int? naoPago = 0;
+
+
+  @observable
   ObservableList<Payment> paymentList = ObservableList();
+
+  @computed
+  List<Payment> get paymentPago => paymentList.where((element) => element.status == 1).toList();
+  @computed
+  List<Payment> get paymentNaoPago => paymentList.where((element) => element.status == 0).toList();
 
   @observable
   List<dynamic> list = [];
+
+
 
   Future<void> leituraFilhosFinancas() async{
     try{
@@ -77,6 +91,36 @@ abstract class _AreaFinanceiraAluno with Store {
             );
             paymentList.add(payment!);
           }
+
+          paymentPago.clear();
+            for(var pay = 0;  pay <= paymentPago.length; pay++){
+              log("ªªªªªªªªªªªªªªªª ${paymentPago.length}");
+              if(paymentPago.isEmpty){
+                total = 0;
+                log("****** $total");
+              }else if(paymentPago.length < 2){
+                total = paymentPago[0].value!;
+                log("****** $total");
+              }else if(paymentPago.length >= 2){
+                total = (total! + paymentPago[pay].value!);
+                log("****** $total");
+                naoPago = 0;
+              }
+            }
+
+          paymentNaoPago.clear();
+          for(var pay = 0;  pay <= paymentNaoPago.length; pay++){
+            if(paymentNaoPago.isEmpty){
+              naoPago = 0;
+            }else if(paymentNaoPago.length < 2){
+              naoPago = paymentNaoPago[0].value!;
+            }else if(paymentNaoPago.length >= 2){
+              naoPago  = (naoPago ! + paymentNaoPago[pay].value!);
+              log("******aqui $naoPago ");
+
+            }
+          }
+
         }
       });
     }catch(e){

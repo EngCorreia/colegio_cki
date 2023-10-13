@@ -247,11 +247,9 @@ class _AddTeacherState extends State<AddTeacher> {
                   onValueChanged: (dynamic value){
                     String? classe = value.toString();
                     widget.teachersEntity.classTeacher = classe;
-
                   },
-
                   required: false,
-                  hintText: "Classe a lecionar",
+                  hintText: "Classe a lecionar ",
                   items: classes.map((element) => element.toString().replaceAll("()", "")).toList(),
                 ),
               ),

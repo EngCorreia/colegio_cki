@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
 import '../money_student/money_student.dart';
+import 'estatistica_aluno.dart';
 
 class FinancasAluno extends StatefulWidget {
   const FinancasAluno({super.key});
@@ -104,10 +105,21 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                   itemBuilder: (context,index) => ListTile(
                     onTap: (){
                       var studentId = financa.list[index]["idAluno"];
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>  MoneyStudent(
+
+                     /* Navigator.push(context, MaterialPageRoute(builder: (context)=>  MoneyStudent(
                         idAluno: studentId,
                         studentName: financa.list[index]["nomeAluno"],
                       )));
+
+                      */
+
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>  AlunoEstisticaFinancas(
+                        idAluno: studentId,
+                        studentName: financa.list[index]["nomeAluno"],
+                      )));
+
+
+
 
                     },
                     leading: CircleAvatar(

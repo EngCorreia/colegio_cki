@@ -7,14 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get_it/get_it.dart';
+
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/configuration/configuration.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
-import '../../controllers/login_controller/Login_controller.dart';
 import '../../controllers/login_controller/controller_login.dart';
 import '../../controllers/update_student_collection/update_student_collection.dart';
 import '../about_us/about_us.dart';
@@ -27,6 +26,7 @@ import '../classroom_ui/classroom.dart';
 import '../contacts/contact_ui.dart';
 import '../course/screens/product/products_screen.dart';
 import '../equipe_list/equipe_list.dart';
+import '../estatistica_financas/home_estatistica.dart';
 import '../gallery/gallery.dart';
 import '../googleMap/cki_location.dart';
 import '../splash_widgets/splash_widgets.dart';
@@ -1054,7 +1054,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
         ListTile(
           onTap: (){
             Navigator.pop(context);
-           // Navigator.push(context, MaterialPageRoute(builder: (context)=> const AreaFinanceira()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePageEst()));
           },
           leading: ClipOval(
             child: Image.asset("assets/images/report.png",width: 40,height: 40,),
