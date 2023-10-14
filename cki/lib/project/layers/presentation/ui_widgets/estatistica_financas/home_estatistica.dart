@@ -3,6 +3,10 @@ import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/estatistica_financas/transfer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:intl/intl.dart';
+
+import '../../controllers/estatistica_financa_controller/estatistica_financa_controller.dart';
 
 class HomePageEst extends StatefulWidget {
   @override
@@ -11,6 +15,16 @@ class HomePageEst extends StatefulWidget {
 
 class _HomePageState extends State<HomePageEst> {
   int _selectedItemIndex = 2;
+  var valores = EstatisticaGeralFinanca();
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    valores.readAllFinance();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,9 +198,19 @@ class _HomePageState extends State<HomePageEst> {
                       const SizedBox(
                         height: 20,
                       ),
-                      buildCategoryCard(Icons.monetization_on_outlined, "Janeiro", 500000, 20),
-                      buildCategoryCard(Icons.monetization_on_outlined, "Fevereiro", 430550, 17),
+                      Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Janeiro", valores.totalJaneiroPago!, valores.totalJaneiroNaoPago!)),
+                      Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Fevereiro", valores.totalFevereiroPago!, valores.totalFevereiroNaoPago!)),
+
                       buildCategoryCard(Icons.monetization_on_outlined, "Março", 120654, 20),
+                      buildCategoryCard(Icons.monetization_on_outlined, "Abril", 120654, 20),
+                      buildCategoryCard(Icons.monetization_on_outlined, "Maio", 120654, 20),
+                      buildCategoryCard(Icons.monetization_on_outlined, "Junho", 500000, 20),
+                      buildCategoryCard(Icons.monetization_on_outlined, "Julho", 430550, 17),
+                      buildCategoryCard(Icons.monetization_on_outlined, "Agosto", 120654, 20),
+                      buildCategoryCard(Icons.monetization_on_outlined, "Setembro", 120654, 20),
+                      buildCategoryCard(Icons.monetization_on_outlined, "Outubro", 120654, 20),
+                      buildCategoryCard(Icons.monetization_on_outlined, "Novembro", 120654, 20),
+                      buildCategoryCard(Icons.monetization_on_outlined, "Dezembro", 120654, 20),
                     ],
                   ),
                 ),
@@ -390,10 +414,10 @@ class _HomePageState extends State<HomePageEst> {
                   Text(
                     title,
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       color: Colors.blueAccent,
                       fontFamily: SettingsCki.segoeEui,
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],
@@ -401,19 +425,19 @@ class _HomePageState extends State<HomePageEst> {
               Row(
                 children: [
                   Text(
-                    "$amount kzs",
+                    "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(amount)} kzs",
                     style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: SettingsCki.segoeEui
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: SettingsCki.segoeEui
                     ),
                   ),
                   const SizedBox(
                     width: 10,
                   ),
-                  Text("($percentage kzs)",
+                  Text("(${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(percentage)} kzs)",
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 14,
                         fontFamily: SettingsCki.segoeEui,
                         fontWeight: FontWeight.bold,
                         color: Colors.red),
