@@ -59,6 +59,31 @@ abstract class _AreaFinanceiraAluno with Store {
     }
   }
 
+  void pago(){
+    total = 0;
+    for(var pay in paymentPago){
+      if(paymentPago.isEmpty){
+        total = 0;
+      }else if(paymentPago.length == 1){
+        total = pay.value!;
+      }else if(paymentPago.length >= 2){
+        total  = total! + pay.value!;
+      }
+    }
+  }
+
+  void pagoN(){
+    naoPago = 0;
+    for(var pay in paymentNaoPago){
+      if(paymentNaoPago.isEmpty){
+        naoPago = 0;
+      }else if(paymentNaoPago.length < 2){
+        naoPago = pay.value!;
+      }else if(paymentNaoPago.length >= 2){
+        naoPago  = (naoPago ! + pay.value!);
+      }
+    }
+  }
 
   Future<void> readControlFinance({required String studentId}) async{
     try{
@@ -79,6 +104,8 @@ abstract class _AreaFinanceiraAluno with Store {
             "id": myDay
           };
           gravaFinancasAluno.set(mes);
+          pago();
+          pagoN();
 
         }else{
           paymentList.clear();
@@ -92,34 +119,8 @@ abstract class _AreaFinanceiraAluno with Store {
             paymentList.add(payment!);
           }
 
-          paymentPago.clear();
-            for(var pay = 0;  pay <= paymentPago.length; pay++){
-              log("ªªªªªªªªªªªªªªªª ${paymentPago.length}");
-              if(paymentPago.isEmpty){
-                total = 0;
-                log("****** $total");
-              }else if(paymentPago.length < 2){
-                total = paymentPago[0].value!;
-                log("****** $total");
-              }else if(paymentPago.length >= 2){
-                total = (total! + paymentPago[pay].value!);
-                log("****** $total");
-                naoPago = 0;
-              }
-            }
-
-          paymentNaoPago.clear();
-          for(var pay = 0;  pay <= paymentNaoPago.length; pay++){
-            if(paymentNaoPago.isEmpty){
-              naoPago = 0;
-            }else if(paymentNaoPago.length < 2){
-              naoPago = paymentNaoPago[0].value!;
-            }else if(paymentNaoPago.length >= 2){
-              naoPago  = (naoPago ! + paymentNaoPago[pay].value!);
-              log("******aqui $naoPago ");
-
-            }
-          }
+          pago();
+          pagoN();
 
         }
       });

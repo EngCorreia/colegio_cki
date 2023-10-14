@@ -25,6 +25,7 @@ class _FinancasAlunoState extends State<FinancasAluno> {
   void initState() {
     super.initState();
     financa.leituraFilhosFinancas();
+
   }
   
   @override

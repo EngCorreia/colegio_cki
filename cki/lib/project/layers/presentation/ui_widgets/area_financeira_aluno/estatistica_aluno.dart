@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/estatistica_financas/transfer.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,6 @@ class _HomePageState extends State<AlunoEstisticaFinancas> {
   void initState() {
     super.initState();
     financa.readControlFinance(studentId: widget.idAluno);
-   // financa.pago();
   }
 
   @override
@@ -208,7 +209,7 @@ class _HomePageState extends State<AlunoEstisticaFinancas> {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
               width: MediaQuery.of(context).size.width * 0.85,
-              height: 170,
+              height: 180,
               decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
@@ -297,14 +298,14 @@ class _HomePageState extends State<AlunoEstisticaFinancas> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    "Pagou - se 300.000,00 neste mês ",
+                  Observer(builder: (_)=>Text(
+                    "Pagou - se um total de ${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.total)} Kzs neste ano",
                     style: TextStyle(
                       fontSize: 13,
                       fontFamily: SettingsCki.segoeEui,
                       fontStyle: FontStyle.italic,
                     ),
-                  ),
+                  ),),
                   const SizedBox(
                     height: 3,
                   ),
