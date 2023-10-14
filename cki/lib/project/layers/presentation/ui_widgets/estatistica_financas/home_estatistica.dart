@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePageEst> {
                               color: Colors.white,
                             ),
                           ),
-                          Icon(
+                          const Icon(
                             Icons.notifications,
                             color: Colors.white,
                           ),
@@ -126,9 +126,9 @@ class _HomePageState extends State<HomePageEst> {
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  RichText(
+                                  Observer(builder: (_)=>RichText(
                                     text: TextSpan(
-                                        text: "800.000,00 kzs",
+                                        text: "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(valores.geral)} kzs",
                                         style: TextStyle(
                                           fontSize: 20,
                                           fontFamily: SettingsCki.segoeEui,
@@ -140,7 +140,8 @@ class _HomePageState extends State<HomePageEst> {
                                               style: TextStyle(
                                                   color: Colors.white38))
                                         ]),
-                                  )
+                                  ))
+
                                 ],
                               )
                             ],
@@ -200,17 +201,12 @@ class _HomePageState extends State<HomePageEst> {
                       ),
                       Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Janeiro", valores.totalJaneiroPago!, valores.totalJaneiroNaoPago!)),
                       Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Fevereiro", valores.totalFevereiroPago!, valores.totalFevereiroNaoPago!)),
+                      Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Março", valores.totalMarcoPago!, valores.totalMarcoNaoPago!)),
+                      Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Abril", valores.totalAbrilPago!, valores.totalAbrilNaoPago!)),
+                      Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Maio", valores.totalMaioPago!, valores.totalMaioNaoPago!)),
+                      Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Junho", valores.totalJunhoPago!, valores.totalJunhoNaoPago!)),
+                      Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Julho", valores.totalJulhoPago!, valores.totalJulhoNaoPago!)),
 
-                      buildCategoryCard(Icons.monetization_on_outlined, "Março", 120654, 20),
-                      buildCategoryCard(Icons.monetization_on_outlined, "Abril", 120654, 20),
-                      buildCategoryCard(Icons.monetization_on_outlined, "Maio", 120654, 20),
-                      buildCategoryCard(Icons.monetization_on_outlined, "Junho", 500000, 20),
-                      buildCategoryCard(Icons.monetization_on_outlined, "Julho", 430550, 17),
-                      buildCategoryCard(Icons.monetization_on_outlined, "Agosto", 120654, 20),
-                      buildCategoryCard(Icons.monetization_on_outlined, "Setembro", 120654, 20),
-                      buildCategoryCard(Icons.monetization_on_outlined, "Outubro", 120654, 20),
-                      buildCategoryCard(Icons.monetization_on_outlined, "Novembro", 120654, 20),
-                      buildCategoryCard(Icons.monetization_on_outlined, "Dezembro", 120654, 20),
                     ],
                   ),
                 ),
@@ -223,7 +219,7 @@ class _HomePageState extends State<HomePageEst> {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
               width: MediaQuery.of(context).size.width * 0.85,
-              height: 170,
+              height: 180,
               decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
@@ -265,14 +261,15 @@ class _HomePageState extends State<HomePageEst> {
                               )
                             ],
                           ),
-                          Text(
-                            "200.170,90 kzs",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: SettingsCki.segoeEui,
-                                fontSize: 16.0,
-                                color: Colors.black87),
-                          )
+                         Observer(builder: (_)=> Text(
+                           "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(valores.somatorioPago)} kzs",
+                           style: TextStyle(
+                               fontWeight: FontWeight.bold,
+                               fontFamily: SettingsCki.segoeEui,
+                               fontSize: 16.0,
+                               color: Colors.black87),
+                         ))
+
                         ],
                       ),
                       Container(width: 1, height: 50, color: Colors.grey),
@@ -297,14 +294,14 @@ class _HomePageState extends State<HomePageEst> {
                               )
                             ],
                           ),
-                          Text(
-                            "200.450,10 kzs",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: SettingsCki.segoeEui,
-                                fontSize: 16.0,
-                                color: Colors.red),
-                          )
+                         Observer(builder: (_)=> Text(
+                           "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(valores.somatorioNaoPago)} kzs",
+                           style: TextStyle(
+                               fontWeight: FontWeight.bold,
+                               fontFamily: SettingsCki.segoeEui,
+                               fontSize: 16.0,
+                               color: Colors.red),
+                         ))
                         ],
                       ),
                     ],
@@ -312,14 +309,14 @@ class _HomePageState extends State<HomePageEst> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    "Pagou - se 300.000,00 neste mês ",
+                  Observer(builder: (_)=>Text(
+                    "Pagou-se um total de ${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(valores.somatorioPago)} kzs neste ano",
                     style: TextStyle(
                       fontSize: 13,
                       fontFamily: SettingsCki.segoeEui,
                       fontStyle: FontStyle.italic,
                     ),
-                  ),
+                  ),),
                   const SizedBox(
                     height: 3,
                   ),
