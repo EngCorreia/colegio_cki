@@ -206,6 +206,9 @@ class _HomePageState extends State<HomePageEst> {
                       Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Maio", valores.totalMaioPago!, valores.totalMaioNaoPago!)),
                       Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Junho", valores.totalJunhoPago!, valores.totalJunhoNaoPago!)),
                       Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Julho", valores.totalJulhoPago!, valores.totalJulhoNaoPago!)),
+                      //Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Agosto", valores.totalAgostoPago!, valores.totalAgostoNaoPago!)),
+                      Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Setembro", valores.totalSetembroPago!, valores.totalSetembroNaoPago!)),
+                      Observer(builder: (_)=>buildCategoryCard(Icons.monetization_on_outlined, "Outubro", valores.totalOutubroPago!, valores.totalOutubroNaoPago!)),
 
                     ],
                   ),

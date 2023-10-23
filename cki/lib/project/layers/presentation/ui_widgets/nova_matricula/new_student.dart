@@ -1323,7 +1323,7 @@ class _NewStudentState extends State<NewStudent> {
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2020),
+      firstDate: DateTime(2016),
       lastDate: DateTime(2025),
     ).then((value){
       setState(() {

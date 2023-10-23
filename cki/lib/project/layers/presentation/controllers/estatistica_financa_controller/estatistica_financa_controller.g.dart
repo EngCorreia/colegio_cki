@@ -107,6 +107,48 @@ mixin _$EstatisticaGeralFinanca on _EstatisticaGeralFinanca, Store {
           Computed<List<dynamic>>(() => super.mesJulhoNaoPago,
               name: '_EstatisticaGeralFinanca.mesJulhoNaoPago'))
       .value;
+  Computed<List<dynamic>>? _$mesAgostoPagoComputed;
+
+  @override
+  List<dynamic> get mesAgostoPago => (_$mesAgostoPagoComputed ??=
+          Computed<List<dynamic>>(() => super.mesAgostoPago,
+              name: '_EstatisticaGeralFinanca.mesAgostoPago'))
+      .value;
+  Computed<List<dynamic>>? _$mesAgostoNaoPagoComputed;
+
+  @override
+  List<dynamic> get mesAgostoNaoPago => (_$mesAgostoNaoPagoComputed ??=
+          Computed<List<dynamic>>(() => super.mesAgostoNaoPago,
+              name: '_EstatisticaGeralFinanca.mesAgostoNaoPago'))
+      .value;
+  Computed<List<dynamic>>? _$mesSetembroPagoComputed;
+
+  @override
+  List<dynamic> get mesSetembroPago => (_$mesSetembroPagoComputed ??=
+          Computed<List<dynamic>>(() => super.mesSetembroPago,
+              name: '_EstatisticaGeralFinanca.mesSetembroPago'))
+      .value;
+  Computed<List<dynamic>>? _$mesSetembroNaoPagoComputed;
+
+  @override
+  List<dynamic> get mesSetembroNaoPago => (_$mesSetembroNaoPagoComputed ??=
+          Computed<List<dynamic>>(() => super.mesSetembroNaoPago,
+              name: '_EstatisticaGeralFinanca.mesSetembroNaoPago'))
+      .value;
+  Computed<List<dynamic>>? _$mesOutubroPagoComputed;
+
+  @override
+  List<dynamic> get mesOutubroPago => (_$mesOutubroPagoComputed ??=
+          Computed<List<dynamic>>(() => super.mesOutubroPago,
+              name: '_EstatisticaGeralFinanca.mesOutubroPago'))
+      .value;
+  Computed<List<dynamic>>? _$mesOutubroNaoPagoComputed;
+
+  @override
+  List<dynamic> get mesOutubroNaoPago => (_$mesOutubroNaoPagoComputed ??=
+          Computed<List<dynamic>>(() => super.mesOutubroNaoPago,
+              name: '_EstatisticaGeralFinanca.mesOutubroNaoPago'))
+      .value;
 
   late final _$somatorioPagoAtom =
       Atom(name: '_EstatisticaGeralFinanca.somatorioPago', context: context);
@@ -493,6 +535,151 @@ mixin _$EstatisticaGeralFinanca on _EstatisticaGeralFinanca, Store {
     });
   }
 
+  late final _$totalAgostoPagoAtom =
+      Atom(name: '_EstatisticaGeralFinanca.totalAgostoPago', context: context);
+
+  @override
+  int? get totalAgostoPago {
+    _$totalAgostoPagoAtom.reportRead();
+    return super.totalAgostoPago;
+  }
+
+  @override
+  set totalAgostoPago(int? value) {
+    _$totalAgostoPagoAtom.reportWrite(value, super.totalAgostoPago, () {
+      super.totalAgostoPago = value;
+    });
+  }
+
+  late final _$totalAgostoNaoPagoAtom = Atom(
+      name: '_EstatisticaGeralFinanca.totalAgostoNaoPago', context: context);
+
+  @override
+  int? get totalAgostoNaoPago {
+    _$totalAgostoNaoPagoAtom.reportRead();
+    return super.totalAgostoNaoPago;
+  }
+
+  @override
+  set totalAgostoNaoPago(int? value) {
+    _$totalAgostoNaoPagoAtom.reportWrite(value, super.totalAgostoNaoPago, () {
+      super.totalAgostoNaoPago = value;
+    });
+  }
+
+  late final _$mesAgostoAtom =
+      Atom(name: '_EstatisticaGeralFinanca.mesAgosto', context: context);
+
+  @override
+  List<dynamic> get mesAgosto {
+    _$mesAgostoAtom.reportRead();
+    return super.mesAgosto;
+  }
+
+  @override
+  set mesAgosto(List<dynamic> value) {
+    _$mesAgostoAtom.reportWrite(value, super.mesAgosto, () {
+      super.mesAgosto = value;
+    });
+  }
+
+  late final _$totalSetembroPagoAtom = Atom(
+      name: '_EstatisticaGeralFinanca.totalSetembroPago', context: context);
+
+  @override
+  int? get totalSetembroPago {
+    _$totalSetembroPagoAtom.reportRead();
+    return super.totalSetembroPago;
+  }
+
+  @override
+  set totalSetembroPago(int? value) {
+    _$totalSetembroPagoAtom.reportWrite(value, super.totalSetembroPago, () {
+      super.totalSetembroPago = value;
+    });
+  }
+
+  late final _$totalSetembroNaoPagoAtom = Atom(
+      name: '_EstatisticaGeralFinanca.totalSetembroNaoPago', context: context);
+
+  @override
+  int? get totalSetembroNaoPago {
+    _$totalSetembroNaoPagoAtom.reportRead();
+    return super.totalSetembroNaoPago;
+  }
+
+  @override
+  set totalSetembroNaoPago(int? value) {
+    _$totalSetembroNaoPagoAtom.reportWrite(value, super.totalSetembroNaoPago,
+        () {
+      super.totalSetembroNaoPago = value;
+    });
+  }
+
+  late final _$mesSetembroAtom =
+      Atom(name: '_EstatisticaGeralFinanca.mesSetembro', context: context);
+
+  @override
+  List<dynamic> get mesSetembro {
+    _$mesSetembroAtom.reportRead();
+    return super.mesSetembro;
+  }
+
+  @override
+  set mesSetembro(List<dynamic> value) {
+    _$mesSetembroAtom.reportWrite(value, super.mesSetembro, () {
+      super.mesSetembro = value;
+    });
+  }
+
+  late final _$totalOutubroPagoAtom =
+      Atom(name: '_EstatisticaGeralFinanca.totalOutubroPago', context: context);
+
+  @override
+  int? get totalOutubroPago {
+    _$totalOutubroPagoAtom.reportRead();
+    return super.totalOutubroPago;
+  }
+
+  @override
+  set totalOutubroPago(int? value) {
+    _$totalOutubroPagoAtom.reportWrite(value, super.totalOutubroPago, () {
+      super.totalOutubroPago = value;
+    });
+  }
+
+  late final _$totalOutubroNaoPagoAtom = Atom(
+      name: '_EstatisticaGeralFinanca.totalOutubroNaoPago', context: context);
+
+  @override
+  int? get totalOutubroNaoPago {
+    _$totalOutubroNaoPagoAtom.reportRead();
+    return super.totalOutubroNaoPago;
+  }
+
+  @override
+  set totalOutubroNaoPago(int? value) {
+    _$totalOutubroNaoPagoAtom.reportWrite(value, super.totalOutubroNaoPago, () {
+      super.totalOutubroNaoPago = value;
+    });
+  }
+
+  late final _$mesOutubroAtom =
+      Atom(name: '_EstatisticaGeralFinanca.mesOutubro', context: context);
+
+  @override
+  List<dynamic> get mesOutubro {
+    _$mesOutubroAtom.reportRead();
+    return super.mesOutubro;
+  }
+
+  @override
+  set mesOutubro(List<dynamic> value) {
+    _$mesOutubroAtom.reportWrite(value, super.mesOutubro, () {
+      super.mesOutubro = value;
+    });
+  }
+
   @override
   String toString() {
     return '''
@@ -520,6 +707,15 @@ mesJunho: ${mesJunho},
 totalJulhoPago: ${totalJulhoPago},
 totalJulhoNaoPago: ${totalJulhoNaoPago},
 mesJulho: ${mesJulho},
+totalAgostoPago: ${totalAgostoPago},
+totalAgostoNaoPago: ${totalAgostoNaoPago},
+mesAgosto: ${mesAgosto},
+totalSetembroPago: ${totalSetembroPago},
+totalSetembroNaoPago: ${totalSetembroNaoPago},
+mesSetembro: ${mesSetembro},
+totalOutubroPago: ${totalOutubroPago},
+totalOutubroNaoPago: ${totalOutubroNaoPago},
+mesOutubro: ${mesOutubro},
 mesJaneiroPago: ${mesJaneiroPago},
 mesJaneiroNaoPago: ${mesJaneiroNaoPago},
 mesFevereiroPago: ${mesFevereiroPago},
@@ -533,7 +729,13 @@ mesMaioNaoPago: ${mesMaioNaoPago},
 mesJunhoPago: ${mesJunhoPago},
 mesJunhoNaoPago: ${mesJunhoNaoPago},
 mesJulhoPago: ${mesJulhoPago},
-mesJulhoNaoPago: ${mesJulhoNaoPago}
+mesJulhoNaoPago: ${mesJulhoNaoPago},
+mesAgostoPago: ${mesAgostoPago},
+mesAgostoNaoPago: ${mesAgostoNaoPago},
+mesSetembroPago: ${mesSetembroPago},
+mesSetembroNaoPago: ${mesSetembroNaoPago},
+mesOutubroPago: ${mesOutubroPago},
+mesOutubroNaoPago: ${mesOutubroNaoPago}
     ''';
   }
 }

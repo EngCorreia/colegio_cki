@@ -22,11 +22,13 @@ abstract class _EstatisticaGeralFinanca with Store{
 
 
   void soma(){
-    somatorioPago = totalJaneiroPago! + totalFevereiroPago! + totalMarcoPago! + totalAbrilPago! + totalMaioPago! + totalJunhoPago! + totalJulhoPago!;
+    somatorioPago = totalJaneiroPago! + totalFevereiroPago! + totalMarcoPago!
+        + totalAbrilPago! + totalMaioPago! + totalJunhoPago! + totalJulhoPago! + totalSetembroPago!+ totalOutubroPago!;
   }
 
   void somaNaoPago(){
-    somatorioNaoPago = totalJaneiroNaoPago! + totalFevereiroNaoPago! + totalMarcoNaoPago! + totalAbrilNaoPago! + totalMaioNaoPago! + totalJunhoNaoPago! + totalJulhoNaoPago!;
+    somatorioNaoPago = totalJaneiroNaoPago! + totalFevereiroNaoPago! + totalMarcoNaoPago! + totalAbrilNaoPago!
+        + totalMaioNaoPago! + totalJunhoNaoPago! + totalJulhoNaoPago! + totalSetembroNaoPago! + totalOutubroNaoPago!;
   }
   void geralSoma(){
     geral = somatorioPago! + somatorioNaoPago!;
@@ -115,6 +117,42 @@ abstract class _EstatisticaGeralFinanca with Store{
   List<dynamic> get mesJulhoPago => mesJulho.where((element) => element["status"] == 1).toList();
   @computed
   List<dynamic> get mesJulhoNaoPago => mesJulho.where((element) => element["status"] == 0).toList();
+
+  //AGOSTO 2024
+  @observable
+  int? totalAgostoPago = 0;
+  @observable
+  int? totalAgostoNaoPago = 0;
+  @observable
+  List<dynamic> mesAgosto = [];
+  @computed
+  List<dynamic> get mesAgostoPago => mesAgosto.where((element) => element["status"] == 1).toList();
+  @computed
+  List<dynamic> get mesAgostoNaoPago => mesAgosto.where((element) => element["status"] == 0).toList();
+
+  //SETEMBRO 2024
+  @observable
+  int? totalSetembroPago = 0;
+  @observable
+  int? totalSetembroNaoPago = 0;
+  @observable
+  List<dynamic> mesSetembro = [];
+  @computed
+  List<dynamic> get mesSetembroPago => mesSetembro.where((element) => element["status"] == 1).toList();
+  @computed
+  List<dynamic> get mesSetembroNaoPago => mesSetembro.where((element) => element["status"] == 0).toList();
+
+  //OUTUBRO 2024
+  @observable
+  int? totalOutubroPago = 0;
+  @observable
+  int? totalOutubroNaoPago = 0;
+  @observable
+  List<dynamic> mesOutubro = [];
+  @computed
+  List<dynamic> get mesOutubroPago => mesOutubro.where((element) => element["status"] == 1).toList();
+  @computed
+  List<dynamic> get mesOutubroNaoPago => mesOutubro.where((element) => element["status"] == 0).toList();
 
 
   /**
@@ -305,6 +343,84 @@ abstract class _EstatisticaGeralFinanca with Store{
     }
   }
 
+  void agostoPago(){
+    totalAgostoPago = 0;
+    for(var pay in mesAgostoPago){
+      if(mesAgostoPago.isEmpty){
+        totalAgostoPago = 0;
+      }else if(mesAgostoPago.length == 1){
+        totalAgostoPago = pay["agosto"];
+      }else if(mesAgostoPago.length >= 2){
+        totalAgostoPago  = totalAgostoPago! + int.parse(pay["agosto"].toString());
+      }
+    }
+  }
+
+  void agostoNaoPago(){
+    totalAgostoNaoPago = 0;
+    for(var pay in mesAgostoNaoPago){
+      if(mesAgostoNaoPago.isEmpty){
+        totalAgostoNaoPago = 0;
+      }else if(mesAgostoNaoPago.length == 1){
+        totalAgostoNaoPago = pay["agosto"];
+      }else if(mesAgostoNaoPago.length >= 2){
+        totalAgostoNaoPago  = totalAgostoNaoPago! + int.parse(pay["agosto"].toString());
+      }
+    }
+  }
+
+  void setembroPago(){
+    totalSetembroPago = 0;
+    for(var pay in mesSetembroPago){
+      if(mesSetembroPago.isEmpty){
+        totalSetembroPago = 0;
+      }else if(mesSetembroPago.length == 1){
+        totalSetembroPago = pay["setembro"];
+      }else if(mesSetembroPago.length >= 2){
+        totalSetembroPago = totalSetembroPago! + int.parse(pay["setembro"].toString());
+      }
+    }
+  }
+
+  void setembroNaoPago(){
+    totalAgostoNaoPago = 0;
+    for(var pay in mesAgostoNaoPago){
+      if(mesAgostoNaoPago.isEmpty){
+        totalAgostoNaoPago = 0;
+      }else if(mesAgostoNaoPago.length == 1){
+        totalAgostoNaoPago = pay["setembro"];
+      }else if(mesAgostoNaoPago.length >= 2){
+        totalAgostoNaoPago  = totalAgostoNaoPago! + int.parse(pay["setembro"].toString());
+      }
+    }
+  }
+
+  void outubroPago(){
+    totalOutubroPago = 0;
+    for(var pay in mesOutubroPago){
+      if(mesOutubroPago.isEmpty){
+        totalOutubroPago = 0;
+      }else if(mesOutubroPago.length == 1){
+        totalOutubroPago = pay["outubro"];
+      }else if(mesOutubroPago.length >= 2){
+        totalOutubroPago = totalOutubroPago! + int.parse(pay["outubro"].toString());
+      }
+    }
+  }
+
+  void outubroNaoPago(){
+    totalOutubroNaoPago = 0;
+    for(var pay in mesOutubroNaoPago){
+      if(mesOutubroNaoPago.isEmpty){
+        totalOutubroNaoPago = 0;
+      }else if(mesOutubroNaoPago.length == 1){
+        totalOutubroNaoPago = pay["outubro"];
+      }else if(mesOutubroNaoPago.length >= 2){
+        totalOutubroNaoPago  = totalOutubroNaoPago! + int.parse(pay["outubro"].toString());
+      }
+    }
+  }
+
   Future<void> readAllFinance() async{
     try{
       var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
@@ -360,6 +476,27 @@ abstract class _EstatisticaGeralFinanca with Store{
             totalJulhoNaoPago = 0;
           }
 
+          if(meses["agosto"] != null){
+            mesAgosto.add(meses["agosto"]);
+          }else{
+            totalAgostoPago = 0;
+            totalAgostoNaoPago = 0;
+          }
+
+          if(meses["setembro"] != null){
+            mesSetembro.add(meses["setembro"]);
+          }else{
+            totalSetembroPago = 0;
+            totalSetembroNaoPago = 0;
+          }
+
+          if(meses["outubro"] != null){
+            mesOutubro.add(meses["outubro"]);
+          }else{
+            totalOutubroPago = 0;
+            totalOutubroNaoPago = 0;
+          }
+
         }
 
 
@@ -383,6 +520,15 @@ abstract class _EstatisticaGeralFinanca with Store{
 
         julhoPago();
         julhoNaoPago();
+
+        agostoPago();
+        agostoNaoPago();
+
+        setembroPago();
+        setembroNaoPago();
+
+        outubroPago();
+        outubroNaoPago();
 
 
         soma();

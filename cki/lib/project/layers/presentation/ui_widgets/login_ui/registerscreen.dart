@@ -1,8 +1,11 @@
 
 import 'dart:developer';
 
+import 'package:cki/project/layers/presentation/ui_widgets/login_ui/status.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -23,6 +26,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  var status = Status();
   final loginController = GetIt.I.get<LoginController>();
   double screenHeight = 0;
   double screenWidth = 0;
@@ -33,6 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   int screenState = 0;
   Color blue = const Color(0xff8cccff);
   var name;
+
 
 
 
@@ -52,12 +57,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
       timeout: const Duration(seconds: 60),
       verificationCompleted: (PhoneAuthCredential credential) {
         showSnackBarText("Autenticado com sucesso");
+        status.setStatus("");
       },
       verificationFailed: (FirebaseAuthException e) {
         showSnackBarText("Autenticação falhou");
+        status.setStatus("");
       },
       codeSent: (String verificationId, int? resendToken) {
         showSnackBarText("Código enviado");
+        status.setStatus("");
         verID = verificationId;
         setState(() {
           screenState = 1;
@@ -153,10 +161,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               } else if(phoneController.text.isEmpty) {
                                 showSnackBarText("Numero de telefone vazio");
                               } else {
+                                status.setStatus("start");
                                 verifyPhone(countryDial+phoneController.text);
                               }
                             } else {
                               if(otpPin.length >= 6) {
+                                status.setStatus("");
                                 loginController.loginUser();
                                 verifyOTP();
                               } else {
@@ -255,6 +265,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           ),
         ),
+
+        Observer(builder: (_) {
+          if (status.status == null || status.status == "") {
+            return Container();
+          } else {
+            return const Center(child: CupertinoActivityIndicator());
+          }
+        }),
+
+        Observer(builder: (_) {
+          if (status.status == null || status.status == "") {
+            return Container();
+          } else {
+            return const Center(child: Text("Por favor aguarde ...."));
+          }
+        }),
+
       ],
     );
   }
