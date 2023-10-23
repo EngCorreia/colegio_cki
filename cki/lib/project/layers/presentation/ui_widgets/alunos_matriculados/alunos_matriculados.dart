@@ -117,7 +117,7 @@ class _AlunosMatriculadosState extends State<AlunosMatriculados> {
                   )),
             ),
           ],
-        ) : const Center(
+        ) : Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

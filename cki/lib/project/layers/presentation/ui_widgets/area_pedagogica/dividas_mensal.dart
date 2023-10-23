@@ -131,7 +131,7 @@ class _DividasMensalState extends State<DividasMensal> {
                   )),
             ),
           ],
-        ) : const Center(
+        ) : Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

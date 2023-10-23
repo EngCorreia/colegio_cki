@@ -80,7 +80,7 @@ class _TurmasDosAlunosState extends State<TurmasDosAlunos> {
                   )),
             ),
           ],
-        ) : const Center(
+        ) :  Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
