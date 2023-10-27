@@ -1,6 +1,4 @@
 
-import 'dart:developer';
-
 import 'package:cki/project/layers/presentation/ui_widgets/login_ui/status.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,7 +34,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String verID = " ";
   int screenState = 0;
   Color blue = const Color(0xff8cccff);
-  var name;
+  var name = "";
 
 
 
@@ -48,7 +46,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     StudentInformation.userID = userCredential?.user?.uid ?? "";
     StudentInformation.phoneNumber = userCredential?.user?.phoneNumber ?? "";
     StudentInformation.photo = userCredential?.user?.photoURL ?? "";
-    log("----- user ID => ${userCredential?.user?.uid}");
   }
 
   Future<void> verifyPhone(String number) async {
@@ -215,74 +212,75 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Widget stateRegister() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text("Nome do encarregado",
-          style: TextStyle(
-            color: Colors.black87,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 8,),
-        TextFormField(
-          controller: usernameController,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Nome do encarregado",
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          onChanged: (value){
-            name = value;
-          },
-        ),
-        const SizedBox(height: 16,),
-        const Text("Número de telefone",
-          style: TextStyle(
-            color: Colors.black87,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        IntlPhoneField(
-          controller: phoneController,
-          showCountryFlag: false,
-          showDropdownIcon: false,
-          initialValue: countryDial,
-          onCountryChanged: (country) {
-            setState(() {
-              countryDial = "+${country.dialCode}";
-            });
-          },
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
+          const SizedBox(height: 8,),
+          TextFormField(
+            controller: usernameController,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
             ),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
+            onChanged: (value){
+              name = value;
+            },
+          ),
+          const SizedBox(height: 16,),
+          const Text("Número de telefone",
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
             ),
           ),
-        ),
+          IntlPhoneField(
+              controller: phoneController,
+              showCountryFlag: false,
+              showDropdownIcon: false,
+              initialValue: countryDial,
+              onCountryChanged: (country) {
+                setState(() {
+                  countryDial = "+${country.dialCode}";
+                });
+              },
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16,),
+              ),
+            ),
 
-        Observer(builder: (_) {
-          if (status.status == null || status.status == "") {
-            return Container();
-          } else {
-            return const Center(child: CupertinoActivityIndicator());
-          }
-        }),
 
-        Observer(builder: (_) {
-          if (status.status == null || status.status == "") {
-            return Container();
-          } else {
-            return const Center(child: Text("Por favor aguarde ...."));
-          }
-        }),
+          Observer(builder: (_) {
+            if (status.status == null || status.status == "") {
+              return Container();
+            } else {
+              return const Center(child: CupertinoActivityIndicator());
+            }
+          }),
 
-      ],
+          Observer(builder: (_) {
+            if (status.status == null || status.status == "") {
+              return Container();
+            } else {
+              return const Center(child: Text("Por favor aguarde ...."));
+            }
+          }),
+
+        ],
+      ),
     );
   }
 

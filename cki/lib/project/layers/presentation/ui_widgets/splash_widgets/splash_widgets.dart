@@ -47,14 +47,7 @@ class _SplashWidgetsState extends State<SplashWidgets> {
                     height: 350,
                     child: Image.asset("assets/images/colegio.png",fit: BoxFit.fill),
                 ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    color: Colors.blue,
-                    height: MediaQuery.of(context).size.height/2.5,
 
-                  ),
-                )
               ],
             ),
 
