@@ -1,5 +1,8 @@
 
+import 'dart:developer';
+
 import 'package:cki/project/layers/presentation/ui_widgets/login_ui/status.dart';
+import 'package:cki/project/layers/presentation/ui_widgets/login_ui/web_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -278,6 +281,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               return const Center(child: Text("Por favor aguarde ...."));
             }
           }),
+
+          GestureDetector(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => WebViewName(baseUrl: "https://colegiocki.blogspot.com/2023/11/privacy-policy-correia-chumbo-built.html",)));
+            },
+            child: const Text("politica de privacidade"),
+          )
 
         ],
       ),
