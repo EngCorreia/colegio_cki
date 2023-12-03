@@ -5,7 +5,6 @@ import '../equipe_details/equipe_details.dart';
 
 class Equipe extends StatefulWidget {
   const Equipe({Key? key}) : super(key: key);
-
   @override
   State<Equipe> createState() => _EquipeState();
 }
@@ -17,8 +16,9 @@ class _EquipeState extends State<Equipe> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text("Nossa equipa",style: TextStyle(fontFamily: SettingsCki.segoeEui),),
+        title: Text("Nossas equipas",style: TextStyle(fontFamily: SettingsCki.segoeEui),),
         actions: [
+          Container(),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(

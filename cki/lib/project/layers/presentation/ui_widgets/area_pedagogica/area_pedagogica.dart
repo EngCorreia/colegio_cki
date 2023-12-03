@@ -109,6 +109,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=> const ListagemDeTurmas()));
             },
+
           ),
 
 
