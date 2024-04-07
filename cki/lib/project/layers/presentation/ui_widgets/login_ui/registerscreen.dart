@@ -26,7 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController phoneController = TextEditingController();
   var status = Status();
   final loginController = GetIt.I.get<LoginController>();
-  double screenHeight = 0;
+  double screenHeight = 0
   double screenWidth = 0;
   double bottom = 0;
   String otpPin = " ";
@@ -35,9 +35,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   int screenState = 0;
   Color blue = const Color(0xff8cccff);
   var name = "";
-
-
-
 
 
   void userAuth({UserCredential? userCredential}){
