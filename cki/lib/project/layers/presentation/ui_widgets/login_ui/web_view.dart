@@ -33,7 +33,7 @@ class _WebViewNameState extends State<WebViewName> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 30),
-        child: Container(
+        child: SizedBox(
           width: MediaQuery
               .of(context)
               .size
