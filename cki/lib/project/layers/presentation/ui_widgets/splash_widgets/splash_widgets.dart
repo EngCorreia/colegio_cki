@@ -2,11 +2,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
-
 import '../../../core/configuration/configuration.dart';
-import '../index_menu/index_page.dart';
-import '../login_ui/login_ui.dart';
-import '../login_ui/registerscreen.dart';
 
 
 class SplashWidgets extends StatefulWidget {
@@ -47,10 +43,8 @@ class _SplashWidgetsState extends State<SplashWidgets> {
                     height: 350,
                     child: Image.asset("assets/images/colegio.png",fit: BoxFit.fill),
                 ),
-
               ],
             ),
-
 
             Column(
               children: [
@@ -88,7 +82,7 @@ class _SplashWidgetsState extends State<SplashWidgets> {
             onPressed: () async {
               final pref = await SharedPreferences.getInstance();
               pref.setString("login", "login");
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> const RegisterScreen()));
+              //Navigator.push(context, MaterialPageRoute(builder: (context)=> const RegisterScreen()));
             },
             child: Text("COMEÇAR",style: TextStyle(
               fontFamily: SettingsCki.segoeEui,

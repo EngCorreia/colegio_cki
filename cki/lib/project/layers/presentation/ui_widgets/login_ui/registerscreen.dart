@@ -1,6 +1,3 @@
-
-import 'dart:developer';
-
 import 'package:cki/project/layers/presentation/ui_widgets/login_ui/status.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/login_ui/web_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';

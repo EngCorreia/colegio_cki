@@ -17,7 +17,6 @@ class AreaPedagogica extends StatefulWidget {
 
 class _AreaPedagogicaState extends State<AreaPedagogica> {
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

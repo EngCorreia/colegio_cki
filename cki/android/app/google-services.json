@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "514968028367-g1pfpbhstppe1nqf5eph884iqtac2slo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.colegio.cki",
+            "certificate_hash": "76c28e0e5b4ebcd2e723a7a9d8867c87e03b664d"
+          }
+        },
+        {
           "client_id": "514968028367-mdbpshb5id7p5cp1svauiv8qrng5n3l7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
