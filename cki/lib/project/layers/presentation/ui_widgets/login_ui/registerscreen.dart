@@ -26,7 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController phoneController = TextEditingController();
   var status = Status();
   final loginController = GetIt.I.get<LoginController>();
-  double screenHeight = 0
+  double screenHeight = 0;
   double screenWidth = 0;
   double bottom = 0;
   String otpPin = " ";
@@ -89,13 +89,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     screenWidth = MediaQuery.of(context).size.width;
     bottom = MediaQuery.of(context).viewInsets.bottom;
 
-    return WillPopScope(
-      onWillPop: () {
-        setState(() {
-          screenState = 0;
-        });
-        return Future.value(false);
-      },
+
+    return PopScope(canPop: false,
       child: Scaffold(
         backgroundColor: Colors.orange[400],
         body: SizedBox(
@@ -267,6 +262,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               return const Center(child: CupertinoActivityIndicator());
             }
           }),
+
 
           Observer(builder: (_) {
             if (status.status == null || status.status == "") {

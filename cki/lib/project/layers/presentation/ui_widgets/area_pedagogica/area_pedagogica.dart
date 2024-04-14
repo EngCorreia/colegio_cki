@@ -4,25 +4,22 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../core/configuration/configuration.dart';
 import '../alunos_matriculados/alunos_matriculados.dart';
-import '../area_financeira/area_financeira.dart';
 import '../cadastrar_turma/cadatrar_turma_ui.dart';
 import '../listar_turmas/listagem_de_turmas.dart';
 
 class AreaPedagogica extends StatefulWidget {
   const AreaPedagogica({Key? key}) : super(key: key);
-
   @override
   State<AreaPedagogica> createState() => _AreaPedagogicaState();
 }
 
 class _AreaPedagogicaState extends State<AreaPedagogica> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text("Área Administrativa ",style: TextStyle(
+        title: Text("Área Administrativa:",style: TextStyle(
           fontFamily: SettingsCki.segoeEui,
           color: Colors.white,
           fontSize: 18
