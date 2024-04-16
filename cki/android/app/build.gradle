@@ -14,12 +14,12 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '6'
+    flutterVersionCode = '8'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '6.0'
+    flutterVersionName = '8.0'
 }
 
 apply plugin: 'com.android.application'
@@ -54,8 +54,8 @@ android {
         applicationId "com.colegio.cki"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 6
-        versionName "6.0"
+        versionCode 8
+        versionName "8.0"
         multiDexEnabled true
     }
 
@@ -95,3 +95,4 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
+android.buildTypes.release.ndk.debugSymbolLevel = 'FULL'

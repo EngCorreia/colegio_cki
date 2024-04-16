@@ -341,12 +341,12 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
             child: Stack(
               alignment: Alignment.bottomLeft,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(3.0),
+                const Padding(
+                  padding: EdgeInsets.all(3.0),
                   child: Row(
                     // mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
-                    children: const <Widget>[
+                    children: <Widget>[
                       CircleAvatar(
                         radius: 28,
                         backgroundColor: Colors.green,

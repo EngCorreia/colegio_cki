@@ -138,7 +138,7 @@ class _ChatUiState extends State<ChatUi> {
                       ),
                       title: Text("Correia Antonio Chumbo",style: TextStyle(color: Colors.black,fontFamily: SettingsCki.segoeEui),),
                       subtitle: Text("Lingua Portuguesa",style: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui),),
-                    trailing: Icon(FontAwesomeIcons.facebookMessenger,color: Colors.green),
+                    trailing: const Icon(FontAwesomeIcons.facebookMessenger,color: Colors.green),
                     ),
 
               ),

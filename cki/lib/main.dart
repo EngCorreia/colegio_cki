@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
     primaryTextTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
     textTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui))
     ),
-    home: getState(showHome!),
+    home: IndexPage(),
   //const OnBoardingPage()
   );
   }

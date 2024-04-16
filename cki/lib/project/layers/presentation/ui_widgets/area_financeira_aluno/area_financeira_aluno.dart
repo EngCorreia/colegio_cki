@@ -6,6 +6,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/const_strings/user_information.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
 import '../money_student/money_student.dart';
 import 'estatistica_aluno.dart';
@@ -24,8 +25,9 @@ class _FinancasAlunoState extends State<FinancasAluno> {
   @override
   void initState() {
     super.initState();
-    financa.leituraFilhosFinancas();
-
+    if(StudentInformation.userID!.isNotEmpty){
+      financa.leituraFilhosFinancas();
+    }
   }
   
   @override
@@ -64,9 +66,8 @@ class _FinancasAlunoState extends State<FinancasAluno> {
       ),
       
       body: Observer(
-        builder: (_)=>Column(
+        builder: (_)=> StudentInformation.userID != "" ? Column(
           children: [
-
             Align(
               alignment: Alignment.centerLeft,
               child: Container(
@@ -142,6 +143,8 @@ class _FinancasAlunoState extends State<FinancasAluno> {
               ),
             ),
           ],
+        ) : const Center(
+          child: Text("Por favor faça login na sua conta"),
         ),
       )
 

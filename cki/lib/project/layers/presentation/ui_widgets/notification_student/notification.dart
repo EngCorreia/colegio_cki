@@ -1,8 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../core/configuration/configuration.dart';
 
 class NotificationUi extends StatefulWidget {
@@ -24,13 +21,7 @@ class _NotificationUiState extends State<NotificationUi> {
             fontFamily: SettingsCki.segoeEui,
             fontSize: 18
         )),
-          leading:  Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              backgroundColor: Colors.grey[300],
-              child: const Icon(FontAwesomeIcons.graduationCap,color: Colors.black),
-            ),
-          ),
+
           actions:  [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -61,7 +52,7 @@ class _NotificationUiState extends State<NotificationUi> {
                     fontWeight: FontWeight.bold,
                     fontFamily: SettingsCki.segoeEui
                   ),),
-                  content: Container(
+                  content: SizedBox(
                     height: 120,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -92,7 +83,7 @@ class _NotificationUiState extends State<NotificationUi> {
                     TextButton(onPressed: (){
                       Navigator.pop(context);
 
-                    }, child: Text("FECHAR")),
+                    }, child: const Text("FECHAR")),
                   ],
 
                 ));
@@ -157,7 +148,7 @@ class _NotificationUiState extends State<NotificationUi> {
                       fontWeight: FontWeight.bold,
                       fontFamily: SettingsCki.segoeEui
                   ),),
-                  content: Container(
+                  content: SizedBox(
                     height: 120,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -188,7 +179,7 @@ class _NotificationUiState extends State<NotificationUi> {
                     TextButton(onPressed: (){
                       Navigator.pop(context);
 
-                    }, child: Text("FECHAR")),
+                    }, child: const Text("FECHAR")),
                   ],
 
                 ));

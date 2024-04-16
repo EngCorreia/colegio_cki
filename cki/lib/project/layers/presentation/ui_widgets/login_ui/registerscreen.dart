@@ -1,17 +1,23 @@
+import 'dart:developer';
+
 import 'package:cki/project/layers/presentation/ui_widgets/login_ui/status.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/login_ui/web_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../core/configuration/configuration.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../controllers/login_controller/login_controller.dart';
 import '../../controllers/update_student_collection/update_student_collection.dart';
-import '../index_menu/index_page.dart';
+import '../about_us/about_us.dart';
+import '../contacts/contact_ui.dart';
+import '../equipe_list/equipe_list.dart';
 
 
 class RegisterScreen extends StatefulWidget {
@@ -35,6 +41,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
   int screenState = 0;
   Color blue = const Color(0xff8cccff);
   var name = "";
+
+
+  void verifyUserLogged(){
+    var user = FirebaseAuth.instance.currentUser;
+    if(user!.uid.isEmpty){
+      StudentInformation.name = user.displayName ?? "";
+      StudentInformation.userID = user.uid ?? "";
+      StudentInformation.phoneNumber = user.phoneNumber ?? "";
+      StudentInformation.photo = user.photoURL ?? "";
+      log("----- user ID => ${StudentInformation.userID}");
+    }
+  }
 
 
   void userAuth({UserCredential? userCredential}){
@@ -79,8 +97,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
         updateStudentCollections.updateStudent(userId: StudentInformation.userID,name: name);
         final pref = await SharedPreferences.getInstance();
         pref.setString("login", "logged");
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => IndexPage()));
+        log("**************** ${value.user}");
     });
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    verifyUserLogged();
   }
 
   @override
@@ -89,11 +114,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
     screenWidth = MediaQuery.of(context).size.width;
     bottom = MediaQuery.of(context).viewInsets.bottom;
 
-
     return PopScope(canPop: false,
       child: Scaffold(
         backgroundColor: Colors.orange[400],
-        body: SizedBox(
+        body: StudentInformation.userID == "" ? SizedBox(
           height: screenHeight,
           width: screenWidth,
           child: Stack(
@@ -190,7 +214,127 @@ class _RegisterScreenState extends State<RegisterScreen> {
               )
             ],
           ),
+        ) : ListView(
+          children: [
+            Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                 Container(
+                      height: 200,
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CircleAvatar(
+                                radius: 50,
+                                child: Image.asset("assets/images/image.png"),
+                              ),
+                            ),
+                          ),
+
+                          const Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text("Colégio Kalabo Internacional",style: TextStyle(color: Colors.black),),
+                            ),
+                          ),
+
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Telefone : ${StudentInformation.phoneNumber}",style: const TextStyle(color: Colors.black),),
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ),
+
+                  ListTile(
+                    leading: const Icon(Icons.home_outlined,color: Colors.white,),
+                    title: Text('Sobre nós',
+                      style: TextStyle(fontFamily: SettingsCki.segoeEui,
+                          color: Colors.white,fontWeight: FontWeight.bold),
+                    ),
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const AboutUs()));
+
+                    },
+                  ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(Icons.settings,color: Colors.white,),
+                    title: Text('Configuração',
+                      style: TextStyle(fontFamily: SettingsCki.segoeEui,
+                          color: Colors.white,fontWeight: FontWeight.bold),
+                    ),
+                    onTap: () {
+
+                    },
+                  ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(FontAwesomeIcons.userGroup,color: Colors.white,),
+                    title: Text('Equipe',
+                      style: TextStyle(fontFamily: SettingsCki.segoeEui,
+                          color: Colors.white,fontWeight: FontWeight.bold),
+                    ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const Equipe()));
+                    },
+                    // Users(userId: UserModel.userId)
+                  ),
+                  const Divider(),
+                  ListTile(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const Contact()));
+                    },
+                    leading: const Icon(Icons.call,color: Colors.white,),
+                    title: Text('Contactos',
+                      style: TextStyle(fontFamily: SettingsCki.segoeEui,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(Icons.file_copy_sharp,color: Colors.white,),
+                    title: Text('Politica de privacidade',
+                      style: TextStyle(fontFamily: SettingsCki.segoeEui,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                      const WebViewName(baseUrl: "https://colegiocki.blogspot.com/2023/11/privacy-policy-correia-chumbo-built.html",)));
+                    },
+                  ),
+                  const Divider(),
+                  ListTile(
+                    title: Text('Sair', style: TextStyle(fontFamily: SettingsCki.segoeEui,
+                        color: Colors.cyanAccent,fontSize: 16,fontWeight: FontWeight.bold),
+                    ),
+                    onTap: () async {
+                      var d = FirebaseAuth.instance;
+                      await d.signOut();
+                      final pref = await SharedPreferences.getInstance();
+                      pref.setBool("showHome", false);
+                      //Navigator.push(context, MaterialPageRoute(builder: (context)=> SplashWidgets()));
+                    },
+                  ),
+
+                ],
+              ),
+          ],
         ),
+
       ),
     );
   }
@@ -274,7 +418,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
           GestureDetector(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => WebViewName(baseUrl: "https://colegiocki.blogspot.com/2023/11/privacy-policy-correia-chumbo-built.html",)));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const WebViewName(baseUrl: "https://colegiocki.blogspot.com/2023/11/privacy-policy-correia-chumbo-built.html",)));
             },
             child: const Text("politica de privacidade"),
           )

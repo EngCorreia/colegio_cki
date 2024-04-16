@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -29,16 +28,20 @@ import '../equipe_list/equipe_list.dart';
 import '../estatistica_financas/home_estatistica.dart';
 import '../gallery/gallery.dart';
 import '../googleMap/cki_location.dart';
+import '../login_ui/web_view.dart';
+import '../notification_student/notification.dart';
 import '../splash_widgets/splash_widgets.dart';
 import '../teachers_ui/list_of_teachers/read_teachers.dart';
 
 
 class MenuWidgets extends StatefulWidget {
+  const MenuWidgets({super.key});
+
   @override
-  _MenuWidgetsState createState() => _MenuWidgetsState();
+  MenuWidgetsState createState() => MenuWidgetsState();
 }
 
-class _MenuWidgetsState extends State<MenuWidgets> {
+class MenuWidgetsState extends State<MenuWidgets> {
   int _current = 0;
   var dd = UpdateStudentInformation();
   final loginController = LoginControl();
@@ -48,13 +51,13 @@ class _MenuWidgetsState extends State<MenuWidgets> {
     StudentInformation.userID = user?.uid ?? "";
     StudentInformation.phoneNumber = user?.phoneNumber ?? "";
     StudentInformation.photo = user?.photoURL ?? "";
-   // log("----- user ID => ${StudentInformation.userID}");
+    log("----- user ID => ${StudentInformation.userID}");
   }
 
   @override
   void initState() {
     super.initState();
-    loginController.loginUserStatus();
+    StudentInformation.userID != "" ? loginController.loginUserStatus() : StudentInformation.userID = "";
     userAuth();
     dd.updateStudent(userId: StudentInformation.userID);
   }
@@ -105,16 +108,18 @@ class _MenuWidgetsState extends State<MenuWidgets> {
         ),),
         elevation: 0,
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(
-             // backgroundColor: Colors.transparent,
-              child: Image.asset("assets/images/image.png"),
+          InkWell(
+            onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>  const NotificationUi())),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CircleAvatar(
+                backgroundColor: Colors.grey[300],
+                child: Icon(FontAwesomeIcons.bell,color: Colors.orange[900]),
+              ),
             ),
           )
         ],
       ),
-
 
       drawer: Drawer(
         elevation: 1,
@@ -167,18 +172,6 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                   ),
                   const Divider(),
                   ListTile(
-                    leading: Icon(Icons.photo,color: Colors.orange[900],),
-                    title: Text('Galeria',
-                      style: TextStyle(fontFamily: SettingsCki.segoeEui,
-                          color: Colors.black54,
-                      fontWeight: FontWeight.bold),
-                    ),
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const Gallery()));
-                    },
-                  ),
-                  const Divider(),
-                  ListTile(
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> const Contact()));
                     },
@@ -191,6 +184,19 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                   ),
                   const Divider(),
                   ListTile(
+                    leading: Icon(Icons.file_copy_sharp,color: Colors.orange[900],),
+                    title: Text('Politica de privacidade',
+                      style: TextStyle(fontFamily: SettingsCki.segoeEui,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                    const WebViewName(baseUrl: "https://colegiocki.blogspot.com/2023/11/privacy-policy-correia-chumbo-built.html",)));
+                    },
+                  ),
+                  const Divider(),
+                  ListTile(
                     title: Text('Sair', style: TextStyle(fontFamily: SettingsCki.segoeEui,
                         color: Colors.red,fontSize: 16,fontWeight: FontWeight.bold),
                     ),
@@ -199,7 +205,7 @@ class _MenuWidgetsState extends State<MenuWidgets> {
                       await d.signOut();
                       final pref = await SharedPreferences.getInstance();
                       pref.setBool("showHome", false);
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> SplashWidgets()));
+                      //Navigator.push(context, MaterialPageRoute(builder: (context)=> SplashWidgets()));
                     },
                   ),
                   const Divider(),

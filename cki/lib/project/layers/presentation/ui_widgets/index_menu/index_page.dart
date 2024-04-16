@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../core/configuration/configuration.dart';
 import '../area_financeira_aluno/area_financeira_aluno.dart';
 import '../home_page/menu_widgets.dart';
+import '../login_ui/registerscreen.dart';
 import '../money_student/money_student.dart';
 import '../notification_student/notification.dart';
 import '../student_information/student_information.dart';
@@ -24,10 +25,12 @@ class _IndexPageState extends State<IndexPage> {
     super.initState();
     firstFlowPagesList.clear();
     firstFlowPagesList
-      ..add(MenuWidgets())
+      ..add(const MenuWidgets())
       ..add(const StudentInformationUi())
       ..add(const FinancasAluno())
-      ..add(const NotificationUi());
+      //..add(const NotificationUi())
+    ..add(const RegisterScreen());
+
   }
 
 
@@ -75,7 +78,7 @@ class _IndexPageState extends State<IndexPage> {
 
                 GButton(
                   icon: FontAwesomeIcons.graduationCap,
-                  text: 'Aluno',
+                  text: 'infor',
                   iconSize: 20,
                   textStyle: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
@@ -92,10 +95,24 @@ class _IndexPageState extends State<IndexPage> {
                       color: Colors.orange[900]
                   ),
                 ),
+
+               /*
                 GButton(
                   icon: FontAwesomeIcons.bell,
                   iconSize: 20,
                   text: 'Alertas',
+                  textStyle: TextStyle(
+                      fontFamily: SettingsCki.segoeEui,
+                      color: Colors.orange[900]
+                  ),
+                ),
+
+                */
+
+                GButton(
+                  icon: FontAwesomeIcons.user,
+                  iconSize: 20,
+                  text: 'Aluno',
                   textStyle: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       color: Colors.orange[900]
