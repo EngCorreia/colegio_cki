@@ -4,6 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/configuration/configuration.dart';
+import '../../../core/local_notification_service/local_notification_service.dart';
 import '../area_financeira_aluno/area_financeira_aluno.dart';
 import '../home_page/menu_widgets.dart';
 import '../login_ui/registerscreen.dart';
@@ -12,6 +13,7 @@ import '../notification_student/notification.dart';
 import '../student_information/student_information.dart';
 
 class IndexPage extends StatefulWidget {
+  const IndexPage({super.key});
   @override
   _IndexPageState createState() => _IndexPageState();
 }
@@ -19,10 +21,12 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   int _selectedIndex = 0;
   late List<Widget> firstFlowPagesList = [];
+  late NotificationService local= NotificationService();
 
   @override
   void initState() {
     super.initState();
+    local.checkForNotifications();
     firstFlowPagesList.clear();
     firstFlowPagesList
       ..add(const MenuWidgets())

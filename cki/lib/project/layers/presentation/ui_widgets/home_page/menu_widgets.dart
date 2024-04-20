@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/configuration/configuration.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
+import '../../../services/login_service/login_service.dart';
 import '../../controllers/login_controller/controller_login.dart';
 import '../../controllers/update_student_collection/update_student_collection.dart';
 import '../about_us/about_us.dart';
@@ -26,11 +27,9 @@ import '../contacts/contact_ui.dart';
 import '../course/screens/product/products_screen.dart';
 import '../equipe_list/equipe_list.dart';
 import '../estatistica_financas/home_estatistica.dart';
-import '../gallery/gallery.dart';
 import '../googleMap/cki_location.dart';
 import '../login_ui/web_view.dart';
 import '../notification_student/notification.dart';
-import '../splash_widgets/splash_widgets.dart';
 import '../teachers_ui/list_of_teachers/read_teachers.dart';
 
 
@@ -45,56 +44,52 @@ class MenuWidgetsState extends State<MenuWidgets> {
   int _current = 0;
   var dd = UpdateStudentInformation();
   final loginController = LoginControl();
-  void userAuth(){
-    var user = FirebaseAuth.instance.currentUser;
-    StudentInformation.name = user?.displayName ?? "";
-    StudentInformation.userID = user?.uid ?? "";
-    StudentInformation.phoneNumber = user?.phoneNumber ?? "";
-    StudentInformation.photo = user?.photoURL ?? "";
-    log("----- user ID => ${StudentInformation.userID}");
+  AuthenticationServe serve = AuthenticationServe();
+
+  Future<void> getState() async {
+    StudentInformation.screenState =  await serve.getLoginState();
   }
+
 
   @override
   void initState() {
+    getState();
     super.initState();
-    StudentInformation.userID != "" ? loginController.loginUserStatus() : StudentInformation.userID = "";
-    userAuth();
-    dd.updateStudent(userId: StudentInformation.userID);
+    serve.startUpUser();
+   // StudentInformation.userID != "" ? loginController.loginUserStatus() : StudentInformation.userID = "";
   }
 
   @override
   Widget build(context) {
-    final List<Widget> imageSliders = imgList.map((item) => Container(
-      child: ClipRRect(
-        borderRadius: const BorderRadius.all(
-          Radius.circular(5.0),
-        ),
-        child: Stack(
-          children: [
-            Image.asset(item,
-              fit: BoxFit.cover,
-              width: 1000,
-            ),
-            Positioned(
-              bottom: 0.0,
-              left: 0.0,
-              right: 0.0,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10,
-                ),
-                child: Text(' ${imgList.indexOf(item) +1} Imagem',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+    final List<Widget> imageSliders = imgList.map((item) => ClipRRect(
+      borderRadius: const BorderRadius.all(
+        Radius.circular(5.0),
+      ),
+      child: Stack(
+        children: [
+          Image.asset(item,
+            fit: BoxFit.cover,
+            width: 1000,
+          ),
+          Positioned(
+            bottom: 0.0,
+            left: 0.0,
+            right: 0.0,
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              child: Text(' ${imgList.indexOf(item) +1} Imagem',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     )).toList();
 
@@ -132,7 +127,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                     currentAccountPicture: CircleAvatar(
                       child: Image.asset("assets/images/image.png"),
                     ),
-                    accountName: Text("Correia António Chumbo",style: TextStyle(fontFamily: SettingsCki.segoeEui,fontWeight: FontWeight.bold)),
+                    accountName: Text("${StudentInformation.name}",style: TextStyle(fontFamily: SettingsCki.segoeEui,fontWeight: FontWeight.bold)),
                     accountEmail: Text("geral.cki@gmail.com", style: TextStyle(fontFamily: SettingsCki.segoeEui)),
                   ),
                   ListTile(
@@ -201,11 +196,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                         color: Colors.red,fontSize: 16,fontWeight: FontWeight.bold),
                     ),
                     onTap: () async {
-                      var d = FirebaseAuth.instance;
-                      await d.signOut();
-                      final pref = await SharedPreferences.getInstance();
-                      pref.setBool("showHome", false);
-                      //Navigator.push(context, MaterialPageRoute(builder: (context)=> SplashWidgets()));
+                   serve.logOut();
                     },
                   ),
                   const Divider(),
@@ -655,7 +646,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                       ),
 
                       GestureDetector(
-                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductsScreen())),
+                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const ProductsScreen())),
                         child: Container(
                           width: 160,
                           height: 150,
@@ -1078,6 +1069,14 @@ class MenuWidgetsState extends State<MenuWidgets> {
         ),
 
       ],
+    );
+  }
+
+  void showSnackBarText(String text) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(text),
+      ),
     );
   }
 

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/const_strings/user_information.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
-import '../money_student/money_student.dart';
 import 'estatistica_aluno.dart';
 
 class FinancasAluno extends StatefulWidget {
@@ -65,8 +63,8 @@ class _FinancasAlunoState extends State<FinancasAluno> {
 
       ),
       
-      body: Observer(
-        builder: (_)=> StudentInformation.userID != "" ? Column(
+      body: StudentInformation.userID != "" ? Observer(
+        builder: (_)=>  Column(
           children: [
             Align(
               alignment: Alignment.centerLeft,
@@ -143,8 +141,30 @@ class _FinancasAlunoState extends State<FinancasAluno> {
               ),
             ),
           ],
-        ) : const Center(
-          child: Text("Por favor faça login na sua conta"),
+        ),
+      ): Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+
+            const Icon(Icons.monetization_on_outlined,size: 60,color: Colors.green,),
+            const SizedBox(
+              height: 50,
+            ),
+            Text("Por favor faça login na sua conta",style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+                fontFamily: SettingsCki.segoeEui,
+              color: Colors.black
+            ),),
+            Text("Para ter acesso a informação das suas finanças",style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+                fontFamily: SettingsCki.segoeEui,
+                color: Colors.black
+            ),),
+          ],
         ),
       )
 

@@ -17,10 +17,13 @@ dependencies:
   firebase_core: ^2.13.1
   cloud_firestore: ^4.8.0
   cupertino_icons: ^1.0.2
+  flutter_local_notifications: ^16.3.2
   introduction_screen: ^3.0.0
+  flutter_snackbar_plus: ^0.5.1
   flutter_mobx: ^2.0.2
   smooth_page_indicator: ^1.1.0
   mobx: ^2.0.5
+  uuid: ^4.4.0
   webview_flutter: ^3.0.0
   rxdart: ^0.26.0
   shared_preferences: ^2.1.1

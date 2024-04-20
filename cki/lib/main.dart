@@ -44,9 +44,9 @@ Future<void> main() async {
       removeFromActionEvents: false
   );
   if(receivedAction?.channelKey == 'call_channel') {
-    ProductsScreen();
+    const ProductsScreen();
   } else {
-    ProductsScreen();
+    const ProductsScreen();
   }
   final pref = await SharedPreferences.getInstance();
   final show = pref.getString("login") ?? "";

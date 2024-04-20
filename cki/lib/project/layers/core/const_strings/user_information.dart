@@ -5,7 +5,21 @@ class StudentInformation{
   static  String? _userID = "";
   static  String? _photo = "";
   static  String? _phoneNumber = "";
+  static int _screenState = 2;
+  static int _status = 0;
 
+
+  static int get status => _status;
+
+  static set status(int value) {
+    _status = value;
+  }
+
+  static int get screenState => _screenState;
+
+  static set screenState(int value) {
+    _screenState = value;
+  }
 
   static String? get photo => _photo;
 
