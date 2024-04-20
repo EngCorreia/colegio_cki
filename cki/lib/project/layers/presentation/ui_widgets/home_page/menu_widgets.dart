@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_snackbar_plus/flutter_snackbar_plus.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -192,11 +193,55 @@ class MenuWidgetsState extends State<MenuWidgets> {
                   ),
                   const Divider(),
                   ListTile(
-                    title: Text('Sair', style: TextStyle(fontFamily: SettingsCki.segoeEui,
-                        color: Colors.red,fontSize: 16,fontWeight: FontWeight.bold),
+                    title: Text('Sair da conta', style: TextStyle(fontFamily: SettingsCki.segoeEui,
+                        color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),
                     ),
+                    leading: const Icon(Icons.exit_to_app,color: Colors.white,),
                     onTap: () async {
                    serve.logOut();
+                   FlutterSnackBar.showTemplated(
+                     context,
+                     title: 'Sair da conta ....',
+                     message: "Conta fecheda com sucesso",
+                     leading: CircleAvatar(
+                       child: Image.asset("assets/images/image.png"),
+                     ),
+                     // trailing: const Text('trailing!'),
+
+                     style: FlutterSnackBarStyle(
+                       margin: const EdgeInsets.symmetric(horizontal: 16),
+                       radius: BorderRadius.circular(6),
+                       backgroundColor: Colors.blue,
+                       shadow: BoxShadow(
+                         color: Colors.black.withOpacity(0.55),
+                         blurRadius: 32,
+                         offset: const Offset(0, 12),
+                         blurStyle: BlurStyle.normal,
+                         spreadRadius: -10,
+                       ),
+                       leadingSpace: 22,
+                       trailingSpace: 12,
+                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                       titleStyle: const TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.w600),
+                       messageStyle:
+                       const TextStyle(fontSize: 16, color: Colors.white,fontWeight: FontWeight.w400),
+                       titleAlignment: TextAlign.start,
+                       messageAlignment: TextAlign.start,
+                       loadingBarColor: Colors.yellow,
+                       loadingBarRailColor: Colors.yellow.withOpacity(0.4),
+                     ),
+                     configuration: const FlutterSnackBarConfiguration(
+                       location: FlutterSnackBarLocation.top,
+                       distance: 10,
+                       animationCurve: Curves.ease,
+                       animationDuration: Duration(milliseconds: 500),
+                       showDuration: Duration(seconds: 3),
+                       persistent: false,
+                       dismissible: true,
+                       dismissDirection: DismissDirection.horizontal,
+                       showLoadingBar: true,
+                     ),
+                   );
                     },
                   ),
                   const Divider(),

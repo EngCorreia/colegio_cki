@@ -45,37 +45,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var name = "";
   var email = "";
 
-
-  Future<void> verifyOTP() async {
-    serve.setLoginState(0);
-    setState(() {});
-    /*
-    await FirebaseAuth.instance.signInWithCredential(
-      PhoneAuthProvider.credential(verificationId: verID, smsCode: otpPin,),).then((value) async {
-        userAuth(userCredential: value);
-        var updateStudentCollections = UpdateStudentInformation();
-        updateStudentCollections.updateStudent(userId: StudentInformation.userID,name: name);
-        final pref = await SharedPreferences.getInstance();
-        pref.setString("login", "logged");
-        log("**************** ${value.user}");
-        setState(() {
-          StudentInformation.name = name;
-          StudentInformation.userID = value.user!.uid;
-        });
-    });*/
-  }
   Future<void> getState() async {
     StudentInformation.screenState =  await serve.getLoginState();
   }
+
   AuthenticationServe serve = AuthenticationServe();
   @override
   void initState() {
     super.initState();
     getState();
     serve.addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
     });
     log("----------------- UUID ${StudentInformation.userID}");
   }
@@ -88,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return PopScope(canPop: false,
       child: Scaffold(
         backgroundColor: Colors.orange[400],
-        body: StudentInformation.userID == "" ? SingleChildScrollView(
+        body: StudentInformation.status == 0 ? SingleChildScrollView(
           child: SizedBox(
             height: screenHeight,
             width: screenWidth,

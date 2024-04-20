@@ -63,7 +63,7 @@ class _FinancasAlunoState extends State<FinancasAluno> {
 
       ),
       
-      body: StudentInformation.userID != "" ? Observer(
+      body: StudentInformation.status != 0 ? Observer(
         builder: (_)=>  Column(
           children: [
             Align(

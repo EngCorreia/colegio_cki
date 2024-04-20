@@ -29,7 +29,7 @@ class AuthenticationServe extends ChangeNotifier{
      var uuid = const Uuid();
     Map<String,dynamic> user = {
       "name": userName, "phone": phoneNumber, "email": email,
-      "uuid": uuid.v4(), "status": 0
+      "uuid": uuid.v4(), "status": 1
     };
 
     log("_______________ ${user["uuid"]}");
@@ -60,6 +60,7 @@ class AuthenticationServe extends ChangeNotifier{
           "phoneNumber": json["phone"],
           "email": json["email"] ?? "",
           "admin": 0,
+          "status": json["status"],
         };
         updateStudent.set(student).whenComplete((){
           StudentInformation.name = json["name"];
@@ -107,7 +108,7 @@ class AuthenticationServe extends ChangeNotifier{
       notifyListeners();
 
     }else{
-      StudentInformation.userID = "";
+      StudentInformation.status = 0;
       notifyListeners();
     }
   }
@@ -120,23 +121,23 @@ class AuthenticationServe extends ChangeNotifier{
       Map<String,dynamic> json = jsonDecode(result.toString());
       Map<String,dynamic> user = {
         "name": json["name"], "phone": json["phone"], "email": json["email"],
-        "uuid": "", "status": json["status"]
+        "uuid": json["uuid"], "status": 0
       };
       log("_______________UUID LogOut ${user["uuid"]}");
       final pref = await SharedPreferences.getInstance();
       pref.setString("auth", jsonEncode(user));
 
       StudentInformation.name = json["name"];
-      StudentInformation.userID = "";
+      StudentInformation.userID = json["uuid"];
       StudentInformation.phoneNumber = json["phone"];
       StudentInformation.photo = "";
-      StudentInformation.status = json["status"];
+      StudentInformation.status = 0;
       StudentInformation.screenState = 0;
       setLoginState(0);
       notifyListeners();
     }else{
       setLoginState(0);
-      StudentInformation.userID = "";
+      StudentInformation.status = 0;
       notifyListeners();
     }
   }
