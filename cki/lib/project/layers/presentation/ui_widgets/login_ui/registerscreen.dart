@@ -57,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     serve.addListener(() {
       setState(() {});
     });
-    log("----------------- UUID ${StudentInformation.userID}");
+    log("----------------- UUID ${StudentInformation.name}");
   }
 
   @override
@@ -126,13 +126,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 } else if(phoneController.text.isEmpty) {
                                   showSnackBarText("Numero de telefone vazio");
                                 } else {
+                                  serve.login(phoneNumber: countryDial+phoneController.text);
                                  // status.setStatus("start");
-                                  localNotification.showLocalNotification(
+                                 /* localNotification.showLocalNotification(
                                       CustomNotification(
                                           id: 1,
                                           title: "Criação de Conta",
                                           body: "Enviamos uma notificação para o numero ${countryDial+phoneController.text}\nPara validar o sua conta insira a chava no ecrã de confirmação"
                                       ));
+                                  */
                                  // verifyPhone(countryDial+phoneController.text);
                                 }
                               } else if(StudentInformation.screenState == 2){
@@ -195,7 +197,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   setState(() {
                                     getState();
                                   });
-                                  serve.login(context);
                                  // verifyPhone(countryDial+phoneController.text);
                                 }
                               }else{
@@ -285,7 +286,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             alignment: Alignment.topLeft,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text("${StudentInformation.name}",style: TextStyle(color: Colors.black),),
+                              child: Text(StudentInformation.name ?? "User name",style: const TextStyle(color: Colors.black),),
                             ),
                           ),
 

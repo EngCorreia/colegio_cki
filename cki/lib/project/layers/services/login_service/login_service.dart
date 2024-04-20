@@ -10,15 +10,34 @@ import '../../core/show_toast_message/show_toast_message.dart';
 
 class AuthenticationServe extends ChangeNotifier{
 
-  Future<bool> login(BuildContext context) async{
-    final pref = await SharedPreferences.getInstance();
-    var resultSet =  pref.get("auth");
-    if(resultSet != null){
-      Map<String,dynamic> json = jsonDecode(resultSet.toString());
-      StudentInformation.name = json["name"];
-      StudentInformation.userID = "";
-      StudentInformation.phoneNumber = json["phone"];
-      StudentInformation.photo = "";
+  Future<bool> login({required String phoneNumber}) async{
+    try{
+      var checkStudent = await FirebaseFirestore.instance.collection("student").where("phoneNumber",isEqualTo: phoneNumber).get();
+      var ss = checkStudent.docs;
+      if(ss.isEmpty){
+        ShowToast.show_error("Não existe nenhum registo com este NUMERO ( $phoneNumber )");
+      }else{
+        var json = ss.last.data();
+        Map<String,dynamic> user = {
+          "nome": json["nome"], "phone": json["phoneNumber"], "email": json["email"],
+          "uuid": ss.last.id, "status": 1
+        };
+
+        final pref = await SharedPreferences.getInstance();
+        var response = pref.get("auth");
+        if(response != null){
+          pref.remove("auth");
+          pref.setString("auth", jsonEncode(user));
+          await updateStudent(json: user);
+          //notifyListeners();
+          ShowToast.show_message_Success("Usuario logado com sucesso");
+        }
+
+      }
+
+
+    }catch(e){
+      ShowToast.show_error("error de conexão");
     }
     return true;
   }
@@ -28,10 +47,9 @@ class AuthenticationServe extends ChangeNotifier{
   Future<bool> createAccount({required String userName,required String phoneNumber,required String email}) async{
      var uuid = const Uuid();
     Map<String,dynamic> user = {
-      "name": userName, "phone": phoneNumber, "email": email,
+      "nome": userName, "phone": phoneNumber, "email": email,
       "uuid": uuid.v4(), "status": 1
     };
-
     log("_______________ ${user["uuid"]}");
     final pref = await SharedPreferences.getInstance();
     pref.setString("auth", jsonEncode(user));
@@ -50,11 +68,25 @@ class AuthenticationServe extends ChangeNotifier{
     try{
       var checkStudent = await FirebaseFirestore.instance.collection("student").doc(json["uuid"]).get();
       if(checkStudent.exists){
-        // ShowToast.show_error("existe");
+        var updateStudent = FirebaseFirestore.instance.collection("student").doc(json["uuid"]);
+        Map<String,dynamic> student = {
+          "photo": StudentInformation.photo,
+          "admin": 0,
+          "status": json["status"],
+        };
+        updateStudent.update(student).whenComplete((){
+          StudentInformation.name = json["nome"];
+          StudentInformation.userID = json["uuid"];
+          StudentInformation.phoneNumber = json["phone"];
+          StudentInformation.photo = "";
+          StudentInformation.status = json["status"];
+          // StudentInformation.status = json["status"];
+          notifyListeners();
+        });
       }else{
         var updateStudent = FirebaseFirestore.instance.collection("student").doc(json["uuid"]);
         Map<String,dynamic> student = {
-          "nome": json["name"],
+          "nome": json["nome"],
           "userID": json["uuid"],
           "photo": StudentInformation.photo,
           "phoneNumber": json["phone"],
@@ -63,7 +95,7 @@ class AuthenticationServe extends ChangeNotifier{
           "status": json["status"],
         };
         updateStudent.set(student).whenComplete((){
-          StudentInformation.name = json["name"];
+          StudentInformation.name = json["nome"];
           StudentInformation.userID = json["uuid"];
           StudentInformation.phoneNumber = json["phone"];
           StudentInformation.photo = "";
@@ -100,7 +132,7 @@ class AuthenticationServe extends ChangeNotifier{
     if(result != null){
 
       Map<String,dynamic> json = jsonDecode(result.toString());
-      StudentInformation.name = json["name"];
+      StudentInformation.name = json["nome"];
       StudentInformation.userID = json["uuid"];
       StudentInformation.phoneNumber = json["phone"];
       StudentInformation.photo = "";
@@ -120,14 +152,15 @@ class AuthenticationServe extends ChangeNotifier{
     if(result != null && StudentInformation.userID!.isNotEmpty){
       Map<String,dynamic> json = jsonDecode(result.toString());
       Map<String,dynamic> user = {
-        "name": json["name"], "phone": json["phone"], "email": json["email"],
+        "nome": json["nome"], "phone": json["phone"], "email": json["email"],
         "uuid": json["uuid"], "status": 0
       };
       log("_______________UUID LogOut ${user["uuid"]}");
+      await updateStudent(json: user);
       final pref = await SharedPreferences.getInstance();
       pref.setString("auth", jsonEncode(user));
 
-      StudentInformation.name = json["name"];
+      StudentInformation.name = json["nome"];
       StudentInformation.userID = json["uuid"];
       StudentInformation.phoneNumber = json["phone"];
       StudentInformation.photo = "";

@@ -194,9 +194,9 @@ class MenuWidgetsState extends State<MenuWidgets> {
                   const Divider(),
                   ListTile(
                     title: Text('Sair da conta', style: TextStyle(fontFamily: SettingsCki.segoeEui,
-                        color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),
+                        color: Colors.black,fontSize: 16,fontWeight: FontWeight.bold),
                     ),
-                    leading: const Icon(Icons.exit_to_app,color: Colors.white,),
+                    leading: Icon(Icons.exit_to_app,color: Colors.orange[900],),
                     onTap: () async {
                    serve.logOut();
                    FlutterSnackBar.showTemplated(
@@ -242,6 +242,8 @@ class MenuWidgetsState extends State<MenuWidgets> {
                        showLoadingBar: true,
                      ),
                    );
+
+                   Navigator.pop(context);
                     },
                   ),
                   const Divider(),
