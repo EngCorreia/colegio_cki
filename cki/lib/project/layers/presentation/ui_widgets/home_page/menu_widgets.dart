@@ -243,7 +243,10 @@ class MenuWidgetsState extends State<MenuWidgets> {
                      ),
                    );
 
-                   Navigator.pop(context);
+                   Future.delayed(const Duration(seconds: 4),(){
+                     Navigator.pop(context);
+                   });
+
                     },
                   ),
                   const Divider(),

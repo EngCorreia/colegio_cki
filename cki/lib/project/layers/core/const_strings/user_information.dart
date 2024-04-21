@@ -6,8 +6,15 @@ class StudentInformation{
   static  String? _photo = "";
   static  String? _phoneNumber = "";
   static int _screenState = 2;
+  static String _codeOtp = "";
   static int _status = 0;
 
+
+  static String get codeOtp => _codeOtp;
+
+  static set codeOtp(String value) {
+    _codeOtp = value;
+  }
 
   static int get status => _status;
 

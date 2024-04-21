@@ -16,6 +16,7 @@ class AuthenticationServe extends ChangeNotifier{
       var ss = checkStudent.docs;
       if(ss.isEmpty){
         ShowToast.show_error("Não existe nenhum registo com este NUMERO ( $phoneNumber )");
+        return false;
       }else{
         var json = ss.last.data();
         Map<String,dynamic> user = {
@@ -28,18 +29,25 @@ class AuthenticationServe extends ChangeNotifier{
         if(response != null){
           pref.remove("auth");
           pref.setString("auth", jsonEncode(user));
+          var response = await updateStudent(json: user);
+          if(response == true){
+            ShowToast.show_message_Success("Usuario logado com sucesso");
+          }else{
+            ShowToast.show_error("Ocorreu um erro na criação da conta");
+          }
+
+        }else{
+          pref.setString("auth", jsonEncode(user));
           await updateStudent(json: user);
-          //notifyListeners();
           ShowToast.show_message_Success("Usuario logado com sucesso");
         }
-
       }
-
-
+      return true;
     }catch(e){
-      ShowToast.show_error("error de conexão");
+      ShowToast.show_error("Problema na conexão com o servidor");
+      return false;
     }
-    return true;
+
   }
 
 
@@ -64,7 +72,7 @@ class AuthenticationServe extends ChangeNotifier{
   }
 
 
-  Future<void> updateStudent({required Map<String,dynamic> json}) async{
+  Future<bool> updateStudent({required Map<String,dynamic> json}) async{
     try{
       var checkStudent = await FirebaseFirestore.instance.collection("student").doc(json["uuid"]).get();
       if(checkStudent.exists){
@@ -102,11 +110,14 @@ class AuthenticationServe extends ChangeNotifier{
           StudentInformation.status = json["status"];
           // StudentInformation.status = json["status"];
           notifyListeners();
-        });
-      }
 
+        });
+
+      }
+      return true;
     }catch(e){
-      ShowToast.show_error("error de conexão");
+      ShowToast.show_error("error de conexão $e");
+      return false;
     }
   }
 
@@ -116,7 +127,7 @@ class AuthenticationServe extends ChangeNotifier{
     final pref = await SharedPreferences.getInstance();
     var result = await pref.setInt("state", value);
     StudentInformation.screenState = value;
-    //notifyListeners();
+    notifyListeners();
     return result;
   }
 
@@ -140,6 +151,7 @@ class AuthenticationServe extends ChangeNotifier{
       notifyListeners();
 
     }else{
+      setLoginState(0);
       StudentInformation.status = 0;
       notifyListeners();
     }
@@ -166,8 +178,11 @@ class AuthenticationServe extends ChangeNotifier{
       StudentInformation.photo = "";
       StudentInformation.status = 0;
       StudentInformation.screenState = 0;
-      setLoginState(0);
-      notifyListeners();
+      Future.delayed(const Duration(seconds: 3),(){
+        setLoginState(0);
+        notifyListeners();
+      });
+
     }else{
       setLoginState(0);
       StudentInformation.status = 0;
