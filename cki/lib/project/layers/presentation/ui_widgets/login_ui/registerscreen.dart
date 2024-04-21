@@ -246,7 +246,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     FlutterSnackBar.showTemplated(
                       context,
                       title: 'Sair da conta ....',
-                      message: "Conta fecheda com sucesso",
+                      message: "Conta fechada com sucesso",
                       leading: CircleAvatar(
                         child: Image.asset("assets/images/image.png"),
                       ),

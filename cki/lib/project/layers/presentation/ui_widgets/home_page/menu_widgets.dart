@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_snackbar_plus/flutter_snackbar_plus.dart';
@@ -9,7 +8,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:lottie/lottie.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 import '../../../core/configuration/configuration.dart';
 import '../../../core/const_strings/user_information.dart';
@@ -57,7 +56,10 @@ class MenuWidgetsState extends State<MenuWidgets> {
     getState();
     super.initState();
     serve.startUpUser();
-   // StudentInformation.userID != "" ? loginController.loginUserStatus() : StudentInformation.userID = "";
+    if(StudentInformation.status == 1){
+      loginController.loginUserStatus();
+    }
+   // StudentInformation.status != 0 ? loginController.loginUserStatus() : StudentInformation.status = 0;
   }
 
   @override
@@ -202,7 +204,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                    FlutterSnackBar.showTemplated(
                      context,
                      title: 'Sair da conta ....',
-                     message: "Conta fecheda com sucesso",
+                     message: "Conta fechada com sucesso",
                      leading: CircleAvatar(
                        child: Image.asset("assets/images/image.png"),
                      ),

@@ -79,7 +79,7 @@ class AuthenticationServe extends ChangeNotifier{
         var updateStudent = FirebaseFirestore.instance.collection("student").doc(json["uuid"]);
         Map<String,dynamic> student = {
           "photo": StudentInformation.photo,
-          "admin": 0,
+          //"admin": 0,
           "status": json["status"],
         };
         updateStudent.update(student).whenComplete((){
