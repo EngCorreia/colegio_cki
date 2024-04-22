@@ -199,55 +199,93 @@ class MenuWidgetsState extends State<MenuWidgets> {
                         color: Colors.black,fontSize: 16,fontWeight: FontWeight.bold),
                     ),
                     leading: Icon(Icons.exit_to_app,color: Colors.orange[900],),
-                    onTap: () async {
-                   serve.logOut();
-                   FlutterSnackBar.showTemplated(
-                     context,
-                     title: 'Sair da conta ....',
-                     message: "Conta fechada com sucesso",
-                     leading: CircleAvatar(
-                       child: Image.asset("assets/images/image.png"),
-                     ),
-                     // trailing: const Text('trailing!'),
+                    onTap: StudentInformation.status == 0 ? null : () async {
 
-                     style: FlutterSnackBarStyle(
-                       margin: const EdgeInsets.symmetric(horizontal: 16),
-                       radius: BorderRadius.circular(6),
-                       backgroundColor: Colors.blue,
-                       shadow: BoxShadow(
-                         color: Colors.black.withOpacity(0.55),
-                         blurRadius: 32,
-                         offset: const Offset(0, 12),
-                         blurStyle: BlurStyle.normal,
-                         spreadRadius: -10,
-                       ),
-                       leadingSpace: 22,
-                       trailingSpace: 12,
-                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                       titleStyle: const TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.w600),
-                       messageStyle:
-                       const TextStyle(fontSize: 16, color: Colors.white,fontWeight: FontWeight.w400),
-                       titleAlignment: TextAlign.start,
-                       messageAlignment: TextAlign.start,
-                       loadingBarColor: Colors.yellow,
-                       loadingBarRailColor: Colors.yellow.withOpacity(0.4),
-                     ),
-                     configuration: const FlutterSnackBarConfiguration(
-                       location: FlutterSnackBarLocation.top,
-                       distance: 10,
-                       animationCurve: Curves.ease,
-                       animationDuration: Duration(milliseconds: 500),
-                       showDuration: Duration(seconds: 3),
-                       persistent: false,
-                       dismissible: true,
-                       dismissDirection: DismissDirection.horizontal,
-                       showLoadingBar: true,
-                     ),
-                   );
+                      showDialog(context: context, builder: (context)=> AlertDialog(
+                        title: Text("Aviso ...",style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: SettingsCki.segoeEui
+                        ),),
+                        content: SizedBox(
+                          height: 40,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text("Pretendes sair da sua conta ?",style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                  fontFamily: SettingsCki.segoeEui
+                              )),
+                              const SizedBox(
+                                height: 10,
+                              ),
 
-                   Future.delayed(const Duration(seconds: 4),(){
-                     Navigator.pop(context);
-                   });
+                            ],
+                          ),
+                        ),
+                        actions: [
+                          TextButton(onPressed: (){
+                            Navigator.pop(context);
+                          }, child: const Text("NÃO")),
+
+                          TextButton(onPressed: (){
+                            serve.logOut();
+                            FlutterSnackBar.showTemplated(
+                              context,
+                              title: 'Sair da conta ....',
+                              message: "Conta fechada com sucesso",
+                              leading: CircleAvatar(
+                                child: Image.asset("assets/images/image.png"),
+                              ),
+                              // trailing: const Text('trailing!'),
+
+                              style: FlutterSnackBarStyle(
+                                margin: const EdgeInsets.symmetric(horizontal: 16),
+                                radius: BorderRadius.circular(6),
+                                backgroundColor: Colors.blue,
+                                shadow: BoxShadow(
+                                  color: Colors.black.withOpacity(0.55),
+                                  blurRadius: 32,
+                                  offset: const Offset(0, 12),
+                                  blurStyle: BlurStyle.normal,
+                                  spreadRadius: -10,
+                                ),
+                                leadingSpace: 22,
+                                trailingSpace: 12,
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                                titleStyle: const TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.w600),
+                                messageStyle:
+                                const TextStyle(fontSize: 16, color: Colors.white,fontWeight: FontWeight.w400),
+                                titleAlignment: TextAlign.start,
+                                messageAlignment: TextAlign.start,
+                                loadingBarColor: Colors.yellow,
+                                loadingBarRailColor: Colors.yellow.withOpacity(0.4),
+                              ),
+                              configuration: const FlutterSnackBarConfiguration(
+                                location: FlutterSnackBarLocation.top,
+                                distance: 10,
+                                animationCurve: Curves.ease,
+                                animationDuration: Duration(milliseconds: 500),
+                                showDuration: Duration(seconds: 3),
+                                persistent: false,
+                                dismissible: true,
+                                dismissDirection: DismissDirection.horizontal,
+                                showLoadingBar: true,
+                              ),
+                            );
+
+                            Future.delayed(const Duration(seconds: 4),(){
+                              Navigator.pop(context);
+                            });
+
+                            Navigator.pop(context);
+                          }, child: const Text("SIM"))
+                        ],
+
+                      ));
 
                     },
                   ),
@@ -635,12 +673,54 @@ class MenuWidgetsState extends State<MenuWidgets> {
                height: 20,
              ),
 
-             Text("ANO LECTIVO 2023/2024",style: TextStyle(
-              color: Colors.blue,
-              fontFamily: SettingsCki.segoeEui,
-               fontWeight: FontWeight.w500,
-               fontSize: 20
-            ),),
+             Row(
+               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+               crossAxisAlignment: CrossAxisAlignment.center,
+               children: [
+                 Text("ANO LECTIVO 2024/2025",style: TextStyle(
+                  color: Colors.blue,
+                  fontFamily: SettingsCki.segoeEui,
+                   fontWeight: FontWeight.w500,
+                   fontSize: 16
+                 ),
+                 ),
+
+                 GestureDetector(
+                   onTap: () async {
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=> const ProductsScreen()));
+                   },
+                   child: Padding(
+                     padding: const EdgeInsets.only(top: 0,left: 0,right: 0,bottom: 0),
+                     child: Container(
+                       height: 40,
+                       decoration: BoxDecoration(
+                         color: Colors.blue[900],
+                         borderRadius: BorderRadius.circular(25),
+                         boxShadow: const [
+                           BoxShadow(
+                             color: Colors.white,
+                             blurRadius: 1,
+                             spreadRadius: 1,
+                             // offset: const Offset(2, 2),
+                           ),
+                         ],
+                       ),
+                       child: Center(
+                         child: Padding(
+                           padding: const EdgeInsets.only(left: 10,right: 10),
+                           child: Text("INSCRIÇÕES ABERTAS",style: TextStyle(
+                               fontFamily: SettingsCki.segoeEui,
+                               fontWeight: FontWeight.normal,
+                               color: Colors.white,
+                               fontSize: 12
+                           ),),
+                         ),
+                       ),
+                     ),
+                   ),
+                 ),
+               ],
+             ),
 
             const SizedBox(
               height: 20,
@@ -989,40 +1069,6 @@ class MenuWidgetsState extends State<MenuWidgets> {
                   ),
                 ),
               ],
-            ),
-
-            const SizedBox(height: 10.0),
-
-            GestureDetector(
-              onTap: () async {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const ProductsScreen()));
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8,left: 90,right: 90,bottom: 5),
-                child: Container(
-                  height: 45,
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(25),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.white,
-                        blurRadius: 1,
-                        spreadRadius: 1,
-                       // offset: const Offset(2, 2),
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text("Inscriçoes Abertas",style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.white,
-                        fontSize: 16
-                    ),),
-                  ),
-                ),
-              ),
             ),
 
             const SizedBox(height: 15.0),

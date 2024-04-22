@@ -14,12 +14,12 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '10'
+    flutterVersionCode = '11'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '10.0'
+    flutterVersionName = '11.0'
 }
 
 apply plugin: 'com.android.application'
@@ -54,8 +54,8 @@ android {
         applicationId "com.colegio.cki"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 10
-        versionName "10.0"
+        versionCode 11
+        versionName "11.0"
         multiDexEnabled true
     }
 

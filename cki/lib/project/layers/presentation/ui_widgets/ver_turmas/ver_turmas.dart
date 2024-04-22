@@ -90,13 +90,11 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
               ),
             ],
           ),
-        ) : Center(
-          child: Column(
+        ) : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
-              const Icon(Icons.monetization_on_outlined,size: 60,color: Colors.green,),
+              Icon(Icons.person,size: 60,color: Colors.blue[900],),
               const SizedBox(
                 height: 50,
               ),
@@ -106,13 +104,15 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
                   fontFamily: SettingsCki.segoeEui,
                   color: Colors.black
               ),),
-              Text("Se ainda não tens conta por favor cria uma nova conta",style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontFamily: SettingsCki.segoeEui,
-              ),)
+              Center(
+                child: Text("Se ainda não tens conta cria uma nova conta ...",style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontFamily: SettingsCki.segoeEui,
+                ),),
+              )
             ],
           ),
-        )
+
 
     );
   }

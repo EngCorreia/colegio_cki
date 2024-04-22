@@ -249,50 +249,88 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     leading: const Icon(Icons.exit_to_app,color: Colors.white,),
                     onTap: () async {
-                    serve.logOut();
-                    FlutterSnackBar.showTemplated(
-                      context,
-                      title: 'Sair da conta ....',
-                      message: "Conta fechada com sucesso",
-                      leading: CircleAvatar(
-                        child: Image.asset("assets/images/image.png"),
-                      ),
-                      // trailing: const Text('trailing!'),
 
-                      style: FlutterSnackBarStyle(
-                        margin: const EdgeInsets.symmetric(horizontal: 16),
-                        radius: BorderRadius.circular(6),
-                        backgroundColor: Colors.blue,
-                        shadow: BoxShadow(
-                          color: Colors.black.withOpacity(0.55),
-                          blurRadius: 32,
-                          offset: const Offset(0, 12),
-                          blurStyle: BlurStyle.normal,
-                          spreadRadius: -10,
+                      showDialog(context: context, builder: (context)=> AlertDialog(
+                        title: Text("Aviso ...",style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: SettingsCki.segoeEui
+                        ),),
+                        content: SizedBox(
+                          height: 40,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text("Pretendes sair da sua conta ?",style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                  fontFamily: SettingsCki.segoeEui
+                              )),
+                              const SizedBox(
+                                height: 10,
+                              ),
+
+                            ],
+                          ),
                         ),
-                        leadingSpace: 22,
-                        trailingSpace: 12,
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                        titleStyle: const TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.w600),
-                        messageStyle:
-                        const TextStyle(fontSize: 16, color: Colors.white,fontWeight: FontWeight.w400),
-                        titleAlignment: TextAlign.start,
-                        messageAlignment: TextAlign.start,
-                        loadingBarColor: Colors.yellow,
-                        loadingBarRailColor: Colors.yellow.withOpacity(0.4),
-                      ),
-                      configuration: const FlutterSnackBarConfiguration(
-                        location: FlutterSnackBarLocation.top,
-                        distance: 10,
-                        animationCurve: Curves.ease,
-                        animationDuration: Duration(milliseconds: 500),
-                        showDuration: Duration(seconds: 3),
-                        persistent: false,
-                        dismissible: true,
-                        dismissDirection: DismissDirection.horizontal,
-                        showLoadingBar: true,
-                      ),
-                    );
+                        actions: [
+                          TextButton(onPressed: (){
+                            Navigator.pop(context);
+                          }, child: const Text("NÃO")),
+
+                          TextButton(onPressed: (){
+                            serve.logOut();
+                            FlutterSnackBar.showTemplated(
+                              context,
+                              title: 'Sair da conta ....',
+                              message: "Conta fechada com sucesso",
+                              leading: CircleAvatar(
+                                child: Image.asset("assets/images/image.png"),
+                              ),
+                              // trailing: const Text('trailing!'),
+
+                              style: FlutterSnackBarStyle(
+                                margin: const EdgeInsets.symmetric(horizontal: 16),
+                                radius: BorderRadius.circular(6),
+                                backgroundColor: Colors.blue,
+                                shadow: BoxShadow(
+                                  color: Colors.black.withOpacity(0.55),
+                                  blurRadius: 32,
+                                  offset: const Offset(0, 12),
+                                  blurStyle: BlurStyle.normal,
+                                  spreadRadius: -10,
+                                ),
+                                leadingSpace: 22,
+                                trailingSpace: 12,
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                                titleStyle: const TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.w600),
+                                messageStyle:
+                                const TextStyle(fontSize: 16, color: Colors.white,fontWeight: FontWeight.w400),
+                                titleAlignment: TextAlign.start,
+                                messageAlignment: TextAlign.start,
+                                loadingBarColor: Colors.yellow,
+                                loadingBarRailColor: Colors.yellow.withOpacity(0.4),
+                              ),
+                              configuration: const FlutterSnackBarConfiguration(
+                                location: FlutterSnackBarLocation.top,
+                                distance: 10,
+                                animationCurve: Curves.ease,
+                                animationDuration: Duration(milliseconds: 500),
+                                showDuration: Duration(seconds: 3),
+                                persistent: false,
+                                dismissible: true,
+                                dismissDirection: DismissDirection.horizontal,
+                                showLoadingBar: true,
+                              ),
+                            );
+
+                            Navigator.pop(context);
+                          }, child: const Text("SIM")),
+                        ],
+                      ));
+
                     },
                   ),
 
@@ -517,7 +555,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 borderRadius: BorderRadius.circular(50),
               ),
               child: Center(
-                child: StudentInformation.screenState == 0 ? const Text("CONTINUA",
+                child: StudentInformation.screenState == 0 ? const Text("CONTINUAR",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
