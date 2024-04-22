@@ -281,7 +281,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                               Navigator.pop(context);
                             });
 
-                            Navigator.pop(context);
+
                           }, child: const Text("SIM"))
                         ],
 

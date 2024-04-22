@@ -747,25 +747,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     status.setStatus("start");
                     var code = (Random().nextInt(900000) + 100000).toString();
                     StudentInformation.codeOtp = code;
-                    localNotification.showLocalNotification(
-                        CustomNotification(
-                            id: 1,
-                            title: "Código de valídar Conta",
-                            body: "Enviamos um código para o numero ( ${countryDial+phoneController.text}). Por favor aguarde ... .."
-                        ));
-                     var response = getSms(phoneNumber: countryDial+phoneController.text ,code: code);
-                     if(await response){
-                       Future.delayed(const Duration(seconds: 5),(){
-                         status.setStatus("");
-                         print("----------- Msm enviada");
-                       });
-                     }else{
+                     //var response = getSms(phoneNumber: countryDial+phoneController.text ,code: code);
                        Future.delayed(const Duration(seconds: 3),(){
+                         localNotification.showLocalNotification(
+                             CustomNotification(
+                                 id: 1,
+                                 title: "Código de valídar Conta",
+                                 body: "C.K.I código de válidação de sua consta é : ( $code ).Digita na tela de confirmação"
+                             ));
                          status.setStatus("");
-                         print("----------- Msm não enviada");
+                        // print("----------- Msm enviada");
                        });
 
-                     }
                     // status.setStatus("start");
 
                     /*
