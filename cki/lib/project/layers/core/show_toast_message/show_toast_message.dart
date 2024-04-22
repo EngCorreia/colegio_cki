@@ -22,7 +22,8 @@ class ShowToast{
       timeInSecForIosWeb: 1,
       backgroundColor: Colors.green,
       textColor: Colors.white,
-      fontSize: 13,);
+      fontSize: 13,
+    );
     msg = "";
   }
 }

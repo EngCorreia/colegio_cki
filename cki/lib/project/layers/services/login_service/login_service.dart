@@ -53,22 +53,37 @@ class AuthenticationServe extends ChangeNotifier{
 
 
   Future<bool> createAccount({required String userName,required String phoneNumber,required String email}) async{
-     var uuid = const Uuid();
-    Map<String,dynamic> user = {
-      "nome": userName, "phone": phoneNumber, "email": email,
-      "uuid": uuid.v4(), "status": 1
-    };
-    log("_______________ ${user["uuid"]}");
-    final pref = await SharedPreferences.getInstance();
-    pref.setString("auth", jsonEncode(user));
-    await updateStudent(json: user);
-    var resultSet =  pref.get("auth");
-    notifyListeners();
-    if(resultSet != null){
-      return true;
-    }else{
+
+    try{
+      var checkStudent = await FirebaseFirestore.instance.collection("student").where("phoneNumber",isEqualTo: phoneNumber).get();
+      var ss = checkStudent.docs;
+      if(ss.isEmpty){
+        var uuid = const Uuid();
+        Map<String,dynamic> user = {
+          "nome": userName, "phone": phoneNumber, "email": email,
+          "uuid": uuid.v4(), "status": 1
+        };
+        log("_______________ ${user["uuid"]}");
+        final pref = await SharedPreferences.getInstance();
+        pref.setString("auth", jsonEncode(user));
+        await updateStudent(json: user);
+        var resultSet =  pref.get("auth");
+        notifyListeners();
+        if(resultSet != null){
+          return true;
+        }else{
+          return false;
+        }
+      }else{
+        //ShowToast.show_error("Já existe uma conta criada com este numero $phoneNumber");
+        return false;
+      }
+
+    }catch(e){
+      ShowToast.show_error("Problema na conexão com o servidor");
       return false;
     }
+
   }
 
 

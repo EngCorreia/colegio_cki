@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class Message{
 
-  void messageService({required String phoneNumber,required String code}) async {
+  Future<bool> messageService({required String phoneNumber,required String code}) async {
    try{
      var url = Uri.parse("https://3gl1zv.api.infobip.com/sms/2/text/advanced");
      var headers = {
@@ -12,11 +12,15 @@ class Message{
        "Accept": "application/json"
      };
      var body = '{"messages":[{"destinations":[{"to":"$phoneNumber"}],"from":"ServiceSMS",'
-         '"text":"Enviamos uma menssagem para $phoneNumber.\\nDigita esta chave ( $code ) na tela de confirmação"}]}';
+         '"text":"C.K.I Código de válidação de conta é : ( $code ).\\nDigita esta chave  na tela de confirmação"}]}';
      var response = await http.post(url, headers: headers, body: body,);
-     print(response.body);
+     if(response.statusCode == 200 || response.statusCode == 201){
+       return true;
+     }else{
+       return false;
+     }
    }catch(e){
-    return;
+    return false;
    }
   }
 
