@@ -100,7 +100,19 @@ class _FinancasAlunoState extends State<FinancasAluno> {
             ),
 
             Expanded(
-              child: ListView.builder(
+              child: financa.list.isEmpty ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.person_off_rounded,size: 70,color: Colors.blue,),
+                    Text("Não há nenhum aluno cadastrado",style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: SettingsCki.segoeEui,
+                    ),)
+                  ],
+                ),
+              ): ListView.builder(
                   itemCount: financa.list.length,
                   itemBuilder: (context,index) => ListTile(
                     onTap: (){

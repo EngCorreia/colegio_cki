@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../core/const_strings/user_information.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
 import '../money_student/money_student.dart';
 import 'lista_de_turmas_alunos.dart';
@@ -23,7 +24,10 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
   @override
   void initState() {
     super.initState();
-    financa.leituraFilhosFinancas();
+    log("*********************** ${StudentInformation.status}");
+    if(StudentInformation.status == 1 && StudentInformation.userID!.isNotEmpty){
+      financa.leituraFilhosFinancas();
+    }
   }
 
   @override
@@ -59,8 +63,21 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
 
         ),
 
-        body: Observer(
-          builder: (_)=>Column(
+        body: StudentInformation.status != 0 ? Observer(
+          builder: (_)=> financa.list.isEmpty ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Icon(Icons.person_off_rounded,size: 70,color: Colors.blue,),
+                Text("Não há nenhum aluno cadastrado",style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontFamily: SettingsCki.segoeEui,
+                ),),
+
+              ],
+            ),
+          ) : Column(
             children: [
               Expanded(
                 child: ListView.builder(
@@ -71,6 +88,28 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
                     ),
                 ),
               ),
+            ],
+          ),
+        ) : Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+
+              const Icon(Icons.monetization_on_outlined,size: 60,color: Colors.green,),
+              const SizedBox(
+                height: 50,
+              ),
+              Text("Por favor faça login na sua conta",style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  fontFamily: SettingsCki.segoeEui,
+                  color: Colors.black
+              ),),
+              Text("Se ainda não tens conta por favor cria uma nova conta",style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontFamily: SettingsCki.segoeEui,
+              ),)
             ],
           ),
         )
