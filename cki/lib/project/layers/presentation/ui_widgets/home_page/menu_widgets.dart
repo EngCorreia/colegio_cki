@@ -105,7 +105,8 @@ class MenuWidgetsState extends State<MenuWidgets> {
             fontSize: 16
         ),),
         elevation: 0,
-        actions: [
+        leading: const Icon(Icons.home,color: Colors.white),
+        /*actions: [
           InkWell(
             onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>  const NotificationUi())),
             child: Padding(
@@ -117,8 +118,11 @@ class MenuWidgetsState extends State<MenuWidgets> {
             ),
           )
         ],
+
+        */
       ),
 
+      /*
       drawer: Drawer(
         elevation: 1,
         child: ListView.builder(
@@ -133,7 +137,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                     accountName: Text("${StudentInformation.name}",style: TextStyle(fontFamily: SettingsCki.segoeEui,fontWeight: FontWeight.bold)),
                     accountEmail: Text("geral.cki@gmail.com", style: TextStyle(fontFamily: SettingsCki.segoeEui)),
                   ),
-                  ListTile(
+                 /* ListTile(
                     leading: Icon(Icons.home_outlined,color: Colors.orange[900],),
                     title: Text('Sobre nós',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
@@ -145,6 +149,8 @@ class MenuWidgetsState extends State<MenuWidgets> {
                     },
                   ),
                   const Divider(),
+
+                  */
                   ListTile(
                     leading: Icon(Icons.settings,color: Colors.orange[900],),
                     title: Text('Configuração',
@@ -169,6 +175,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                     // Users(userId: UserModel.userId)
                   ),
                   const Divider(),
+                  /*
                   ListTile(
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> const Contact()));
@@ -193,7 +200,8 @@ class MenuWidgetsState extends State<MenuWidgets> {
                     const WebViewName(baseUrl: "https://colegiocki.blogspot.com/2023/11/privacy-policy-correia-chumbo-built.html",)));
                     },
                   ),
-                  const Divider(),
+
+                  */
                   ListTile(
                     title: Text('Sair da conta', style: TextStyle(fontFamily: SettingsCki.segoeEui,
                         color: Colors.black,fontSize: 16,fontWeight: FontWeight.bold),
@@ -294,339 +302,20 @@ class MenuWidgetsState extends State<MenuWidgets> {
               );
             }),
       ),
-        floatingActionButton: Observer(
-          builder: (_)=> loginController.newStatusUser == 1 ? SpeedDial(
-            onOpen: () {},
-            backgroundColor: Colors.white,
-            animatedIcon: AnimatedIcons.menu_close,
-            overlayOpacity: 0.7,
-            animatedIconTheme: const IconThemeData(
-              size: 30.0,
-              color: Colors.orange,
-            ),
-            children: [
-              SpeedDialChild(
-                labelWidget: Padding(
-                  padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-                  child: Container(
-                    height: 45,
-                    width: 150,
-                    alignment: Alignment.centerLeft,
-                    decoration: const BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black45,
-                          blurRadius: 1,
-                        )
-                      ],
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        stops: [0.3, 1],
-                        colors: [Colors.white, Colors.white],
-                      ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(8),
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: SizedBox(
-                              width: 140,
-                              child: Text("Área Pedagógica",
-                                style: TextStyle(
-                                    fontFamily: SettingsCki.segoeEui,
-                                    color: Colors.blue),
-                              )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: SizedBox(
-                              width: 140,
-                              child: Text("Saiba mais",
-                                style: TextStyle(
-                                    fontFamily: SettingsCki.segoeEui,
-                                    color: Colors.black,
-                                    fontSize: 10),
-                              )),
-                        ),
-                      ],
-                    ),
+
+        */
+        //loginController.newStatusUser == 1
+        floatingActionButton: FloatingActionButton(
+            onPressed: (){
+              showModalBottomSheet(context: context,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(20)
+                      )
                   ),
-                ),
-                child: const Icon(FontAwesomeIcons.graduationCap, color: Colors.blue, size: 20,),
-                labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
-                onTap: (){
-                  showModalBottomSheet(context: context,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(20)
-                          )
-                      ),
-                      builder: (context)=> buildSheet());
-
-                },
-              ),
-
-
-              SpeedDialChild(
-                labelWidget: Padding(
-                  padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-                  child: Container(
-                    height: 45,
-                    width: 150,
-                    alignment: Alignment.centerLeft,
-                    decoration: const BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black45,
-                          blurRadius: 1,
-                        )
-                      ],
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        stops: [0.3, 1],
-                        colors: [Colors.white, Colors.white],
-                      ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(8),
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: SizedBox(
-                              width: 140,
-                              child: Text("Conversas",
-                                style: TextStyle(
-                                    fontFamily: SettingsCki.segoeEui,
-                                    color: Colors.blue),
-                              )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: SizedBox(
-                              width: 140,
-                              child: Text("Fale conosco pelo chat",
-                                style: TextStyle(
-                                    fontFamily: SettingsCki.segoeEui,
-                                    color: Colors.black,
-                                    fontSize: 10),
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                child: const Icon(FontAwesomeIcons.facebookMessenger, color: Colors.blue, size: 20,),
-                labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const ChatUi()));
-
-                },
-              ),
-
-
-              SpeedDialChild(
-                labelWidget: Padding(
-                  padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-                  child: Container(
-                    height: 45,
-                    width: 150,
-                    alignment: Alignment.centerLeft,
-                    decoration: const BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black45,
-                          blurRadius: 1,
-                        )
-                      ],
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        stops: [0.3, 1],
-                        colors: [Colors.white, Colors.white],
-                      ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(8),
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: SizedBox(
-                              width: 140,
-                              child: Text("Quadro de honra",
-                                style: TextStyle(
-                                    fontFamily: SettingsCki.segoeEui,
-                                    color: Colors.blue),
-                              )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: SizedBox(
-                              width: 140,
-                              child: Text("Ver alunos quadro de honra",
-                                style: TextStyle(
-                                    fontFamily: SettingsCki.segoeEui,
-                                    color: Colors.black,
-                                    fontSize: 10),
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                child: const Icon(FontAwesomeIcons.facebookMessenger, color: Colors.blue, size: 20,),
-                labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const ChatUi()));
-
-                },
-              ),
-
-            ],
-          ):SpeedDial(
-            onOpen: () {},
-            backgroundColor: Colors.white,
-            animatedIcon: AnimatedIcons.menu_close,
-            overlayOpacity: 0.7,
-            animatedIconTheme: const IconThemeData(
-              size: 30.0,
-              color: Colors.orange,
-            ),
-            children: [
-              SpeedDialChild(
-                labelWidget: Padding(
-                  padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-                  child: Container(
-                    height: 45,
-                    width: 150,
-                    alignment: Alignment.centerLeft,
-                    decoration: const BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black45,
-                          blurRadius: 1,
-                        )
-                      ],
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        stops: [0.3, 1],
-                        colors: [Colors.white, Colors.white],
-                      ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(8),
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: SizedBox(
-                              width: 140,
-                              child: Text("Conversas",
-                                style: TextStyle(
-                                    fontFamily: SettingsCki.segoeEui,
-                                    color: Colors.blue),
-                              )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: SizedBox(
-                              width: 140,
-                              child: Text("Fale conosco pelo chat",
-                                style: TextStyle(
-                                    fontFamily: SettingsCki.segoeEui,
-                                    color: Colors.black,
-                                    fontSize: 10),
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                child: const Icon(FontAwesomeIcons.facebookMessenger, color: Colors.blue, size: 20,),
-                labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const ChatUi()));
-
-                },
-              ),
-
-
-              SpeedDialChild(
-                labelWidget: Padding(
-                  padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-                  child: Container(
-                    height: 45,
-                    width: 150,
-                    alignment: Alignment.centerLeft,
-                    decoration: const BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black45,
-                          blurRadius: 1,
-                        )
-                      ],
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        stops: [0.3, 1],
-                        colors: [Colors.white, Colors.white],
-                      ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(8),
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: SizedBox(
-                              width: 140,
-                              child: Text("Quadro de honra",
-                                style: TextStyle(
-                                    fontFamily: SettingsCki.segoeEui,
-                                    color: Colors.blue),
-                              )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: SizedBox(
-                              width: 140,
-                              child: Text("Ver alunos quadro de honra",
-                                style: TextStyle(
-                                    fontFamily: SettingsCki.segoeEui,
-                                    color: Colors.black,
-                                    fontSize: 10),
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                child: const Icon(FontAwesomeIcons.facebookMessenger, color: Colors.blue, size: 20,),
-                labelStyle: TextStyle(fontFamily: SettingsCki.segoeEui, color: Colors.blue),
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const ChatUi()));
-
-                },
-              ),
-
-            ],
-          ),
+                  builder: (context)=> buildSheet());
+            },
+          child: const Icon(Icons.add),
         ),
 
 

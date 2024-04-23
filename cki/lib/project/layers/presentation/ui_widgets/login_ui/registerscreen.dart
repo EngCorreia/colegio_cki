@@ -183,6 +183,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
 
+
+                  /*
                   ListTile(
                     leading: const Icon(Icons.home_outlined,color: Colors.white,),
                     title: Text('Sobre nós',
@@ -194,7 +196,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                     },
                   ),
-                  const Divider(),
+                  */
                   ListTile(
                     leading: const Icon(Icons.settings,color: Colors.white,),
                     title: Text('Configuração',
@@ -205,8 +207,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       //Navigator.push(context, MaterialPageRoute(builder: (context)=> const AutoFill()));
                     },
                   ),
-                  const Divider(),
-                  ListTile(
+
+                  /*
+                     ListTile(
                     leading: const Icon(FontAwesomeIcons.userGroup,color: Colors.white,),
                     title: Text('Equipe',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
@@ -217,7 +220,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     // Users(userId: UserModel.userId)
                   ),
-                  const Divider(),
+
+
                   ListTile(
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> const Contact()));
@@ -229,7 +233,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  const Divider(),
+
+                  */
+                  /*const Divider(),
                   ListTile(
                     leading: const Icon(Icons.file_copy_sharp,color: Colors.white,),
                     title: Text('Politica de privacidade',
@@ -242,6 +248,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const WebViewName(baseUrl: "https://colegiocki.blogspot.com/2023/11/privacy-policy-correia-chumbo-built.html",)));
                     },
                   ),
+
+                  */
                   const Divider(),
                   ListTile(
                     title: Text('Sair da conta', style: TextStyle(fontFamily: SettingsCki.segoeEui,
