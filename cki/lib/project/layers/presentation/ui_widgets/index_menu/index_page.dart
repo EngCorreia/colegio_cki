@@ -32,7 +32,6 @@ class _IndexPageState extends State<IndexPage> {
       ..add(const MenuWidgets())
       ..add(const StudentInformationUi())
       ..add(const FinancasAluno())
-      //..add(const NotificationUi())
     ..add(const RegisterScreen());
 
   }

@@ -1,13 +1,10 @@
-import 'dart:developer';
 import 'dart:math';
-
 import 'package:cki/project/layers/presentation/ui_widgets/login_ui/status.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/login_ui/web_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_snackbar_plus/flutter_snackbar_plus.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -18,11 +15,6 @@ import '../../../core/show_toast_message/show_toast_message.dart';
 import '../../../data/datasource/api/sms_message.dart';
 import '../../../services/login_service/login_service.dart';
 import '../../controllers/login_controller/login_controller.dart';
-import '../about_us/about_us.dart';
-import '../auto_fill.dart';
-import '../contacts/contact_ui.dart';
-import '../equipe_list/equipe_list.dart';
-
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -233,23 +225,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-
                   */
-                  /*const Divider(),
+                  const Divider(),
                   ListTile(
                     leading: const Icon(Icons.file_copy_sharp,color: Colors.white,),
-                    title: Text('Politica de privacidade',
+                    title: Text('Terms and Privacy',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                      const WebViewName(baseUrl: "https://colegiocki.blogspot.com/2023/11/privacy-policy-correia-chumbo-built.html",)));
+                      const WebViewName(baseUrl: "https://trilha-missionaria-iasd.blogspot.com/p/politica-de-privacidade.html",)));
                     },
                   ),
 
-                  */
+
                   const Divider(),
                   ListTile(
                     title: Text('Sair da conta', style: TextStyle(fontFamily: SettingsCki.segoeEui,
@@ -404,7 +395,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             },
           ),*/
           const SizedBox(height: 16,),
-          const Text("Número de telefone",
+          const Text("Phone number",
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -563,14 +554,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 borderRadius: BorderRadius.circular(50),
               ),
               child: Center(
-                child: StudentInformation.screenState == 0 ? const Text("CONTINUAR",
+                child: StudentInformation.screenState == 0 ? const Text("CONTINUATION",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.5,
                     fontSize: 18,
                   ),
-                ): const Text("CRIAR CONTA",
+                ): const Text("CREATE ACCOUNT",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -587,14 +578,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => const WebViewName(baseUrl: "https://colegiocki.blogspot.com/2023/11/privacy-policy-correia-chumbo-built.html",)));
             },
-            child: const Text("Politica de privacidade"),
+            child: const SizedBox(
+                height: 20,
+                child: Text("Terms and Privacy"),),
           ),
           const SizedBox(height: 5),
           RichText(
             text: TextSpan(
               children: [
                 const TextSpan(
-                  text: "Não tenho conta criada pretendo : ",
+                  text: "Create new account: ",
                   style: TextStyle(
                     color: Colors.black87,
                     fontSize: 14,
@@ -605,7 +598,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onTap: () {
                       serve.setLoginState(2);
                     },
-                    child: Text("Criar conta",
+                    child: Text("Create now",
                       style: TextStyle(
                         color: Colors.blue[900],
                         fontSize: 14,
@@ -627,7 +620,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Nome do encarregado",
+            const Text("User name",
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
@@ -649,7 +642,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               },
             ),
             const SizedBox(height: 16,),
-            const Text("Número de telefone",
+            const Text("Phone number",
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
@@ -673,7 +666,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
       
-            const Text("Introduza seu email",
+            const Text("Email",
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
@@ -715,16 +708,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
             */
 
-      
+
             GestureDetector(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const WebViewName(baseUrl: "https://colegiocki.blogspot.com/2023/11/privacy-policy-correia-chumbo-built.html",)));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const WebViewName(baseUrl: "https://trilha-missionaria-iasd.blogspot.com/p/politica-de-privacidade.html",)));
               },
-              child: const Text("politica de privacidade"),
-            ),
-
-            const SizedBox(
-              height: 10,
+              child: const Padding(
+                padding: EdgeInsets.all(15.0),
+                child: Text("Terms and Privacy"),
+              ),
             ),
 
             GestureDetector(
@@ -860,7 +852,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       letterSpacing: 1.5,
                       fontSize: 18,
                     ),
-                  ): const Text("CRIAR CONTA",
+                  ): const Text("CREATE ACCOUNT",
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -879,7 +871,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 text: TextSpan(
                   children: [
                     const TextSpan(
-                      text: "Voltar para a pagina de : ",
+                      text: "Go back to: ",
                       style: TextStyle(
                         color: Colors.black87,
                         fontSize: 14,

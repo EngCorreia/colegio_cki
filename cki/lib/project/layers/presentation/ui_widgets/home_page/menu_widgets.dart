@@ -415,6 +415,26 @@ class MenuWidgetsState extends State<MenuWidgets> {
               height: 20,
             ),
 
+          /*
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      childAspectRatio: 3/2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10
+                  ),
+                  itemBuilder: (_,index) => Container(color: Colors.blue,),
+                  itemCount: 7,
+                ),
+            ),
+          ),
+
+          */
+            
             Column(
               children: [
                 Padding(
@@ -423,9 +443,9 @@ class MenuWidgetsState extends State<MenuWidgets> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       GestureDetector(
-                      onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> const Teachers())),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const Teachers())),
                         child: Container(
-                          width: 160,
+                          width: MediaQuery.of(context).size.width/2.3,
                           height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -466,10 +486,11 @@ class MenuWidgetsState extends State<MenuWidgets> {
                         ),
                       ),
 
+
                       GestureDetector(
                         onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const ProductsScreen())),
                         child: Container(
-                          width: 160,
+                          width: MediaQuery.of(context).size.width/2.3,
                           height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -522,7 +543,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                       GestureDetector(
                         onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const CalendarScreen())),
                         child: Container(
-                          width: 160,
+                          width: MediaQuery.of(context).size.width/2.3,
                           height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -566,7 +587,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                       GestureDetector(
                         onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const CalendarScreen())),
                         child: Container(
-                          width: 160,
+                          width: MediaQuery.of(context).size.width/2.3,
                           height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -619,7 +640,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Container(
-                          width: 160,
+                          width: MediaQuery.of(context).size.width/2.3,
                           height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -663,7 +684,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                         GestureDetector(
                           onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> const Books())),
                           child: Container(
-                            width: 160,
+                            width: MediaQuery.of(context).size.width/2.3,
                             height: 150,
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -707,14 +728,16 @@ class MenuWidgetsState extends State<MenuWidgets> {
                 ),
 
                 GestureDetector(
-                  onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const CkiLocation())),
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const CkiLocation()));
+                  },
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(left: 15,top: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
-                          width: 160,
+                          width: MediaQuery.of(context).size.width/2.3,
                           height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -759,6 +782,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                 ),
               ],
             ),
+
 
             const SizedBox(height: 15.0),
 

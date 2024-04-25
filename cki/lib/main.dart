@@ -19,7 +19,8 @@ Future<void> main() async {
   InitStateInjectionDependence();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  initializeDateFormatting('en_US', "");
+  //initializeDateFormatting('en_US', "");
+  /*
   AwesomeNotifications().initialize(
     // set the icon to null if you want to use the default app icon
       'resource://drawable/res_app_icon',
@@ -49,15 +50,12 @@ Future<void> main() async {
     const ProductsScreen();
   }
   final pref = await SharedPreferences.getInstance();
-  final show = pref.getString("login") ?? "";
-  runApp(MyApp(showHome: show,));
+  final show = pref.getString("login") ?? "";*/
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
-  final String? showHome;
-  const MyApp({super.key, this.showHome});
-
+  const MyApp({super.key, });
   @override
   Widget build(BuildContext context){
     return MaterialApp(
@@ -71,19 +69,8 @@ class MyApp extends StatelessWidget {
     primaryTextTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
     textTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui))
     ),
-    home: IndexPage(),
+    home: const IndexPage(),
   //const OnBoardingPage()
   );
-  }
-
-  Widget getState(String name) {
-    log("======== $name");
-    if(name == "login"){
-      return const RegisterScreen();
-    }else if(name == "logged"){
-      return IndexPage();
-    }else{
-      return const SplashWidgets();
-    }
   }
 }
