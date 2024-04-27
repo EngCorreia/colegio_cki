@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 class Message{
@@ -25,30 +26,27 @@ class Message{
   }
 
   Future<bool> netSmsService({required String phoneNumber,required String code}) async {
+
     try{
-      var url = Uri.parse("https://netsms.co.ao/app/appi/?accao=enviar_sms&chave_entidade=?&destinatario=$phoneNumber&descricao_sms=C.K.I Código de válidação de conta é : ( $code ).\\nDigita esta chave  na tela de confirmação");
+      var url = Uri.parse("https://netsms.co.ao/app/appi/");
       var headers = {
-        "Authorization": "App d1619201262363c8a574fb794fd115dd-d2d51aee-e3a1-41ab-93e2-ceccfeb219ca",
         "Content-Type": "application/json",
         "Accept": "application/json"
       };
       var json = {
         "mensagem":{
           "accao": "enviar_sms",
-          "chave_entidade": "sua chave",
-          "destinatario": phoneNumber,
+          "chave_entidade": "2cfTdJSF65E5HsK6ge6e5dY256s",
+          "destinatario": "+244924948647",
           "descricao_sms": "C.K.I Código de válidação de conta é : ( $code ).\\nDigita esta chave  na tela de confirmação"
         }
       };
-      var body = '{"messages":[{"destinations":[{"to":"$phoneNumber"}],"from":"ServiceSMS",'
-          '"text":"C.K.I Código de válidação de conta é : ( $code ).\\nDigita esta chave  na tela de confirmação"}]}';
-      var response = await http.post(url, headers: headers, body: json);
-      if(response.statusCode == 200 || response.statusCode == 201){
+      log("********************ssssss ${jsonDecode(json.toString())}");
+      var response = await http.post(url,headers: headers,body: json.toString());
+        log("******************** ${response.body}");
         return true;
-      }else{
-        return false;
-      }
     }catch(e){
+      log("******************** erro $e");
       return false;
     }
   }

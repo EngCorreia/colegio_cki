@@ -1,0 +1,23 @@
+
+import 'package:get_it/get_it.dart';
+
+final GetIt locator = GetIt.I;
+void setupLocator(String? baseURL, {String? enviroment}) {
+  //locator.registerLazySingleton(() => NavigationService());
+  //locator.registerLazySingleton(() => BottomSheetService());
+  //locator.registerLazySingleton(() => DialogService());
+  //locator.registerLazySingleton(() => SnackbarService());
+  //locator.registerLazySingleton(() => StartupViewModel());
+ // locator.registerLazySingleton(() => HomeViewModel());
+
+  //coreLocator();
+  //loginLocator();
+
+
+  //CORE
+  if (enviroment == 'dev' || enviroment == 'prd') {
+    //locator.registerLazySingleton<IRemote>(() => RemoteImplementation(baseURL!));
+    //locator.registerLazySingleton<ILocalDatabase>(() => LocalDatabaseImplementation(locator()));
+    //locator.registerLazySingleton<ILocalStorage>(() => LocalStorageImplementation());
+  }
+}

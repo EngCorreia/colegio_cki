@@ -40,17 +40,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Color blue = const Color(0xff8cccff);
   var name = "";
   var email = "";
+  Message ms = Message();
 
   Future<void> getState() async {
     StudentInformation.screenState =  await serve.getLoginState();
   }
 
-
-  Future<bool> getSms({required String phoneNumber,required String code}) async{
-    Message ms = Message();
-    var response = await ms.messageService(phoneNumber: countryDial+phoneController.text ,code: code);
-   return response;
-  }
 
   AuthenticationServe serve = AuthenticationServe();
   @override
@@ -439,7 +434,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           const SizedBox(height: 25,),
           GestureDetector(
             onTap:  () async {
-              if(StudentInformation.screenState == 0) {
                 if(phoneController.text.isEmpty) {
                   showSnackBarText("Numero de telefone vazio");
                 } else {
@@ -448,103 +442,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                    if(response == true || response == false){
                      status.setStatus("");
                    }
-
                 }
-              } else if(StudentInformation.screenState == 2){
-                if(usernameController.text.isEmpty) {
-                  showSnackBarText("Nome do encarregado vazio");
-                } else if(phoneController.text.isEmpty) {
-                  showSnackBarText("Numero de telefone vazio");
-                } else {
-                  var code = (Random().nextInt(900000) + 100000).toString();
-                  StudentInformation.codeOtp = code;
-                  Message ms = Message();
-                  ms.messageService(phoneNumber: StudentInformation.phoneNumber! ,code: code);
-                  //status.setStatus("start");
-                  localNotification.showLocalNotification(
-                      CustomNotification(
-                          id: 1,
-                          title: "Criação de Conta",
-                          body: "Enviamos uma CHAVE para o numero ${countryDial+phoneController.text}\nPara validar o sua CONTA Aguarda por favor  ..."
-                      ));
-
-                  FlutterSnackBar.showTemplated(
-                    context,
-                    title: 'Válidação ....',
-                    message: "Para validar o sua conta insira esta chave (234640) no ecrã de confirmação",
-                    leading: CircleAvatar(
-                      child: Image.asset("assets/images/image.png"),
-                    ),
-                    // trailing: const Text('trailing!'),
-
-                    style: FlutterSnackBarStyle(
-                      margin: const EdgeInsets.symmetric(horizontal: 16),
-                      radius: BorderRadius.circular(6),
-                      backgroundColor: Colors.blue,
-                      shadow: BoxShadow(
-                        color: Colors.black.withOpacity(0.55),
-                        blurRadius: 32,
-                        offset: const Offset(0, 12),
-                        blurStyle: BlurStyle.normal,
-                        spreadRadius: -10,
-                      ),
-                      leadingSpace: 22,
-                      trailingSpace: 12,
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                      titleStyle: const TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.w600),
-                      messageStyle:
-                      const TextStyle(fontSize: 16, color: Colors.white,fontWeight: FontWeight.w400),
-                      titleAlignment: TextAlign.start,
-                      messageAlignment: TextAlign.start,
-                      loadingBarColor: Colors.yellow,
-                      loadingBarRailColor: Colors.yellow.withOpacity(0.4),
-                    ),
-                    configuration: const FlutterSnackBarConfiguration(
-                      location: FlutterSnackBarLocation.top,
-                      distance: 10,
-                      animationCurve: Curves.ease,
-                      animationDuration: Duration(milliseconds: 500),
-                      showDuration: Duration(seconds: 3),
-                      persistent: false,
-                      dismissible: true,
-                      dismissDirection: DismissDirection.horizontal,
-                      showLoadingBar: false,
-                    ),
-                  );
-                  serve.setLoginState(1);
-                  setState(() {
-                    getState();
-                  });
-                  // verifyPhone(countryDial+phoneController.text);
-                }
-              }else{
-                if(otpPin.length >= 6) {
-                  if(otpPin != StudentInformation.codeOtp){
-                    status.setStatus("start");
-                    ShowToast.show_error("Codigo inválido por favor digita outro code");
-                    Future.delayed(const Duration(seconds: 4),(){
-                      status.setStatus("");
-                    });
-
-                  }else{
-                    status.setStatus("start");
-                    bool logged = await serve.createAccount(userName: usernameController.text,
-                        email: emailController.text,
-                        phoneNumber: countryDial+phoneController.text);
-                    if(logged){
-                      showSnackBar("Conta criada com sucesso");
-                      status.setStatus("");
-                      setState(() {});
-                    } else{
-                      ShowToast.show_error("Já existe uma conta criada com este numero ${countryDial+phoneController.text}");
-                      status.setStatus("");
-                    }
-                  }
-                } else {
-                  showSnackBarText("Introduza o código corretamente");
-                  status.setStatus("");
-                }
-              }
             },
             child: Container(
               height: 50,
@@ -553,15 +451,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 color: Colors.blue[900],
                 borderRadius: BorderRadius.circular(50),
               ),
-              child: Center(
-                child: StudentInformation.screenState == 0 ? const Text("CONTINUATION",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.5,
-                    fontSize: 18,
-                  ),
-                ): const Text("CREATE ACCOUNT",
+              child: const Center(
+                child: Text("CONTINUATION",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -697,17 +588,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               }
             }),
 
-            /*
-            Observer(builder: (_) {
-              if (status.status == null || status.status == "") {
-                return Container();
-              } else {
-                return const Center(child: Text("Por favor aguarde ...."));
-              }
-            }),
-
-            */
-
 
             GestureDetector(
               onTap: (){
@@ -719,26 +599,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
 
+            // 954  42  76  80
             GestureDetector(
               onTap: ()  async {
-                if(StudentInformation.screenState == 0) {
-                  if(usernameController.text.isEmpty) {
-                    showSnackBarText("Nome do encarregado vazio");
-                  } else if(phoneController.text.isEmpty) {
-                    showSnackBarText("Numero de telefone vazio");
-                  } else {
-                    serve.login(phoneNumber: countryDial+phoneController.text);
-                    // status.setStatus("start");
-                    /* localNotification.showLocalNotification(
-                                      CustomNotification(
-                                          id: 1,
-                                          title: "Criação de Conta",
-                                          body: "Enviamos uma notificação para o numero ${countryDial+phoneController.text}\nPara validar o sua conta insira a chava no ecrã de confirmação"
-                                      ));
-                                  */
-                    // verifyPhone(countryDial+phoneController.text);
-                  }
-                } else if(StudentInformation.screenState == 2){
                   if(usernameController.text.isEmpty) {
                     showSnackBarText("Nome do encarregado vazio");
                   } else if(phoneController.text.isEmpty) {
@@ -747,95 +610,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     status.setStatus("start");
                     var code = (Random().nextInt(900000) + 100000).toString();
                     StudentInformation.codeOtp = code;
-                     //var response = getSms(phoneNumber: countryDial+phoneController.text ,code: code);
+                     await ms.netSmsService(phoneNumber: countryDial+phoneController.text ,code: code);
                        Future.delayed(const Duration(seconds: 3),(){
-                         localNotification.showLocalNotification(
-                             CustomNotification(
-                                 id: 1,
-                                 title: "Código de valídar Conta",
-                                 body: "C.K.I código de válidação de sua consta é : ( $code ).Digita na tela de confirmação"
-                             ));
                          status.setStatus("");
-                        // print("----------- Msm enviada");
                        });
-
-                    // status.setStatus("start");
-
-                    /*
-                    FlutterSnackBar.showTemplated(
-                      context,
-                      title: 'Válidação ....',
-                      message: "Enviamos um código para o numero ( ${countryDial+phoneController.text}). Por favor aguarde ... ..",
-                      leading: CircleAvatar(
-                        child: Image.asset("assets/images/image.png"),
-                      ),
-                      // trailing: const Text('trailing!'),
-
-                      style: FlutterSnackBarStyle(
-                        margin: const EdgeInsets.symmetric(horizontal: 16),
-                        radius: BorderRadius.circular(6),
-                        backgroundColor: Colors.blue,
-                        shadow: BoxShadow(
-                          color: Colors.black.withOpacity(0.55),
-                          blurRadius: 32,
-                          offset: const Offset(0, 12),
-                          blurStyle: BlurStyle.normal,
-                          spreadRadius: -10,
-                        ),
-                        leadingSpace: 22,
-                        trailingSpace: 12,
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                        titleStyle: const TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.w600),
-                        messageStyle:
-                        const TextStyle(fontSize: 16, color: Colors.white,fontWeight: FontWeight.w400),
-                        titleAlignment: TextAlign.start,
-                        messageAlignment: TextAlign.start,
-                        loadingBarColor: Colors.yellow,
-                        loadingBarRailColor: Colors.yellow.withOpacity(0.4),
-                      ),
-                      configuration: const FlutterSnackBarConfiguration(
-                        location: FlutterSnackBarLocation.top,
-                        distance: 10,
-                        animationCurve: Curves.ease,
-                        animationDuration: Duration(milliseconds: 500),
-                        showDuration: Duration(seconds: 3),
-                        persistent: false,
-                        dismissible: true,
-                        dismissDirection: DismissDirection.horizontal,
-                        showLoadingBar: false,
-                      ),
-                    );
-
-                    */
                     serve.setLoginState(1);
                     setState(() {
                       getState();
                     });
-                    // verifyPhone(countryDial+phoneController.text);
                   }
-                }else{
-                  if(otpPin.length >= 6) {
-                    status.setStatus("");
-                    if(otpPin != StudentInformation.codeOtp){
-                      ShowToast.show_error("Codigo invalido por favor digita outro code");
-                      //serve.login(context);
-                    }else{
-                      bool logged = await serve.createAccount(userName: usernameController.text,
-                          email: emailController.text,
-                          phoneNumber: countryDial+phoneController.text);
-                      if(logged){
-                        showSnackBar("Conta criada com sucesso");
-                        serve.setLoginState(2);
-                        setState(() {});
-                      } else{
-                        serve.setLoginState(2);
-                        showSnackBarText("Criação de conta falhou");
-                      }
-                    }
-                  } else {
-                    showSnackBarText("Introduza o código corretamente");
-                  }
-                }
+
               },
               child: Container(
                 height: 50,
@@ -844,15 +628,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   color: Colors.blue[900],
                   borderRadius: BorderRadius.circular(50),
                 ),
-                child: Center(
-                  child: StudentInformation.screenState == 0 ? const Text("CONTINUA",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5,
-                      fontSize: 18,
-                    ),
-                  ): const Text("CREATE ACCOUNT",
+                child: const Center(
+                  child: Text("CREATE ACCOUNT",
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -963,20 +740,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               WidgetSpan(
                 child: GestureDetector(
                   onTap: () {
-
-                      //var code = (Random().nextInt(900000) + 100000).toString();
-                     // StudentInformation.codeOtp = code;
-                     // Message ms = Message();
-                     // ms.messageService(phoneNumber: countryDial+phoneController.text ,code: code);
-                      // status.setStatus("start");
-                     /* localNotification.showLocalNotification(
-                          CustomNotification(
-                              id: 1,
-                              title: "Código de valídar Conta",
-                              body: "A sua chave de valídação é $code Introduza na tela de confirmação"
-                          ));*/
                       serve.setLoginState(2);
-                     // screenState = 0;
                   },
                   child: const Text("Enviar código novamente",
                     style: TextStyle(

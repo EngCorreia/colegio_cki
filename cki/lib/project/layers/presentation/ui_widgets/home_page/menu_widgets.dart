@@ -9,7 +9,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:lottie/lottie.dart';
 
-
 import '../../../core/configuration/configuration.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
@@ -32,7 +31,6 @@ import '../login_ui/web_view.dart';
 import '../notification_student/notification.dart';
 import '../teachers_ui/list_of_teachers/read_teachers.dart';
 
-
 class MenuWidgets extends StatefulWidget {
   const MenuWidgets({super.key});
 
@@ -47,65 +45,70 @@ class MenuWidgetsState extends State<MenuWidgets> {
   AuthenticationServe serve = AuthenticationServe();
 
   Future<void> getState() async {
-    StudentInformation.screenState =  await serve.getLoginState();
+    StudentInformation.screenState = await serve.getLoginState();
   }
-
 
   @override
   void initState() {
     getState();
     super.initState();
     serve.startUpUser();
-    if(StudentInformation.status == 1){
+    if (StudentInformation.status == 1) {
       loginController.loginUserStatus();
     }
-   // StudentInformation.status != 0 ? loginController.loginUserStatus() : StudentInformation.status = 0;
+    // StudentInformation.status != 0 ? loginController.loginUserStatus() : StudentInformation.status = 0;
   }
 
   @override
   Widget build(context) {
-    final List<Widget> imageSliders = imgList.map((item) => ClipRRect(
-      borderRadius: const BorderRadius.all(
-        Radius.circular(5.0),
-      ),
-      child: Stack(
-        children: [
-          Image.asset(item,
-            fit: BoxFit.cover,
-            width: 1000,
-          ),
-          Positioned(
-            bottom: 0.0,
-            left: 0.0,
-            right: 0.0,
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10,
+    final List<Widget> imageSliders = imgList
+        .map((item) => ClipRRect(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(5.0),
               ),
-              child: Text(' ${imgList.indexOf(item) +1} Imagem',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
+              child: Stack(
+                children: [
+                  Image.asset(
+                    item,
+                    fit: BoxFit.cover,
+                    width: 1000,
+                  ),
+                  Positioned(
+                    bottom: 0.0,
+                    left: 0.0,
+                    right: 0.0,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 10,
+                      ),
+                      child: Text(
+                        ' ${imgList.indexOf(item) + 1} Imagem',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
-        ],
-      ),
-    )).toList();
+            ))
+        .toList();
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange[400],
-        title: Text("Colégio Kalabo Internacional",style: TextStyle(
-            color: Colors.white,
-            fontFamily: SettingsCki.segoeEui,
-            fontSize: 16
-        ),),
+        title: Text(
+          "Colégio Kalabo Internacional",
+          style: TextStyle(
+              color: Colors.white,
+              fontFamily: SettingsCki.segoeEui,
+              fontSize: 16),
+        ),
         elevation: 0,
-        leading: const Icon(Icons.home,color: Colors.white),
+        leading: const Icon(Icons.home, color: Colors.white),
         /*actions: [
           InkWell(
             onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>  const NotificationUi())),
@@ -304,20 +307,21 @@ class MenuWidgetsState extends State<MenuWidgets> {
       ),
 
         */
-        //loginController.newStatusUser == 1
-        floatingActionButton: FloatingActionButton(
-            onPressed: (){
-              showModalBottomSheet(context: context,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(20)
-                      )
-                  ),
-                  builder: (context)=> buildSheet());
-            },
-          child: const Icon(Icons.add),
-        ),
-
+      //loginController.newStatusUser == 1
+      floatingActionButton: Observer(
+          builder: (_) => loginController.newStatusUser == 1
+              ? FloatingActionButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                        context: context,
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(20))),
+                        builder: (context) => buildSheet());
+                  },
+                  child: const Icon(Icons.add),
+                )
+              : Container()),
 
       body: SingleChildScrollView(
         child: Column(
@@ -339,7 +343,6 @@ class MenuWidgetsState extends State<MenuWidgets> {
                     });
                   }),
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: imgList.map((url) {
@@ -353,69 +356,75 @@ class MenuWidgetsState extends State<MenuWidgets> {
                   ),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: _current == index ? const Color.fromRGBO(0, 0, 0, 0.9) : const Color.fromRGBO(0, 0, 0, 0.4),
+                    color: _current == index
+                        ? const Color.fromRGBO(0, 0, 0, 0.9)
+                        : const Color.fromRGBO(0, 0, 0, 0.4),
                   ),
                 );
               }).toList(),
             ),
-             const SizedBox(
-               height: 20,
-             ),
-
-             Row(
-               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-               crossAxisAlignment: CrossAxisAlignment.center,
-               children: [
-                 Text("ANO LECTIVO 2024/2025",style: TextStyle(
-                  color: Colors.blue,
-                  fontFamily: SettingsCki.segoeEui,
-                   fontWeight: FontWeight.w500,
-                   fontSize: 16
-                 ),
-                 ),
-
-                 GestureDetector(
-                   onTap: () async {
-                     Navigator.push(context, MaterialPageRoute(builder: (context)=> const ProductsScreen()));
-                   },
-                   child: Padding(
-                     padding: const EdgeInsets.only(top: 0,left: 0,right: 0,bottom: 0),
-                     child: Container(
-                       height: 40,
-                       decoration: BoxDecoration(
-                         color: Colors.blue[900],
-                         borderRadius: BorderRadius.circular(25),
-                         boxShadow: const [
-                           BoxShadow(
-                             color: Colors.white,
-                             blurRadius: 1,
-                             spreadRadius: 1,
-                             // offset: const Offset(2, 2),
-                           ),
-                         ],
-                       ),
-                       child: Center(
-                         child: Padding(
-                           padding: const EdgeInsets.only(left: 10,right: 10),
-                           child: Text("INSCRIÇÕES ABERTAS",style: TextStyle(
-                               fontFamily: SettingsCki.segoeEui,
-                               fontWeight: FontWeight.normal,
-                               color: Colors.white,
-                               fontSize: 12
-                           ),),
-                         ),
-                       ),
-                     ),
-                   ),
-                 ),
-               ],
-             ),
-
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "ANO LECTIVO 2024/2025",
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontFamily: SettingsCki.segoeEui,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16),
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ProductsScreen()));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 0, left: 0, right: 0, bottom: 0),
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.blue[900],
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.white,
+                            blurRadius: 1,
+                            spreadRadius: 1,
+                            // offset: const Offset(2, 2),
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Text(
+                            "INSCRIÇÕES ABERTAS",
+                            style: TextStyle(
+                                fontFamily: SettingsCki.segoeEui,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white,
+                                fontSize: 12),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(
               height: 20,
             ),
 
-          /*
+            /*
           SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Padding(
@@ -434,7 +443,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
           ),
 
           */
-            
+
             Column(
               children: [
                 Padding(
@@ -443,9 +452,12 @@ class MenuWidgetsState extends State<MenuWidgets> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       GestureDetector(
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const Teachers())),
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Teachers())),
                         child: Container(
-                          width: MediaQuery.of(context).size.width/2.3,
+                          width: MediaQuery.of(context).size.width / 2.3,
                           height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -465,32 +477,38 @@ class MenuWidgetsState extends State<MenuWidgets> {
                                 height: 6,
                               ),
                               SizedBox(
-                                  height: 90,
-                                  child: Image.asset("assets/course/teacher1.png"),),
+                                height: 90,
+                                child:
+                                    Image.asset("assets/course/teacher1.png"),
+                              ),
                               const SizedBox(
                                 height: 10,
                               ),
-                              Text("Professores",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.bold,
-                                color: Colors.black
-                              ),),
-
-                              Text("Conheça nossos prof..",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.black
-                              ),),
+                              Text(
+                                "Professores",
+                                style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              Text(
+                                "Conheça nossos prof..",
+                                style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black),
+                              ),
                             ],
                           ),
                         ),
                       ),
-
-
                       GestureDetector(
-                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const ProductsScreen())),
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ProductsScreen())),
                         child: Container(
-                          width: MediaQuery.of(context).size.width/2.3,
+                          width: MediaQuery.of(context).size.width / 2.3,
                           height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -512,21 +530,29 @@ class MenuWidgetsState extends State<MenuWidgets> {
                               SizedBox(
                                 height: 90,
                                 width: MediaQuery.of(context).size.width,
-                                child: Image.asset("assets/course/cursos1.png",
-                                  width: 200,height: 200,fit: BoxFit.cover,
-                                  filterQuality: FilterQuality.high,),),
+                                child: Image.asset(
+                                  "assets/course/cursos1.png",
+                                  width: 200,
+                                  height: 200,
+                                  fit: BoxFit.cover,
+                                  filterQuality: FilterQuality.high,
+                                ),
+                              ),
                               const SizedBox(
                                 height: 10,
                               ),
-                              Text("Classe",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.bold
-                              ),),
-
-                              Text("Saíbas sobre classe",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.normal
-                              ),),
+                              Text(
+                                "Classe",
+                                style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "Saíbas sobre classe",
+                                style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.normal),
+                              ),
                             ],
                           ),
                         ),
@@ -534,16 +560,18 @@ class MenuWidgetsState extends State<MenuWidgets> {
                     ],
                   ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       GestureDetector(
-                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const CalendarScreen())),
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CalendarScreen())),
                         child: Container(
-                          width: MediaQuery.of(context).size.width/2.3,
+                          width: MediaQuery.of(context).size.width / 2.3,
                           height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -564,30 +592,37 @@ class MenuWidgetsState extends State<MenuWidgets> {
                               ),
                               SizedBox(
                                 height: 90,
-                                child: Image.asset("assets/classRoom/atl_logo.png"),),
+                                child: Image.asset(
+                                    "assets/classRoom/atl_logo.png"),
+                              ),
                               const SizedBox(
                                 height: 10,
                               ),
-                              Text("Calendario ATL",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black
-                              ),),
-
-                              Text("Ver calendario",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.black
-                              ),),
+                              Text(
+                                "Calendario ATL",
+                                style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              Text(
+                                "Ver calendario",
+                                style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black),
+                              ),
                             ],
                           ),
                         ),
                       ),
-
                       GestureDetector(
-                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const CalendarScreen())),
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CalendarScreen())),
                         child: Container(
-                          width: MediaQuery.of(context).size.width/2.3,
+                          width: MediaQuery.of(context).size.width / 2.3,
                           height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -608,21 +643,26 @@ class MenuWidgetsState extends State<MenuWidgets> {
                               ),
                               SizedBox(
                                 height: 90,
-                                child: Image.asset("assets/course/calendario.png"),),
+                                child:
+                                    Image.asset("assets/course/calendario.png"),
+                              ),
                               const SizedBox(
                                 height: 10,
                               ),
-                              Text("Calendario",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black
-                              ),),
-
-                              Text("Ver calendario",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.black
-                              ),),
+                              Text(
+                                "Calendario",
+                                style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              Text(
+                                "Ver calendario",
+                                style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black),
+                              ),
                             ],
                           ),
                         ),
@@ -630,17 +670,18 @@ class MenuWidgetsState extends State<MenuWidgets> {
                     ],
                   ),
                 ),
-
-
                 GestureDetector(
-                  onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const ClassRoom())),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ClassRoom())),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width/2.3,
+                          width: MediaQuery.of(context).size.width / 2.3,
                           height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -662,29 +703,38 @@ class MenuWidgetsState extends State<MenuWidgets> {
                               SizedBox(
                                 height: 90,
                                 width: MediaQuery.of(context).size.width,
-                                child: Image.asset("assets/course/sala.jpeg",fit: BoxFit.cover,),),
+                                child: Image.asset(
+                                  "assets/course/sala.jpeg",
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                               const SizedBox(
                                 height: 10,
                               ),
-                              Text("Salas de aula",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black
-                              ),),
-
-                              Text("15 Salas de aulas",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.black
-                              ),),
+                              Text(
+                                "Salas de aula",
+                                style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                              Text(
+                                "15 Salas de aulas",
+                                style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black),
+                              ),
                             ],
                           ),
                         ),
-
                         GestureDetector(
-                          onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> const Books())),
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Books())),
                           child: Container(
-                            width: MediaQuery.of(context).size.width/2.3,
+                            width: MediaQuery.of(context).size.width / 2.3,
                             height: 150,
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -705,19 +755,23 @@ class MenuWidgetsState extends State<MenuWidgets> {
                                 ),
                                 SizedBox(
                                   height: 90,
-                                  child: Image.asset("assets/course/books.png"),),
+                                  child: Image.asset("assets/course/books.png"),
+                                ),
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                Text("Livros",style: TextStyle(
-                                    fontFamily: SettingsCki.segoeEui,
-                                    fontWeight: FontWeight.bold
-                                ),),
-
-                                Text("Ler livros",style: TextStyle(
-                                    fontFamily: SettingsCki.segoeEui,
-                                    fontWeight: FontWeight.normal
-                                ),),
+                                Text(
+                                  "Livros",
+                                  style: TextStyle(
+                                      fontFamily: SettingsCki.segoeEui,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "Ler livros",
+                                  style: TextStyle(
+                                      fontFamily: SettingsCki.segoeEui,
+                                      fontWeight: FontWeight.normal),
+                                ),
                               ],
                             ),
                           ),
@@ -726,18 +780,20 @@ class MenuWidgetsState extends State<MenuWidgets> {
                     ),
                   ),
                 ),
-
                 GestureDetector(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const CkiLocation()));
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CkiLocation()));
                   },
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 15,top: 8),
+                    padding: const EdgeInsets.only(left: 15, top: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width/2.3,
+                          width: MediaQuery.of(context).size.width / 2.3,
                           height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -758,34 +814,34 @@ class MenuWidgetsState extends State<MenuWidgets> {
                               ),
                               SizedBox(
                                 height: 90,
-                                child: Lottie.asset("assets/jsons/animation_lk15loaz.json"),),
+                                child: Lottie.asset(
+                                    "assets/jsons/animation_lk15loaz.json"),
+                              ),
                               const SizedBox(
                                 height: 10,
                               ),
-                              Text("Localização",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.bold
-                              ),),
-
-                              Text("Abra o google Map",style: TextStyle(
-                                  fontFamily: SettingsCki.segoeEui,
-                                  fontWeight: FontWeight.normal
-                              ),),
+                              Text(
+                                "Localização",
+                                style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "Abra o google Map",
+                                style: TextStyle(
+                                    fontFamily: SettingsCki.segoeEui,
+                                    fontWeight: FontWeight.normal),
+                              ),
                             ],
                           ),
                         ),
-
-
                       ],
                     ),
                   ),
                 ),
               ],
             ),
-
-
             const SizedBox(height: 15.0),
-
           ],
         ),
       ),
@@ -796,8 +852,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
     Dashboard(
         image: "assets/images/readingbook.png",
         tittle: "Classes",
-        subTittle: "Listagem de classes"
-    ),
+        subTittle: "Listagem de classes"),
   ];
 
   final List<String> imgList = [
@@ -815,70 +870,96 @@ class MenuWidgetsState extends State<MenuWidgets> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-
         ListTile(
-          onTap: (){
+          onTap: () {
             Navigator.pop(context);
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> const AreaPedagogica()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const AreaPedagogica()));
           },
           leading: ClipOval(
-              child: Image.asset("assets/images/colegio.png",width: 40,height: 40,),
+            child: Image.asset(
+              "assets/images/colegio.png",
+              width: 40,
+              height: 40,
             ),
-          title: Text("Alunos Matriculados",style: TextStyle(
-            fontFamily: SettingsCki.segoeEui,
-            color: Colors.blue[900],
-            fontWeight: FontWeight.w900,
-            fontSize: 18
-          ),),
-          subtitle: Text("Lista de todos alunos matriculados",style: TextStyle(
-            fontFamily: SettingsCki.segoeEui,
-          ),),
-
-        ),
-
-        const Divider(),
-        ListTile(
-          onTap: (){
-            Navigator.pop(context);
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> const AreaFinanceira()));
-         },
-          leading: ClipOval(
-            child: Image.asset("assets/images/money-bag.png",width: 40,height: 40,),
           ),
-          title: Text("Área Financeiras",style: TextStyle(
+          title: Text(
+            "Alunos Matriculados",
+            style: TextStyle(
+                fontFamily: SettingsCki.segoeEui,
+                color: Colors.blue[900],
+                fontWeight: FontWeight.w900,
+                fontSize: 18),
+          ),
+          subtitle: Text(
+            "Lista de todos alunos matriculados",
+            style: TextStyle(
               fontFamily: SettingsCki.segoeEui,
-              color: Colors.green[900],
-              fontWeight: FontWeight.w900,
-              fontSize: 18
-          ),),
-          subtitle: Text("Lista de cobranças",style: TextStyle(
-              fontFamily: SettingsCki.segoeEui,
-          ),),
-
+            ),
+          ),
         ),
-
         const Divider(),
-
         ListTile(
-          onTap: (){
+          onTap: () {
             Navigator.pop(context);
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePageEst()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const AreaFinanceira()));
           },
           leading: ClipOval(
-            child: Image.asset("assets/images/report.png",width: 40,height: 40,),
+            child: Image.asset(
+              "assets/images/money-bag.png",
+              width: 40,
+              height: 40,
+            ),
           ),
-          title: Text("Relatório Financeiro",style: TextStyle(
+          title: Text(
+            "Área Financeiras",
+            style: TextStyle(
+                fontFamily: SettingsCki.segoeEui,
+                color: Colors.green[900],
+                fontWeight: FontWeight.w900,
+                fontSize: 18),
+          ),
+          subtitle: Text(
+            "Lista de cobranças",
+            style: TextStyle(
               fontFamily: SettingsCki.segoeEui,
-              color: Colors.green[900],
-              fontWeight: FontWeight.w900,
-              fontSize: 18
-          ),),
-          subtitle: Text("Estatistica financeira",style: TextStyle(
-            fontFamily: SettingsCki.segoeEui,
-          ),),
-
+            ),
+          ),
         ),
-
+        const Divider(),
+        ListTile(
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => HomePageEst()));
+          },
+          leading: ClipOval(
+            child: Image.asset(
+              "assets/images/report.png",
+              width: 40,
+              height: 40,
+            ),
+          ),
+          title: Text(
+            "Relatório Financeiro",
+            style: TextStyle(
+                fontFamily: SettingsCki.segoeEui,
+                color: Colors.green[900],
+                fontWeight: FontWeight.w900,
+                fontSize: 18),
+          ),
+          subtitle: Text(
+            "Estatistica financeira",
+            style: TextStyle(
+              fontFamily: SettingsCki.segoeEui,
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -890,5 +971,4 @@ class MenuWidgetsState extends State<MenuWidgets> {
       ),
     );
   }
-
 }
