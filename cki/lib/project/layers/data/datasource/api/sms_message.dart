@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 class Message{
@@ -12,7 +13,7 @@ class Message{
        "Accept": "application/json"
      };
      var body = '{"messages":[{"destinations":[{"to":"$phoneNumber"}],"from":"ServiceSMS",'
-         '"text":"O seu código de válidação de conta é : ( $code ).Digita esta chave  na tela de confirmação"}]}';
+         '"text":"Seu código de válidação de conta é : ( $code ).Digita esta chave  na tela de confirmação"}]}';
      var response = await http.post(url, headers: headers, body: body,);
      if(response.statusCode == 200 || response.statusCode == 201){
        return true;
@@ -28,21 +29,16 @@ class Message{
   Future<bool> sendSms({required String phoneNumber,required String code}) async {
     String chaveEntidade = "2cfTdJSF65E5HsK6ge6e5dY256s";
     String? baseUrl = 'https://netsms.co.ao/app/appi/';
-
-    Uri url = Uri.parse(
-        '$baseUrl?accao=enviar_sms&chave_entidade=$chaveEntidade&destinatario=${phoneNumber.replaceAll("+244", "")}&descricao_sms=O seu código de válidação de conta é : $code .Digita esta chave  na tela de confirmação');
-
+    Uri url =
+    Uri.parse('$baseUrl?accao=enviar_sms&chave_entidade=$chaveEntidade&destinatario=${phoneNumber.replaceAll("+244", "")}&descricao_sms=Seu código de válidação de conta é : $code .Digita esta chave  na tela de confirmação');
     try {
       var response = await http.post(url);
-
       if (response.statusCode == 200) {
         // Se o servidor retornar um OK (200), atualize o estado com o corpo da resposta.
-
         return true;
       } else {
         // Se o servidor não retornar um OK, lance um erro.
-        throw Exception(
-            'Falha ao enviar SMS. Código de erro: ${response.statusCode}');
+        throw Exception('Falha ao enviar SMS. Código de erro: ${response.statusCode}');
       }
     } catch (e) {
       return false;
