@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 class Message{
@@ -13,7 +12,7 @@ class Message{
        "Accept": "application/json"
      };
      var body = '{"messages":[{"destinations":[{"to":"$phoneNumber"}],"from":"ServiceSMS",'
-         '"text":"C.K.I Código de válidação de conta é : ( $code ).\\nDigita esta chave  na tela de confirmação"}]}';
+         '"text":"O seu código de válidação de conta é : ( $code ).Digita esta chave  na tela de confirmação"}]}';
      var response = await http.post(url, headers: headers, body: body,);
      if(response.statusCode == 200 || response.statusCode == 201){
        return true;
@@ -25,32 +24,30 @@ class Message{
    }
   }
 
-  Future<bool> netSmsService({required String phoneNumber,required String code}) async {
 
-    try{
-      var url = Uri.parse("https://netsms.co.ao/app/appi/");
-      var headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      };
-      var json = {
-        "mensagem":{
-          "accao": "enviar_sms",
-          "chave_entidade": "2cfTdJSF65E5HsK6ge6e5dY256s",
-          "destinatario": "+244924948647",
-          "descricao_sms": "C.K.I Código de válidação de conta é : ( $code ).\\nDigita esta chave  na tela de confirmação"
-        }
-      };
-      log("********************ssssss ${jsonDecode(json.toString())}");
-      var response = await http.post(url,headers: headers,body: json.toString());
-        log("******************** ${response.body}");
+  Future<bool> sendSms({required String phoneNumber,required String code}) async {
+    String chaveEntidade = "2cfTdJSF65E5HsK6ge6e5dY256s";
+    String? baseUrl = 'https://netsms.co.ao/app/appi/';
+
+    Uri url = Uri.parse(
+        '$baseUrl?accao=enviar_sms&chave_entidade=$chaveEntidade&destinatario=${phoneNumber.replaceAll("+244", "")}&descricao_sms=O seu código de válidação de conta é : $code .Digita esta chave  na tela de confirmação');
+
+    try {
+      var response = await http.post(url);
+
+      if (response.statusCode == 200) {
+        // Se o servidor retornar um OK (200), atualize o estado com o corpo da resposta.
+
         return true;
-    }catch(e){
-      log("******************** erro $e");
+      } else {
+        // Se o servidor não retornar um OK, lance um erro.
+        throw Exception(
+            'Falha ao enviar SMS. Código de erro: ${response.statusCode}');
+      }
+    } catch (e) {
       return false;
     }
   }
-
 
 
   void whatSapMsn({required String phoneNumber}) async {

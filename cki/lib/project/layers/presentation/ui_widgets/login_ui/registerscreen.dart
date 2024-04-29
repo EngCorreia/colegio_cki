@@ -41,13 +41,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var name = "";
   var email = "";
   Message ms = Message();
+  AuthenticationServe serve = AuthenticationServe();
 
   Future<void> getState() async {
     StudentInformation.screenState =  await serve.getLoginState();
   }
 
-
-  AuthenticationServe serve = AuthenticationServe();
   @override
   void initState() {
     super.initState();
@@ -55,7 +54,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     serve.addListener(() {
       setState(() {});
     });
-    //log("----------------- UUID ${StudentInformation.name}");
   }
 
   @override
@@ -610,7 +608,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     status.setStatus("start");
                     var code = (Random().nextInt(900000) + 100000).toString();
                     StudentInformation.codeOtp = code;
-                     await ms.netSmsService(phoneNumber: countryDial+phoneController.text ,code: code);
+                     await ms.sendSms(phoneNumber: countryDial+phoneController.text ,code: code);
                        Future.delayed(const Duration(seconds: 3),(){
                          status.setStatus("");
                        });
