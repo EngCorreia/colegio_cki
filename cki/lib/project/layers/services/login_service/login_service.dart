@@ -12,6 +12,7 @@ class AuthenticationServe extends ChangeNotifier{
 
   Future<bool> login({required String phoneNumber}) async{
     try{
+      log("------------ $phoneNumber");
       var checkStudent = await FirebaseFirestore.instance.collection("student").where("phoneNumber",isEqualTo: phoneNumber).get();
       var ss = checkStudent.docs;
       if(ss.isEmpty){

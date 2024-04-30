@@ -293,18 +293,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "417e2a6f9d83ab396ec38ff4ea5da6c254da71e4db765ad737a42af6930140b7"
+      sha256: "11e40df547d418cc0c4900a9318b26304e665da6fa4755399a9ff9efd09034b5"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.3"
-  dots_indicator:
-    dependency: transitive
-    description:
-      name: dots_indicator
-      sha256: f1599baa429936ba87f06ae5f2adc920a367b16d08f74db58c3d0f6e93bcdb5c
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.2"
+    version: "5.4.3+1"
   dropdownfield2:
     dependency: "direct main"
     description:
@@ -510,6 +502,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_dotenv:
+    dependency: "direct main"
+    description:
+      name: flutter_dotenv
+      sha256: "9357883bdd153ab78cbf9ffa07656e336b8bbb2b5a3ca596b0b27e119f7c7d77"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.1.0"
   flutter_launcher_icons:
     dependency: "direct main"
     description:
@@ -840,14 +840,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
-  introduction_screen:
-    dependency: "direct main"
-    description:
-      name: introduction_screen
-      sha256: "73965475d6b271846f81c5fce5b459546a4ea36c285408691522437fd6bbeb69"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.4"
   io:
     dependency: transitive
     description:
@@ -984,14 +976,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.3"
-  mysql1:
-    dependency: "direct main"
-    description:
-      name: mysql1
-      sha256: "68aec7003d2abc85769bafa1777af3f4a390a90c31032b89636758ff8eb839e9"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.20.0"
   nested:
     dependency: transitive
     description:
