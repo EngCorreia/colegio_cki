@@ -103,9 +103,10 @@ abstract class _AreaFinanceiraAluno with Store {
             "dia": Timestamp.now(),
             "id": myDay
           };
-          gravaFinancasAluno.set(mes);
-          pago();
-          pagoN();
+          gravaFinancasAluno.set(mes).whenComplete((){
+            pago();
+            pagoN();
+          });
 
         }else{
           paymentList.clear();

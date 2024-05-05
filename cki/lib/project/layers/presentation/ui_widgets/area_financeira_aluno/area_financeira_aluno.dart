@@ -7,7 +7,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/const_strings/user_information.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
-import 'estatistica_aluno.dart';
+import 'listas_de_despesas.dart';
+import 'propinas_aluno.dart';
 
 class FinancasAluno extends StatefulWidget {
   const FinancasAluno({super.key});
@@ -59,10 +60,8 @@ class _FinancasAlunoState extends State<FinancasAluno> {
             ),
           )
         ],
-
-
       ),
-      
+
       body: StudentInformation.status != 0 ? Observer(
         builder: (_)=>  Column(
           children: [
@@ -117,22 +116,15 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                   itemBuilder: (context,index) => ListTile(
                     onTap: (){
                       var studentId = financa.list[index]["idAluno"];
-
                      /* Navigator.push(context, MaterialPageRoute(builder: (context)=>  MoneyStudent(
                         idAluno: studentId,
                         studentName: financa.list[index]["nomeAluno"],
                       )));
-
                       */
-
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>  AlunoEstisticaFinancas(
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> MenuFinanceiroAluno(
                         idAluno: studentId,
                         studentName: financa.list[index]["nomeAluno"],
                       )));
-
-
-
-
                     },
                     leading: CircleAvatar(
                       // backgroundColor: Colors.transparent,
@@ -159,27 +151,24 @@ class _FinancasAlunoState extends State<FinancasAluno> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
-            const Icon(Icons.monetization_on_outlined,size: 60,color: Colors.green,),
+            const Icon(Icons.monetization_on_outlined,size: 60,color: Colors.blueGrey,),
             const SizedBox(
-              height: 50,
+              height: 30,
             ),
-            Text("Por favor faça login na sua conta",style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
-                fontFamily: SettingsCki.segoeEui,
-              color: Colors.black
-            ),),
-            Text("Para ter acesso a informação das suas finanças",style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-                fontFamily: SettingsCki.segoeEui,
-                color: Colors.black
-            ),),
+            Padding(
+              padding: const EdgeInsets.only(right: 10,left: 10),
+              child: Expanded(
+                child: Text("Por favor faça login na sua conta Para ter acesso aos pagamentos efectuados e aos recibos",style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15,
+                    fontFamily: SettingsCki.segoeEui,
+                  color: Colors.black
+                ),),
+              ),
+            ),
           ],
         ),
       )
-
     );
   }
 

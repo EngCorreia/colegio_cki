@@ -11,16 +11,16 @@ import 'package:intl/intl.dart';
 import '../../../domain/entities/pagamento_entity/pagamento_entity.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
 
-class AlunoEstisticaFinancas extends StatefulWidget {
+class PropinasAluno extends StatefulWidget {
   final String idAluno;
   final String studentName;
 
-  const AlunoEstisticaFinancas({super.key, required this.idAluno, required this.studentName});
+  const PropinasAluno({super.key, required this.idAluno, required this.studentName});
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<AlunoEstisticaFinancas> {
+class _HomePageState extends State<PropinasAluno> {
   int _selectedItemIndex = 2;
   var financa = AreaFinanceiraAluno();
 
@@ -33,16 +33,6 @@ class _HomePageState extends State<AlunoEstisticaFinancas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*bottomNavigationBar: Row(
-        children: [
-          buildNavBarItem(Icons.home, 0),
-          buildNavBarItem(Icons.card_giftcard, 1),
-          buildNavBarItem(Icons.camera, 2),
-          buildNavBarItem(Icons.pie_chart, 3),
-          buildNavBarItem(Icons.person, 4),
-        ],
-      ),
-      */
       body: Stack(
         children: [
           Column(
@@ -61,11 +51,14 @@ class _HomePageState extends State<AlunoEstisticaFinancas> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Icon(
-                            Icons.menu,
+                           IconButton(
+                            icon: const Icon(Icons.arrow_back),
                             color: Colors.white,
+                            onPressed: () {
+                              Navigator.pop(context);
+                          },
                           ),
-                          Text("Relatório financeiro",
+                          Text("Relatório / Propinas",
                             style: TextStyle(
                               fontFamily: SettingsCki.segoeEui,
                               fontSize: 18.0,
@@ -162,19 +155,19 @@ class _HomePageState extends State<AlunoEstisticaFinancas> {
               ),
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  padding: const EdgeInsets.symmetric(horizontal: 1),
                   color: Colors.grey.shade100,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 65),
+                    padding: const EdgeInsets.only(top: 100),
                     child: Column(
                       children: [
                         const Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
                             padding: EdgeInsets.only(left: 20),
-                            child: Text("Actividades",
+                            child: Text("Propinas",
                               style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
                             ),
@@ -194,7 +187,7 @@ class _HomePageState extends State<AlunoEstisticaFinancas> {
                                   }),
                             ),
                           ),
-                        )
+                        ),
 
                       ],
                     ),
@@ -209,7 +202,7 @@ class _HomePageState extends State<AlunoEstisticaFinancas> {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
               width: MediaQuery.of(context).size.width * 0.85,
-              height: 180,
+              height: 210,
               decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
@@ -310,7 +303,7 @@ class _HomePageState extends State<AlunoEstisticaFinancas> {
                     height: 3,
                   ),
                   Text(
-                    "Ver a estatistica periódica de ano 2023/2024",
+                    "Ver a estatistica periódica de ano 2024/2025",
                     style: TextStyle(
                       fontSize: 13,
                       fontFamily: SettingsCki.segoeEui,
@@ -354,9 +347,9 @@ class _HomePageState extends State<AlunoEstisticaFinancas> {
         //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
       },
       child: Padding(
-        padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
+        padding: const EdgeInsets.only(left: 10,right: 10,bottom: 5),
         child: Container(
-          height: 130,
+          height: 125,
           decoration: BoxDecoration(
             color: Colors.green,
             borderRadius: BorderRadius.circular(8),
@@ -415,9 +408,9 @@ class _HomePageState extends State<AlunoEstisticaFinancas> {
         //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
       },
       child: Padding(
-        padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
+        padding: const EdgeInsets.only(left: 10,right: 10,bottom: 5),
         child: Container(
-          height: 150,
+          height: 130,
           decoration: BoxDecoration(
             color: Colors.red[900],
             borderRadius: BorderRadius.circular(8),
