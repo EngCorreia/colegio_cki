@@ -26,11 +26,11 @@ class MyApp extends StatelessWidget {
       title: 'Colegio CKI',
       theme: ThemeData(
           primaryColor: Colors.white,
-          backgroundColor: Colors.white,
-          primarySwatch: Colors.orange,
           primaryIconTheme: const IconThemeData(color: Colors.black54),
-          primaryTextTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
-          textTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui))
+          primaryTextTheme: TextTheme(titleMedium: TextStyle(color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
+          textTheme: TextTheme(titleMedium: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui)),
+          primarySwatch: Colors.amber,
+         // colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange).copyWith(background: Colors.white)
       ),
       home: const IndexPage(),
       //const OnBoardingPage()

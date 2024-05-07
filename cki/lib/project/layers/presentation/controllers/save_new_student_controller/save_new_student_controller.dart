@@ -8,11 +8,14 @@ class SaveNewStudentController{
   final CreateNewStudentUseCase _createNewStudentUseCase;
   SaveNewStudentController(this._createNewStudentUseCase);
 
-  Future<void> saveStudent({required StudentDataEntity studentDataEntity,required int number,required String classe}) async{
+  Future<bool> saveStudent({required StudentDataEntity studentDataEntity,required int number,required String classe}) async{
+    bool resultSet = false;
     var result = await _createNewStudentUseCase(studentDataEntity: studentDataEntity,number: number,classe: classe);
     result.fold((error) => log("**** ${error.message}"),
             (success){
+      resultSet = success;
       ShowToast.show_message_Success("Inscrição feita com sucesso ...");
     });
+    return resultSet;
   }
 }

@@ -20,20 +20,29 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, });
+  const MyApp({
+    super.key,
+  });
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: 'Colegio CKI',
-    theme: ThemeData(
-    primaryColor: Colors.white,
-    primaryIconTheme: const IconThemeData(color: Colors.black54),
-    primaryTextTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
-    textTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui)), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange).copyWith(background: Colors.white)
-    ),
-    home: const IndexPage(),
-  //const OnBoardingPage()
-  );
+      debugShowCheckedModeBanner: false,
+      title: 'Colegio CKI',
+      theme: ThemeData(
+        primaryColor: Colors.white,
+        primaryIconTheme: const IconThemeData(color: Colors.black54),
+        primaryTextTheme: TextTheme(
+            titleMedium: TextStyle(
+                color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
+        textTheme: TextTheme(
+            titleMedium: TextStyle(
+                color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
+        primarySwatch: Colors.amber,
+        //colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange).copyWith(background: Colors.white)
+      ),
+      home: const IndexPage(),
+      //const OnBoardingPage()
+    );
   }
 }
