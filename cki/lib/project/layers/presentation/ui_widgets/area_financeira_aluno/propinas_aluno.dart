@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/estatistica_financas/transfer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -23,6 +24,7 @@ class PropinasAluno extends StatefulWidget {
 class _HomePageState extends State<PropinasAluno> {
   int _selectedItemIndex = 2;
   var financa = AreaFinanceiraAluno();
+  String get secondLogo => dotenv.env['LOGO_IMAGE_SECOND']!;
 
   @override
   void initState() {
@@ -66,9 +68,42 @@ class _HomePageState extends State<PropinasAluno> {
                               color: Colors.white,
                             ),
                           ),
-                          const Icon(
-                            Icons.notifications,
-                            color: Colors.white,
+                          Stack(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.all(11),
+                                child: Icon(
+                                  Icons.notifications,
+                                  size: 26,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Observer(
+                                builder: (_) => financa.paymentNaoPago.isNotEmpty
+                                    ? Positioned(top: 6, right: 6,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(1),
+                                    decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    constraints: const BoxConstraints(
+                                      minWidth: 18,
+                                      minHeight: 18,
+                                    ),
+                                    child: Text(
+                                      "${financa.paymentNaoPago.length}",
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                )
+                                    : Container(),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -96,7 +131,7 @@ class _HomePageState extends State<PropinasAluno> {
                             ),
                             padding: const EdgeInsets.all(5),
                             child: CircleAvatar(
-                              child: Image.asset("assets/images/image.png"),
+                              child: Image.asset(secondLogo),
                             ),
                           ),
                           const SizedBox(

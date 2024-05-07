@@ -1,6 +1,6 @@
 
 import 'package:get_it/get_it.dart';
-
+import 'package:remote/remote.dart';
 final GetIt locator = GetIt.I;
 void setupLocator(String? baseURL, {String? enviroment}) {
   //locator.registerLazySingleton(() => NavigationService());
@@ -16,7 +16,7 @@ void setupLocator(String? baseURL, {String? enviroment}) {
 
   //CORE
   if (enviroment == 'dev' || enviroment == 'prd') {
-    //locator.registerLazySingleton<IRemote>(() => RemoteImplementation(baseURL!));
+    locator.registerLazySingleton<IRemote>(() => RemoteImplementation(baseURL!));
     //locator.registerLazySingleton<ILocalDatabase>(() => LocalDatabaseImplementation(locator()));
     //locator.registerLazySingleton<ILocalStorage>(() => LocalStorageImplementation());
   }

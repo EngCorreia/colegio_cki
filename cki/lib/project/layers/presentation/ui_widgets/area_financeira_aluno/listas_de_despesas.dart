@@ -2,6 +2,7 @@ import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/propina_atl.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/propinas_aluno.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
 
@@ -18,6 +19,7 @@ class MenuFinanceiroAluno extends StatefulWidget {
 
 class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
   var financa = AreaFinanceiraAluno();
+  String get uniformLogo => dotenv.env['UNIFORME_LOGO']!;
 
   @override
   void initState() {
@@ -63,7 +65,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             ),
                           ),
                           const Icon(
-                            Icons.notifications,
+                            Icons.payment,
                             color: Colors.white,
                           ),
                         ],
@@ -399,7 +401,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                         width: 10,
                       ),
                       Text(
-                        "PAGAMENTOS DOS LIVROS",
+                        "PAGAMENTO DE LIVROS",
                         style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.bold,
@@ -457,16 +459,16 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                           borderRadius: BorderRadius.circular(40.0),
                         ),
                         padding: const EdgeInsets.all(5),
-                        child: const CircleAvatar(
+                        child: CircleAvatar(
                           backgroundImage:
-                              AssetImage("assets/course/sala.jpeg"), //
+                              AssetImage(uniformLogo), //
                         ),
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        "PAGAMENTO DO UNIFORME",
+                        "PAGAMENTO DE UNIFORME",
                         style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.bold,

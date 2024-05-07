@@ -1,6 +1,7 @@
 
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -8,7 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
 import 'listas_de_despesas.dart';
-import 'propinas_aluno.dart';
+
 
 class FinancasAluno extends StatefulWidget {
   const FinancasAluno({super.key});
@@ -20,6 +21,7 @@ class FinancasAluno extends StatefulWidget {
 class _FinancasAlunoState extends State<FinancasAluno> {
 
   var financa = AreaFinanceiraAluno();
+  String get secondLogo => dotenv.env['LOGO_IMAGE_SECOND']!;
   
   @override
   void initState() {
@@ -56,7 +58,7 @@ class _FinancasAlunoState extends State<FinancasAluno> {
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
               // backgroundColor: Colors.transparent,
-              child: Image.asset("assets/images/image.png"),
+              child: Image.asset(secondLogo),
             ),
           )
         ],
