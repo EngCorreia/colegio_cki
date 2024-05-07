@@ -101,8 +101,8 @@ class _FinancasAlunoState extends State<FinancasAluno> {
             ),
 
             Expanded(
-              child: financa.list.isEmpty ? Center(
-                child: Column(
+              child: financa.list.isEmpty ? const Center(
+                child: CircularProgressIndicator()  /*Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -112,7 +112,7 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                       fontFamily: SettingsCki.segoeEui,
                     ),)
                   ],
-                ),
+                )*/,
               ): ListView.builder(
                   itemCount: financa.list.length,
                   itemBuilder: (context,index) => ListTile(

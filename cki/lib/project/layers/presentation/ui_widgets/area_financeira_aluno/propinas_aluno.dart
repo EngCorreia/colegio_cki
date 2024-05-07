@@ -377,6 +377,7 @@ class _HomePageState extends State<PropinasAluno> {
 
 
   Widget paymentUI({required Payment payment}){
+    final DateFormat formatter = DateFormat('dd-MMM-yyyy  HH:mm');
     return  payment.status != 0 ? GestureDetector(
       onTap: () async {
         //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
@@ -388,7 +389,6 @@ class _HomePageState extends State<PropinasAluno> {
           decoration: BoxDecoration(
             color: Colors.green,
             borderRadius: BorderRadius.circular(8),
-
           ),
           child: Center(
             child:  Padding(
@@ -419,7 +419,7 @@ class _HomePageState extends State<PropinasAluno> {
                     ],
                   ),
 
-                  Text("Data: ${payment.date.toDate()}",style: TextStyle(
+                  Text("Data de pagamento: ${formatter.format(payment.date.toDate())}",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.normal,
                       color: Colors.white,
@@ -480,7 +480,7 @@ class _HomePageState extends State<PropinasAluno> {
                     ],
                   ),
 
-                  Text("Data: ${payment.date.toDate()}",style: TextStyle(
+                  Text("Data/criação: ${formatter.format(payment.date.toDate())}",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.normal,
                       color: Colors.white,
