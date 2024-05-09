@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,7 +19,7 @@ class StudentInformationUi extends StatefulWidget {
 }
 
 class _StudentInformationUiState extends State<StudentInformationUi> {
-
+  String get atlImages => dotenv.env['ATL_IMAGES']!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,6 +127,69 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
                         const SizedBox(width: 20,),
 
                         Text("Ver Turma",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white,
+                            fontSize: 20
+                        ),),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            GestureDetector(
+              onTap: () async {
+                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
+                child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.orange[500],
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black54,
+                        blurRadius: 1,
+                        spreadRadius: 1,
+                        //offset: const Offset(2, 2),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 10,),
+                        Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            //borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black54,
+                                blurRadius: 1,
+                                spreadRadius: 1,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child:  Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(atlImages),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(width: 20,),
+
+                        Text("Inscrever-se no ATL",style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.normal,
                             color: Colors.white,

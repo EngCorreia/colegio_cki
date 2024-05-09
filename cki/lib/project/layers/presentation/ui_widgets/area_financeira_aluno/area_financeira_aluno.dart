@@ -142,7 +142,45 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                         fontFamily: SettingsCki.segoeEui,
                         fontWeight: FontWeight.normal,
                         color: Colors.lightBlueAccent
-                    ),),
+                    ),
+                    ),
+
+                    trailing:   Stack(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(11),
+                          child: Icon(
+                            Icons.notifications,
+                            size: 26,
+                            color: Colors.blueGrey,
+                          ),
+                        ),
+                        Positioned(
+                            top: 6,
+                            right: 6,
+                            child: Container(
+                              padding: const EdgeInsets.all(1),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              constraints: const BoxConstraints(
+                                minWidth: 18,
+                                minHeight: 18,
+                              ),
+                              child: Text(
+                                "${financa.paymentNaoPago.length}",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          )
+
+                      ],
+                    ),
                   )
               ),
             ),

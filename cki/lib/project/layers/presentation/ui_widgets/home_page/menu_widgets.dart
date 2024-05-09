@@ -1,34 +1,21 @@
-import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_snackbar_plus/flutter_snackbar_plus.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:lottie/lottie.dart';
-
 import '../../../core/configuration/configuration.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
 import '../../../services/login_service/login_service.dart';
 import '../../controllers/login_controller/controller_login.dart';
 import '../../controllers/update_student_collection/update_student_collection.dart';
-import '../about_us/about_us.dart';
 import '../area_financeira/area_financeira.dart';
 import '../area_pedagogica/area_pedagogica.dart';
 import '../books/books.dart';
 import '../calendary_screen/calendar_screen.dart';
-import '../chat_ui/chat_ui.dart';
 import '../classroom_ui/classroom.dart';
-import '../contacts/contact_ui.dart';
 import '../course/screens/product/products_screen.dart';
-import '../equipe_list/equipe_list.dart';
 import '../estatistica_financas/home_estatistica.dart';
 import '../googleMap/cki_location.dart';
-import '../login_ui/web_view.dart';
-import '../notification_student/notification.dart';
 import '../teachers_ui/list_of_teachers/read_teachers.dart';
 
 class MenuWidgets extends StatefulWidget {
@@ -98,32 +85,6 @@ class MenuWidgetsState extends State<MenuWidgets> {
         .toList();
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.orange[400],
-        title: Text(
-          "Colégio Kalabo Internacional",
-          style: TextStyle(
-              color: Colors.white,
-              fontFamily: SettingsCki.segoeEui,
-              fontSize: 16),
-        ),
-        elevation: 0,
-        leading: const Icon(Icons.home, color: Colors.white),
-        /*actions: [
-          InkWell(
-            onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>  const NotificationUi())),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                backgroundColor: Colors.grey[300],
-                child: Icon(FontAwesomeIcons.bell,color: Colors.orange[900]),
-              ),
-            ),
-          )
-        ],
-
-        */
-      ),
 
       /*
       drawer: Drawer(
@@ -327,7 +288,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
         child: Column(
           children: [
             const SizedBox(
-              height: 10,
+              height: 28,
             ),
             CarouselSlider(
               items: imageSliders,

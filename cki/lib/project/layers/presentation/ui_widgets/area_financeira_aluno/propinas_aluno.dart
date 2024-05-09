@@ -622,7 +622,7 @@ class _HomePageState extends State<PropinasAluno> {
       onTap: () => Navigator.of(context).push(
           MaterialPageRoute(builder: (BuildContext context) => TransferPage())),
       child: Container(
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         height: 90,
         width: 85,
         decoration: BoxDecoration(
@@ -634,13 +634,13 @@ class _HomePageState extends State<PropinasAluno> {
               icon,
               color: iconColor,
             ),
-            SizedBox(
+           const SizedBox(
               height: 5,
             ),
             Text(
               title,
               style:
-              TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
+              const TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
             )
           ],
         ),
