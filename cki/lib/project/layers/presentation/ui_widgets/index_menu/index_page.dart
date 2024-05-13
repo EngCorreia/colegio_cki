@@ -8,8 +8,6 @@ import '../../../core/local_notification_service/local_notification_service.dart
 import '../area_financeira_aluno/area_financeira_aluno.dart';
 import '../home_page/menu_widgets.dart';
 import '../login_ui/registerscreen.dart';
-import '../money_student/money_student.dart';
-import '../notification_student/notification.dart';
 import '../student_information/student_information.dart';
 
 class IndexPage extends StatefulWidget {

@@ -1,15 +1,11 @@
 
-import 'dart:developer';
 import 'dart:io';
-
 import 'package:cki/project/layers/core/show_toast_message/show_toast_message.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/nova_matricula/read_file.dart';
-import 'package:dropdownfield2/dropdownfield2.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 
