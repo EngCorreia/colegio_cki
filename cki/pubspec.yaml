@@ -52,7 +52,6 @@ dependencies:
   file_picker: ^3.0.0
   open_file: ^3.3.2
   path_provider:
-  #mysql1: ^0.20.0
   either_dart:
   dartz: ^0.10.1
   get_it: ^7.2.0
@@ -72,6 +71,8 @@ dependencies:
   flutter_svg: ^1.1.0 #it helps us to use SVG in our app
   #google_fonts: ^2.3.3 #this allows you to easily use any fonts from fonts.google.com in your Flutter app
 
+dependency_overrides:
+  web: ^0.4.0
 
 dev_dependencies:
   flutter_test:
@@ -128,7 +129,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-  #scripts:dart run build_runner watch --delete-conflicting-outputs
   #dart run build_runner watch --delete-conflicting-outputs
   #dart run flutter_launcher_icons:main -f flutter_launcher_icons*
   #flutter build appbundle --flavor sales -t lib/main_sales.dart

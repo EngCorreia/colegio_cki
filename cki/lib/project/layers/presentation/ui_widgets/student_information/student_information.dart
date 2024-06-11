@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../../../views/transport/transport_view.dart';
 import '../../../core/configuration/configuration.dart';
 import '../datesheet_screen/datesheet_screen.dart';
 import '../ver_turmas/ver_turmas.dart';
@@ -136,7 +137,8 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
 
             GestureDetector(
               onTap: () async {
-                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const TransportView(
+                )));
               },
               child: Padding(
                 padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),

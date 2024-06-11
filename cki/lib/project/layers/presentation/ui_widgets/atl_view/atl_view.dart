@@ -20,7 +20,7 @@ class _ListStudentAtlState extends State<ListStudentAtl> {
   @override
   void initState() {
     super.initState();
-    log("*********************** ${StudentInformation.status}");
+    log("***** ${StudentInformation.status}");
     if(StudentInformation.status == 1 && StudentInformation.userID!.isNotEmpty){
       financa.leituraFilhosFinancas();
     }

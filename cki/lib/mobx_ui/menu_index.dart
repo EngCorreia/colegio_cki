@@ -5,13 +5,11 @@ part 'menu_index.g.dart';
 class BusinessFavoritePostControl = BusinessFavoritePostBase with _$BusinessFavoritePostControl;
 abstract class BusinessFavoritePostBase with Store {
 
-
   @observable
   bool? controlFavorite = false;
 
   @observable
   int? selectedIndex = 0;
-
 
   @action
   setSelectedIndex(int? value){
@@ -19,17 +17,14 @@ abstract class BusinessFavoritePostBase with Store {
       selectedIndex = value;
 
       if(selectedIndex == 0) {
-        // UserModel.intNotification = 1;
         setControlFavorite1(false);
       }
 
       if(selectedIndex == 1) {
-        //  UserModel.intNotification = 1;
         setControlFavorite1(true);
       }
 
       if(selectedIndex == 2) {
-        //  UserModel.intNotification = 1;
         setControlFavorite1(false);
       }
     }else{
@@ -43,7 +38,6 @@ abstract class BusinessFavoritePostBase with Store {
       controlFavorite = true;
     }
   }
-
 
   @action
   setControlFavorite1(bool? value){

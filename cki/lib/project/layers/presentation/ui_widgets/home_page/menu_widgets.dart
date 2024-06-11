@@ -284,12 +284,11 @@ class MenuWidgetsState extends State<MenuWidgets> {
                 )
               : Container()),
 
-      body: SingleChildScrollView(
-        child: SafeArea(
+      body: SafeArea(
           child: Column(
             children: [
               const SizedBox(
-                height: 15,
+                height: 10,
               ),
                 CarouselSlider(
                 items: imageSliders,
@@ -383,7 +382,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                 ],
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
           
               /*
@@ -403,411 +402,416 @@ class MenuWidgetsState extends State<MenuWidgets> {
                   ),
               ),
             ),
-          
+
             */
-          
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        GestureDetector(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Teachers())),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width / 2.3,
-                            height: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.5),
-                                  blurRadius: 1,
-                                  spreadRadius: 1,
-                                  // offset: const Offset(2, 2),
+
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            GestureDetector(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Teachers())),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width / 2.3,
+                                //height: 155,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.5),
+                                      blurRadius: 1,
+                                      spreadRadius: 1,
+                                      // offset: const Offset(2, 2),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                const SizedBox(
-                                  height: 6,
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
+                                    SizedBox(
+                                      height: 90,
+                                      child:
+                                          Image.asset("assets/course/teacher1.png"),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "Professores",
+                                      style: TextStyle(
+                                          fontFamily: SettingsCki.segoeEui,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                    Text(
+                                      "Conheça nossos prof..",
+                                      style: TextStyle(
+                                          fontFamily: SettingsCki.segoeEui,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(
-                                  height: 90,
-                                  child:
-                                      Image.asset("assets/course/teacher1.png"),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Professores",
-                                  style: TextStyle(
-                                      fontFamily: SettingsCki.segoeEui,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                Text(
-                                  "Conheça nossos prof..",
-                                  style: TextStyle(
-                                      fontFamily: SettingsCki.segoeEui,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.black),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ProductsScreen())),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width / 2.3,
-                            height: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.5),
-                                  blurRadius: 1,
-                                  spreadRadius: 1,
-                                  // offset: const Offset(2, 2),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                const SizedBox(
-                                  height: 6,
-                                ),
-                                SizedBox(
-                                  height: 90,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Image.asset(
-                                    "assets/course/cursos1.png",
-                                    width: 200,
-                                    height: 200,
-                                    fit: BoxFit.cover,
-                                    filterQuality: FilterQuality.high,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Classe",
-                                  style: TextStyle(
-                                      fontFamily: SettingsCki.segoeEui,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  "Saíbas sobre classe",
-                                  style: TextStyle(
-                                      fontFamily: SettingsCki.segoeEui,
-                                      fontWeight: FontWeight.normal),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        GestureDetector(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const CalendarScreen())),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width / 2.3,
-                            height: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.5),
-                                  blurRadius: 1,
-                                  spreadRadius: 1,
-                                  // offset: const Offset(2, 2),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                const SizedBox(
-                                  height: 6,
-                                ),
-                                SizedBox(
-                                  height: 90,
-                                  child: Image.asset(
-                                      "assets/classRoom/atl_logo.png"),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Calendario ATL",
-                                  style: TextStyle(
-                                      fontFamily: SettingsCki.segoeEui,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                Text(
-                                  "Ver calendario",
-                                  style: TextStyle(
-                                      fontFamily: SettingsCki.segoeEui,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.black),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const CalendarScreen())),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width / 2.3,
-                            height: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.5),
-                                  blurRadius: 1,
-                                  spreadRadius: 1,
-                                  // offset: const Offset(2, 2),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                const SizedBox(
-                                  height: 6,
-                                ),
-                                SizedBox(
-                                  height: 90,
-                                  child:
-                                      Image.asset("assets/course/calendario.png"),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Calendario",
-                                  style: TextStyle(
-                                      fontFamily: SettingsCki.segoeEui,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                Text(
-                                  "Ver calendario",
-                                  style: TextStyle(
-                                      fontFamily: SettingsCki.segoeEui,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.black),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ClassRoom())),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width / 2.3,
-                            height: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.5),
-                                  blurRadius: 1,
-                                  spreadRadius: 1,
-                                  // offset: const Offset(2, 2),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                const SizedBox(
-                                  height: 0,
-                                ),
-                                SizedBox(
-                                  height: 90,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Image.asset(
-                                    "assets/course/sala.jpeg",
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Salas de aula",
-                                  style: TextStyle(
-                                      fontFamily: SettingsCki.segoeEui,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                Text(
-                                  "15 Salas de aulas",
-                                  style: TextStyle(
-                                      fontFamily: SettingsCki.segoeEui,
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.black),
-                                ),
-                              ],
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Books())),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width / 2.3,
-                              height: 150,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.5),
-                                    blurRadius: 1,
-                                    spreadRadius: 1,
-                                    // offset: const Offset(2, 2),
-                                  ),
-                                ],
-                              ),
-                              child: Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 6,
-                                  ),
-                                  SizedBox(
-                                    height: 90,
-                                    child: Image.asset("assets/course/books.png"),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "Livros",
-                                    style: TextStyle(
-                                        fontFamily: SettingsCki.segoeEui,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "Ler livros",
-                                    style: TextStyle(
-                                        fontFamily: SettingsCki.segoeEui,
-                                        fontWeight: FontWeight.normal),
-                                  ),
-                                ],
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CkiLocation()));
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15, top: 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width / 2.3,
-                            height: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.5),
-                                  blurRadius: 1,
-                                  spreadRadius: 1,
-                                  // offset: const Offset(2, 2),
+                            GestureDetector(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const ProductsScreen())),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width / 2.3,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.5),
+                                      blurRadius: 1,
+                                      spreadRadius: 1,
+                                      // offset: const Offset(2, 2),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
+                                    SizedBox(
+                                      height: 90,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: Image.asset(
+                                        "assets/course/cursos1.png",
+                                        width: 200,
+                                        height: 200,
+                                        fit: BoxFit.cover,
+                                        filterQuality: FilterQuality.high,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "Classe",
+                                      style: TextStyle(
+                                          fontFamily: SettingsCki.segoeEui,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      "Saíbas sobre classe",
+                                      style: TextStyle(
+                                          fontFamily: SettingsCki.segoeEui,
+                                          fontWeight: FontWeight.normal),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            child: Column(
-                              children: [
-                                const SizedBox(
-                                  height: 6,
-                                ),
-                                SizedBox(
-                                  height: 90,
-                                  child: Lottie.asset(
-                                      "assets/jsons/animation_lk15loaz.json"),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Localização",
-                                  style: TextStyle(
-                                      fontFamily: SettingsCki.segoeEui,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  "Abra o google Map",
-                                  style: TextStyle(
-                                      fontFamily: SettingsCki.segoeEui,
-                                      fontWeight: FontWeight.normal),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            GestureDetector(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const CalendarScreen())),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width / 2.3,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.5),
+                                      blurRadius: 1,
+                                      spreadRadius: 1,
+                                      // offset: const Offset(2, 2),
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
+                                    SizedBox(
+                                      height: 90,
+                                      child: Image.asset(
+                                          "assets/classRoom/atl_logo.png"),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "Calendario ATL",
+                                      style: TextStyle(
+                                          fontFamily: SettingsCki.segoeEui,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                    Text(
+                                      "Ver calendario",
+                                      style: TextStyle(
+                                          fontFamily: SettingsCki.segoeEui,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const CalendarScreen())),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width / 2.3,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.5),
+                                      blurRadius: 1,
+                                      spreadRadius: 1,
+                                      // offset: const Offset(2, 2),
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
+                                    SizedBox(
+                                      height: 90,
+                                      child:
+                                          Image.asset("assets/course/calendario.png"),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "Calendario",
+                                      style: TextStyle(
+                                          fontFamily: SettingsCki.segoeEui,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                    Text(
+                                      "Ver calendario",
+                                      style: TextStyle(
+                                          fontFamily: SettingsCki.segoeEui,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ClassRoom())),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width / 2.3,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.5),
+                                      blurRadius: 1,
+                                      spreadRadius: 1,
+                                      // offset: const Offset(2, 2),
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 0,
+                                    ),
+                                    SizedBox(
+                                      height: 90,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: Image.asset(
+                                        "assets/course/sala.jpeg",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "Salas de aula",
+                                      style: TextStyle(
+                                          fontFamily: SettingsCki.segoeEui,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                    Text(
+                                      "15 Salas de aulas",
+                                      style: TextStyle(
+                                          fontFamily: SettingsCki.segoeEui,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Books())),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width / 2.3,
+                                  height: 150,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.5),
+                                        blurRadius: 1,
+                                        spreadRadius: 1,
+                                        // offset: const Offset(2, 2),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      const SizedBox(
+                                        height: 6,
+                                      ),
+                                      SizedBox(
+                                        height: 90,
+                                        child: Image.asset("assets/course/books.png"),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        "Livros",
+                                        style: TextStyle(
+                                            fontFamily: SettingsCki.segoeEui,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        "Ler livros",
+                                        style: TextStyle(
+                                            fontFamily: SettingsCki.segoeEui,
+                                            fontWeight: FontWeight.normal),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const CkiLocation()));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 15, top: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width / 2.3,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.5),
+                                      blurRadius: 1,
+                                      spreadRadius: 1,
+                                      // offset: const Offset(2, 2),
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
+                                    SizedBox(
+                                      height: 90,
+                                      child: Lottie.asset(
+                                          "assets/jsons/animation_lk15loaz.json"),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "Localização",
+                                      style: TextStyle(
+                                          fontFamily: SettingsCki.segoeEui,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      "Abra o google Map",
+                                      style: TextStyle(
+                                          fontFamily: SettingsCki.segoeEui,
+                                          fontWeight: FontWeight.normal),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 12.0),
+                    ],
                   ),
-                ],
+                ),
               ),
-              const SizedBox(height: 15.0),
+
             ],
           ),
         ),
-      ),
+
     );
   }
 
