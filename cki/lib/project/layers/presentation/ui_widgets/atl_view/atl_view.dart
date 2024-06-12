@@ -55,8 +55,7 @@ class _ListStudentAtlState extends State<ListStudentAtl> {
             ),
           )
         ],
-
-
+        
       ),
 
       body: StudentInformation.status != 0 ? Observer(

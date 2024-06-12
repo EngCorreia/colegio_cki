@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:lottie/lottie.dart';
+import '../../../../../views/teachers/atribuicao_notas/teachers_view.dart';
 import '../../../core/configuration/configuration.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
@@ -837,6 +838,39 @@ class MenuWidgetsState extends State<MenuWidgets> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+
+        ListTile(
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const TeacherView()));
+          },
+          leading: ClipOval(
+            child: Image.asset(
+              "assets/images/colegio.png",
+              width: 40,
+              height: 40,
+            ),
+          ),
+          title: Text(
+            "Atribuição de notas",
+            style: TextStyle(
+                fontFamily: SettingsCki.segoeEui,
+                color: Colors.blue[900],
+                fontWeight: FontWeight.w900,
+                fontSize: 18),
+          ),
+          subtitle: Text(
+            "Atribuir notas",
+            style: TextStyle(
+              fontFamily: SettingsCki.segoeEui,
+            ),
+          ),
+        ),
+        const Divider(),
+
         ListTile(
           onTap: () {
             Navigator.pop(context);
