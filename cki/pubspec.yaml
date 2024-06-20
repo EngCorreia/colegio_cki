@@ -48,7 +48,8 @@ dependencies:
   awesome_notifications: ^0.7.4+1
   flutter_staggered_grid_view: ^0.4.0
   flutter_speed_dial: ^4.6.6
-  flutter_launcher_icons: ^0.10.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.4.0
   file_picker: ^3.0.0
   open_file: ^3.3.2
   path_provider:
@@ -71,8 +72,28 @@ dependencies:
   flutter_svg: ^1.1.0 #it helps us to use SVG in our app
   #google_fonts: ^2.3.3 #this allows you to easily use any fonts from fonts.google.com in your Flutter app
 
-dependency_overrides:
-  web: ^0.4.0
+#dependency_overrides:
+  #web: ^0.4.0
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: "assets/images/logoRemove.png"
+
+  android: true
+  ios: true
+  web: false
+  fullscreen: true
+  ios_content_mode: center
+  android_12:
+    color: "#FFFFFF"
+    icon_background_color: "#FFFFFF"
+    image: "assets/images/logoRemove.png"
+
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logoRemove.png"
 
 dev_dependencies:
   flutter_test:
@@ -132,4 +153,6 @@ flutter:
   #dart run build_runner watch --delete-conflicting-outputs
   #dart run flutter_launcher_icons:main -f flutter_launcher_icons*
   #flutter build appbundle --flavor sales -t lib/main_sales.dart
+  #flutter pub get
+  #flutter pub run flutter_launcher_icons:main - pubspec.yaml
   #keytool -genkey -alias key -keyalg RSA -keypass shareinemor1 -storepass shareinemor1 -validity 10000 -keystore keystore.jks

@@ -13,7 +13,8 @@
    <application
         android:label="cki"
         android:name="${applicationName}"
-        android:icon="@mipmap/image">
+       android:icon="@mipmap/launcher_icon"
+       android:roundIcon="@mipmap/launcher_icon">
 
        <meta-data
            android:name="com.google.android.geo.API_KEY"

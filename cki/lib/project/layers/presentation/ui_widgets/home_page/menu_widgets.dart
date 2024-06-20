@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:lottie/lottie.dart';
+import '../../../../../views/teacher/list_of_teachers/read_teachers.dart';
 import '../../../../../views/teachers/atribuicao_notas/teachers_view.dart';
 import '../../../core/configuration/configuration.dart';
 import '../../../core/const_strings/user_information.dart';
@@ -17,7 +18,7 @@ import '../classroom_ui/classroom.dart';
 import '../course/screens/product/products_screen.dart';
 import '../estatistica_financas/home_estatistica.dart';
 import '../googleMap/cki_location.dart';
-import '../teachers_ui/list_of_teachers/read_teachers.dart';
+
 
 class MenuWidgets extends StatefulWidget {
   const MenuWidgets({super.key});
@@ -419,7 +420,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
                               onTap: () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const Teachers())),
+                                      builder: (context) => const ReadTeachersView())),
                               child: Container(
                                 width: MediaQuery.of(context).size.width / 2.3,
                                 //height: 155,

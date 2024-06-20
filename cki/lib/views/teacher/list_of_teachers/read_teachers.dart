@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../../core/configuration/configuration.dart';
-import '../../../../domain/entities/teachers_entity/teachers_entity.dart';
-import '../../../controllers/login_controller/controller_login.dart';
-import '../../../controllers/read_teachers_controller/read_teachers_controller.dart';
-import '../add_teacher/add_teacher.dart';
+import '../../../project/layers/core/configuration/configuration.dart';
+import '../../../project/layers/domain/entities/teachers_entity/teachers_entity.dart';
+import '../../../project/layers/presentation/controllers/login_controller/controller_login.dart';
+import '../../../project/layers/presentation/controllers/read_teachers_controller/read_teachers_controller.dart';
+import '../add_teacher/add_teacher_view.dart';
 
-class Teachers extends StatefulWidget {
-  const Teachers({Key? key}) : super(key: key);
+class ReadTeachersView extends StatefulWidget {
+  const ReadTeachersView({Key? key}) : super(key: key);
 
   @override
-  State<Teachers> createState() => _TeachersState();
+  State<ReadTeachersView> createState() => _TeachersState();
 }
 
-class _TeachersState extends State<Teachers> {
+class _TeachersState extends State<ReadTeachersView> {
 
   final _teacherListController = GetIt.I.get<ReadTeachersController>();
   final loginController = LoginControl();
@@ -79,7 +79,7 @@ class _TeachersState extends State<Teachers> {
       floatingActionButton: Observer(
         builder: (_)=> loginController.newStatusUser == 1 ? FloatingActionButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> AddTeacher(teachersEntity: TeachersEntity(),)));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> AddTeacherView(teachersEntity: TeachersEntity(),)));
           },
           child: const Icon(Icons.add,color: Colors.white,size: 30,),
         ):Container(),

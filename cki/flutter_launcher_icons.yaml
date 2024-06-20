@@ -1,0 +1,13 @@
+icons_launcher:
+  image_path: "assets/images/logoRemove.png"
+  platforms:
+    android:
+      enable: true
+      image_path: "assets/images/logoRemove.png"
+      adaptive_monochrome_image: "assets/images/logoRemove.png"
+      adaptive_round_image: "assets/images/logoRemove.png"
+
+
+    ios:
+      enable: true
+      image_path: "assets/images/logoRemove.png"
