@@ -2,8 +2,10 @@ import 'dart:developer';
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import '../../../core/const_strings/user_information.dart';
-import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
+
+import '../../project/layers/core/const_strings/user_information.dart';
+import '../../project/layers/presentation/controllers/financa_aluno_controller/financa_alunos_controller.dart';
+
 
 
 class ListStudentAtl extends StatefulWidget {

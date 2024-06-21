@@ -57,7 +57,7 @@ class AssignmentButton extends StatelessWidget {
         child: Center(
           child: Text(
             title,
-            style: Theme.of(context).textTheme.subtitle2
+            style: const TextStyle(color: Colors.white)
           ),
         ),
       ),

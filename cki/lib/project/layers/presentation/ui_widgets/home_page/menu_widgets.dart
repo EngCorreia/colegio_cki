@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../../views/teacher/list_of_teachers/read_teachers.dart';
-import '../../../../../views/teachers/atribuicao_notas/teachers_view.dart';
+import '../../../../../views/teachers/listagem_de_turmas_prof/listagem_turma_view.dart';
 import '../../../core/configuration/configuration.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../../domain/entities/dashboard_entity/dashboard_entity.dart';
@@ -71,9 +71,8 @@ class MenuWidgetsState extends State<MenuWidgets> {
                         horizontal: 20,
                         vertical: 10,
                       ),
-                      child: Text(
-                        ' ${imgList.indexOf(item) + 1} Imagem',
-                        style: const TextStyle(
+                      child: const Text('',
+                        style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
@@ -846,7 +845,7 @@ class MenuWidgetsState extends State<MenuWidgets> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const TeacherView()));
+                    builder: (context) => const ListTeacherClassView()));
           },
           leading: ClipOval(
             child: Image.asset(
