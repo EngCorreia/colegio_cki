@@ -1,3 +1,4 @@
+import 'package:cki/project/layers/core/show_toast_message/show_toast_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:stacked/stacked.dart';
@@ -120,204 +121,217 @@ class TeacherClassStudentView extends HookWidget {
                       itemCount: model.alunonsList.length,
                       itemBuilder: (context,index)=> ListTile(
                         onTap: (){
-                            showDialog(context: context, builder: (context)=> AlertDialog(
-                              title: Text("Atribuição de notas",style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: SettingsCki.segoeEui
-                              ),),
-                              content: Form(
-                                key: formKey,
-                                child: SizedBox(
-                                  height: 270,
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          height: 30,
-                                          decoration: BoxDecoration(
-                                            color: Colors.blue[900],
-                                            borderRadius:
-                                            BorderRadius.circular(kDefaultPadding),
-                                          ),
-                                          child:  Center(
-                                            child: Text(model.values.toString(),
-                                              style: const TextStyle(
-                                                  color: Colors.white
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        kHalfSizedBox,
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            const Text("Primeira prova"),
-                                            SizedBox(
-                                              width: 70,
-                                              height: 30,
-                                              child: TextFormField(
-                                                controller: note1,
-                                                minLines: 1,
-                                                textInputAction: TextInputAction.next,
-                                                keyboardType: TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                onChanged: (value){},
-                                                decoration: InputDecoration(
-                                                  // hintText: "nota",
-                                                  label: const Text("nota"),
-                                                  enabledBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.blue),
-                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                  disabledBorder: OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.grey.shade100),
-                                                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.blue),
-                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                  errorBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.red),
-                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                  focusedErrorBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.red),
-                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                ),
-                                    
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        kHalfSizedBox,
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            const Text("Segunda Prova"),
-                                            SizedBox(
-                                              width: 70,
-                                              height: 30,
-                                              child: TextFormField(
-                                                controller: note2,
-                                                minLines: 1,
-                                                textInputAction: TextInputAction.next,
-                                                keyboardType: TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                onChanged: (value){},
-                                                decoration: InputDecoration(
-                                                  // hintText: "nota",
-                                                  label: const Text("nota"),
-                                                  enabledBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.blue),
-                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                  disabledBorder: OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.grey.shade100),
-                                                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.blue),
-                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                  errorBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.red),
-                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                  focusedErrorBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.red),
-                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                ),
-                                    
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        kHalfSizedBox,
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            const Text("Terceira Prova"),
-                                            SizedBox(
-                                              width: 70,
-                                              height: 30,
-                                              child: TextFormField(
-                                                controller: note3,
-                                                minLines: 1,
-                                                textInputAction: TextInputAction.next,
-                                                keyboardType: TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                onChanged: (value){},
-                                                decoration: InputDecoration(
-                                                  // hintText: "nota",
-                                                  label: const Text("nota"),
-                                                  enabledBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.blue),
-                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                  disabledBorder: OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.grey.shade100),
-                                                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.blue),
-                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                  errorBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.red),
-                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                  focusedErrorBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(color: Colors.red),
-                                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                                  ),
-                                                ),
-                                    
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        kHalfSizedBox,
-                                        const Divider(),
-                                        const Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text("Média",style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16
-                                            ),),
-                                            Text("14,5",style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                                color: Colors.green
-                                            ))
-                                          ],
-                                        ),
-                                    
-                                      ],
-                                    
-                                      ),
-                                  ),
-                                ),
+                           model.verifyList();
+                           if(model.verify== true){
+                             showDialog(context: context, builder: (context)=> AlertDialog(
+                               title: Text("Atribuição de notas",style: TextStyle(
+                                   color: Colors.red,
+                                   fontSize: 18,
+                                   fontWeight: FontWeight.w500,
+                                   fontFamily: SettingsCki.segoeEui
+                               ),),
+                               content: Form(
+                                 key: formKey,
+                                 child: SizedBox(
+                                   height: 240,
+                                   child: SingleChildScrollView(
+                                     child: Column(
+                                       crossAxisAlignment: CrossAxisAlignment.start,
+                                       children: [
+                                         Container(
+                                           height: 30,
+                                           decoration: BoxDecoration(
+                                             color: Colors.blue[900],
+                                             borderRadius:
+                                             BorderRadius.circular(kDefaultPadding),
+                                           ),
+                                           child:  Center(
+                                             child: Text(model.values.toString(),
+                                               style: const TextStyle(
+                                                   color: Colors.white
+                                               ),
+                                             ),
+                                           ),
+                                         ),
+                                         kHalfSizedBox,
+                                         Row(
+                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                           children: [
+                                             const Text("Primeira prova"),
+                                             SizedBox(
+                                               width: 70,
+                                               height: 30,
+                                               child: TextFormField(
+                                                 controller: note1,
+                                                 minLines: 1,
+                                                 textInputAction: TextInputAction.next,
+                                                 keyboardType: TextInputType.number,
+                                                 textAlign: TextAlign.center,
+                                                 onChanged: (value){},
+                                                 decoration: InputDecoration(
+                                                   // hintText: "nota",
+                                                   label: const Text("nota"),
+                                                   enabledBorder: const OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.blue),
+                                                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                   disabledBorder: OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.grey.shade100),
+                                                     borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                   focusedBorder: const OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.blue),
+                                                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                   errorBorder: const OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.red),
+                                                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                   focusedErrorBorder: const OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.red),
+                                                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                 ),
 
-                              ),
-                              actions: [
-                                if ("Pending" == 'Pending')
-                                //then show button
-                                  AssignmentButton(
-                                    onPress: () {
-                                     Navigator.pop(context);
-                                    },
-                                    title: 'Anexar nota',
-                                  ),
-                              ],
+                                               ),
+                                             )
+                                           ],
+                                         ),
+                                         kHalfSizedBox,
+                                         Row(
+                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                           children: [
+                                             const Text("Segunda Prova"),
+                                             SizedBox(
+                                               width: 70,
+                                               height: 30,
+                                               child: TextFormField(
+                                                 controller: note2,
+                                                 minLines: 1,
+                                                 textInputAction: TextInputAction.next,
+                                                 keyboardType: TextInputType.number,
+                                                 textAlign: TextAlign.center,
+                                                 onChanged: (value){},
+                                                 decoration: InputDecoration(
+                                                   // hintText: "nota",
+                                                   label: const Text("nota"),
+                                                   enabledBorder: const OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.blue),
+                                                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                   disabledBorder: OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.grey.shade100),
+                                                     borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                   focusedBorder: const OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.blue),
+                                                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                   errorBorder: const OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.red),
+                                                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                   focusedErrorBorder: const OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.red),
+                                                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                 ),
 
-                            ));
+                                               ),
+                                             )
+                                           ],
+                                         ),
+                                         kHalfSizedBox,
+                                         Row(
+                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                           children: [
+                                             const Text("Terceira Prova"),
+                                             SizedBox(
+                                               width: 70,
+                                               height: 30,
+                                               child: TextFormField(
+                                                 controller: note3,
+                                                 minLines: 1,
+                                                 textInputAction: TextInputAction.next,
+                                                 keyboardType: TextInputType.number,
+                                                 textAlign: TextAlign.center,
+                                                 onChanged: (value){},
+                                                 decoration: InputDecoration(
+                                                   // hintText: "nota",
+                                                   label: const Text("nota"),
+                                                   enabledBorder: const OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.blue),
+                                                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                   disabledBorder: OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.grey.shade100),
+                                                     borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                   focusedBorder: const OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.blue),
+                                                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                   errorBorder: const OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.red),
+                                                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                   focusedErrorBorder: const OutlineInputBorder(
+                                                     borderSide: BorderSide(color: Colors.red),
+                                                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                                   ),
+                                                 ),
+
+                                               ),
+                                             )
+                                           ],
+                                         ),
+                                         kHalfSizedBox,
+                                         const Divider(),
+                                         const Row(
+                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                           children: [
+                                             Text("Média",style: TextStyle(
+                                                 fontWeight: FontWeight.w600,
+                                                 fontSize: 16
+                                             ),),
+                                             Text("14,5",style: TextStyle(
+                                                 fontWeight: FontWeight.w600,
+                                                 fontSize: 16,
+                                                 color: Colors.green
+                                             ))
+                                           ],
+                                         ),
+
+                                       ],
+
+                                     ),
+                                   ),
+                                 ),
+
+                               ),
+                               actions: [
+                                 if ("Pending" == 'Pending')
+                                 //then show button
+                                   AssignmentButton(
+                                     onPress: () {
+                                       model.atribuirNotas(
+                                         disciplina: model.values.toString(),
+                                         id: model.alunonsList[index].documentId,
+                                         primeira: double.parse(note1.text),
+                                         segunda: double.parse(note2.text),
+                                         terceira: double.parse(note3.text),
+                                       );
+                                       Navigator.pop(context);
+                                     },
+                                     title: 'Anexar nota',
+                                   ),
+                               ],
+                             )
+                             );
+                           }else{
+                             ShowToast.show_error("Não existe nota nesta disciplina");
+                           }
+                      
 
                         },
                         leading: CircleAvatar(
