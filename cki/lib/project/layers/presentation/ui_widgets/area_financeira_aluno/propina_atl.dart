@@ -1,6 +1,4 @@
 
-import 'dart:developer';
-
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/estatistica_financas/transfer.dart';
 import 'package:flutter/material.dart';

@@ -1,3 +1,5 @@
+
+
 import 'dart:developer';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -13,16 +15,29 @@ class TransportViewModel extends BaseViewModel{
   String get baseUrl => dotenv.env['BASE_URL']!;
   String get secondLogo => dotenv.env['LOGO_IMAGE_SECOND']!;
 
-  List<String> atl = [
-    "Aulas de reforço",
-    "Resolução de tarefas",
-    "Aulas de Inglês",
-    "Música",
-    "Dança",
-    "Violino",
-    "Flauta",
-    "Piano",
-    "Artes plásticas"
-  ];
+  int qtd = 1;
+  double prices = 30000;
+  double pricesTotal = 0;
 
+
+  initValue(){
+      pricesTotal = prices * qtd;
+      notifyListeners();
+  }
+
+  setAddValue(){
+    if(qtd < 9){
+      qtd = qtd + 1;
+      pricesTotal = prices * qtd;
+      notifyListeners();
+    }
+  }
+
+  setDecrementValue(){
+    if(qtd > 1){
+      pricesTotal = pricesTotal - prices;
+      qtd = qtd - 1;
+      notifyListeners();
+    }
+  }
 }

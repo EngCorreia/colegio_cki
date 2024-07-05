@@ -1,5 +1,3 @@
-
-
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -23,6 +21,7 @@ class AddCourseViewViewModel extends BaseViewModel{
   String? get values => _value;
   List<Map<String,dynamic>> myList = [];
   List<String> disciplinaList = [
+    "Iniciação",
     "1ª_classe",
     "2ª_classe",
     "3ª_classe",

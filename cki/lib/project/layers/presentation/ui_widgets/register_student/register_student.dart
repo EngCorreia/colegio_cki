@@ -1,11 +1,6 @@
-
-
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
-
-import '../home_page/menu_widgets.dart';
 import '../index_menu/index_page.dart';
-import '../login_ui/login_ui.dart';
 import '../login_ui/registerscreen.dart';
 
 class Register extends StatefulWidget {

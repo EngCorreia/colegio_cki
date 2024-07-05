@@ -1,7 +1,4 @@
 
-
-import 'dart:developer';
-
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/core/show_toast_message/show_toast_message.dart';
 import 'package:dropdownfield2/dropdownfield2.dart';

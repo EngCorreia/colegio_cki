@@ -1,7 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
-
 import '../../datesheet_screen/data/constList.dart';
 
 class AssignmentDetailRow extends StatelessWidget {

@@ -1,16 +1,9 @@
-import 'dart:developer';
-
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/core/init_injection_dependence/init_dependence_injection.dart';
-import 'package:cki/project/layers/presentation/ui_widgets/course/screens/product/products_screen.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/index_menu/index_page.dart';
-import 'package:cki/project/layers/presentation/ui_widgets/login_ui/registerscreen.dart';
-import 'package:cki/project/layers/presentation/ui_widgets/splash_widgets/splash_widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:intl/date_symbol_data_file.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 Future<void> main() async {
   InitStateInjectionDependence();

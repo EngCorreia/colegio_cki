@@ -1377,10 +1377,10 @@ class _NewStudentState extends State<NewStudent> {
   }
 
   Widget buildFile(PlatformFile file){
-    final kb = file.size / 1024;
-    final mb = kb / 1024;
-    final fileSize = mb >= 1 ? '${mb.toStringAsFixed(2)} MB' : '${kb.toStringAsFixed(2)} KB';
-    final extension = file.extension ?? 'none';
+    //final kb = file.size / 1024;
+   // final mb = kb / 1024;
+    //final fileSize = mb >= 1 ? '${mb.toStringAsFixed(2)} MB' : '${kb.toStringAsFixed(2)} KB';
+    //final extension = file.extension ?? 'none';
     //final color = getColor(extension);
     return InkWell(
       onTap: (){

@@ -1,6 +1,4 @@
 
-import 'dart:developer';
-
 import 'package:cki/project/layers/core/show_toast_message/show_toast_message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../core/const_strings/user_information.dart';
