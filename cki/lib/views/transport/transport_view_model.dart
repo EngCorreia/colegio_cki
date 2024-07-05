@@ -16,7 +16,7 @@ class TransportViewModel extends BaseViewModel{
   String get secondLogo => dotenv.env['LOGO_IMAGE_SECOND']!;
 
   int qtd = 1;
-  double prices = 30000;
+  double prices = 25000;
   double pricesTotal = 0;
 
 

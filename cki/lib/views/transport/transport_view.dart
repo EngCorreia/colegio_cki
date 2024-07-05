@@ -1,6 +1,7 @@
 import 'package:cki/views/transport/transport_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import '../../project/layers/core/configuration/configuration.dart';
@@ -17,24 +18,23 @@ class TransportView extends StatelessWidget {
         onViewModelReady: (model){
           model.initValue();
           var locale = 'pt_BR';
-          // Crie uma instância de NumberFormat para moeda
           formatador = NumberFormat.currency(locale: locale, symbol: 'kzs');
         },
         builder: (context,model,child){
           return Scaffold(
-            body: SingleChildScrollView(
-              child: Column(
+            backgroundColor: Colors.white,
+            body: Column(
                     children: [
                       Container(
-                        height: 260,
+                        height: 270,
                         decoration: const BoxDecoration(
                           color: Colors.orangeAccent,
                           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30)),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black54,
-                              blurRadius: 2,
-                              spreadRadius: 2,
+                              blurRadius: 1,
+                              spreadRadius: 1,
                               // offset: const Offset(2, 2),
                             ),
                           ],
@@ -106,7 +106,7 @@ class TransportView extends StatelessWidget {
 
                       Container(
                         height: 45,
-                        margin: const EdgeInsets.symmetric(horizontal: 80),
+                        margin: const EdgeInsets.symmetric(horizontal: 82),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           boxShadow: const [
@@ -171,95 +171,98 @@ class TransportView extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 20,),
-                      Container(
-                        height: MediaQuery.of(context).size.height,
-                        margin: const EdgeInsets.symmetric(horizontal: 0),
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black54,
-                              blurRadius: 1,
-                              spreadRadius: 1,
-                              // offset: const Offset(2, 2),
+                     Expanded(
+                       child: Container(
+                            height: MediaQuery.of(context).size.height,
+                            margin: const EdgeInsets.symmetric(horizontal: 0),
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black54,
+                                  blurRadius: 1,
+                                  spreadRadius: 1,
+                                  // offset: Offset(4, 0),
+                                ),
+                              ],
+
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  topRight: Radius.circular(30)),
                             ),
-                          ],
+                            child: Container(
+                              child: Column(
+                                children: [
 
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30)),
-                        ),
-                        child: Container(
-                          child: Column(
-                            children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("Preço mensal: ",style: TextStyle(
+                                            fontFamily: SettingsCki.segoeEui,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600
+                                        )),
+                                        Text("${formatador.format(model.prices)}",style: TextStyle(
+                                            fontFamily: SettingsCki.segoeEui,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 16,
+                                            color: Colors.blue
+                                        ))
+                                      ],
+                                    ),
+                                  ),
 
-                              Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("Preço do transporte: ",style: TextStyle(
-                                        fontFamily: SettingsCki.segoeEui,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400
-                                    )),
-                                    Text("${formatador.format(model.prices)}",style: TextStyle(
-                                        fontFamily: SettingsCki.segoeEui,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16,
-                                        color: Colors.blue
-                                    ))
-                                  ],
-                                ),
-                              ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("Total Geral: ",style: TextStyle(
+                                            fontFamily: SettingsCki.segoeEui,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600
+                                        ),),
+                                        Text("${formatador.format(model.pricesTotal)}",style: TextStyle(
+                                            fontFamily: SettingsCki.segoeEui,
+                                            fontWeight: FontWeight.w400,
+                                          fontSize: 16,
+                                          color: Colors.blue
+                                        ))
+                                      ],
+                                    ),
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Divider(),
+                                  ),
 
-                              Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("Total Geral: ",style: TextStyle(
-                                        fontFamily: SettingsCki.segoeEui,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400
-                                    ),),
-                                    Text("${formatador.format(model.pricesTotal)}",style: TextStyle(
-                                        fontFamily: SettingsCki.segoeEui,
-                                        fontWeight: FontWeight.w400,
-                                      fontSize: 16,
-                                      color: Colors.blue
-                                    ))
-                                  ],
-                                ),
+                                  Container(
+                                    width: 190,
+                                    height: 45,
+                                    margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 30),
+                                    decoration: BoxDecoration(
+                                        color: Colors.blue[900],
+                                      borderRadius: const BorderRadius.all(Radius.circular(30)),
+                                    ),
+                                    child: const Center(
+                                      child: Text("Solicitar agora",style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.white,
+                                          fontSize: 16
+                                      )),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Divider(),
-                              ),
-
-                              Container(
-                                width: 200,
-                                height: 50,
-                                margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 30),
-                                decoration: BoxDecoration(
-                                    color: Colors.blue[900],
-                                  borderRadius: const BorderRadius.all(Radius.circular(30)),
-                                ),
-                                child: const Center(
-                                  child: Text("Solicitar agora",style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white,
-                                      fontSize: 16
-                                  )),
-                                ),
-                              ),
-                            ],
+                            )
                           ),
-                        )
-                      )
+                     ),
+
                     ],
                   ),
-            ),
+
           );
         });
   }
