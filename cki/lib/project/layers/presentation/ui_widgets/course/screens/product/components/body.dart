@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
 import '../../../../../../core/listeners/listener.dart';
 import '../../../../../../core/listeners/listenner_classe.dart';
 import '../../../../../controllers/read_course_controller/read_course_controller.dart';
@@ -22,6 +23,8 @@ class BodyCourse extends StatefulWidget {
 class _BodyCourseState extends State<BodyCourse> {
 
   final _controllerReadCourse = GetIt.I.get<ReadCourseController>();
+  // Defina a localidade desejada (ex: 'pt_BR' para português do Brasil)
+
 
   @override
   void initState() {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../../../../../domain/entities/courses_entity/coures_entitiy.dart';
 import '../../../constants.dart';
 import '../../details/details_screen.dart';
@@ -16,11 +17,13 @@ class CoursesCard extends StatefulWidget {
 
 class _CoursesCardState extends State<CoursesCard> {
 
-
+  var formatador;
   @override
   void initState() {
     super.initState();
-
+    var locale = 'pt_BR';
+    // Crie uma instância de NumberFormat para moeda
+    formatador = NumberFormat.currency(locale: locale, symbol: 'kzs');
   }
   @override
   Widget build(BuildContext context) {
@@ -104,7 +107,7 @@ class _CoursesCardState extends State<CoursesCard> {
                           topRight: Radius.circular(22),
                         ),
                       ),
-                      child: Text("\$${widget.coures.prices}",
+                      child: Text("${formatador.format(widget.coures.prices)}",
                           style: Theme.of(context).textTheme.button,
                         ),
 

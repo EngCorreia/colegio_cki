@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:lottie/lottie.dart';
+import '../../../../../views/add_cources/add_course_view.dart';
 import '../../../../../views/teacher/list_of_teachers/read_teachers.dart';
 import '../../../../../views/teachers/listagem_de_turmas_prof/listagem_turma_view.dart';
 import '../../../core/configuration/configuration.dart';
@@ -839,6 +840,37 @@ class MenuWidgetsState extends State<MenuWidgets> {
       mainAxisSize: MainAxisSize.min,
       children: [
 
+        ListTile(
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const AddCourseView()));
+          },
+          leading: ClipOval(
+            child: Image.asset(
+              "assets/images/colegio.png",
+              width: 40,
+              height: 40,
+            ),
+          ),
+          title: Text(
+            "Atribuição de Classes",
+            style: TextStyle(
+                fontFamily: SettingsCki.segoeEui,
+                color: Colors.blue[900],
+                fontWeight: FontWeight.w900,
+                fontSize: 18),
+          ),
+          subtitle: Text(
+            "Atribuir classes",
+            style: TextStyle(
+              fontFamily: SettingsCki.segoeEui,
+            ),
+          ),
+        ),
+        const Divider(),
         ListTile(
           onTap: () {
             Navigator.pop(context);
