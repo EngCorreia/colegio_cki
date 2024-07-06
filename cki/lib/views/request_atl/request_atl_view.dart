@@ -379,8 +379,7 @@ class _RequestAtlViewState extends State<RequestAtlView> {
                                 ),
 
                               InkWell(
-                                onTap: ()=> showModalBottomSheet(
-                                    context: context,
+                                onTap: ()=> showModalBottomSheet(context: context,
                                     shape: const RoundedRectangleBorder(
                                         borderRadius: BorderRadius.vertical(
                                             top: Radius.circular(20))),
