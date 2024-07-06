@@ -356,6 +356,7 @@ class _TransportViewState extends State<TransportView> {
     return ViewModelBuilder<TransportViewModel>.reactive(
         viewModelBuilder: ()=> TransportViewModel(),
         onViewModelReady: (model){
+          model.getStudent();
           model.initValue();
           var locale = 'pt_BR';
           formatador = NumberFormat.currency(locale: locale, symbol: 'kzs');

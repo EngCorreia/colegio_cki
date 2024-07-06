@@ -3,18 +3,27 @@
 import 'dart:developer';
 
 import 'package:cki/project/layers/core/show_toast_message/show_toast_message.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../project/layers/core/const_strings/const_strings.dart';
+import '../../project/layers/core/const_strings/user_information.dart';
+import '../../project/layers/presentation/controllers/financa_aluno_controller/financa_alunos_controller.dart';
 
 class TransportViewModel extends BaseViewModel{
 
   TransportViewModel(){
     log("********* Transport view Model");
+    log("***** ${StudentInformation.status}");
+
   }
+
 
   String get env => dotenv.env['ENV']!;
   String get baseUrl => dotenv.env['BASE_URL']!;
   String get secondLogo => dotenv.env['LOGO_IMAGE_SECOND']!;
+  var result = AreaFinanceiraAluno();
 
   int qtd = 1;
   double prices = 30000;
@@ -22,13 +31,7 @@ class TransportViewModel extends BaseViewModel{
 
   List<String> studentLis = [];
   List<String> studentMonthLis = [];
-  List<String> atl = [
-    "Domingos Manuel Lopes",
-    "Paulo da Costa Pedro",
-    "Gabriel Victor Chumbo",
-    "Correia António Chumbo",
-    "Carlos Lopes Manuel",
-  ];
+  List<String> atl = [];
 
   List<String> mes = [
     "Janeiro",
@@ -44,6 +47,42 @@ class TransportViewModel extends BaseViewModel{
     "Novembro",
     "Dezembro"
   ];
+
+
+  Future getStudent() async {
+    if(StudentInformation.status == 1 && StudentInformation.userID!.isNotEmpty){
+        try{
+          var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+          collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("financas")
+              .doc(StudentInformation.userID).snapshots();
+          gravaFinancas.listen((resultSet) {
+            if(resultSet.exists){
+              //list.clear();
+              Map<String,dynamic>? financas = resultSet.data();
+              if(financas != null){
+                List<dynamic> result = financas["filhos"];
+                for(var list in result){
+                  atl.add(list["nomeAluno"]);
+                  notifyListeners();
+                  log("*** ${list["nomeAluno"]}");
+                }
+                //
+
+              }
+            }
+          });
+        }catch(e){
+          log(e.toString());
+          ShowToast.show_error(e.toString());
+
+      }
+     // result.leituraFilhosFinancas();
+    }
+
+  }
+
+
+
   initValue(){
       pricesTotal = prices * studentLis.length;
       notifyListeners();
