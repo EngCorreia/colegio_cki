@@ -30,24 +30,51 @@ class TransportViewModel extends BaseViewModel{
   double pricesTotal = 0;
 
   List<String> studentLis = [];
+  List<Student> studentLisDoc = [];
   List<String> studentMonthLis = [];
   List<String> atl = [];
+  Student? student;
 
-  List<String> mes = [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro"
-  ];
 
+  Future summitStudent() async {
+
+    List<Map<String, dynamic>> jsonMap = [];
+
+    for(int index = 0; index < studentLis.length; index++){
+      var resultStudent = studentLis[index];
+      jsonMap.clear();
+      for(int value = 0; value < studentMonthLis.length; value++){
+        var list = {
+          "mes": studentMonthLis[value].toString().toLowerCase(),
+          "status": 0,
+          "valor": prices
+        };
+        jsonMap.add(list);
+      }
+
+      if(StudentInformation.status == 1 && StudentInformation.userID!.isNotEmpty){
+        try{
+          var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+          collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("transporte")
+              .doc(getId(resultStudent));
+          var json = {
+            "mensalidade": jsonMap
+          };
+          gravaFinancas.set(json);
+          ShowToast.show_message_Success("Transporte solicitado com sucesso...");
+        }catch(e){
+          log(e.toString());
+          ShowToast.show_error(e.toString());
+        }
+      }
+    }
+  }
+
+  String getId(String name){
+    student = studentLisDoc.where((element) => element.name == name).first;
+    log("***** ${student!.id}");
+    return student!.id;
+  }
 
   Future getStudent() async {
     if(StudentInformation.status == 1 && StudentInformation.userID!.isNotEmpty){
@@ -57,28 +84,23 @@ class TransportViewModel extends BaseViewModel{
               .doc(StudentInformation.userID).snapshots();
           gravaFinancas.listen((resultSet) {
             if(resultSet.exists){
-              //list.clear();
-              Map<String,dynamic>? financas = resultSet.data();
-              if(financas != null){
-                List<dynamic> result = financas["filhos"];
+              atl.clear();
+              Map<String,dynamic>? jsonList = resultSet.data();
+              if(jsonList != null){
+                List<dynamic> result = jsonList["filhos"];
                 for(var list in result){
                   atl.add(list["nomeAluno"]);
+                  studentLisDoc.add(Student(name: list["nomeAluno"],id: list["idAluno"]));
                   notifyListeners();
-                  log("*** ${list["nomeAluno"]}");
                 }
-                //
-
               }
             }
           });
         }catch(e){
           log(e.toString());
           ShowToast.show_error(e.toString());
-
       }
-     // result.leituraFilhosFinancas();
     }
-
   }
 
 
@@ -133,4 +155,27 @@ class TransportViewModel extends BaseViewModel{
       notifyListeners();
     }
   }
+
+  List<String> mes = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro"
+  ];
+}
+
+class Student{
+
+  final String name;
+  final String id;
+
+  Student({required this.name, required this.id});
 }

@@ -567,7 +567,7 @@ class _TransportViewState extends State<TransportView> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Text("Meses qtd (${model.studentMonthLis.length})",
+                                      child: Text("Meses (${model.studentMonthLis.length})",
                                         style: TextStyle(
                                             fontFamily: SettingsCki.segoeEui,
                                             fontWeight: FontWeight.w600,
@@ -731,20 +731,24 @@ class _TransportViewState extends State<TransportView> {
                           ),
                         ),
               
-                        Container(
-                          //width: 190,
-                          height: 45,
-                          margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 30),
-                          decoration: BoxDecoration(
-                            color: Colors.blue[900],
-                            borderRadius: const BorderRadius.all(Radius.circular(30)),
-                          ),
-                          child: const Center(
-                            child: Text("Solicitar agora",style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                                fontSize: 16
-                            )),
+                        InkWell(
+                          onTap: (){
+                            model.summitStudent();
+                          },
+                          child: Container(
+                            height: 45,
+                            margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 30),
+                            decoration: BoxDecoration(
+                              color: Colors.blue[900],
+                              borderRadius: const BorderRadius.all(Radius.circular(30)),
+                            ),
+                            child: const Center(
+                              child: Text("Solicitar agora",style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                  fontSize: 16
+                              )),
+                            ),
                           ),
                         ),
               
