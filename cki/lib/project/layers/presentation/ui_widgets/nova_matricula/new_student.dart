@@ -13,7 +13,7 @@ import '../../../core/configuration/configuration.dart';
 import '../../../domain/entities/student_entity/student_data_entity.dart';
 import '../../controllers/process_number_controller/process_number_controller.dart';
 import '../../controllers/save_new_student_controller/save_new_student_controller.dart';
-import '../index_menu/index_page.dart';
+import '../index_menu/index_view_page.dart';
 
 
 class NewStudent extends StatefulWidget {
@@ -1293,7 +1293,7 @@ class _NewStudentState extends State<NewStudent> {
               var result = await _controllerSaveNewStudent.saveStudent(studentDataEntity: widget.studentDataEntity,number: 10,classe: widget.studentClass!);
              Future.delayed(const Duration(seconds: 2),(){
                if(result == true){
-                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const IndexPage()));
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const IndexViewPage()));
                }
              });
             }

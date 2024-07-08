@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../../views/add_cources/add_course_view.dart';
@@ -46,7 +47,6 @@ class MenuWidgetsState extends State<MenuWidgets> {
     if (StudentInformation.status == 1) {
       loginController.loginUserStatus();
     }
-    // StudentInformation.status != 0 ? loginController.loginUserStatus() : StudentInformation.status = 0;
   }
 
   @override

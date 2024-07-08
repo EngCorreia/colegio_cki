@@ -1,4 +1,4 @@
-import 'package:cki/project/layers/presentation/ui_widgets/index_menu/index_page.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -6,6 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../infra/locator.dart';
 import '../../project/layers/core/configuration/configuration.dart';
 import '../../project/layers/core/init_injection_dependence/init_dependence_injection.dart';
+import '../../project/layers/presentation/ui_widgets/index_menu/index_view_page.dart';
 
 Future<void> main() async {
   InitStateInjectionDependence();
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context){
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Colegio CKI',
+      title: '${dotenv.env['TITLLE_APP']}',
       theme: ThemeData(
           primaryColor: Colors.white,
           primaryIconTheme: const IconThemeData(color: Colors.black54),
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.amber,
           //colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange).copyWith(background: Colors.white)
       ),
-      home: const IndexPage(),
+      home: const IndexViewPage(),
     );
   }
 }
