@@ -1,6 +1,8 @@
 
 import 'package:get_it/get_it.dart';
 import 'package:remote/remote.dart';
+
+import '../project/layers/services/login_service/login_service.dart';
 final GetIt locator = GetIt.I;
 void setupLocator(String? baseURL, {String? enviroment}) {
   //locator.registerLazySingleton(() => NavigationService());
@@ -8,7 +10,7 @@ void setupLocator(String? baseURL, {String? enviroment}) {
   //locator.registerLazySingleton(() => DialogService());
   //locator.registerLazySingleton(() => SnackbarService());
   //locator.registerLazySingleton(() => StartupViewModel());
- // locator.registerLazySingleton(() => HomeViewModel());
+  locator.registerLazySingleton(() => AuthenticationServe());
 
   //coreLocator();
   //loginLocator();

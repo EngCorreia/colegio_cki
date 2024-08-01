@@ -64,14 +64,14 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                   child: Center(
                                     child: Text(
                                       assignment[index].subjectName,
-                                      style: Theme.of(context).textTheme.caption,
+                                      style: Theme.of(context).textTheme.titleLarge,
                                     ),
                                   ),
                                 ),
                                 kHalfSizedBox,
                                 Text(
                                   assignment[index].topicName,
-                                  style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                     color: kTextBlackColor,
                                     fontWeight: FontWeight.w900,
                                   ),

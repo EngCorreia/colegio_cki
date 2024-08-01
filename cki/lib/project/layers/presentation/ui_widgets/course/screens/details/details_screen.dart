@@ -30,7 +30,7 @@ class DetailsCourses extends StatelessWidget {
       ),
       centerTitle: false,
       title: Text('Back'.toUpperCase(),
-        style: Theme.of(context).textTheme.bodyText2,
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
       actions: <Widget>[
         IconButton(

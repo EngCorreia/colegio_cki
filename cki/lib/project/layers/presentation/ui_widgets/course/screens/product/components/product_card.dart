@@ -90,7 +90,7 @@ class _CoursesCardState extends State<CoursesCard> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: kDefaultPadding),
                       child: Text("${widget.coures.classeName} Colegio Kalabo Internacional",
-                        style: Theme.of(context).textTheme.button,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
                     // it use the available space
@@ -108,7 +108,7 @@ class _CoursesCardState extends State<CoursesCard> {
                         ),
                       ),
                       child: Text("${formatador.format(widget.coures.prices)}",
-                          style: Theme.of(context).textTheme.button,
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
 
                     ),

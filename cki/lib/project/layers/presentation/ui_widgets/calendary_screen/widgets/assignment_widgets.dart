@@ -17,12 +17,12 @@ class AssignmentDetailRow extends StatelessWidget {
           title,
           style: Theme.of(context)
               .textTheme
-              .caption!
+              .titleLarge!
               .copyWith(color: kTextBlackColor, fontWeight: FontWeight.w900),
         ),
         Text(
           statusValue,
-          style: Theme.of(context).textTheme.caption,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       ],
     );

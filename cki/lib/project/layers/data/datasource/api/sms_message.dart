@@ -25,6 +25,25 @@ class Message{
   }
 
 
+  Future<bool> notifyUserSms({required String phoneNumber,required String msn}) async {
+    String chaveEntidade = "2cfTdJSF65E5HsK6ge6e5dY256s";
+    String? baseUrl = 'https://netsms.co.ao/app/appi/';
+    Uri url =
+    Uri.parse('$baseUrl?accao=enviar_sms&chave_entidade=$chaveEntidade&destinatario=${phoneNumber.replaceAll("+244", "")}&descricao_sms=$msn');
+    try {
+      var response = await http.post(url);
+      if (response.statusCode == 200) {
+        // Se o servidor retornar um OK (200), atualize o estado com o corpo da resposta.
+        return true;
+      } else {
+        // Se o servidor não retornar um OK, lance um erro.
+        throw Exception('Falha ao enviar SMS. Código de erro: ${response.statusCode}');
+      }
+    } catch (e) {
+      return false;
+    }
+  }
+
   Future<bool> sendSms({required String phoneNumber,required String code}) async {
     String chaveEntidade = "2cfTdJSF65E5HsK6ge6e5dY256s";
     String? baseUrl = 'https://netsms.co.ao/app/appi/';
