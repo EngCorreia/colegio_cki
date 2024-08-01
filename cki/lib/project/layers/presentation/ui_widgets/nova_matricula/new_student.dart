@@ -1294,21 +1294,18 @@ class _NewStudentState extends State<NewStudent> {
               ShowToast.show_error("Data de nascimento do aluno não pode estar vázio");
             }else{
               var result = await _controllerSaveNewStudent.saveStudent(studentDataEntity: widget.studentDataEntity,number: 10,classe: widget.studentClass!);
+              Future.delayed(const Duration(seconds: 2),() async {
+                if(result == true){
+                  await ms.notifyUserSms(phoneNumber: "${StudentInformation.phoneNumber}", msn: "Sr(a) encarregado ${StudentInformation.name},Informamos que a sua inscrição para o aluno: ${widget.studentDataEntity.studentName}.\nFoi feita com sucesso... Solicitamos a preparação da documentação físico e para posterior levar ao colégio");
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const IndexViewPage()));
+                }
+              });
+
               if(result == true){
-                   await ms.notifyUserSms(phoneNumber: "+244923559480",
-                    msn: "Uma nova inscrição foi feita. Nome do(a) aluno(a) ${widget.studentDataEntity.studentName} para a ${
-                        widget.studentClass!},nome do encarregado ${StudentInformation.name}");
-                   await ms.notifyUserSms(phoneNumber: "+244936505700",
-                       msn: "Uma nova inscrição foi feita. Nome do(a) aluno(a) ${widget.studentDataEntity.studentName} para a ${
-                           widget.studentClass!} nome do encarregado ${StudentInformation.name}");
-                   await ms.notifyUserSms(phoneNumber: "${StudentInformation.phoneNumber}",
-                    msn: "Sr(a) encarregado ${StudentInformation.name},informamos que a sua inscrição foi feita com sucesso... Solicitamos a preparação da documentação físico e levar para o colégio");
+                   await ms.notifyUserSms(phoneNumber: "+244923559480", msn: "Uma nova inscrição foi feita com sucesso ano:2024/2025.\n*Nome do(a) aluno(a): ${widget.studentDataEntity.studentName}.\nClasse: ${widget.studentClass!}.\nNome do encarregado: ${StudentInformation.name}");
+                   await ms.notifyUserSms(phoneNumber: "+244936505700", msn: "Uma nova inscrição foi feita com sucesso ano:2024/2025.\n*Nome do(a) aluno(a): ${widget.studentDataEntity.studentName}.\nClasse: ${widget.studentClass!}.\nNome do encarregado: ${StudentInformation.name}");
+                   await ms.notifyUserSms(phoneNumber: "+244924948647", msn: "Uma nova inscrição foi feita com sucesso ano:2024/2025.\n*Nome do(a) aluno(a): ${widget.studentDataEntity.studentName}.\nClasse: ${widget.studentClass!}.\nNome do encarregado: ${StudentInformation.name}");
               }
-             Future.delayed(const Duration(seconds: 2),(){
-               if(result == true){
-                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const IndexViewPage()));
-               }
-             });
             }
           },
           child: Text("Fazer Inscrição",style: TextStyle(

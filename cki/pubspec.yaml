@@ -68,7 +68,7 @@ dependencies:
   google_maps_flutter: ^2.1.0
   location: ^4.4.0
   intl_phone_field: ^3.1.0
-  pin_code_fields: ^7.4.0
+  pin_code_fields:
   flutter_polyline_points: ^1.0.0
   flutter_svg: ^1.1.0 #it helps us to use SVG in our app
   #google_fonts: ^2.3.3 #this allows you to easily use any fonts from fonts.google.com in your Flutter app
@@ -148,12 +148,10 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+
   #dart run build_runner watch --delete-conflicting-outputs
   #dart run flutter_launcher_icons:main -f flutter_launcher_icons*
   #flutter build appbundle --flavor sales -t lib/main_sales.dart
-  #flutter pub get
+  #flutter build apk --release -t lib/enviroment/kalabo/kalabo.dev.main.dart
   #flutter pub run flutter_launcher_icons:main - pubspec.yaml
   #keytool -genkey -alias key -keyalg RSA -keypass shareinemor1 -storepass shareinemor1 -validity 10000 -keystore keystore.jks

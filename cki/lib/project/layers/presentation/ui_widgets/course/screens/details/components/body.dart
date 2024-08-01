@@ -68,7 +68,7 @@ class _BodyDetailCourseState extends State<BodyDetailCourse> {
                     padding: const EdgeInsets.symmetric(
                         vertical: kDefaultPadding / 2),
                     child: Text(widget.coures.classeName!,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                   Text(
