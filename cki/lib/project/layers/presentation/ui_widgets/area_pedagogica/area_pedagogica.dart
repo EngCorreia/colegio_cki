@@ -21,7 +21,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
         elevation: 0,
         title: Text("Área Administrativa:",style: TextStyle(
           fontFamily: SettingsCki.segoeEui,
-          color: Colors.white,
+          color: Colors.black,
           fontSize: 18
         ),),
         actions: [
@@ -36,9 +36,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
       ),
 
       floatingActionButton: SpeedDial(
-        onOpen: () {
-
-        },
+        onOpen: () {},
         backgroundColor: Colors.white,
         animatedIcon: AnimatedIcons.menu_close,
         overlayOpacity: 0.7,
@@ -178,8 +176,9 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
             height: 10,
           ),
           GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
-              classeName: "1º_classe",
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>
+            const AlunosMatriculados(
+              classeName: "1ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -227,7 +226,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
-              classeName: "2º_classe",
+              classeName: "2ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -274,7 +273,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
-              classeName: "3º_classe",
+              classeName: "3ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -321,7 +320,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
-              classeName: "4º_classe",
+              classeName: "4ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -368,7 +367,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
-              classeName: "5º_classe",
+              classeName: "5ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -415,7 +414,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
-              classeName: "6º_classe",
+              classeName: "6ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -462,7 +461,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
-              classeName: "7º_classe",
+              classeName: "7ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -509,7 +508,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
-              classeName: "8º_classe",
+              classeName: "8ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -556,7 +555,7 @@ class _AreaPedagogicaState extends State<AreaPedagogica> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const AlunosMatriculados(
-              classeName: "9º_classe",
+              classeName: "9ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),

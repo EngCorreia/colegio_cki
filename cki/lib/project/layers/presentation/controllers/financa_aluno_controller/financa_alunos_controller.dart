@@ -98,14 +98,15 @@ abstract class _AreaFinanceiraAluno with Store {
           collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("financas")
               .doc(StudentInformation.userID).collection(studentId).doc(converteDay(day: myDay));
           Map<String,dynamic> mes = {
-            "valorPago":0,
+            "valorPago":30000,
             "status": 0,
             "dia": Timestamp.now(),
             "id": myDay
           };
-          gravaFinancasAluno.set(mes);
-          pago();
-          pagoN();
+          gravaFinancasAluno.set(mes).whenComplete((){
+            pago();
+            pagoN();
+          });
 
         }else{
           paymentList.clear();
@@ -144,7 +145,7 @@ abstract class _AreaFinanceiraAluno with Store {
           collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("financas")
               .doc(fatherId).collection(studentId).doc(converteDay(day: myDay));
           Map<String,dynamic> mes = {
-            "valorPago": 0,
+            "valorPago": 30000,
             "status": 0,
             "dia": Timestamp.now(),
             "id": myDay

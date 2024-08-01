@@ -3,11 +3,8 @@ import 'dart:developer';
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../core/const_strings/user_information.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
-import '../money_student/money_student.dart';
 import 'lista_de_turmas_alunos.dart';
 
 class ListaDeTurmas extends StatefulWidget {
@@ -24,7 +21,7 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
   @override
   void initState() {
     super.initState();
-    log("*********************** ${StudentInformation.status}");
+    log("***** ${StudentInformation.status}");
     if(StudentInformation.status == 1 && StudentInformation.userID!.isNotEmpty){
       financa.leituraFilhosFinancas();
     }
@@ -44,7 +41,7 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
 
           actions: [
 
-            Observer(builder: (_)=>Padding(
+            Observer(builder: (_)=> Padding(
               padding: const EdgeInsets.only(top: 15),
               child: Text("${financa.list.length} Filho(s)",style: TextStyle(
                   fontFamily: SettingsCki.segoeEui,

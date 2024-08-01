@@ -1,5 +1,6 @@
 import 'package:cki/project/layers/core/show_toast_message/show_toast_message.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../../core/configuration/configuration.dart';
 import '../../../../../../core/const_strings/user_information.dart';
@@ -20,10 +21,14 @@ class BodyDetailCourse extends StatefulWidget {
 
 class _BodyDetailCourseState extends State<BodyDetailCourse> {
   var verificacao = VerificarAlunosMatriculado();
+  var formatador;
   @override
   void initState() {
     super.initState();
     verificacao.verificarAlunosMatriculados(classe: "1º_classe");
+    var locale = 'pt_BR';
+    // Crie uma instância de NumberFormat para moeda
+    formatador = NumberFormat.currency(locale: locale, symbol: 'kzs');
   }
   @override
   Widget build(BuildContext context) {
@@ -67,7 +72,7 @@ class _BodyDetailCourseState extends State<BodyDetailCourse> {
                     ),
                   ),
                   Text(
-                    '${widget.coures.prices} Kzs Inscrição',
+                    '${formatador.format(widget.coures.prices)} Inscrição',
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,

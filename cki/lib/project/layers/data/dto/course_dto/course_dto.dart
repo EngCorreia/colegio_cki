@@ -1,8 +1,4 @@
-
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../../../domain/entities/courses_entity/coures_entitiy.dart';
 
 class CourseDto extends Course{

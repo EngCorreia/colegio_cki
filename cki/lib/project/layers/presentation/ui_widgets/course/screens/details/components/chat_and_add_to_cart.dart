@@ -1,7 +1,5 @@
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
 import '../../../../../../core/const_strings/user_information.dart';
 import '../../../../../../domain/entities/student_entity/student_data_entity.dart';
 import '../../../../nova_matricula/new_student.dart';

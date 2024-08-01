@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cki/project/layers/data/datasource/fire_base/read_course_datasource/read_course_datasource.dart';
 import 'package:cki/project/layers/domain/entities/courses_entity/coures_entitiy.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../../../domain/entities/courses_entity/coures_entitiy.dart';
 import '../../constants.dart';
 import 'components/body.dart';

@@ -1,7 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
-
 import 'data/constList.dart';
 import 'data/datesheet_data.dart';
 

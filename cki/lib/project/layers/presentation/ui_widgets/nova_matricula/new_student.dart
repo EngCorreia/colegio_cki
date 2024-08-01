@@ -1,14 +1,11 @@
 
-import 'dart:developer';
 import 'dart:io';
-
+import 'package:cki/project/layers/core/show_toast_message/show_toast_message.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/nova_matricula/read_file.dart';
-import 'package:dropdownfield2/dropdownfield2.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +13,7 @@ import '../../../core/configuration/configuration.dart';
 import '../../../domain/entities/student_entity/student_data_entity.dart';
 import '../../controllers/process_number_controller/process_number_controller.dart';
 import '../../controllers/save_new_student_controller/save_new_student_controller.dart';
-import '../index_menu/index_page.dart';
+import '../index_menu/index_view_page.dart';
 
 
 class NewStudent extends StatefulWidget {
@@ -29,8 +26,22 @@ class NewStudent extends StatefulWidget {
 }
 
 class _NewStudentState extends State<NewStudent> {
-  // var controller = PageController();
+
   final controller = PageController(keepPage: true);
+  var nomeAlunoController = TextEditingController();
+  var dataDeNascimentoController = TextEditingController();
+  var registoNascimentoController = TextEditingController();
+  var addressController = TextEditingController();
+  var nomeDaMaeController = TextEditingController();
+  var localDeTrabalhoMaeController = TextEditingController();
+  var emailmaeController = TextEditingController();
+  var telefoneMaeController = TextEditingController();
+
+  var nomeDaPaiController = TextEditingController();
+  var localDeTrabalhoPaiController = TextEditingController();
+  var emailPaiController = TextEditingController();
+  var telefonePaiController = TextEditingController();
+
   bool isLastPage = false;
   var processNumber = ProcessNumberController();
 
@@ -54,7 +65,6 @@ class _NewStudentState extends State<NewStudent> {
   ];
 
   DateTime dateTime = DateTime.now();
-  final _textEditingController = TextEditingController();
   List<PlatformFile>? filesList = [];
   final _controllerSaveNewStudent = GetIt.I.get<SaveNewStudentController>();
   var numberProcess;
@@ -85,7 +95,7 @@ class _NewStudentState extends State<NewStudent> {
           controller: controller,
           onPageChanged: (index){
             setState(() {
-              isLastPage = index == 3;
+              isLastPage = index == 1;
             });
           },
           children: [
@@ -246,7 +256,6 @@ class _NewStudentState extends State<NewStudent> {
           ),
         ),
 
-
             SingleChildScrollView(
               child: Column(
                 children: [
@@ -281,8 +290,6 @@ class _NewStudentState extends State<NewStudent> {
                     ],
                   ),
 
-
-
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
@@ -291,9 +298,7 @@ class _NewStudentState extends State<NewStudent> {
                         labelText: 'UNIDADE ESCOLAR',
                         // errorText: createContactUser.validateName,
                       ),
-
                       onChanged: (value) {
-
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -315,7 +320,6 @@ class _NewStudentState extends State<NewStudent> {
                       )
                   ),
 
-
                   const SizedBox(
                     height: 20,
                   ),
@@ -323,6 +327,7 @@ class _NewStudentState extends State<NewStudent> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
+                      controller: nomeAlunoController,
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -331,10 +336,9 @@ class _NewStudentState extends State<NewStudent> {
                         prefixIcon: Icon(Icons.person),
                         // errorText: createContactUser.validateName,
                       ),
-
                       onChanged: (value) {
-                        widget.studentDataEntity.studentName = value;
-
+                        nomeAlunoController.text = value;
+                        widget.studentDataEntity.studentName = nomeAlunoController.text;
                       },
                       cursorColor: Colors.indigo,
                       // validator: createContactUser.validateSalutation,
@@ -345,7 +349,7 @@ class _NewStudentState extends State<NewStudent> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
-                      controller: _textEditingController,
+                      controller: dataDeNascimentoController,
                       decoration: InputDecoration(
                         //icon: Icon(Icons.person),
                         border: const OutlineInputBorder(),
@@ -360,6 +364,7 @@ class _NewStudentState extends State<NewStudent> {
                       ),
 
                       onChanged: (value) {
+                        dataDeNascimentoController.text = value;
                         widget.studentDataEntity.date = value;
                       },
                       cursorColor: Colors.indigo,
@@ -367,6 +372,7 @@ class _NewStudentState extends State<NewStudent> {
                     ),
                   ),
 
+                  /*
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: DropDownField(
@@ -381,7 +387,7 @@ class _NewStudentState extends State<NewStudent> {
                       items: periods.map((element) => element).toList(),
                     ),
                   ),
-
+                 */
 
 
                   Padding(
@@ -435,7 +441,6 @@ class _NewStudentState extends State<NewStudent> {
                         hintText: 'Nome da Mãe',
                         labelText: 'Nome da Mãe',
                         prefixIcon: Icon(Icons.person_add_alt),
-
                         // errorText: createContactUser.validateName,
                       ),
 
@@ -447,14 +452,15 @@ class _NewStudentState extends State<NewStudent> {
                     ),
                   ),
 
+                  //TODO
                   Padding(
                     padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
                     child: TextFormField(
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
-                        hintText: 'Local de trabalho (nome/endereço)',
-                        labelText: 'Local de trabalho (nome/endereço)',
+                        hintText: 'Local de trabalho (Mãe/endereço)',
+                        labelText: 'Local de trabalho (Mãe/endereço)',
                         // errorText: createContactUser.validateName,
                       ),
 
@@ -472,8 +478,8 @@ class _NewStudentState extends State<NewStudent> {
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
-                        hintText: 'E-mail',
-                        labelText: 'E-mail',
+                        hintText: 'E-mail / Mãe',
+                        labelText:'E-mail / Mãe',
                         prefixIcon: Icon(Icons.email),
                         // errorText: createContactUser.validateName,
                       ),
@@ -493,8 +499,8 @@ class _NewStudentState extends State<NewStudent> {
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
-                        hintText: 'Telefone (fixo/celular)',
-                        labelText: 'Telefone (fixo/celular)',
+                        hintText: 'Telefone (fixo/mãe)',
+                        labelText: 'Telefone (fixo/mãe)',
                         prefixIcon: Icon(Icons.email),
                         // errorText: createContactUser.validateName,
                       ),
@@ -516,7 +522,6 @@ class _NewStudentState extends State<NewStudent> {
                         hintText: 'Nome do Pai',
                         labelText: 'Nome do Pai',
                         prefixIcon: Icon(Icons.person_add_alt),
-
                         // errorText: createContactUser.validateName,
                       ),
 
@@ -535,8 +540,8 @@ class _NewStudentState extends State<NewStudent> {
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
-                        hintText: 'Local de trabalho (nome/endereço)',
-                        labelText: 'Local de trabalho (nome/endereço)',
+                        hintText: 'Local de trabalho (Pai/endereço)',
+                        labelText: 'Local de trabalho (Pai/endereço)',
                         // errorText: createContactUser.validateName,
                       ),
 
@@ -554,8 +559,8 @@ class _NewStudentState extends State<NewStudent> {
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
-                        hintText: 'E-mail',
-                        labelText: 'E-mail',
+                        hintText: 'E-mail / Pai',
+                        labelText: 'E-mail / Pai',
                         prefixIcon: Icon(Icons.email),
                         // errorText: createContactUser.validateName,
                       ),
@@ -575,8 +580,8 @@ class _NewStudentState extends State<NewStudent> {
                       decoration: const InputDecoration(
                         //icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
-                        hintText: 'Telefone (fixo/celular)',
-                        labelText: 'Telefone (fixo/celular)',
+                        hintText: 'Telefone (fixo/pai)',
+                        labelText: 'Telefone (fixo/pai)',
                         prefixIcon: Icon(Icons.email),
                         // errorText: createContactUser.validateName,
                       ),
@@ -646,7 +651,9 @@ class _NewStudentState extends State<NewStudent> {
               ),
             ),
 
-
+            //TODO
+            /**para ser feito depois*/
+                /*
             SingleChildScrollView(
               child: Column(
                 children: [
@@ -878,7 +885,6 @@ class _NewStudentState extends State<NewStudent> {
                                     vacinacaoList[value -1] = false;
                                     widget.studentDataEntity.medicacao = "Sim";
                                   }
-
 
                                 });
                               },
@@ -1166,6 +1172,7 @@ class _NewStudentState extends State<NewStudent> {
                     ),
                   ),
 
+
                   /*
                   Padding(
                     padding: const EdgeInsets.only(left: 20,bottom: 10),
@@ -1261,6 +1268,8 @@ class _NewStudentState extends State<NewStudent> {
                 ],
               ),
             ),
+
+            */
           ],
         ),
       ),
@@ -1276,10 +1285,18 @@ class _NewStudentState extends State<NewStudent> {
               backgroundColor: Colors.orange[900]
           ),
           onPressed: () async {
-            final pref = await SharedPreferences.getInstance();
-            pref.setBool("showHome", true);
-            _controllerSaveNewStudent.saveStudent(studentDataEntity: widget.studentDataEntity,number: 10,classe: widget.studentClass!);
-
+            if(nomeAlunoController.text.isEmpty) {
+             ShowToast.show_error("Nome do aluno não pode estar vázio");
+            } else if(dataDeNascimentoController.text.isEmpty) {
+              ShowToast.show_error("Data de nascimento do aluno não pode estar vázio");
+            }else{
+              var result = await _controllerSaveNewStudent.saveStudent(studentDataEntity: widget.studentDataEntity,number: 10,classe: widget.studentClass!);
+             Future.delayed(const Duration(seconds: 2),(){
+               if(result == true){
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const IndexViewPage()));
+               }
+             });
+            }
           },
           child: Text("Fazer Inscrição",style: TextStyle(
               color: Colors.white,
@@ -1328,7 +1345,7 @@ class _NewStudentState extends State<NewStudent> {
     ).then((value){
       setState(() {
         dateTime = value!;
-        _textEditingController.text = value.toString();
+        dataDeNascimentoController.text = value.toString();
         widget.studentDataEntity.date = value.toString();
       });
     });
@@ -1360,10 +1377,10 @@ class _NewStudentState extends State<NewStudent> {
   }
 
   Widget buildFile(PlatformFile file){
-    final kb = file.size / 1024;
-    final mb = kb / 1024;
-    final fileSize = mb >= 1 ? '${mb.toStringAsFixed(2)} MB' : '${kb.toStringAsFixed(2)} KB';
-    final extension = file.extension ?? 'none';
+    //final kb = file.size / 1024;
+   // final mb = kb / 1024;
+    //final fileSize = mb >= 1 ? '${mb.toStringAsFixed(2)} MB' : '${kb.toStringAsFixed(2)} KB';
+    //final extension = file.extension ?? 'none';
     //final color = getColor(extension);
     return InkWell(
       onTap: (){

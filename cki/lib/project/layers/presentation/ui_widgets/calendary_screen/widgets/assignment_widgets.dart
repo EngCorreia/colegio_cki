@@ -1,7 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
-
 import '../../datesheet_screen/data/constList.dart';
 
 class AssignmentDetailRow extends StatelessWidget {
@@ -57,7 +55,7 @@ class AssignmentButton extends StatelessWidget {
         child: Center(
           child: Text(
             title,
-            style: Theme.of(context).textTheme.subtitle2
+            style: const TextStyle(color: Colors.white)
           ),
         ),
       ),

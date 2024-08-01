@@ -1,6 +1,3 @@
-
-import 'dart:developer';
-
 import 'package:cki/project/layers/data/datasource/fire_base/save_new_student_datasource/save_new_student_datasource.dart';
 import 'package:cki/project/layers/domain/entities/student_entity/student_data_entity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

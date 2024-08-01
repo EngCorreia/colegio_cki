@@ -1,0 +1,14 @@
+flutter_native_splash:
+
+  color: "#FFFFFF"
+  image: "assets/images/logoRemove.png"
+
+  android: true
+  ios: true
+  web: false
+  fullscreen: true
+  ios_content_mode: center
+  android_12:
+    color: "#FFFFFF"
+    icon_background_color: "#FFFFFF"
+    image: "assets/images/logoRemove.png"

@@ -1,13 +1,15 @@
 
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/const_strings/user_information.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
-import 'estatistica_aluno.dart';
+import 'listas_de_despesas.dart';
+
 
 class FinancasAluno extends StatefulWidget {
   const FinancasAluno({super.key});
@@ -19,6 +21,7 @@ class FinancasAluno extends StatefulWidget {
 class _FinancasAlunoState extends State<FinancasAluno> {
 
   var financa = AreaFinanceiraAluno();
+  String get secondLogo => dotenv.env['LOGO_IMAGE_SECOND']!;
   
   @override
   void initState() {
@@ -55,14 +58,12 @@ class _FinancasAlunoState extends State<FinancasAluno> {
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
               // backgroundColor: Colors.transparent,
-              child: Image.asset("assets/images/image.png"),
+              child: Image.asset(secondLogo),
             ),
           )
         ],
-
-
       ),
-      
+
       body: StudentInformation.status != 0 ? Observer(
         builder: (_)=>  Column(
           children: [
@@ -100,8 +101,8 @@ class _FinancasAlunoState extends State<FinancasAluno> {
             ),
 
             Expanded(
-              child: financa.list.isEmpty ? Center(
-                child: Column(
+              child: financa.list.isEmpty ? const Center(
+                child: CircularProgressIndicator()  /*Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -111,28 +112,21 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                       fontFamily: SettingsCki.segoeEui,
                     ),)
                   ],
-                ),
+                )*/,
               ): ListView.builder(
                   itemCount: financa.list.length,
                   itemBuilder: (context,index) => ListTile(
                     onTap: (){
                       var studentId = financa.list[index]["idAluno"];
-
                      /* Navigator.push(context, MaterialPageRoute(builder: (context)=>  MoneyStudent(
                         idAluno: studentId,
                         studentName: financa.list[index]["nomeAluno"],
                       )));
-
                       */
-
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>  AlunoEstisticaFinancas(
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> MenuFinanceiroAluno(
                         idAluno: studentId,
                         studentName: financa.list[index]["nomeAluno"],
                       )));
-
-
-
-
                     },
                     leading: CircleAvatar(
                       // backgroundColor: Colors.transparent,
@@ -148,7 +142,45 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                         fontFamily: SettingsCki.segoeEui,
                         fontWeight: FontWeight.normal,
                         color: Colors.lightBlueAccent
-                    ),),
+                    ),
+                    ),
+
+                    trailing:   Stack(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(11),
+                          child: Icon(
+                            Icons.notifications,
+                            size: 26,
+                            color: Colors.blueGrey,
+                          ),
+                        ),
+                        Positioned(
+                            top: 6,
+                            right: 6,
+                            child: Container(
+                              padding: const EdgeInsets.all(1),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              constraints: const BoxConstraints(
+                                minWidth: 18,
+                                minHeight: 18,
+                              ),
+                              child: Text(
+                                "${financa.paymentNaoPago.length}",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          )
+
+                      ],
+                    ),
                   )
               ),
             ),
@@ -159,27 +191,24 @@ class _FinancasAlunoState extends State<FinancasAluno> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
-            const Icon(Icons.monetization_on_outlined,size: 60,color: Colors.green,),
+            const Icon(Icons.monetization_on_outlined,size: 60,color: Colors.blueGrey,),
             const SizedBox(
-              height: 50,
+              height: 30,
             ),
-            Text("Por favor faça login na sua conta",style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
-                fontFamily: SettingsCki.segoeEui,
-              color: Colors.black
-            ),),
-            Text("Para ter acesso a informação das suas finanças",style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-                fontFamily: SettingsCki.segoeEui,
-                color: Colors.black
-            ),),
+            Padding(
+              padding: const EdgeInsets.only(right: 10,left: 10),
+              child: Expanded(
+                child: Text("Por favor faça login na sua conta Para ter acesso aos pagamentos efectuados e aos recibos",style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15,
+                    fontFamily: SettingsCki.segoeEui,
+                  color: Colors.black
+                ),),
+              ),
+            ),
           ],
         ),
       )
-
     );
   }
 

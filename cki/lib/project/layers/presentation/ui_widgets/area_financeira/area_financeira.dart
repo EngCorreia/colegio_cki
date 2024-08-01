@@ -44,7 +44,7 @@ class _AreaFinanceiraState extends State<AreaFinanceira> {
           ),
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
-              classeName: "1º_classe",
+              classeName: "1ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -92,7 +92,7 @@ class _AreaFinanceiraState extends State<AreaFinanceira> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
-              classeName: "2º_classe",
+              classeName: "2ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -139,7 +139,7 @@ class _AreaFinanceiraState extends State<AreaFinanceira> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
-              classeName: "3º_classe",
+              classeName: "3ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -186,7 +186,7 @@ class _AreaFinanceiraState extends State<AreaFinanceira> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
-              classeName: "4º_classe",
+              classeName: "4ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -233,7 +233,7 @@ class _AreaFinanceiraState extends State<AreaFinanceira> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
-              classeName: "5º_classe",
+              classeName: "5ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -280,7 +280,7 @@ class _AreaFinanceiraState extends State<AreaFinanceira> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
-              classeName: "6º_classe",
+              classeName: "6ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -327,7 +327,7 @@ class _AreaFinanceiraState extends State<AreaFinanceira> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
-              classeName: "7º_classe",
+              classeName: "7ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -374,7 +374,7 @@ class _AreaFinanceiraState extends State<AreaFinanceira> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
-              classeName: "8º_classe",
+              classeName: "8ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
@@ -421,7 +421,7 @@ class _AreaFinanceiraState extends State<AreaFinanceira> {
 
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const DividasMensal(
-              classeName: "9º_classe",
+              classeName: "9ª_classe",
             ))),
             child: Padding(
               padding: const EdgeInsets.all(4.0),

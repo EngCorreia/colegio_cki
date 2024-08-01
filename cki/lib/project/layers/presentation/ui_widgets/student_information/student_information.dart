@@ -1,12 +1,9 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+import '../../../../../views/atl_view/alt_view.dart';
+import '../../../../../views/transport/transport_view.dart';
 import '../../../core/configuration/configuration.dart';
-import '../../../core/const_strings/user_information.dart';
-import '../../controllers/update_student_collection/update_student_collection.dart';
 import '../datesheet_screen/datesheet_screen.dart';
 import '../ver_turmas/ver_turmas.dart';
 
@@ -18,7 +15,8 @@ class StudentInformationUi extends StatefulWidget {
 }
 
 class _StudentInformationUiState extends State<StudentInformationUi> {
-
+  String get atlImages => dotenv.env['ATL_IMAGES']!;
+  String get busImage => dotenv.env['BUS']!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,6 +138,69 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
 
             GestureDetector(
               onTap: () async {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const AtlView()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
+                child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: Colors.orange[500],
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black54,
+                        blurRadius: 1,
+                        spreadRadius: 1,
+                        //offset: const Offset(2, 2),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 10,),
+                        Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            //borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black54,
+                                blurRadius: 1,
+                                spreadRadius: 1,
+                                // offset: const Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child:  Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(atlImages),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(width: 20,),
+
+                        Text("Inscrever-se no ATL",style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white,
+                            fontSize: 20
+                        ),),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            GestureDetector(
+              onTap: () async {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> const DateSheetScreen()));
                 //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
               },
@@ -168,7 +229,6 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
                           width: 40,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            //borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
                             borderRadius: BorderRadius.circular(25),
                             boxShadow: const [
                               BoxShadow(
@@ -203,7 +263,7 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
 
             GestureDetector(
               onTap: () async {
-                //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const TransportView()));
               },
               child: Padding(
                 padding: const EdgeInsets.only(top: 8,left: 20,right: 20,bottom: 5),
@@ -241,15 +301,17 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
                               ),
                             ],
                           ),
-                          child:  const Padding(
-                            padding: EdgeInsets.all(0.0),
-                            child: Icon(FontAwesomeIcons.chalkboardTeacher,color: Colors.orange,size: 20,),
+                          child:  Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(busImage),
+                            ),
                           ),
                         ),
 
                         const SizedBox(width: 20,),
 
-                        Text("Professor",style: TextStyle(
+                        Text("Solicitar transporte",style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.normal,
                             color: Colors.white,

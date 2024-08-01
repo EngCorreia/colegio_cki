@@ -1,10 +1,6 @@
-
-
 import 'dart:developer';
 
 import 'package:mobx/mobx.dart';
-
-import '../../../core/show_toast_message/show_toast_message.dart';
 import '../../../domain/entities/courses_entity/coures_entitiy.dart';
 import '../../../domain/usecases/read_course_usecase/read_course_usecase.dart';
 part 'read_course_controller.g.dart';

@@ -1,11 +1,6 @@
-
-
 import 'package:cki/project/layers/core/configuration/configuration.dart';
+import 'package:cki/project/layers/presentation/ui_widgets/index_menu/index_view_page.dart';
 import 'package:flutter/material.dart';
-
-import '../home_page/menu_widgets.dart';
-import '../index_menu/index_page.dart';
-import '../login_ui/login_ui.dart';
 import '../login_ui/registerscreen.dart';
 
 class Register extends StatefulWidget {
@@ -124,7 +119,7 @@ class _RegisterState extends State<Register> {
 
             GestureDetector(
               onTap: () async {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> IndexPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const IndexViewPage()));
               },
               child: Padding(
                 padding: const EdgeInsets.only(top: 8,left: 40,right: 40,bottom: 5),

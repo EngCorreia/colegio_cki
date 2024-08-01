@@ -1,76 +1,42 @@
-
-
-import 'dart:developer';
-
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/core/init_injection_dependence/init_dependence_injection.dart';
-import 'package:cki/project/layers/presentation/ui_widgets/course/screens/product/products_screen.dart';
-import 'package:cki/project/layers/presentation/ui_widgets/index_menu/index_page.dart';
-import 'package:cki/project/layers/presentation/ui_widgets/login_ui/registerscreen.dart';
-import 'package:cki/project/layers/presentation/ui_widgets/splash_widgets/splash_widgets.dart';
+import 'package:cki/project/layers/presentation/ui_widgets/index_menu/index_view_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:intl/date_symbol_data_file.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 
 Future<void> main() async {
   InitStateInjectionDependence();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  //initializeDateFormatting('en_US', "");
-  /*
-  AwesomeNotifications().initialize(
-    // set the icon to null if you want to use the default app icon
-      'resource://drawable/res_app_icon',
-      [
-        NotificationChannel(
-            channelGroupKey: 'basic_channel_group',
-            channelKey: 'basic_channel',
-            channelName: 'Basic notifications',
-            channelDescription: 'Notification channel for basic tests',
-            defaultColor: const Color(0xFF9D50DD),
-            ledColor: Colors.white)
-      ],
-      // Channel groups are only visual and are not required
-      channelGroups: [
-        NotificationChannelGroup(
-            channelGroupKey: 'basic_channel_group',
-            channelGroupName: 'Basic group')
-      ],
-      debug: true
-  );
-  ReceivedAction? receivedAction = await AwesomeNotifications().getInitialNotificationAction(
-      removeFromActionEvents: false
-  );
-  if(receivedAction?.channelKey == 'call_channel') {
-    const ProductsScreen();
-  } else {
-    const ProductsScreen();
-  }
-  final pref = await SharedPreferences.getInstance();
-  final show = pref.getString("login") ?? "";*/
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, });
+  const MyApp({
+    super.key,
+  });
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: 'Colegio CKI',
-    theme: ThemeData(
-    primaryColor: Colors.white,
-    backgroundColor: Colors.white,
-    primarySwatch: Colors.orange,
-    primaryIconTheme: const IconThemeData(color: Colors.black54),
-    primaryTextTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
-    textTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui))
-    ),
-    home: const IndexPage(),
-  //const OnBoardingPage()
-  );
+      debugShowCheckedModeBanner: false,
+      title: '${dotenv.env['TITLLE_APP']}',
+      theme: ThemeData(
+        primaryColor: Colors.white,
+        primaryIconTheme: const IconThemeData(color: Colors.black54),
+        primaryTextTheme: TextTheme(
+            titleMedium: TextStyle(
+                color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
+        textTheme: TextTheme(
+            titleMedium: TextStyle(
+                color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
+        primarySwatch: Colors.amber,
+        //colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange).copyWith(background: Colors.white)
+      ),
+      home: const IndexViewPage(),
+      //const OnBoardingPage()
+    );
   }
 }
