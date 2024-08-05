@@ -10,14 +10,15 @@ import '../../core/show_toast_message/show_toast_message.dart';
 
 class AuthenticationServe extends ChangeNotifier{
 
-  Future<bool> login({required String phoneNumber}) async{
+  Future<String> login({required String phoneNumber}) async{
     try{
       log("------------ $phoneNumber");
+      String resonpseApi = "";
       var checkStudent = await FirebaseFirestore.instance.collection("student").where("phoneNumber",isEqualTo: phoneNumber).get();
       var ss = checkStudent.docs;
       if(ss.isEmpty){
-        ShowToast.show_error("Não existe nenhum registo com este NUMERO ( $phoneNumber )");
-        return false;
+        //showSnackBar("Usuario logado com sucesso");
+        return "Não existe nenhum registo com este NUMERO ( $phoneNumber )";
       }else{
         var json = ss.last.data();
         Map<String,dynamic> user = {
@@ -32,21 +33,22 @@ class AuthenticationServe extends ChangeNotifier{
           pref.setString("auth", jsonEncode(user));
           var response = await updateStudent(json: user);
           if(response == true){
-            //ShowToast.show_message_Success("Usuario logado com sucesso");
+            resonpseApi  = "Usuario logado com sucesso";
           }else{
-            ShowToast.show_error("Ocorreu um erro na criação da conta");
+            resonpseApi  = "Ocorreu um erro na criação da conta";
+            //ShowToast.show_error("Ocorreu um erro na criação da conta");
           }
 
         }else{
           pref.setString("auth", jsonEncode(user));
           await updateStudent(json: user);
-          ShowToast.show_message_Success("Usuario logado com sucesso");
+         // ShowToast.show_message_Success("Usuario logado com sucesso");
         }
       }
-      return true;
+      return resonpseApi;
     }catch(e){
-      ShowToast.show_error("Problema na conexão com o servidor");
-      return false;
+      //ShowToast.show_error("Problema na conexão com o servidor");
+      return "Problema na conexão com o servidor";
     }
 
   }
