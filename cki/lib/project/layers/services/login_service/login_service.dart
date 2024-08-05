@@ -32,7 +32,7 @@ class AuthenticationServe extends ChangeNotifier{
           pref.setString("auth", jsonEncode(user));
           var response = await updateStudent(json: user);
           if(response == true){
-            ShowToast.show_message_Success("Usuario logado com sucesso");
+            //ShowToast.show_message_Success("Usuario logado com sucesso");
           }else{
             ShowToast.show_error("Ocorreu um erro na criação da conta");
           }

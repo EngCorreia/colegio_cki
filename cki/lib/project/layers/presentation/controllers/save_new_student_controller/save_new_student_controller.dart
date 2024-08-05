@@ -14,7 +14,7 @@ class SaveNewStudentController{
     result.fold((error) => log("**** ${error.message}"),
             (success){
       resultSet = success;
-      ShowToast.show_message_Success("Inscrição feita com sucesso ...");
+     // ShowToast.show_message_Success("Inscrição feita com sucesso ...");
     });
     return resultSet;
   }

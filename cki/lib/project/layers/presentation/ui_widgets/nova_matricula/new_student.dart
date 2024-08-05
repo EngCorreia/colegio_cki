@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/snackBar/snackBar.dart';
 import '../../../core/configuration/configuration.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../../data/datasource/api/sms_message.dart';
@@ -1296,6 +1297,21 @@ class _NewStudentState extends State<NewStudent> {
               var result = await _controllerSaveNewStudent.saveStudent(studentDataEntity: widget.studentDataEntity,number: 10,classe: widget.studentClass!);
               Future.delayed(const Duration(seconds: 2),() async {
                 if(result == true){
+                  CustomSnackbar(
+                    message: 'Aluno inscrito com sucesso ...',
+                    backgroundColor: Colors.lightGreen,
+                    textStyle: TextStyle(color: Colors.white,fontSize: 15,
+                        fontFamily: SettingsCki.segoeEui,
+                        fontWeight: FontWeight.w600),
+                    duration: const Duration(seconds: 4),
+                    action: SnackBarAction(
+                      label: 'Ok',
+                      onPressed: () {
+                        // Ação ao clicar no botão da snackbar
+                      },
+                      textColor: Colors.white,
+                    ),
+                  ).show(context);
                   await ms.notifyUserSms(phoneNumber: "${StudentInformation.phoneNumber}", msn: "Sr(a) encarregado ${StudentInformation.name},Informamos que a sua inscrição para o aluno: ${widget.studentDataEntity.studentName}.\nFoi feita com sucesso... Solicitamos a preparação da documentação físico e para posterior levar ao colégio");
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const IndexViewPage()));
                 }
@@ -1304,7 +1320,7 @@ class _NewStudentState extends State<NewStudent> {
               if(result == true){
                    await ms.notifyUserSms(phoneNumber: "+244923559480", msn: "Uma nova inscrição foi feita com sucesso ano:2024/2025.\n*Nome do(a) aluno(a): ${widget.studentDataEntity.studentName}.\nClasse: ${widget.studentClass!}.\nNome do encarregado: ${StudentInformation.name}");
                    await ms.notifyUserSms(phoneNumber: "+244936505700", msn: "Uma nova inscrição foi feita com sucesso ano:2024/2025.\n*Nome do(a) aluno(a): ${widget.studentDataEntity.studentName}.\nClasse: ${widget.studentClass!}.\nNome do encarregado: ${StudentInformation.name}");
-                   await ms.notifyUserSms(phoneNumber: "+244924948647", msn: "Uma nova inscrição foi feita com sucesso ano:2024/2025.\n*Nome do(a) aluno(a): ${widget.studentDataEntity.studentName}.\nClasse: ${widget.studentClass!}.\nNome do encarregado: ${StudentInformation.name}");
+                   //await ms.notifyUserSms(phoneNumber: "+244924948647", msn: "Uma nova inscrição foi feita com sucesso ano:2024/2025.\n*Nome do(a) aluno(a): ${widget.studentDataEntity.studentName}.\nClasse: ${widget.studentClass!}.\nNome do encarregado: ${StudentInformation.name}");
               }
             }
           },
