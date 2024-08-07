@@ -183,7 +183,6 @@ abstract class _AreaFinanceiraAluno with Store {
           //"valorPago":0,
           "status": status,
         };
-
         gravaFinancas.update(mes);
       }else{
         Map<String,dynamic> mes = {

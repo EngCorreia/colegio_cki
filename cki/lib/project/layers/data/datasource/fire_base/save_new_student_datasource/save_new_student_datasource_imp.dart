@@ -36,7 +36,8 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
                   "idAluno": studentId,
                   "nomeAluno": result["nome_aluno"],
                   "classe": classe,
-                  "dia": Timestamp.now()
+                  "dia": Timestamp.now(),
+                  "status": 0
                 };
                 resultSet.add(financas);
                 var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
@@ -56,7 +57,8 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
                 "idAluno": studentId,
                 "nomeAluno": result["nome_aluno"],
                 "classe": classe,
-                "dia": Timestamp.now()
+                "dia": Timestamp.now(),
+                "status": 0
               };
 
               Map<String,dynamic> newUpadte = {

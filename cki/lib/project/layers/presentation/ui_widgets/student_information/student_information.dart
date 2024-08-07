@@ -109,7 +109,7 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
                           ),
                           child:  const Padding(
                             padding: EdgeInsets.all(0.0),
-                            child: Icon(FontAwesomeIcons.calendarAlt,color: Colors.orange,size: 20,),
+                            child: Icon(FontAwesomeIcons.peopleGroup,color: Colors.orange,size: 20,),
                           ),
                         ),
 
@@ -233,7 +233,7 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
                           ),
                           child:  const Padding(
                             padding: EdgeInsets.all(0.0),
-                            child: Icon(FontAwesomeIcons.calendarAlt,color: Colors.orange,size: 20,),
+                            child: Icon(FontAwesomeIcons.calendarDay,color: Colors.orange,size: 20,),
                           ),
                         ),
 
@@ -359,7 +359,7 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
                           ),
                           child:  const Padding(
                             padding: EdgeInsets.all(0.0),
-                            child: Icon(FontAwesomeIcons.solidStickyNote,color: Colors.orange,size: 20,),
+                            child: Icon(FontAwesomeIcons.solidNoteSticky,color: Colors.orange,size: 20,),
                           ),
                         ),
 

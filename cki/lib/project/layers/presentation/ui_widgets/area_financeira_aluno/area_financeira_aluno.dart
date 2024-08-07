@@ -146,17 +146,18 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                     ),
                     ),
 
-                    trailing:   Stack(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.all(11),
-                          child: Icon(
-                            Icons.notifications,
-                            size: 26,
-                            color: Colors.blueGrey,
+                    trailing: Observer(
+                      builder: (_)=> (financa.list[index]["status"] == 0) ? Stack(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(11),
+                            child: Icon(
+                              Icons.notifications,
+                              size: 26,
+                              color: Colors.blueGrey,
+                            ),
                           ),
-                        ),
-                        Positioned(
+                          Positioned(
                             top: 6,
                             right: 6,
                             child: Container(
@@ -169,9 +170,9 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                                 minWidth: 18,
                                 minHeight: 18,
                               ),
-                              child: Text(
-                                "${financa.paymentNaoPago.length}",
-                                style: const TextStyle(
+                              child: const Text(
+                                "1",
+                                style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 10,
                                 ),
@@ -180,8 +181,11 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                             ),
                           )
 
-                      ],
-                    ),
+                        ],
+                      ): const Text("0",style: TextStyle(
+                        color: Colors.white
+                      ),),
+                    )
                   )
               ),
             ),

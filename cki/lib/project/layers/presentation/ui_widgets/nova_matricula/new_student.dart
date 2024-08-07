@@ -92,7 +92,7 @@ class _NewStudentState extends State<NewStudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     // appBar: AppBar(),
+      appBar: AppBar(),
       body: Container(
         padding: const EdgeInsets.only(bottom: 50),
         child: PageView(
