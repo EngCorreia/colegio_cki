@@ -1312,14 +1312,19 @@ class _NewStudentState extends State<NewStudent> {
                       textColor: Colors.white,
                     ),
                   ).show(context);
+                 // log("+++++++++++ ${StudentInformation.phoneNumber}");
                   await ms.notifyUserSms(phoneNumber: "${StudentInformation.phoneNumber}", msn: "Sr(a) encarregado ${StudentInformation.name},Informamos que a sua inscrição para o aluno: ${widget.studentDataEntity.studentName}.\nFoi feita com sucesso... Solicitamos a preparação da documentação físico e para posterior levar ao colégio");
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const IndexViewPage()));
                 }
               });
-
               if(result == true){
-                   await ms.notifyUserSms(phoneNumber: "+244923559480", msn: "Uma nova inscrição foi feita com sucesso ano:2024/2025.\n*Nome do(a) aluno(a): ${widget.studentDataEntity.studentName}.\nClasse: ${widget.studentClass!}.\nNome do encarregado: ${StudentInformation.name}");
-                   await ms.notifyUserSms(phoneNumber: "+244936505700", msn: "Uma nova inscrição foi feita com sucesso ano:2024/2025.\n*Nome do(a) aluno(a): ${widget.studentDataEntity.studentName}.\nClasse: ${widget.studentClass!}.\nNome do encarregado: ${StudentInformation.name}");
+                   await ms.notifyUserSms(phoneNumber: "+244923559480", msn: "Welcome to colégio Kalabo Internacional, we thank for your presence in our place and we hope to see you "
+                       "very soon.\n\n................................\nBem-vindos ao COLÉGIO KALABO INTERNACIONAL, agradecemos pela sua presença nas nossas instalações e esperamos voltar a vê-lo (a) em breve.\nContinuação de um ótimo dia.");
+                   /*
+                   await ms.notifyUserSms(phoneNumber: "+244924948647", msn: "Welcome to colégio Kalabo Internacional, we thank for your presence in our place and we hope to see you "
+                       "very soon.\n\n................................\nBem-vindos ao COLÉGIO KALABO INTERNACIONAL, agradecemos pela sua presença nas nossas instalações e esperamos voltar a vê-lo (a) em breve.\nContinuação de um ótimo dia.");
+                   */
+                  // await ms.notifyUserSms(phoneNumber: "+244936505700", msn: "Uma nova inscrição foi feita com sucesso ano:2024/2025.\n*Nome do(a) aluno(a): ${widget.studentDataEntity.studentName}.\nClasse: ${widget.studentClass!}.\nNome do encarregado: ${StudentInformation.name}");
                    //await ms.notifyUserSms(phoneNumber: "+244924948647", msn: "Uma nova inscrição foi feita com sucesso ano:2024/2025.\n*Nome do(a) aluno(a): ${widget.studentDataEntity.studentName}.\nClasse: ${widget.studentClass!}.\nNome do encarregado: ${StudentInformation.name}");
               }
             }
