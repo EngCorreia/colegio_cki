@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context){
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: '${dotenv.env['TITLLE_APP']}',
+      title: '${dotenv.env['TITLE_APP']}',
       theme: ThemeData(
           primaryColor: Colors.white,
           primaryIconTheme: const IconThemeData(color: Colors.black54),
