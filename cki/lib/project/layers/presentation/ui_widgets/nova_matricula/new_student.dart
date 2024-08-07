@@ -1318,14 +1318,11 @@ class _NewStudentState extends State<NewStudent> {
                 }
               });
               if(result == true){
-                   await ms.notifyUserSms(phoneNumber: "+244923559480", msn: "Welcome to colégio Kalabo Internacional, we thank for your presence in our place and we hope to see you"
-                       "very soon.\n................................\nBem-vindos ao COLÉGIO KALABO INTERNACIONAL, agradecemos pela sua presença nas nossas instalações e esperamos voltar a vê-lo (a) em breve.\nContinuação de um ótimo dia.");
+                   await ms.notifyUserSms(phoneNumber: "+244923559480", msn: "Informamos que a uma nova inscrição foi efectuado pelo(a) encarregado(a): ${StudentInformation.name}.\nNome do(a) aluno(a): ${widget.studentDataEntity.studentName}");
                    /*
                    await ms.notifyUserSms(phoneNumber: "+244924948647", msn: "Welcome to colégio Kalabo Internacional, we thank for your presence in our place and we hope to see you "
                        "very soon.\n\n................................\nBem-vindos ao COLÉGIO KALABO INTERNACIONAL, agradecemos pela sua presença nas nossas instalações e esperamos voltar a vê-lo (a) em breve.\nContinuação de um ótimo dia.");
-                   */
-                  // await ms.notifyUserSms(phoneNumber: "+244936505700", msn: "Uma nova inscrição foi feita com sucesso ano:2024/2025.\n*Nome do(a) aluno(a): ${widget.studentDataEntity.studentName}.\nClasse: ${widget.studentClass!}.\nNome do encarregado: ${StudentInformation.name}");
-                   //await ms.notifyUserSms(phoneNumber: "+244924948647", msn: "Uma nova inscrição foi feita com sucesso ano:2024/2025.\n*Nome do(a) aluno(a): ${widget.studentDataEntity.studentName}.\nClasse: ${widget.studentClass!}.\nNome do encarregado: ${StudentInformation.name}");
+               */
               }
             }
           },
