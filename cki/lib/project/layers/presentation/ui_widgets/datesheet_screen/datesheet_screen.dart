@@ -49,13 +49,13 @@ class DateSheetScreen extends StatelessWidget {
                         children: [
                           Text(
                             dateSheet[index].date.toString(),
-                            style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                            style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                       color: kTextBlackColor,
                                       fontWeight: FontWeight.w900,
                                     ),
                           ),
                           Text(dateSheet[index].monthName,
-                              style: Theme.of(context).textTheme.caption),
+                              style: Theme.of(context).textTheme.titleLarge),
                         ],
                       ),
 
@@ -67,13 +67,13 @@ class DateSheetScreen extends StatelessWidget {
                           Text(
                             dateSheet[index].subjectName,
                             style:
-                                Theme.of(context).textTheme.subtitle2!.copyWith(
+                                Theme.of(context).textTheme.titleLarge!.copyWith(
                                       color: kTextBlackColor,
                                       fontWeight: FontWeight.w900,
                                     ),
                           ),
                           Text(dateSheet[index].dayName,
-                              style: Theme.of(context).textTheme.caption),
+                              style: Theme.of(context).textTheme.titleLarge),
                         ],
                       ),
                       //3rd one
@@ -83,7 +83,7 @@ class DateSheetScreen extends StatelessWidget {
                         children: [
                           Text(
                             '🕒${dateSheet[index].time}',
-                            style: Theme.of(context).textTheme.caption,
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
                         ],
                       ),

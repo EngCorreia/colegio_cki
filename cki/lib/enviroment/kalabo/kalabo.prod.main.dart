@@ -29,8 +29,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primaryColor: Colors.white,
           primaryIconTheme: const IconThemeData(color: Colors.black54),
-          primaryTextTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
-          textTheme: TextTheme(subtitle1: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui)),
+          primaryTextTheme: TextTheme(titleLarge: TextStyle(color: Colors.black54, fontFamily: SettingsCki.segoeEui)),
+          textTheme: TextTheme(titleLarge: TextStyle(color: Colors.black54,fontFamily: SettingsCki.segoeEui)),
           primarySwatch: Colors.amber,
           //colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange).copyWith(background: Colors.white)
       ),

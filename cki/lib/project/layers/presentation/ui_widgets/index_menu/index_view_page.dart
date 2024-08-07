@@ -4,7 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
+import 'package:asuka/asuka.dart'  as asuka;
+import '../../../../../core/snackBar/snackBar.dart';
 import '../../../core/configuration/configuration.dart';
 import '../../../core/local_notification_service/local_notification_service.dart';
 import '../area_financeira_aluno/area_financeira_aluno.dart';
@@ -136,6 +137,9 @@ class _IndexPageState extends State<IndexViewPage> {
                       onTabChange: (index) {
                         setState(() {
                           _selectedIndex = index;
+                          if(index == 1){
+                            asuka.AsukaSnackbar.success("Success").show();
+                          }
                         });
                       },
 

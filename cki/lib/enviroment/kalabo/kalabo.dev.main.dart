@@ -1,3 +1,4 @@
+import 'package:asuka/asuka.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/index_menu/index_view_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,10 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.amber,
          // colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange).copyWith(background: Colors.white)
       ),
+      builder: Asuka.builder,
+      navigatorObservers: [
+        Asuka.asukaHeroController //This line is needed for the Hero widget to work
+      ],
       home: const IndexViewPage(),
       //const OnBoardingPage()
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../../../../../../core/configuration/configuration.dart';
 import '../../../../../../domain/entities/courses_entity/coures_entitiy.dart';
 import '../../../constants.dart';
 import '../../details/details_screen.dart';
@@ -90,7 +91,9 @@ class _CoursesCardState extends State<CoursesCard> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: kDefaultPadding),
                       child: Text("${widget.coures.classeName} Colegio Kalabo Internacional",
-                        style: Theme.of(context).textTheme.button,
+                        style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                      ),
                       ),
                     ),
                     // it use the available space
@@ -108,7 +111,9 @@ class _CoursesCardState extends State<CoursesCard> {
                         ),
                       ),
                       child: Text("${formatador.format(widget.coures.prices)}",
-                          style: Theme.of(context).textTheme.button,
+                          style: TextStyle(
+                        fontFamily: SettingsCki.segoeEui,
+                      ),
                         ),
 
                     ),

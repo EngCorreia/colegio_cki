@@ -54,6 +54,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     serve.addListener(() {
       setState(() {});
     });
+
   }
 
   @override
@@ -337,13 +338,44 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-
-  void showSnackBar(String text) {
+  showSnackBarAlert(String text) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(text),
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.green,
+        content: SizedBox(
+          height: 50,
+          child: Center(
+            child: Text(text,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: SettingsCki.segoeEui),
+            ),
+          ),
+        ),
+        backgroundColor: Colors.red[800],
+        duration: const Duration(seconds: 4),
+
+      ),
+    );
+  }
+
+   showSnackBar(String text) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: SizedBox(
+          height: 50,
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: SettingsCki.segoeEui
+              ),
+            ),
+          ),
+        ),
+        backgroundColor: Colors.lightGreen,
+        duration: const Duration(seconds: 4),
+
       ),
     );
   }
@@ -433,12 +465,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
           GestureDetector(
             onTap:  () async {
                 if(phoneController.text.isEmpty) {
-                  showSnackBarText("Numero de telefone vazio");
+                  //showSnackBarText();
+                  showSnackBarAlert("Numero de telefone vazio");
                 } else {
                   status.setStatus("start");
-                   bool response = await serve.login(phoneNumber: countryDial+phoneController.text);
-                   if(response == true || response == false){
+                   var response = await serve.login(phoneNumber: countryDial+phoneController.text);
+                   if(response.isNotEmpty){
                      status.setStatus("");
+                     if(response != "Usuario logado com sucesso"){
+                       showSnackBarAlert(response);
+                     }else{
+                       showSnackBar(response);
+                     }
                    }
                 }
             },
@@ -601,6 +639,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             GestureDetector(
               onTap: ()  async {
                   if(usernameController.text.isEmpty) {
+                    //howSnackBarAlert(String text)
                     showSnackBarText("Nome do encarregado vazio");
                   } else if(phoneController.text.isEmpty) {
                     showSnackBarText("Numero de telefone vazio");
@@ -783,7 +822,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             if(otpPin.length >= 6) {
               if(otpPin != StudentInformation.codeOtp){
                 status.setStatus("");
-                ShowToast.show_error("Codigo invalido por favor digita outro code");
+                showSnackBarAlert("Codigo invalido por favor digita outro code");
                 //serve.login(context);
               }else{
                 bool logged = await serve.createAccount(userName: usernameController.text,
@@ -794,7 +833,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   status.setStatus("");
                   setState(() {});
                 } else{
-                  ShowToast.show_error("Já existe uma conta criada com este numero ${countryDial+phoneController.text}");
+                  showSnackBarAlert("Já existe uma conta criada com este numero ${countryDial+phoneController.text}");
                   status.setStatus("");
                 }
               }

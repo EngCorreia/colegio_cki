@@ -1,7 +1,10 @@
+import 'package:asuka/asuka.dart';
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
 import '../../../../../../core/const_strings/user_information.dart';
 import '../../../../../../domain/entities/student_entity/student_data_entity.dart';
+import '../../../../../../domain/usecases/login_usecase/login_usecase.dart';
+import '../../../../login_ui/registerscreen.dart';
 import '../../../../nova_matricula/new_student.dart';
 import '../../../constants.dart';
 
@@ -17,38 +20,36 @@ class NewStudentButton extends StatelessWidget {
       onTap: () => StudentInformation.status != 0 ? Navigator.push(context, MaterialPageRoute(builder: (context)=> NewStudent(
           studentClass: studentClass,
           studentDataEntity: StudentDataEntity(),
-      ))) : showDialog(context: context, builder: (context)=> AlertDialog(
-        title: Text("Aviso ...",style: TextStyle(
-            color: Colors.red,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            fontFamily: SettingsCki.segoeEui
-        ),),
-        content: SizedBox(
-          height: 120,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text("Caro encarregado, Por favor faça LOGIN na sua conta ou CRIA uma nova conta para efectuar sua inscrição",style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                  fontFamily: SettingsCki.segoeEui
-              )),
-              const SizedBox(
-                height: 10,
-              ),
-
-            ],
-          ),
+      ))) :  Asuka.showDialog(
+        builder: (context) => AlertDialog(
+          title: Text("Aviso ...",style: TextStyle(
+              color: Colors.red,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontFamily: SettingsCki.segoeEui
+          ),),
+          content: Text("Caro encarregado, Por favor faça LOGIN na sua conta ou CRIA uma nova conta para efectuar sua inscrição",style: TextStyle(
+              color: Colors.black54,
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+              fontFamily: SettingsCki.segoeEui
+          )),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const RegisterScreen()));
+              },
+              child: const Text('Ok'),
+            ),
+          ],
         ),
-        actions: [
-          TextButton(onPressed: (){
-            Navigator.pop(context);
-          }, child: const Text("FECHAR")),
-        ],
-
-      )),
+      ),
       child: Center(
         child: Container(
           height: 50,
