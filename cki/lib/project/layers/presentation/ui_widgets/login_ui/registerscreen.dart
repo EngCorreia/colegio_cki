@@ -428,6 +428,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           IntlPhoneField(
             controller: phoneController,
+            keyboardType: TextInputType.number,
+            textInputAction: TextInputAction.next,
             showCountryFlag: false,
             showDropdownIcon: false,
             initialValue: countryDial,
@@ -556,6 +558,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             const SizedBox(height: 8,),
             TextFormField(
               controller: usernameController,
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.next,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
@@ -601,6 +605,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             TextFormField(
               controller: emailController,
+              textInputAction: TextInputAction.next,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),

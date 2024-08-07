@@ -37,14 +37,6 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
           ),
         ),
         actions:  [
-          /*Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              backgroundColor: Colors.grey[300],
-              child: const Icon(FontAwesomeIcons.infoCircle,color: Colors.black),
-            ),
-          )*/
-
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(

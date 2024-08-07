@@ -143,30 +143,14 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8,top: 8,right: 8),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 30,
-                      child: Image.asset("assets/images/image.png"),
-                    ),
-                  ),
-
-                  const Padding(
-                    padding: EdgeInsets.only(left: 8,top: 8,right: 8),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      radius: 30,
-                      backgroundImage: AssetImage("assets/classRoom/class_room2.jpeg"),
-                    ),
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(left: 8,top: 8,right: 8),
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 30,
+                  child: Image.asset("assets/images/image.png"),
+                ),
               ),
-
-
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text("Nome: ${turmas[index]["nomeAluno"]}",style: TextStyle(

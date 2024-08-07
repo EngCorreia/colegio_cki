@@ -18,7 +18,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('Calendario 2023',style: TextStyle(color: Colors.white,fontFamily: SettingsCki.segoeEui),),
+        title: Text('Calendario 2024/2025',
+          style: TextStyle(color: Colors.black,fontFamily: SettingsCki.segoeEui,
+          fontWeight: FontWeight.w400)),
       ),
       body: Column(
         children: [
@@ -64,16 +66,20 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                   child: Center(
                                     child: Text(
                                       assignment[index].subjectName,
-                                      style: Theme.of(context).textTheme.titleLarge,
+                                      style: TextStyle(
+                                        fontFamily: SettingsCki.segoeEui,
+                                        fontWeight: FontWeight.w500
+                                      ),
                                     ),
                                   ),
                                 ),
                                 kHalfSizedBox,
                                 Text(
                                   assignment[index].topicName,
-                                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                                    color: kTextBlackColor,
-                                    fontWeight: FontWeight.w900,
+                                  style: TextStyle(
+                                      fontFamily: SettingsCki.segoeEui,
+                                      fontWeight: FontWeight.w900,
+                                    color: kTextBlackColor
                                   ),
                                 ),
                                 kHalfSizedBox,

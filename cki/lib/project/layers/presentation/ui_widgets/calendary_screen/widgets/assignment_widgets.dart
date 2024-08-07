@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import '../../../../core/configuration/configuration.dart';
 import '../../datesheet_screen/data/constList.dart';
 
 class AssignmentDetailRow extends StatelessWidget {
@@ -15,14 +16,19 @@ class AssignmentDetailRow extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge!
-              .copyWith(color: kTextBlackColor, fontWeight: FontWeight.w900),
+          style: TextStyle(
+              fontFamily: SettingsCki.segoeEui,
+              fontWeight: FontWeight.w900,
+              color: kTextBlackColor
+          ),
         ),
         Text(
           statusValue,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: TextStyle(
+              fontFamily: SettingsCki.segoeEui,
+              fontWeight: FontWeight.w900,
+              color: kTextBlackColor
+          ),
         ),
       ],
     );

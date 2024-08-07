@@ -1312,7 +1312,6 @@ class _NewStudentState extends State<NewStudent> {
                       textColor: Colors.white,
                     ),
                   ).show(context);
-                 // log("+++++++++++ ${StudentInformation.phoneNumber}");
                   await ms.notifyUserSms(phoneNumber: "${StudentInformation.phoneNumber}", msn: "Sr(a) encarregado ${StudentInformation.name},Informamos que a sua inscrição para o aluno: ${widget.studentDataEntity.studentName}.\nFoi feita com sucesso... Solicitamos a preparação da documentação físico e para posterior levar ao colégio");
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const IndexViewPage()));
                 }
