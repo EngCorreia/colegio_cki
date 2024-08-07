@@ -11,7 +11,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../core/configuration/configuration.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../../core/local_notification_service/local_notification_service.dart';
-import '../../../core/show_toast_message/show_toast_message.dart';
 import '../../../data/datasource/api/sms_message.dart';
 import '../../../services/login_service/login_service.dart';
 import '../../controllers/login_controller/login_controller.dart';
@@ -190,6 +189,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           color: Colors.white,fontWeight: FontWeight.bold),
                     ),
                     onTap: () {
+                     // await ms.notifyUserSms(phoneNumber: "+244924948647", msn: "Welcome to colégio Kalabo Internacional, we thank for your presence in our place and we hope to see you very soon.\n..................................\nBem-vindos ao COLÉGIO KALABO INTERNACIONAL, agradecemos pela sua presença nas nossas instalações e esperamos voltar a vê-lo (a) em breve.\nContinuação de um ótimo dia.");
                       //Navigator.push(context, MaterialPageRoute(builder: (context)=> const AutoFill()));
                     },
                   ),
@@ -825,11 +825,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 showSnackBarAlert("Codigo invalido por favor digita outro code");
                 //serve.login(context);
               }else{
-                bool logged = await serve.createAccount(userName: usernameController.text,
+                bool account = await serve.createAccount(userName: usernameController.text,
                     email: emailController.text,
                     phoneNumber: countryDial+phoneController.text);
-                if(logged){
+                if(account){
                   showSnackBar("Conta criada com sucesso");
+                  await ms.notifyUserSms(phoneNumber: countryDial+phoneController.text, msn: "Welcome to colégio Kalabo Internacional, we thank for your presence in our place and we hope to see you very soon.\n..................................\nBem-vindos ao COLÉGIO KALABO INTERNACIONAL, agradecemos pela sua presença nas nossas instalações e esperamos voltar a vê-lo (a) em breve.\nContinuação de um ótimo dia.");
                   status.setStatus("");
                   setState(() {});
                 } else{

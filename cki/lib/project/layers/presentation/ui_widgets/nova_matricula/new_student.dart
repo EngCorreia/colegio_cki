@@ -1318,8 +1318,8 @@ class _NewStudentState extends State<NewStudent> {
                 }
               });
               if(result == true){
-                   await ms.notifyUserSms(phoneNumber: "+244923559480", msn: "Welcome to colégio Kalabo Internacional, we thank for your presence in our place and we hope to see you "
-                       "very soon.\n\n................................\nBem-vindos ao COLÉGIO KALABO INTERNACIONAL, agradecemos pela sua presença nas nossas instalações e esperamos voltar a vê-lo (a) em breve.\nContinuação de um ótimo dia.");
+                   await ms.notifyUserSms(phoneNumber: "+244923559480", msn: "Welcome to colégio Kalabo Internacional, we thank for your presence in our place and we hope to see you"
+                       "very soon.\n................................\nBem-vindos ao COLÉGIO KALABO INTERNACIONAL, agradecemos pela sua presença nas nossas instalações e esperamos voltar a vê-lo (a) em breve.\nContinuação de um ótimo dia.");
                    /*
                    await ms.notifyUserSms(phoneNumber: "+244924948647", msn: "Welcome to colégio Kalabo Internacional, we thank for your presence in our place and we hope to see you "
                        "very soon.\n\n................................\nBem-vindos ao COLÉGIO KALABO INTERNACIONAL, agradecemos pela sua presença nas nossas instalações e esperamos voltar a vê-lo (a) em breve.\nContinuação de um ótimo dia.");

@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:asuka/asuka.dart'  as asuka;
 
 import '../../../core/const_strings/user_information.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
@@ -197,14 +198,12 @@ class _FinancasAlunoState extends State<FinancasAluno> {
             ),
             Padding(
               padding: const EdgeInsets.only(right: 10,left: 10),
-              child: Expanded(
-                child: Text("Por favor faça login na sua conta Para ter acesso aos pagamentos efectuados e aos recibos",style: TextStyle(
+              child: Text("Por favor faça login na sua conta Para ter acesso aos pagamentos efectuados e aos recibos",style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 15,
                     fontFamily: SettingsCki.segoeEui,
                   color: Colors.black
                 ),),
-              ),
             ),
           ],
         ),
