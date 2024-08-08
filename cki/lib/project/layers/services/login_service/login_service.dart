@@ -17,7 +17,6 @@ class AuthenticationServe extends ChangeNotifier{
       var checkStudent = await FirebaseFirestore.instance.collection("student").where("phoneNumber",isEqualTo: phoneNumber).get();
       var ss = checkStudent.docs;
       if(ss.isEmpty){
-        //showSnackBar("Usuario logado com sucesso");
         return "Não existe nenhum registo com este NUMERO ( $phoneNumber )";
       }else{
         var json = ss.last.data();
@@ -36,18 +35,16 @@ class AuthenticationServe extends ChangeNotifier{
             resonpseApi  = "Usuario logado com sucesso";
           }else{
             resonpseApi  = "Ocorreu um erro na criação da conta";
-            //ShowToast.show_error("Ocorreu um erro na criação da conta");
           }
 
         }else{
           pref.setString("auth", jsonEncode(user));
           await updateStudent(json: user);
-         // ShowToast.show_message_Success("Usuario logado com sucesso");
+          resonpseApi  = "Usuario logado com sucesso";
         }
       }
       return resonpseApi;
     }catch(e){
-      //ShowToast.show_error("Problema na conexão com o servidor");
       return "Problema na conexão com o servidor";
     }
 

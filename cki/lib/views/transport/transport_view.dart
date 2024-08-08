@@ -17,6 +17,46 @@ class _TransportViewState extends State<TransportView> {
     var formatador;
     var value;
     var month;
+    showSnackBarAlert(String text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: SizedBox(
+            height: 50,
+            child: Center(
+              child: Text(text,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: SettingsCki.segoeEui),
+              ),
+            ),
+          ),
+          backgroundColor: Colors.red[800],
+          duration: const Duration(seconds: 4),
+
+        ),
+      );
+    }
+    showSnackBar(String text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: SizedBox(
+            height: 50,
+            child: Center(
+              child: Text(
+                text,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: SettingsCki.segoeEui
+                ),
+              ),
+            ),
+          ),
+          backgroundColor: Colors.blue[800],
+          duration: const Duration(seconds: 4),
+
+        ),
+      );
+    }
     mesSheet(TransportViewModel model) {
       return Column(
         mainAxisSize: MainAxisSize.min,
@@ -732,8 +772,18 @@ class _TransportViewState extends State<TransportView> {
                         ),
               
                         InkWell(
-                          onTap: (){
-                            model.summitStudent();
+                          onTap: () async {
+                            var res = await model.summitStudent();
+                            if(res == "Transporte solicitado com sucesso..."){
+                             Future.delayed(const Duration(seconds: 2),(){
+                               showSnackBar(res);
+                             });
+                             Navigator.pop(context);
+                            }else{
+                              showSnackBarAlert(res);
+                             // Navigator.pop(context);
+                            }
+
                           },
                           child: Container(
                             height: 45,

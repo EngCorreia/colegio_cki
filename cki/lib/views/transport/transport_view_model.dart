@@ -36,9 +36,10 @@ class TransportViewModel extends BaseViewModel{
   Student? student;
 
 
-  Future summitStudent() async {
+  Future<String> summitStudent() async {
 
     List<Map<String, dynamic>> jsonMap = [];
+    String msn = "";
 
     for(int index = 0; index < studentLis.length; index++){
       var resultStudent = studentLis[index];
@@ -61,13 +62,16 @@ class TransportViewModel extends BaseViewModel{
             "mensalidade": jsonMap
           };
           gravaFinancas.set(json);
-          ShowToast.show_message_Success("Transporte solicitado com sucesso...");
+          msn = "Transporte solicitado com sucesso...";
+          //ShowToast.show_message_Success("Transporte solicitado com sucesso...");
         }catch(e){
           log(e.toString());
+          msn =  e.toString();
           ShowToast.show_error(e.toString());
         }
       }
     }
+    return msn;
   }
 
   String getId(String name){

@@ -373,7 +373,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           ),
         ),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: Colors.blue[800],
         duration: const Duration(seconds: 4),
 
       ),
