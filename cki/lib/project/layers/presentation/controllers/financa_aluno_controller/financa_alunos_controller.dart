@@ -238,4 +238,31 @@ abstract class _AreaFinanceiraAluno with Store {
       return "";
     }
   }
+
+
+  //-----------------------------------------------------------
+
+
+Future getPropinas() async{
+  try{
+    var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+    collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("propinas").where("uuid",isEqualTo: StudentInformation.userID).snapshots();
+    gravaFinancas.listen((resultSet) {
+      var listResult = resultSet.docs;
+
+      list = listResult;
+     /* if(resultSet.exists){
+        list.clear();
+        Map<String,dynamic>? financas = resultSet.data();
+        if(financas != null){
+          list = financas["filhos"];
+        }
+      }
+      */
+    });
+  }catch(e){
+    log(e.toString());
+    ShowToast.show_error(e.toString());
+  }
+}
 }
