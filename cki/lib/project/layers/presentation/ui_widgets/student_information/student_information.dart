@@ -114,8 +114,7 @@ class _StudentInformationUiState extends State<StudentInformationUi> {
                         ),
 
                         const SizedBox(width: 20,),
-
-                        Text("Ver Turma",style: TextStyle(
+                        Text("Ver alunos",style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.normal,
                             color: Colors.white,

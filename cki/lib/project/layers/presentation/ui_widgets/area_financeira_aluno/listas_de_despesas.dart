@@ -1,9 +1,11 @@
 import 'package:cki/project/layers/core/configuration/configuration.dart';
+import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/pagamentoInscricao.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/propina_atl.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/propinas_aluno.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
 
 class MenuFinanceiroAluno extends StatefulWidget {
@@ -30,6 +32,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       body: Stack(
         children: [
           Column(
@@ -149,6 +152,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             width: MediaQuery.of(context).size.width,
                             child: ListView(
                               children: [
+                                inscriptionMonth(),
                                 paymentMonth(),
                                 paymentAtl(),
                                 paymentBooks(),
@@ -172,6 +176,128 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
     );
   }
 
+
+ //
+
+  Widget inscriptionMonth() {
+    return GestureDetector(
+      onTap: () async {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PramentoInscricao(
+                  idAluno: widget.idAluno,
+                  studentName: widget.studentName,
+                )));
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.8),
+                blurRadius: 8,
+              )
+            ],
+            border: Border.all(
+              width: 1.5,
+              color: Colors.white10,
+            ),
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: 80.0,
+                        height: 80.0,
+                        decoration: BoxDecoration(
+                          color: const Color(0XFF00B686),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(.1),
+                                blurRadius: 8,
+                                spreadRadius: 3)
+                          ],
+                          border: Border.all(
+                            width: 1.5,
+                            color: Colors.white,
+                          ),
+                          borderRadius: BorderRadius.circular(40.0),
+                        ),
+                        padding: const EdgeInsets.all(5),
+                        child: const CircleAvatar(
+                          child: Icon(FontAwesomeIcons.userGroup), //assets/course/books.png
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "PAGAMENTO DA INSCRIÇÃO",
+                        style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black.withOpacity(0.7),
+                            fontSize: 16),
+                      ),
+                      Expanded(child: Container()),
+                      Stack(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(11),
+                            child: Icon(
+                              Icons.notifications,
+                              size: 26,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Observer(
+                            builder: (_) => financa.paymentNaoPago.isNotEmpty
+                                ? Positioned(
+                              top: 6,
+                              right: 6,
+                              child: Container(
+                                padding: const EdgeInsets.all(1),
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                constraints: const BoxConstraints(
+                                  minWidth: 18,
+                                  minHeight: 18,
+                                ),
+                                child: Text(
+                                  "${financa.paymentNaoPago.length}",
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            )
+                                : Container(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget paymentMonth() {
     return GestureDetector(
       onTap: () async {
@@ -187,8 +313,18 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.brown,
-            borderRadius: BorderRadius.circular(8),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.8),
+                  blurRadius: 8,
+                  )
+            ],
+            border: Border.all(
+              width: 1.5,
+              color: Colors.white10,
+            ),
+            borderRadius: BorderRadius.circular(8.0),
           ),
           child: Center(
             child: Padding(
@@ -223,12 +359,13 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                       const SizedBox(
                         width: 10,
                       ),
+
                       Text(
                         "PROPINAS MENSAIS",
                         style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Colors.black.withOpacity(0.7),
                             fontSize: 16),
                       ),
                       Expanded(child: Container()),
@@ -239,7 +376,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             child: Icon(
                               Icons.notifications,
                               size: 26,
-                              color: Colors.white,
+                              color: Colors.black54,
                             ),
                           ),
                           Observer(
@@ -297,8 +434,18 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.green,
-            borderRadius: BorderRadius.circular(8),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.8),
+                blurRadius: 8,
+              )
+            ],
+            border: Border.all(
+              width: 1.5,
+              color: Colors.white10,
+            ),
+            borderRadius: BorderRadius.circular(8.0),
           ),
           child: Center(
             child: Padding(
@@ -338,7 +485,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                         style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Colors.black.withOpacity(0.7),
                             fontSize: 16),
                       ),
                       const SizedBox(
@@ -364,8 +511,18 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.blue,
-            borderRadius: BorderRadius.circular(8),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.8),
+                blurRadius: 8,
+              )
+            ],
+            border: Border.all(
+              width: 1.5,
+              color: Colors.white10,
+            ),
+            borderRadius: BorderRadius.circular(8.0),
           ),
           child: Center(
             child: Padding(
@@ -405,7 +562,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                         style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Colors.black.withOpacity(0.7),
                             fontSize: 16),
                       ),
                       const SizedBox(
@@ -431,8 +588,18 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.deepPurple,
-            borderRadius: BorderRadius.circular(8),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.8),
+                blurRadius: 8,
+              )
+            ],
+            border: Border.all(
+              width: 1.5,
+              color: Colors.white10,
+            ),
+            borderRadius: BorderRadius.circular(8.0),
           ),
           child: Center(
             child: Padding(
@@ -472,7 +639,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                         style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Colors.black.withOpacity(0.7),
                             fontSize: 16),
                       ),
                       const SizedBox(

@@ -168,20 +168,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
 
-
-                  /*
                   ListTile(
-                    leading: const Icon(Icons.home_outlined,color: Colors.white,),
-                    title: Text('Sobre nós',
+                    leading: const Icon(Icons.supervised_user_circle,color: Colors.white,),
+                    title: Text('Adicionar alunos',
                       style: TextStyle(fontFamily: SettingsCki.segoeEui,
                           color: Colors.white,fontWeight: FontWeight.bold),
                     ),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const AboutUs()));
-
+                     // Navigator.push(context, MaterialPageRoute(builder: (context)=> const AboutUs()));
                     },
                   ),
-                  */
+                  const Divider(),
+
                   ListTile(
                     leading: const Icon(Icons.settings,color: Colors.white,),
                     title: Text('Configuração',
