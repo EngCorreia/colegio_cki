@@ -286,7 +286,7 @@ abstract class _AreaFinanceiraAluno with Store {
 
   //-----------------------------------------------------------
 
-Future getMonthlyStudent() async{
+  Future getMonthlyStudent() async{
   try{
     var response = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
     collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("propinas").where("uuid",isEqualTo: StudentInformation.userID).snapshots();
@@ -297,8 +297,6 @@ Future getMonthlyStudent() async{
         payList.add(PaymentModels.fromJson(json: student.data(),id: student.id));
         log("-----payList ${payList.length}");
       }
-
-
     });
   }catch(e){
     log(e.toString());
