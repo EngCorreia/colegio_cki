@@ -9,6 +9,21 @@ part of 'financa_alunos_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
+  Computed<List<InscriptionEntity>>? _$inscriptionNotPayComputed;
+
+  @override
+  List<InscriptionEntity> get inscriptionNotPay =>
+      (_$inscriptionNotPayComputed ??= Computed<List<InscriptionEntity>>(
+              () => super.inscriptionNotPay,
+              name: '_AreaFinanceiraAluno.inscriptionNotPay'))
+          .value;
+  Computed<List<MonthlyEntity>>? _$monthlyNotPayComputed;
+
+  @override
+  List<MonthlyEntity> get monthlyNotPay => (_$monthlyNotPayComputed ??=
+          Computed<List<MonthlyEntity>>(() => super.monthlyNotPay,
+              name: '_AreaFinanceiraAluno.monthlyNotPay'))
+      .value;
   Computed<List<Payment>>? _$paymentPagoComputed;
 
   @override
@@ -72,6 +87,56 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
     });
   }
 
+  late final _$payListAtom =
+      Atom(name: '_AreaFinanceiraAluno.payList', context: context);
+
+  @override
+  ObservableList<PaymentModels> get payList {
+    _$payListAtom.reportRead();
+    return super.payList;
+  }
+
+  @override
+  set payList(ObservableList<PaymentModels> value) {
+    _$payListAtom.reportWrite(value, super.payList, () {
+      super.payList = value;
+    });
+  }
+
+  late final _$inscriptionListStudentAtom = Atom(
+      name: '_AreaFinanceiraAluno.inscriptionListStudent', context: context);
+
+  @override
+  ObservableList<InscriptionEntity> get inscriptionListStudent {
+    _$inscriptionListStudentAtom.reportRead();
+    return super.inscriptionListStudent;
+  }
+
+  @override
+  set inscriptionListStudent(ObservableList<InscriptionEntity> value) {
+    _$inscriptionListStudentAtom
+        .reportWrite(value, super.inscriptionListStudent, () {
+      super.inscriptionListStudent = value;
+    });
+  }
+
+  late final _$monthlyEntityListStudentAtom = Atom(
+      name: '_AreaFinanceiraAluno.monthlyEntityListStudent', context: context);
+
+  @override
+  ObservableList<MonthlyEntity> get monthlyEntityListStudent {
+    _$monthlyEntityListStudentAtom.reportRead();
+    return super.monthlyEntityListStudent;
+  }
+
+  @override
+  set monthlyEntityListStudent(ObservableList<MonthlyEntity> value) {
+    _$monthlyEntityListStudentAtom
+        .reportWrite(value, super.monthlyEntityListStudent, () {
+      super.monthlyEntityListStudent = value;
+    });
+  }
+
   late final _$paymentListAtom =
       Atom(name: '_AreaFinanceiraAluno.paymentList', context: context);
 
@@ -110,8 +175,13 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
 payment: ${payment},
 total: ${total},
 naoPago: ${naoPago},
+payList: ${payList},
+inscriptionListStudent: ${inscriptionListStudent},
+monthlyEntityListStudent: ${monthlyEntityListStudent},
 paymentList: ${paymentList},
 list: ${list},
+inscriptionNotPay: ${inscriptionNotPay},
+monthlyNotPay: ${monthlyNotPay},
 paymentPago: ${paymentPago},
 paymentNaoPago: ${paymentNaoPago}
     ''';

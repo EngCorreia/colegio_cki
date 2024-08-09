@@ -6,15 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../../../modules/finances/domain/entities/paymentEntity.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
 
 class MenuFinanceiroAluno extends StatefulWidget {
-  final String idAluno;
-  final String studentName;
-
-  const MenuFinanceiroAluno(
-      {super.key, required this.idAluno, required this.studentName});
-
+  final PaymentEntity paymentEntity;
+  const MenuFinanceiroAluno({super.key, required this.paymentEntity});
   @override
   _MenuFinanceiroAlunoState createState() => _MenuFinanceiroAlunoState();
 }
@@ -26,7 +23,9 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
   @override
   void initState() {
     super.initState();
-    financa.readControlFinance(studentId: widget.idAluno);
+    financa.readControlFinance(studentId: widget.paymentEntity.documentId);
+    financa.readInscription(inscriptionList: widget.paymentEntity.inscriptionList);
+    financa.readMonthly(paymentList: widget.paymentEntity.paymentList);
   }
 
   @override
@@ -107,7 +106,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.studentName,
+                                widget.paymentEntity.name,
                                 style: TextStyle(
                                     fontFamily: SettingsCki.segoeEui,
                                     fontSize: 20,
@@ -186,8 +185,8 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
             context,
             MaterialPageRoute(
                 builder: (context) => PramentoInscricao(
-                  idAluno: widget.idAluno,
-                  studentName: widget.studentName,
+                  idAluno: widget.paymentEntity.documentId,
+                  studentName: widget.paymentEntity.name,
                 )));
       },
       child: Padding(
@@ -240,12 +239,12 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                         width: 10,
                       ),
                       Text(
-                        "PAGAMENTO DA INSCRIÇÃO",
+                        "PAGAMENTO INSCRIÇÃO",
                         style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.bold,
                             color: Colors.black.withOpacity(0.7),
-                            fontSize: 16),
+                            fontSize: 15),
                       ),
                       Expanded(child: Container()),
                       Stack(
@@ -255,11 +254,11 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             child: Icon(
                               Icons.notifications,
                               size: 26,
-                              color: Colors.white,
+                              color: Colors.black54,
                             ),
                           ),
                           Observer(
-                            builder: (_) => financa.paymentNaoPago.isNotEmpty
+                            builder: (_) => financa.inscriptionNotPay.isNotEmpty
                                 ? Positioned(
                               top: 6,
                               right: 6,
@@ -274,7 +273,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                                   minHeight: 18,
                                 ),
                                 child: Text(
-                                  "${financa.paymentNaoPago.length}",
+                                  "${financa.inscriptionNotPay.length}",
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 10,
@@ -282,8 +281,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                                   textAlign: TextAlign.center,
                                 ),
                               ),
-                            )
-                                : Container(),
+                            ): Container(),
                           ),
                         ],
                       ),
@@ -305,8 +303,8 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
             context,
             MaterialPageRoute(
                 builder: (context) => PropinasAluno(
-                      idAluno: widget.idAluno,
-                      studentName: widget.studentName,
+                      idAluno: widget.paymentEntity.documentId,
+                      studentName: widget.paymentEntity.name,
                     )));
       },
       child: Padding(
@@ -366,7 +364,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.bold,
                             color: Colors.black.withOpacity(0.7),
-                            fontSize: 16),
+                            fontSize: 15),
                       ),
                       Expanded(child: Container()),
                       Stack(
@@ -380,7 +378,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             ),
                           ),
                           Observer(
-                            builder: (_) => financa.paymentNaoPago.isNotEmpty
+                            builder: (_) => financa.monthlyNotPay.isNotEmpty
                                 ? Positioned(
                                     top: 6,
                                     right: 6,
@@ -395,7 +393,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                                         minHeight: 18,
                                       ),
                                       child: Text(
-                                        "${financa.paymentNaoPago.length}",
+                                        "${financa.monthlyNotPay.length}",
                                         style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 10,
@@ -426,8 +424,8 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
             context,
             MaterialPageRoute(
                 builder: (context) => PropinasAtl(
-                      idAluno: widget.idAluno,
-                      studentName: widget.studentName,
+                      idAluno: widget.paymentEntity.documentId,
+                      studentName: widget.paymentEntity.name,
                     )));
       },
       child: Padding(
@@ -486,7 +484,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.bold,
                             color: Colors.black.withOpacity(0.7),
-                            fontSize: 16),
+                            fontSize: 15),
                       ),
                       const SizedBox(
                         width: 10,
@@ -563,7 +561,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.bold,
                             color: Colors.black.withOpacity(0.7),
-                            fontSize: 16),
+                            fontSize: 15),
                       ),
                       const SizedBox(
                         width: 10,
@@ -640,7 +638,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.bold,
                             color: Colors.black.withOpacity(0.7),
-                            fontSize: 16),
+                            fontSize: 15),
                       ),
                       const SizedBox(
                         width: 10,

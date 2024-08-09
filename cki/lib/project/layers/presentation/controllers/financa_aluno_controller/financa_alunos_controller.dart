@@ -6,6 +6,9 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../../../modules/finances/data/models/paymentModel.dart';
+import '../../../../../modules/finances/domain/entities/inscription_entity.dart';
+import '../../../../../modules/finances/domain/entities/monthlyEntity.dart';
 import '../../../core/const_strings/const_strings.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../../core/show_toast_message/show_toast_message.dart';
@@ -25,6 +28,22 @@ abstract class _AreaFinanceiraAluno with Store {
   @observable
   int? naoPago = 0;
 
+
+  @observable
+  ObservableList<PaymentModels> payList = ObservableList();
+  @observable
+  ObservableList<InscriptionEntity> inscriptionListStudent = ObservableList();
+  @observable
+  ObservableList<MonthlyEntity> monthlyEntityListStudent = ObservableList();
+
+
+  @computed
+  List<InscriptionEntity> get inscriptionNotPay => inscriptionListStudent.where((element) => element.status == 1).toList();
+  @computed
+  List<MonthlyEntity> get monthlyNotPay => monthlyEntityListStudent.where((element) => element.status == 1).toList();
+
+
+  //--------------------------------------------------------------------------
 
   @observable
   ObservableList<Payment> paymentList = ObservableList();
@@ -82,6 +101,32 @@ abstract class _AreaFinanceiraAluno with Store {
       }else if(paymentNaoPago.length >= 2){
         naoPago  = (naoPago ! + pay.value!);
       }
+    }
+  }
+
+  Future readInscription({required List<InscriptionEntity> inscriptionList}) async{
+    try{
+      var response = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+      collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("propinas").where("uuid",isEqualTo: StudentInformation.userID).snapshots();
+      response.listen((resultSet) {
+        inscriptionListStudent = inscriptionList.asObservable();
+      });
+    }catch(e){
+      log(e.toString());
+      ShowToast.show_error(e.toString());
+    }
+  }
+
+  Future<void> readMonthly({required List<MonthlyEntity> paymentList}) async{
+    try{
+      var response = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+      collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("propinas").where("uuid",isEqualTo: StudentInformation.userID).snapshots();
+      response.listen((resultSet) {
+        monthlyEntityListStudent = paymentList.asObservable();
+      });
+    }catch(e){
+      log(e.toString());
+      ShowToast.show_error(e.toString());
     }
   }
 
@@ -239,26 +284,21 @@ abstract class _AreaFinanceiraAluno with Store {
     }
   }
 
-
   //-----------------------------------------------------------
 
-
-Future getPropinas() async{
+Future getMonthlyStudent() async{
   try{
-    var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+    var response = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
     collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("propinas").where("uuid",isEqualTo: StudentInformation.userID).snapshots();
-    gravaFinancas.listen((resultSet) {
+    response.listen((resultSet) {
       var listResult = resultSet.docs;
-
-      list = listResult;
-     /* if(resultSet.exists){
-        list.clear();
-        Map<String,dynamic>? financas = resultSet.data();
-        if(financas != null){
-          list = financas["filhos"];
-        }
+      payList.clear();
+      for(var student in listResult){
+        payList.add(PaymentModels.fromJson(json: student.data(),id: student.id));
+        log("-----payList ${payList.length}");
       }
-      */
+
+
     });
   }catch(e){
     log(e.toString());

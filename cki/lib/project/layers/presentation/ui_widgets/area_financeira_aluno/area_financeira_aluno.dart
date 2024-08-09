@@ -29,6 +29,7 @@ class _FinancasAlunoState extends State<FinancasAluno> {
     super.initState();
     if(StudentInformation.userID!.isNotEmpty){
       financa.leituraFilhosFinancas();
+      financa.getMonthlyStudent();
     }
   }
   
@@ -78,7 +79,7 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     const Icon(Icons.people),
-                    Text("${financa.list.length} Filho(s)",style: TextStyle(
+                    Text("${financa.payList.length} Filho(s)",style: TextStyle(
                         fontFamily: SettingsCki.segoeEui,
                         fontSize: 18,
                         fontWeight: FontWeight.normal
@@ -115,31 +116,25 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                   ],
                 )*/,
               ): ListView.builder(
-                  itemCount: financa.list.length,
+                  itemCount: financa.payList.length,
                   itemBuilder: (context,index) => ListTile(
                     onTap: (){
-                      var studentId = financa.list[index]["idAluno"];
-                     /* Navigator.push(context, MaterialPageRoute(builder: (context)=>  MoneyStudent(
-                        idAluno: studentId,
-                        studentName: financa.list[index]["nomeAluno"],
-                      )));
-                      */
+                      var studentId = financa.payList[index].documentId;
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> MenuFinanceiroAluno(
-                        idAluno: studentId,
-                        studentName: financa.list[index]["nomeAluno"],
+                        paymentEntity: financa.payList[index],
                       )));
                     },
                     leading: CircleAvatar(
                       // backgroundColor: Colors.transparent,
                       child: Image.asset("assets/images/image.png"),
                     ),
-                    title: Text("${financa.list[index]["nomeAluno"]}",style: TextStyle(
+                    title: Text(financa.payList[index].name,style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                       color: Colors.black
                     ),),
-                    subtitle: Text("${financa.list[index]["classe"]}",style: TextStyle(
+                    subtitle: Text(financa.payList[index].classe,style: TextStyle(
                         fontFamily: SettingsCki.segoeEui,
                         fontWeight: FontWeight.normal,
                         color: Colors.lightBlueAccent
@@ -147,7 +142,7 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                     ),
 
                     trailing: Observer(
-                      builder: (_)=> (financa.list[index]["status"] == 0) ? Stack(
+                      builder: (_)=> (financa.payList[index].status == 0) ? Stack(
                         children: [
                           const Padding(
                             padding: EdgeInsets.all(11),
