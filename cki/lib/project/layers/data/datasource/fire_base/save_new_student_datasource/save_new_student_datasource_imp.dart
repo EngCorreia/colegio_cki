@@ -25,46 +25,58 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
       if(result.isNotEmpty){
         saveStudentResult.set(result).whenComplete(() async{
           var saveStudentResult = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
-          collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("financas")
-              .doc(StudentInformation.userID).snapshots();
+          collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("cki-financas")
+              .doc(studentId).snapshots();
           saveStudentResult.listen((event) {
             if(event.exists){
               if(readed == false){
-                Map<String,dynamic>? filhos = event.data();
-                List<dynamic> resultSet = filhos!["filhos"];
-                Map<String,dynamic> financas = {
-                  "idAluno": studentId,
-                  "nomeAluno": result["nome_aluno"],
-                  "classe": classe,
-                  "dia": Timestamp.now(),
-                  "status": 0
-                };
-                resultSet.add(financas);
-                var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
-                collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("financas")
-                    .doc(StudentInformation.userID);
-                Map<String,dynamic> update = {
-                  "filhos": resultSet,
-                };
-                gravaFinancas.update(update);
                 readed = true;
               }
             }else{
               var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
-              collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("financas")
-                  .doc(StudentInformation.userID);
+              collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("cki-financas")
+                  .doc(studentId);
               Map<String,dynamic> financas = {
-                "idAluno": studentId,
-                "nomeAluno": result["nome_aluno"],
+                "uuid": StudentInformation.userID,
+                "nome": result["nome_aluno"],
                 "classe": classe,
-                "dia": Timestamp.now(),
+                "atl":[{
+                  "status": 0,
+                  "data": Timestamp.now(),
+                  "valor": 1,
+                  "mes": Timestamp.now().toDate().month,
+                }],
+                "inscricao":[{
+                  "status": 0,
+                  "data": Timestamp.now(),
+                  "valor": 0,
+                  "mes": Timestamp.now().toDate().month,
+                }],
+
+                "propina":[{
+                  "status": 0,
+                  "data": Timestamp.now(),
+                  "valor": 0,
+                  "mes": Timestamp.now().toDate().month,
+                }],
+
+                "livro":[{
+                  "status": 1,
+                  "data": Timestamp.now(),
+                  "valor": 0,
+                  "mes": Timestamp.now().toDate().month,
+                }],
+
+                "uniforme":[{
+                  "status": 0,
+                  "data": Timestamp.now(),
+                  "valor": 0,
+                  "mes": Timestamp.now().toDate().month,
+                }],
                 "status": 0
               };
 
-              Map<String,dynamic> newUpadte = {
-                "filhos": [financas],
-              };
-              gravaFinancas.set(newUpadte);
+              gravaFinancas.set(financas);
               readed = true;
             }
           });

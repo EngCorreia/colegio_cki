@@ -9,19 +9,18 @@ part of 'financa_alunos_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
-  Computed<List<InscriptionEntity>>? _$inscriptionNotPayComputed;
+  Computed<List<dynamic>>? _$inscriptionNotPayComputed;
 
   @override
-  List<InscriptionEntity> get inscriptionNotPay =>
-      (_$inscriptionNotPayComputed ??= Computed<List<InscriptionEntity>>(
-              () => super.inscriptionNotPay,
+  List<dynamic> get inscriptionNotPay => (_$inscriptionNotPayComputed ??=
+          Computed<List<dynamic>>(() => super.inscriptionNotPay,
               name: '_AreaFinanceiraAluno.inscriptionNotPay'))
-          .value;
-  Computed<List<MonthlyEntity>>? _$monthlyNotPayComputed;
+      .value;
+  Computed<List<dynamic>>? _$monthlyNotPayComputed;
 
   @override
-  List<MonthlyEntity> get monthlyNotPay => (_$monthlyNotPayComputed ??=
-          Computed<List<MonthlyEntity>>(() => super.monthlyNotPay,
+  List<dynamic> get monthlyNotPay => (_$monthlyNotPayComputed ??=
+          Computed<List<dynamic>>(() => super.monthlyNotPay,
               name: '_AreaFinanceiraAluno.monthlyNotPay'))
       .value;
   Computed<List<Payment>>? _$paymentPagoComputed;
@@ -52,6 +51,22 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
   set payment(Payment? value) {
     _$paymentAtom.reportWrite(value, super.payment, () {
       super.payment = value;
+    });
+  }
+
+  late final _$paymentEntityAtom =
+      Atom(name: '_AreaFinanceiraAluno.paymentEntity', context: context);
+
+  @override
+  PaymentEntity? get paymentEntity {
+    _$paymentEntityAtom.reportRead();
+    return super.paymentEntity;
+  }
+
+  @override
+  set paymentEntity(PaymentEntity? value) {
+    _$paymentEntityAtom.reportWrite(value, super.paymentEntity, () {
+      super.paymentEntity = value;
     });
   }
 
@@ -87,53 +102,19 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
     });
   }
 
-  late final _$payListAtom =
-      Atom(name: '_AreaFinanceiraAluno.payList', context: context);
+  late final _$inscriptionListAtom =
+      Atom(name: '_AreaFinanceiraAluno.inscriptionList', context: context);
 
   @override
-  ObservableList<PaymentModels> get payList {
-    _$payListAtom.reportRead();
-    return super.payList;
+  ObservableList<InscriptionModel> get inscriptionList {
+    _$inscriptionListAtom.reportRead();
+    return super.inscriptionList;
   }
 
   @override
-  set payList(ObservableList<PaymentModels> value) {
-    _$payListAtom.reportWrite(value, super.payList, () {
-      super.payList = value;
-    });
-  }
-
-  late final _$inscriptionListStudentAtom = Atom(
-      name: '_AreaFinanceiraAluno.inscriptionListStudent', context: context);
-
-  @override
-  ObservableList<InscriptionEntity> get inscriptionListStudent {
-    _$inscriptionListStudentAtom.reportRead();
-    return super.inscriptionListStudent;
-  }
-
-  @override
-  set inscriptionListStudent(ObservableList<InscriptionEntity> value) {
-    _$inscriptionListStudentAtom
-        .reportWrite(value, super.inscriptionListStudent, () {
-      super.inscriptionListStudent = value;
-    });
-  }
-
-  late final _$monthlyEntityListStudentAtom = Atom(
-      name: '_AreaFinanceiraAluno.monthlyEntityListStudent', context: context);
-
-  @override
-  ObservableList<MonthlyEntity> get monthlyEntityListStudent {
-    _$monthlyEntityListStudentAtom.reportRead();
-    return super.monthlyEntityListStudent;
-  }
-
-  @override
-  set monthlyEntityListStudent(ObservableList<MonthlyEntity> value) {
-    _$monthlyEntityListStudentAtom
-        .reportWrite(value, super.monthlyEntityListStudent, () {
-      super.monthlyEntityListStudent = value;
+  set inscriptionList(ObservableList<InscriptionModel> value) {
+    _$inscriptionListAtom.reportWrite(value, super.inscriptionList, () {
+      super.inscriptionList = value;
     });
   }
 
@@ -141,15 +122,31 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
       Atom(name: '_AreaFinanceiraAluno.paymentList', context: context);
 
   @override
-  ObservableList<Payment> get paymentList {
+  ObservableList<PaymentModels> get paymentList {
     _$paymentListAtom.reportRead();
     return super.paymentList;
   }
 
   @override
-  set paymentList(ObservableList<Payment> value) {
+  set paymentList(ObservableList<PaymentModels> value) {
     _$paymentListAtom.reportWrite(value, super.paymentList, () {
       super.paymentList = value;
+    });
+  }
+
+  late final _$paymentListsAtom =
+      Atom(name: '_AreaFinanceiraAluno.paymentLists', context: context);
+
+  @override
+  ObservableList<Payment> get paymentLists {
+    _$paymentListsAtom.reportRead();
+    return super.paymentLists;
+  }
+
+  @override
+  set paymentLists(ObservableList<Payment> value) {
+    _$paymentListsAtom.reportWrite(value, super.paymentLists, () {
+      super.paymentLists = value;
     });
   }
 
@@ -173,12 +170,12 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
   String toString() {
     return '''
 payment: ${payment},
+paymentEntity: ${paymentEntity},
 total: ${total},
 naoPago: ${naoPago},
-payList: ${payList},
-inscriptionListStudent: ${inscriptionListStudent},
-monthlyEntityListStudent: ${monthlyEntityListStudent},
+inscriptionList: ${inscriptionList},
 paymentList: ${paymentList},
+paymentLists: ${paymentLists},
 list: ${list},
 inscriptionNotPay: ${inscriptionNotPay},
 monthlyNotPay: ${monthlyNotPay},

@@ -63,7 +63,11 @@ class _CobrancaMensalidadeState extends State<CobrancaMensalidade> {
           builder: (_)=>ListView.builder(
               itemCount: financa.paymentList.length,
               itemBuilder: (context,index){
-                var pay = financa.paymentList[index];
+                var pay = Payment(
+                    date:financa.paymentEntity!.monthlyList[index].data,
+                    status: financa.paymentEntity!.monthlyList[index].status,
+                    value: financa.paymentEntity!.monthlyList[index].valor
+                );
                 return paymentUI(payment: pay);
               }),
         )

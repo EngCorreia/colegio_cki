@@ -10,7 +10,7 @@ class PaymentEntity extends Equatable{
   final String name;
   final String classe;
   final int status;
-  final List<MonthlyEntity> paymentList;
+  final List<MonthlyEntity> monthlyList;
   final List<AtlEntity> atlList;
   final List<UniformEntity> uniformList;
   final List<BooksEntity> booksList;
@@ -22,7 +22,7 @@ class PaymentEntity extends Equatable{
     required this.name,
     required this.classe,
     required this.status,
-    required this.paymentList,
+    required this.monthlyList,
     required this.atlList,
     required this.uniformList,
     required this.inscriptionList,
@@ -36,7 +36,7 @@ class PaymentEntity extends Equatable{
     classe,
     status,
     uuid,
-    paymentList,
+    monthlyList,
     atlList,
     uniformList,
     booksList,

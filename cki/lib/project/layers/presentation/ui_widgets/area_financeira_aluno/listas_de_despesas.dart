@@ -10,7 +10,7 @@ import '../../../../../modules/finances/domain/entities/paymentEntity.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
 
 class MenuFinanceiroAluno extends StatefulWidget {
-  final PaymentEntity paymentEntity;
+  final PaymentEntity? paymentEntity;
   const MenuFinanceiroAluno({super.key, required this.paymentEntity});
   @override
   _MenuFinanceiroAlunoState createState() => _MenuFinanceiroAlunoState();
@@ -23,9 +23,8 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
   @override
   void initState() {
     super.initState();
-    financa.readControlFinance(studentId: widget.paymentEntity.documentId);
-    financa.readInscription(inscriptionList: widget.paymentEntity.inscriptionList);
-    financa.readMonthly(paymentList: widget.paymentEntity.paymentList);
+    financa.getPaymentStudentById(studentId: widget.paymentEntity!.documentId);
+    //financa.readControlFinance(studentId: widget.paymentEntity!.documentId);
   }
 
   @override
@@ -106,7 +105,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.paymentEntity.name,
+                                widget.paymentEntity!.name,
                                 style: TextStyle(
                                     fontFamily: SettingsCki.segoeEui,
                                     fontSize: 20,
@@ -149,15 +148,23 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                           child: SizedBox(
                             height: MediaQuery.of(context).size.height,
                             width: MediaQuery.of(context).size.width,
-                            child: ListView(
-                              children: [
-                                inscriptionMonth(),
-                                paymentMonth(),
-                                paymentAtl(),
-                                paymentBooks(),
-                                paymentUniform(),
-                              ],
-                            ),
+                            child: Observer(
+                              builder: (_) => financa.paymentEntity != null ? ListView(
+                                children: [
+                                  inscriptionMonth(),
+                                  paymentMonth(),
+                                  paymentAtl(),
+                                  paymentBooks(),
+                                  paymentUniform(),
+                                ],
+                              ): const Center(
+                                  child: SizedBox(
+                                    height: 50,
+                                      width: 50,
+                                      child: CircularProgressIndicator(
+                                        color: Colors.grey,
+                                      ))),
+                            )
                           ),
                         ),
                         const SizedBox(
@@ -185,8 +192,8 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
             context,
             MaterialPageRoute(
                 builder: (context) => PramentoInscricao(
-                  idAluno: widget.paymentEntity.documentId,
-                  studentName: widget.paymentEntity.name,
+                  idAluno: widget.paymentEntity!.documentId,
+                  studentName: widget.paymentEntity!.name,
                 )));
       },
       child: Padding(
@@ -257,8 +264,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                               color: Colors.black54,
                             ),
                           ),
-                          Observer(
-                            builder: (_) => financa.inscriptionNotPay.isNotEmpty
+                          financa.inscriptionNotPay.isNotEmpty
                                 ? Positioned(
                               top: 6,
                               right: 6,
@@ -282,7 +288,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                                 ),
                               ),
                             ): Container(),
-                          ),
+
                         ],
                       ),
                     ],
@@ -303,8 +309,8 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
             context,
             MaterialPageRoute(
                 builder: (context) => PropinasAluno(
-                      idAluno: widget.paymentEntity.documentId,
-                      studentName: widget.paymentEntity.name,
+                      idAluno: widget.paymentEntity!.documentId,
+                      studentName: widget.paymentEntity!.name,
                     )));
       },
       child: Padding(
@@ -377,8 +383,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                               color: Colors.black54,
                             ),
                           ),
-                          Observer(
-                            builder: (_) => financa.monthlyNotPay.isNotEmpty
+                         financa.monthlyNotPay.isNotEmpty
                                 ? Positioned(
                                     top: 6,
                                     right: 6,
@@ -403,7 +408,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                                     ),
                                   )
                                 : Container(),
-                          ),
+
                         ],
                       ),
                     ],
@@ -424,8 +429,8 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
             context,
             MaterialPageRoute(
                 builder: (context) => PropinasAtl(
-                      idAluno: widget.paymentEntity.documentId,
-                      studentName: widget.paymentEntity.name,
+                      idAluno: widget.paymentEntity!.documentId,
+                      studentName: widget.paymentEntity!.name,
                     )));
       },
       child: Padding(

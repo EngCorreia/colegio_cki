@@ -6,9 +6,11 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../../../modules/finances/data/models/inscription_model.dart';
 import '../../../../../modules/finances/data/models/paymentModel.dart';
 import '../../../../../modules/finances/domain/entities/inscription_entity.dart';
 import '../../../../../modules/finances/domain/entities/monthlyEntity.dart';
+import '../../../../../modules/finances/domain/entities/paymentEntity.dart';
 import '../../../core/const_strings/const_strings.dart';
 import '../../../core/const_strings/user_information.dart';
 import '../../../core/show_toast_message/show_toast_message.dart';
@@ -23,35 +25,40 @@ abstract class _AreaFinanceiraAluno with Store {
   Payment? payment;
 
   @observable
+  PaymentEntity? paymentEntity;
+
+  @observable
   int? total = 0;
 
   @observable
   int? naoPago = 0;
 
 
+  // inscrição do aluno lista
   @observable
-  ObservableList<PaymentModels> payList = ObservableList();
+  ObservableList<InscriptionModel> inscriptionList = ObservableList();
+
+  // Mensalidade do aluno lista
   @observable
-  ObservableList<InscriptionEntity> inscriptionListStudent = ObservableList();
-  @observable
-  ObservableList<MonthlyEntity> monthlyEntityListStudent = ObservableList();
+  ObservableList<PaymentModels> paymentList = ObservableList();
+
 
 
   @computed
-  List<InscriptionEntity> get inscriptionNotPay => inscriptionListStudent.where((element) => element.status == 1).toList();
+  List<dynamic> get inscriptionNotPay => paymentEntity!.inscriptionList.where((element) => element.status == 0).toList();
   @computed
-  List<MonthlyEntity> get monthlyNotPay => monthlyEntityListStudent.where((element) => element.status == 1).toList();
+  List<dynamic> get monthlyNotPay => paymentEntity!.monthlyList.where((element) => element.status == 0).toList();
 
 
   //--------------------------------------------------------------------------
 
   @observable
-  ObservableList<Payment> paymentList = ObservableList();
+  ObservableList<Payment> paymentLists = ObservableList();
 
   @computed
-  List<Payment> get paymentPago => paymentList.where((element) => element.status == 1).toList();
+  List<Payment> get paymentPago => paymentLists.where((element) => element.status == 1).toList();
   @computed
-  List<Payment> get paymentNaoPago => paymentList.where((element) => element.status == 0).toList();
+  List<Payment> get paymentNaoPago => paymentLists.where((element) => element.status == 0).toList();
 
   @observable
   List<dynamic> list = [];
@@ -104,31 +111,7 @@ abstract class _AreaFinanceiraAluno with Store {
     }
   }
 
-  Future readInscription({required List<InscriptionEntity> inscriptionList}) async{
-    try{
-      var response = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
-      collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("propinas").where("uuid",isEqualTo: StudentInformation.userID).snapshots();
-      response.listen((resultSet) {
-        inscriptionListStudent = inscriptionList.asObservable();
-      });
-    }catch(e){
-      log(e.toString());
-      ShowToast.show_error(e.toString());
-    }
-  }
 
-  Future<void> readMonthly({required List<MonthlyEntity> paymentList}) async{
-    try{
-      var response = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
-      collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("propinas").where("uuid",isEqualTo: StudentInformation.userID).snapshots();
-      response.listen((resultSet) {
-        monthlyEntityListStudent = paymentList.asObservable();
-      });
-    }catch(e){
-      log(e.toString());
-      ShowToast.show_error(e.toString());
-    }
-  }
 
   Future<void> readControlFinance({required String studentId}) async{
     try{
@@ -162,7 +145,7 @@ abstract class _AreaFinanceiraAluno with Store {
               status: lists["status"],
               value: lists["valorPago"],
             );
-            paymentList.add(payment!);
+            paymentLists.add(payment!);
           }
 
           pago();
@@ -206,7 +189,7 @@ abstract class _AreaFinanceiraAluno with Store {
               status: lists["status"],
               value: lists["valorPago"],
             );
-            paymentList.add(payment!);
+            paymentLists.add(payment!);
           }
         }
       });
@@ -286,16 +269,37 @@ abstract class _AreaFinanceiraAluno with Store {
 
   //-----------------------------------------------------------
 
-  Future getMonthlyStudent() async{
+
+  Future getInscriptionStudentById({required String studentId}) async{
+    try{
+      var response = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+      collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("inscricao").doc(studentId).snapshots();
+      response.listen((resultSet) {
+        var listResult = resultSet.data();
+        log("----------- $listResult");
+        PaymentModels.fromJson(json: listResult!, id: studentId);
+      });
+    }catch(e){
+      log(e.toString());
+      ShowToast.show_error(e.toString());
+    }
+  }
+
+
+
+
+
+  // MENSALIDADE DO ALUNO
+  Future getPaymentListStudent() async{
   try{
     var response = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
     collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("propinas").where("uuid",isEqualTo: StudentInformation.userID).snapshots();
     response.listen((resultSet) {
       var listResult = resultSet.docs;
-      payList.clear();
+      paymentList.clear();
       for(var student in listResult){
-        payList.add(PaymentModels.fromJson(json: student.data(),id: student.id));
-        log("-----payList ${payList.length}");
+        paymentList.add(PaymentModels.fromJson(json: student.data(),id: student.id));
+        log("-----payList ${paymentList.length}");
       }
     });
   }catch(e){
@@ -303,4 +307,19 @@ abstract class _AreaFinanceiraAluno with Store {
     ShowToast.show_error(e.toString());
   }
 }
+
+  Future getPaymentStudentById({required String studentId}) async{
+    try{
+      var response = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
+      collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("propinas").doc(studentId).snapshots();
+      response.listen((resultSet) {
+        var listResult = resultSet.data();
+       log("----------- $listResult");
+        paymentEntity = PaymentModels.fromJson(json: listResult!, id: studentId);
+      });
+    }catch(e){
+      log(e.toString());
+      ShowToast.show_error(e.toString());
+    }
+  }
 }

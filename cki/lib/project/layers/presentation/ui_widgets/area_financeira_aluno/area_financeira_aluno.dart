@@ -29,7 +29,7 @@ class _FinancasAlunoState extends State<FinancasAluno> {
     super.initState();
     if(StudentInformation.userID!.isNotEmpty){
       financa.leituraFilhosFinancas();
-      financa.getMonthlyStudent();
+      financa.getPaymentListStudent();
     }
   }
   
@@ -79,7 +79,7 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     const Icon(Icons.people),
-                    Text("${financa.payList.length} Filho(s)",style: TextStyle(
+                    Text("${financa.paymentList.length} Filho(s)",style: TextStyle(
                         fontFamily: SettingsCki.segoeEui,
                         fontSize: 18,
                         fontWeight: FontWeight.normal
@@ -103,7 +103,7 @@ class _FinancasAlunoState extends State<FinancasAluno> {
             ),
 
             Expanded(
-              child: financa.list.isEmpty ? const Center(
+              child: financa.paymentList.isEmpty ? const Center(
                 child: CircularProgressIndicator()  /*Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -116,25 +116,24 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                   ],
                 )*/,
               ): ListView.builder(
-                  itemCount: financa.payList.length,
+                  itemCount: financa.paymentList.length,
                   itemBuilder: (context,index) => ListTile(
                     onTap: (){
-                      var studentId = financa.payList[index].documentId;
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> MenuFinanceiroAluno(
-                        paymentEntity: financa.payList[index],
+                        paymentEntity: financa.paymentList[index],
                       )));
                     },
                     leading: CircleAvatar(
                       // backgroundColor: Colors.transparent,
                       child: Image.asset("assets/images/image.png"),
                     ),
-                    title: Text(financa.payList[index].name,style: TextStyle(
+                    title: Text(financa.paymentList[index].name,style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                       color: Colors.black
                     ),),
-                    subtitle: Text(financa.payList[index].classe,style: TextStyle(
+                    subtitle: Text(financa.paymentList[index].classe,style: TextStyle(
                         fontFamily: SettingsCki.segoeEui,
                         fontWeight: FontWeight.normal,
                         color: Colors.lightBlueAccent
@@ -142,7 +141,7 @@ class _FinancasAlunoState extends State<FinancasAluno> {
                     ),
 
                     trailing: Observer(
-                      builder: (_)=> (financa.payList[index].status == 0) ? Stack(
+                      builder: (_)=> (financa.paymentList[index].status == 0) ? Stack(
                         children: [
                           const Padding(
                             padding: EdgeInsets.all(11),

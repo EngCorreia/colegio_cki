@@ -25,6 +25,7 @@ class _PropinasAtlState extends State<PropinasAtl> {
   @override
   void initState() {
     super.initState();
+    financa.getPaymentStudentById(studentId: widget.idAluno);
     financa.readControlFinance(studentId: widget.idAluno);
   }
 
@@ -195,7 +196,11 @@ class _PropinasAtlState extends State<PropinasAtl> {
                               child: ListView.builder(
                                   itemCount: financa.paymentList.length,
                                   itemBuilder: (context,index){
-                                    var pay = financa.paymentList[index];
+                                    var pay = Payment(
+                                        date:financa.paymentEntity!.atlList[index].data,
+                                        status: financa.paymentEntity!.atlList[index].status,
+                                        value: financa.paymentEntity!.atlList[index].valor
+                                    );
                                     return paymentUI(payment: pay);
                                   }),
                             ),

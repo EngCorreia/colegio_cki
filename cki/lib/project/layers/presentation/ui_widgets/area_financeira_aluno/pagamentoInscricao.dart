@@ -24,7 +24,8 @@ class _PramentoInscricaoState extends State<PramentoInscricao> {
   @override
   void initState() {
     super.initState();
-    financa.readControlFinance(studentId: widget.idAluno);
+    financa.getPaymentStudentById(studentId: widget.idAluno);
+    //financa.readControlFinance(studentId: widget.idAluno);
   }
 
   @override
@@ -166,7 +167,7 @@ class _PramentoInscricaoState extends State<PramentoInscricao> {
                           alignment: Alignment.centerLeft,
                           child: Padding(
                             padding: EdgeInsets.only(left: 20),
-                            child: Text("Actividades",
+                            child: Text("Mêses do ano",
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -181,9 +182,13 @@ class _PramentoInscricaoState extends State<PramentoInscricao> {
                               height: MediaQuery.of(context).size.height,
                               width: MediaQuery.of(context).size.width,
                               child: ListView.builder(
-                                  itemCount: financa.paymentList.length,
+                                  itemCount: financa.paymentEntity != null ? financa.paymentEntity!.inscriptionList.length : 0,
                                   itemBuilder: (context,index){
-                                    var pay = financa.paymentList[index];
+                                    var pay = Payment(
+                                        date:financa.paymentEntity!.inscriptionList[index].data,
+                                        status: financa.paymentEntity!.inscriptionList[index].status,
+                                        value: financa.paymentEntity!.inscriptionList[index].valor
+                                     );
                                     return paymentUI(payment: pay);
                                   }),
                             ),
@@ -446,23 +451,23 @@ class _PramentoInscricaoState extends State<PramentoInscricao> {
                     ],
                   ),
 
-                  Text("Data: ${payment.date.toDate()}",style: TextStyle(
+                  Text("Data: ${DateFormat(payment.date).add_yMMMMEEEEd()}",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.normal,
                       color: Colors.white,
                       fontSize: 16
                   ),),
 
-
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
-                    child: Text("status: Mensalidade de ${payment.idDocument.toString().toUpperCase()} 2023 / 2024 Não paga",style: TextStyle(
+                    child: Text("status: Mensalidade de 2023 / 2024 Não paga",style: TextStyle(
                         fontFamily: SettingsCki.segoeEui,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                         fontSize: 18
                     ),),
                   ),
+
                 ],
               ),
             ),
