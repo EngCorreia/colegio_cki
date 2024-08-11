@@ -30,6 +30,13 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
           Computed<List<dynamic>>(() => super.monthlyNotPay,
               name: '_AreaFinanceiraAluno.monthlyNotPay'))
       .value;
+  Computed<List<dynamic>>? _$monthlyPayComputed;
+
+  @override
+  List<dynamic> get monthlyPay =>
+      (_$monthlyPayComputed ??= Computed<List<dynamic>>(() => super.monthlyPay,
+              name: '_AreaFinanceiraAluno.monthlyPay'))
+          .value;
   Computed<List<Payment>>? _$paymentPagoComputed;
 
   @override
@@ -74,6 +81,38 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
   set paymentEntity(PaymentEntity? value) {
     _$paymentEntityAtom.reportWrite(value, super.paymentEntity, () {
       super.paymentEntity = value;
+    });
+  }
+
+  late final _$totalMonthlyAtom =
+      Atom(name: '_AreaFinanceiraAluno.totalMonthly', context: context);
+
+  @override
+  double? get totalMonthly {
+    _$totalMonthlyAtom.reportRead();
+    return super.totalMonthly;
+  }
+
+  @override
+  set totalMonthly(double? value) {
+    _$totalMonthlyAtom.reportWrite(value, super.totalMonthly, () {
+      super.totalMonthly = value;
+    });
+  }
+
+  late final _$naoPagoMonthlyAtom =
+      Atom(name: '_AreaFinanceiraAluno.naoPagoMonthly', context: context);
+
+  @override
+  double? get naoPagoMonthly {
+    _$naoPagoMonthlyAtom.reportRead();
+    return super.naoPagoMonthly;
+  }
+
+  @override
+  set naoPagoMonthly(double? value) {
+    _$naoPagoMonthlyAtom.reportWrite(value, super.naoPagoMonthly, () {
+      super.naoPagoMonthly = value;
     });
   }
 
@@ -178,6 +217,8 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
     return '''
 payment: ${payment},
 paymentEntity: ${paymentEntity},
+totalMonthly: ${totalMonthly},
+naoPagoMonthly: ${naoPagoMonthly},
 total: ${total},
 naoPago: ${naoPago},
 inscriptionList: ${inscriptionList},
@@ -187,6 +228,7 @@ list: ${list},
 inscriptionNotPay: ${inscriptionNotPay},
 inscriptionPay: ${inscriptionPay},
 monthlyNotPay: ${monthlyNotPay},
+monthlyPay: ${monthlyPay},
 paymentPago: ${paymentPago},
 paymentNaoPago: ${paymentNaoPago}
     ''';

@@ -23,6 +23,12 @@ abstract class _AreaFinanceiraAluno with Store {
   PaymentEntity? paymentEntity;
 
   @observable
+  double? totalMonthly = 0.0;
+
+  @observable
+  double? naoPagoMonthly = 0.0;
+
+  @observable
   double? total = 0.0;
 
   @observable
@@ -43,6 +49,8 @@ abstract class _AreaFinanceiraAluno with Store {
   List<dynamic> get inscriptionPay => paymentEntity!.inscriptionList.where((element) => element.status == 1).toList();
   @computed
   List<dynamic> get monthlyNotPay => paymentEntity!.monthlyList.where((element) => element.status == 0).toList();
+  @computed
+  List<dynamic> get monthlyPay => paymentEntity!.monthlyList.where((element) => element.status == 1).toList();
 
   //-----------------------------------------------------------------------
 
@@ -76,6 +84,32 @@ abstract class _AreaFinanceiraAluno with Store {
     }catch(e){
       log(e.toString());
       ShowToast.show_error(e.toString());
+    }
+  }
+
+  void pagoMonthly(){
+    totalMonthly = 0.0;
+    for(var pay in monthlyPay){
+      if(monthlyPay.isEmpty){
+        totalMonthly = 0.0;
+      }else if(monthlyPay.length == 1){
+        totalMonthly = double.parse(pay.valor!.toString());
+      }else if(monthlyPay.length >= 2){
+        totalMonthly  = totalMonthly! + double.parse(pay.valor!.toString());
+      }
+    }
+  }
+
+  void pagoNMonthly(){
+    naoPagoMonthly = 0.0;
+    for(var pay in monthlyNotPay){
+      if(monthlyNotPay.isEmpty){
+        naoPagoMonthly = 0.0;
+      }else if(monthlyNotPay.length < 2){
+        naoPagoMonthly = double.parse(pay.valor.toString());
+      }else if(monthlyNotPay.length >= 2){
+        naoPagoMonthly  = (naoPagoMonthly ! + pay.valor);
+      }
     }
   }
 
@@ -292,6 +326,9 @@ abstract class _AreaFinanceiraAluno with Store {
         paymentEntity = PaymentModels.fromJson(json: listResult!, id: studentId);
         pago();
         pagoN();
+
+        pagoMonthly();
+        pagoNMonthly();
       });
     }catch(e){
       log(e.toString());

@@ -167,7 +167,7 @@ class _HomePageState extends State<PropinasAluno> {
                                   Observer(builder: (_)=>
                                       RichText(
                                         text: TextSpan(
-                                            text: "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.total)} Kzs",
+                                            text: "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.totalMonthly)} Kzs",
                                             style: TextStyle(
                                               fontSize: 20,
                                               fontFamily: SettingsCki.segoeEui,
@@ -289,7 +289,7 @@ class _HomePageState extends State<PropinasAluno> {
                             ],
                           ),
                           Observer(builder: (_)=>Text(
-                            "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.total)} Kzs",
+                            "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.totalMonthly)} Kzs",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: SettingsCki.segoeEui,
@@ -321,7 +321,7 @@ class _HomePageState extends State<PropinasAluno> {
                             ],
                           ),
                           Observer(builder: (_)=>Text(
-                            "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.naoPago)} Kzs",
+                            "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.naoPagoMonthly)} Kzs",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: SettingsCki.segoeEui,
@@ -336,7 +336,7 @@ class _HomePageState extends State<PropinasAluno> {
                     height: 10,
                   ),
                   Observer(builder: (_)=> Text(
-                    "Pagou - se um total de ${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.total)} Kzs neste ano",
+                    "Pagou - se um total de ${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.totalMonthly)} Kzs neste ano",
                     style: TextStyle(
                       fontSize: 13,
                       fontFamily: SettingsCki.segoeEui,
