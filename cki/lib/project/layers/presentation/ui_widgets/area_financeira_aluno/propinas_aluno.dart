@@ -1,5 +1,6 @@
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/estatistica_financas/transfer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -23,15 +24,21 @@ class _HomePageState extends State<PropinasAluno> {
   var financa = AreaFinanceiraAluno();
   String get secondLogo => dotenv.env['LOGO_IMAGE_SECOND']!;
 
+
   @override
   void initState() {
     super.initState();
-    financa.readControlFinance(studentId: widget.idAluno);
+    financa.getPaymentStudentById(studentId: widget.idAluno);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: const Icon(Icons.payments_outlined),
+      ),
+      */
       body: Stack(
         children: [
           Column(
@@ -50,12 +57,12 @@ class _HomePageState extends State<PropinasAluno> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                           IconButton(
+                          IconButton(
                             icon: const Icon(Icons.arrow_back),
                             color: Colors.white,
                             onPressed: () {
                               Navigator.pop(context);
-                          },
+                            },
                           ),
                           Text("Relatório / Propinas",
                             style: TextStyle(
@@ -65,9 +72,9 @@ class _HomePageState extends State<PropinasAluno> {
                               color: Colors.white,
                             ),
                           ),
-                          Stack(
+                          const Stack(
                             children: [
-                              const Padding(
+                              Padding(
                                 padding: EdgeInsets.all(11),
                                 child: Icon(
                                   Icons.notifications,
@@ -75,8 +82,8 @@ class _HomePageState extends State<PropinasAluno> {
                                   color: Colors.white,
                                 ),
                               ),
-                              Observer(
-                                builder: (_) => financa.paymentNaoPago.isNotEmpty
+                              /*Observer(
+                                builder: (_) => financa.inscriptionNotPay.isNotEmpty
                                     ? Positioned(top: 6, right: 6,
                                   child: Container(
                                     padding: const EdgeInsets.all(1),
@@ -89,7 +96,7 @@ class _HomePageState extends State<PropinasAluno> {
                                       minHeight: 18,
                                     ),
                                     child: Text(
-                                      "${financa.paymentNaoPago.length}",
+                                      "${financa.inscriptionNotPay.length}",
                                       style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 10,
@@ -97,9 +104,9 @@ class _HomePageState extends State<PropinasAluno> {
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
-                                )
-                                    : Container(),
+                                ):Container(),
                               ),
+                              */
                             ],
                           ),
                         ],
@@ -128,7 +135,7 @@ class _HomePageState extends State<PropinasAluno> {
                             ),
                             padding: const EdgeInsets.all(5),
                             child: CircleAvatar(
-                              child: Image.asset(secondLogo),
+                              child: Image.asset("assets/images/image.png"),
                             ),
                           ),
                           const SizedBox(
@@ -190,16 +197,16 @@ class _HomePageState extends State<PropinasAluno> {
                   padding: const EdgeInsets.symmetric(horizontal: 1),
                   color: Colors.grey.shade100,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 100),
+                    padding: const EdgeInsets.only(top: 80),
                     child: Column(
                       children: [
                         const Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
                             padding: EdgeInsets.only(left: 20),
-                            child: Text("Propinas",
+                            child: Text("Mêses do ano",
                               style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
                             ),
@@ -212,19 +219,19 @@ class _HomePageState extends State<PropinasAluno> {
                               height: MediaQuery.of(context).size.height,
                               width: MediaQuery.of(context).size.width,
                               child: ListView.builder(
-                                  itemCount: financa.paymentList.length,
+                                  itemCount: financa.paymentEntity != null ? financa.paymentEntity!.monthlyList.length : 0,
                                   itemBuilder: (context,index){
                                     var pay = Payment(
-                                        date:financa.paymentEntity!.monthlyList[index].data,
-                                        status: financa.paymentEntity!.monthlyList[index].status,
-                                        value: financa.paymentEntity!.monthlyList[index].valor,
-                                        idDocument: financa.paymentEntity!.monthlyList[index].mes
+                                      date: financa.paymentEntity!.monthlyList[index].data,
+                                      status: financa.paymentEntity!.monthlyList[index].status,
+                                      value: financa.paymentEntity!.monthlyList[index].valor,
+                                      idDocument: financa.paymentEntity!.monthlyList[index].mes,
                                     );
                                     return paymentUI(payment: pay);
                                   }),
                             ),
                           ),
-                        ),
+                        )
 
                       ],
                     ),
@@ -239,7 +246,7 @@ class _HomePageState extends State<PropinasAluno> {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
               width: MediaQuery.of(context).size.width * 0.85,
-              height: 210,
+              height: 190,
               decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
@@ -328,7 +335,7 @@ class _HomePageState extends State<PropinasAluno> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Observer(builder: (_)=>Text(
+                  Observer(builder: (_)=> Text(
                     "Pagou - se um total de ${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.total)} Kzs neste ano",
                     style: TextStyle(
                       fontSize: 13,
@@ -340,7 +347,7 @@ class _HomePageState extends State<PropinasAluno> {
                     height: 3,
                   ),
                   Text(
-                    "Ver a estatistica periódica de ano 2024/2025",
+                    "Ver a estatistica periódica de ano 2023/2024",
                     style: TextStyle(
                       fontSize: 13,
                       fontFamily: SettingsCki.segoeEui,
@@ -379,7 +386,11 @@ class _HomePageState extends State<PropinasAluno> {
 
 
   Widget paymentUI({required Payment payment}){
-    final DateFormat formatter = DateFormat('dd-MMM-yyyy  HH:mm');
+    // Criando um Timestamp a partir de segundos e nanossegundos
+    Timestamp customTimestamp = payment.date;
+    DateTime dateTime = customTimestamp.toDate();
+    String formattedDateTime = DateFormat('E, d MMM yyyy HH:mm:ss').format(dateTime);
+
     return  payment.status != 0 ? GestureDetector(
       onTap: () async {
         //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
@@ -387,10 +398,11 @@ class _HomePageState extends State<PropinasAluno> {
       child: Padding(
         padding: const EdgeInsets.only(left: 10,right: 10,bottom: 5),
         child: Container(
-          height: 125,
+          height: 130,
           decoration: BoxDecoration(
             color: Colors.green,
             borderRadius: BorderRadius.circular(8),
+
           ),
           child: Center(
             child:  Padding(
@@ -415,22 +427,31 @@ class _HomePageState extends State<PropinasAluno> {
                           color: Colors.white,
                           fontSize: 16
                       ),),
-                      const SizedBox(width: 15,),
-
-                      const Icon(FontAwesomeIcons.download,color: Colors.white,)
+                      Expanded(child:
+                      Container()),
+                      const Padding(
+                        padding: EdgeInsets.only(right: 8),
+                        child: Icon(FontAwesomeIcons.download,color: Colors.white,),
+                      )
                     ],
                   ),
 
-                  Text("Data de pagamento: ${formatter.format(payment.date.toDate())}",style: TextStyle(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Data: $formattedDateTime",style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                          fontSize: 16
+                      ),),
+                    ),
+                  ),
+
+                  Text("status: Mensalidade para o mes de ${payment.idDocument} 2024 / 2025 Paga",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.normal,
-                      color: Colors.white,
-                      fontSize: 16
-                  ),),
-
-                  Text("status: Mensalidade de ${payment.idDocument.toString().toUpperCase()} 2023 / 2024 Paga",style: TextStyle(
-                      fontFamily: SettingsCki.segoeEui,
-                      fontWeight: FontWeight.bold,
                       color: Colors.white,
                       fontSize: 18
                   ),),
@@ -447,7 +468,7 @@ class _HomePageState extends State<PropinasAluno> {
       child: Padding(
         padding: const EdgeInsets.only(left: 10,right: 10,bottom: 5),
         child: Container(
-          height: 130,
+          height: 150,
           decoration: BoxDecoration(
             color: Colors.red[900],
             borderRadius: BorderRadius.circular(8),
@@ -476,29 +497,35 @@ class _HomePageState extends State<PropinasAluno> {
                           color: Colors.white,
                           fontSize: 16
                       ),),
-                      const SizedBox(width: 30,),
-
-                      const Icon(FontAwesomeIcons.download,color: Colors.white,)
+                      Expanded(child:
+                      Container()),
+                      const Padding(
+                        padding: EdgeInsets.only(right: 8),
+                        child: Icon(FontAwesomeIcons.download,color: Colors.white,),
+                      )
                     ],
                   ),
 
-                  Text("Data/criação: ${formatter.format(payment.date.toDate())}",style: TextStyle(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Data: $formattedDateTime",style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                          fontSize: 16
+                      ),),
+                    ),
+                  ),
+
+                  Text("status: Mensalidade para o mes de ${payment.idDocument} 2024 / 2025 Paga",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.normal,
                       color: Colors.white,
-                      fontSize: 16
+                      fontSize: 18
                   ),),
 
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text("status: Mensalidade de ${payment.idDocument.toString().toUpperCase()} 2023 / 2024 Não paga",style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 18
-                    ),),
-                  ),
                 ],
               ),
             ),
@@ -521,12 +548,12 @@ class _HomePageState extends State<PropinasAluno> {
         decoration: index == _selectedItemIndex
             ? BoxDecoration(
             border:
-            Border(bottom: BorderSide(width: 4, color: Colors.green)),
+            const Border(bottom: BorderSide(width: 4, color: Colors.green)),
             gradient: LinearGradient(colors: [
               Colors.green.withOpacity(0.3),
               Colors.green.withOpacity(0.016),
             ], begin: Alignment.bottomCenter, end: Alignment.topCenter))
-            : BoxDecoration(),
+            : const BoxDecoration(),
         child: Icon(
           icon,
           color: index == _selectedItemIndex ? const Color(0XFF00B868) : Colors.grey,
@@ -636,7 +663,7 @@ class _HomePageState extends State<PropinasAluno> {
               icon,
               color: iconColor,
             ),
-           const SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text(

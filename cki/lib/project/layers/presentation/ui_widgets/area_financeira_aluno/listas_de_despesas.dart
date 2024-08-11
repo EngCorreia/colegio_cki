@@ -26,10 +26,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
   void initState() {
     super.initState();
     financa.getPaymentStudentById(studentId: widget.paymentEntity!.documentId);
-    //financa.readControlFinance(studentId: widget.paymentEntity!.documentId);
-
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -185,10 +182,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
     );
   }
 
-
- //
   Widget inscriptionMonth() {
-    log("***** lista de despesas.dar ${financa.paymentEntity!.inscriptionList}");
     return GestureDetector(
       onTap: () async {
         Navigator.push(

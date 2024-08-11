@@ -1,7 +1,7 @@
 import '../../domain/entities/monthlyEntity.dart';
 
 class MonthlyModel extends MonthlyEntity{
-  const MonthlyModel({
+  MonthlyModel({
     required super.status,
     required super.data,
     required super.mes,
@@ -13,7 +13,7 @@ class MonthlyModel extends MonthlyEntity{
       lists.add( MonthlyModel(
           mes: res["mes"],
           status: res["status"],
-          data: res["data"].toString(),
+          data: res["data"],
           valor: res["valor"],
       ));
     }

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/estatistica_financas/transfer.dart';
@@ -28,7 +27,6 @@ class _PramentoInscricaoState extends State<PramentoInscricao> {
   void initState() {
     super.initState();
     financa.getPaymentStudentById(studentId: widget.idAluno);
-    //financa.readControlFinance(studentId: widget.idAluno);
   }
 
   @override
@@ -72,9 +70,42 @@ class _PramentoInscricaoState extends State<PramentoInscricao> {
                               color: Colors.white,
                             ),
                           ),
-                          const Icon(
-                            Icons.notifications,
-                            color: Colors.white,
+                          const Stack(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(11),
+                                child: Icon(
+                                  Icons.notifications,
+                                  size: 26,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              /*Observer(
+                                builder: (_) => financa.inscriptionNotPay.isNotEmpty
+                                    ? Positioned(top: 6, right: 6,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(1),
+                                    decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    constraints: const BoxConstraints(
+                                      minWidth: 18,
+                                      minHeight: 18,
+                                    ),
+                                    child: Text(
+                                      "${financa.inscriptionNotPay.length}",
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ):Container(),
+                              ),
+                              */
+                            ],
                           ),
                         ],
                       ),
@@ -486,7 +517,7 @@ class _PramentoInscricaoState extends State<PramentoInscricao> {
                     ),
                   ),
 
-                  Text("status: Mensalidade para o mes de ${payment.idDocument} 2024 / 2025 Paga",style: TextStyle(
+                  Text("status: Inscrição para o mes de ${payment.idDocument} 2024 / 2025 Paga",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.normal,
                       color: Colors.white,
