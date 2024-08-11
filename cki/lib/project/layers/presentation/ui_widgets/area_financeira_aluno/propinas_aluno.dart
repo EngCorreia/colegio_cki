@@ -217,7 +217,8 @@ class _HomePageState extends State<PropinasAluno> {
                                     var pay = Payment(
                                         date:financa.paymentEntity!.monthlyList[index].data,
                                         status: financa.paymentEntity!.monthlyList[index].status,
-                                        value: financa.paymentEntity!.monthlyList[index].valor
+                                        value: financa.paymentEntity!.monthlyList[index].valor,
+                                        idDocument: financa.paymentEntity!.monthlyList[index].mes
                                     );
                                     return paymentUI(payment: pay);
                                   }),

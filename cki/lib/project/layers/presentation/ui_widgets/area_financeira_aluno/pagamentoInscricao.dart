@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/estatistica_financas/transfer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -31,10 +34,11 @@ class _PramentoInscricaoState extends State<PramentoInscricao> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
+      /*floatingActionButton: FloatingActionButton(
         onPressed: (){},
         child: const Icon(Icons.payments_outlined),
       ),
+      */
       body: Stack(
         children: [
           Column(
@@ -185,9 +189,10 @@ class _PramentoInscricaoState extends State<PramentoInscricao> {
                                   itemCount: financa.paymentEntity != null ? financa.paymentEntity!.inscriptionList.length : 0,
                                   itemBuilder: (context,index){
                                     var pay = Payment(
-                                        date:financa.paymentEntity!.inscriptionList[index].data,
+                                        date: financa.paymentEntity!.inscriptionList[index].data,
                                         status: financa.paymentEntity!.inscriptionList[index].status,
-                                        value: financa.paymentEntity!.inscriptionList[index].valor
+                                        value: financa.paymentEntity!.inscriptionList[index].valor,
+                                      idDocument: financa.paymentEntity!.inscriptionList[index].mes,
                                      );
                                     return paymentUI(payment: pay);
                                   }),
@@ -297,7 +302,7 @@ class _PramentoInscricaoState extends State<PramentoInscricao> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Observer(builder: (_)=>Text(
+                  Observer(builder: (_)=> Text(
                     "Pagou - se um total de ${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.total)} Kzs neste ano",
                     style: TextStyle(
                       fontSize: 13,
@@ -348,6 +353,11 @@ class _PramentoInscricaoState extends State<PramentoInscricao> {
 
 
   Widget paymentUI({required Payment payment}){
+    // Criando um Timestamp a partir de segundos e nanossegundos
+    Timestamp customTimestamp = payment.date;
+    DateTime dateTime = customTimestamp.toDate();
+    String formattedDateTime = DateFormat('E, d MMM yyyy HH:mm:ss').format(dateTime);
+
     return  payment.status != 0 ? GestureDetector(
       onTap: () async {
         //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
@@ -384,22 +394,31 @@ class _PramentoInscricaoState extends State<PramentoInscricao> {
                           color: Colors.white,
                           fontSize: 16
                       ),),
-                      const SizedBox(width: 15,),
-
-                      const Icon(FontAwesomeIcons.download,color: Colors.white,)
+                      Expanded(child:
+                      Container()),
+                      const Padding(
+                        padding: EdgeInsets.only(right: 8),
+                        child: Icon(FontAwesomeIcons.download,color: Colors.white,),
+                      )
                     ],
                   ),
 
-                  Text("Data: ${payment.date.toDate()}",style: TextStyle(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Data: $formattedDateTime",style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                          fontSize: 16
+                      ),),
+                    ),
+                  ),
+
+                  Text("status: Mensalidade para o mes de ${payment.idDocument} 2024 / 2025 Paga",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.normal,
-                      color: Colors.white,
-                      fontSize: 16
-                  ),),
-
-                  Text("status: Mensalidade de ${payment.idDocument.toString().toUpperCase()} 2023 / 2024 Paga",style: TextStyle(
-                      fontFamily: SettingsCki.segoeEui,
-                      fontWeight: FontWeight.bold,
                       color: Colors.white,
                       fontSize: 18
                   ),),
@@ -445,28 +464,34 @@ class _PramentoInscricaoState extends State<PramentoInscricao> {
                           color: Colors.white,
                           fontSize: 16
                       ),),
-                      const SizedBox(width: 30,),
-
-                      const Icon(FontAwesomeIcons.download,color: Colors.white,)
+                      Expanded(child:
+                      Container()),
+                      const Padding(
+                        padding: EdgeInsets.only(right: 8),
+                        child: Icon(FontAwesomeIcons.download,color: Colors.white,),
+                      )
                     ],
                   ),
 
-                  Text("Data: ${DateFormat(payment.date).add_yMMMMEEEEd()}",style: TextStyle(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Data: $formattedDateTime",style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                          fontSize: 16
+                      ),),
+                    ),
+                  ),
+
+                  Text("status: Mensalidade para o mes de ${payment.idDocument} 2024 / 2025 Paga",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.normal,
                       color: Colors.white,
-                      fontSize: 16
+                      fontSize: 18
                   ),),
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text("status: Mensalidade de 2023 / 2024 Não paga",style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 18
-                    ),),
-                  ),
 
                 ],
               ),

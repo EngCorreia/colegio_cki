@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/pagamentoInscricao.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/propina_atl.dart';
@@ -25,6 +27,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
     super.initState();
     financa.getPaymentStudentById(studentId: widget.paymentEntity!.documentId);
     //financa.readControlFinance(studentId: widget.paymentEntity!.documentId);
+
   }
 
   @override
@@ -184,8 +187,8 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
 
 
  //
-
   Widget inscriptionMonth() {
+    log("***** lista de despesas.dar ${financa.paymentEntity!.inscriptionList}");
     return GestureDetector(
       onTap: () async {
         Navigator.push(

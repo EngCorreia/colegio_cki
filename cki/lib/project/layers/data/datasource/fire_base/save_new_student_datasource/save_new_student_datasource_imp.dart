@@ -42,36 +42,36 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
                 "classe": classe,
                 "atl":[{
                   "status": 0,
-                  "data": Timestamp.now(),
+                  "data": DateTime.now(),
                   "valor": 1,
-                  "mes": Timestamp.now().toDate().month,
+                  "mes": converteDay(day: Timestamp.now().toDate().month),
                 }],
                 "inscricao":[{
                   "status": 0,
-                  "data": Timestamp.now(),
-                  "valor": 0,
-                  "mes": Timestamp.now().toDate().month,
+                  "data": DateTime.now(),
+                  "valor": 30000,
+                  "mes": converteDay(day: Timestamp.now().toDate().month),
                 }],
 
-                "propina":[{
+                "propinas":[{
                   "status": 0,
-                  "data": Timestamp.now(),
+                  "data": DateTime.now(),
                   "valor": 0,
-                  "mes": Timestamp.now().toDate().month,
+                  "mes": converteDay(day: Timestamp.now().toDate().month),
                 }],
 
                 "livro":[{
                   "status": 1,
-                  "data": Timestamp.now(),
+                  "data": DateTime.now(),
                   "valor": 0,
-                  "mes": Timestamp.now().toDate().month,
+                  "mes": converteDay(day: Timestamp.now().toDate().month),
                 }],
 
                 "uniforme":[{
                   "status": 0,
-                  "data": Timestamp.now(),
+                  "data": DateTime.now(),
                   "valor": 0,
-                  "mes": Timestamp.now().toDate().month,
+                  "mes": converteDay(day: Timestamp.now().toDate().month),
                 }],
                 "status": 0
               };
@@ -90,6 +90,37 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
 
     }catch(e){
       return Left(SaveStudentError(e.toString()));
+    }
+  }
+
+  String converteDay({required int day}){
+
+    if(day == 1){
+      return "janeiro";
+    }else if(day == 2){
+      return "fevereiro";
+    }else if(day == 3){
+      return "março";
+    }else if(day == 4){
+      return "abril";
+    }else if(day == 5){
+      return "maio";
+    }else if(day == 6){
+      return "junho";
+    }else if(day == 7){
+      return "julho";
+    }else if(day == 8){
+      return "agosto";
+    }else if(day == 9){
+      return "setembro";
+    }else if(day == 10){
+      return "outubro";
+    }else if(day == 11){
+      return "novembro";
+    }else if(day == 12){
+      return "dezembro";
+    }else{
+      return "";
     }
   }
 

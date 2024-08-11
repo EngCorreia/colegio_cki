@@ -1,7 +1,7 @@
 import '../../domain/entities/inscription_entity.dart';
 
 class InscriptionModel extends InscriptionEntity{
-  const InscriptionModel({
+  InscriptionModel({
     required super.status,
     required super.data,
     required super.mes,
@@ -12,7 +12,7 @@ class InscriptionModel extends InscriptionEntity{
       lists.add(InscriptionModel(
           mes: res["mes"],
           status: res["status"],
-          data: res["data"].toString(),
+          data: res["data"],
           valor: res["valor"],
       ));
     }

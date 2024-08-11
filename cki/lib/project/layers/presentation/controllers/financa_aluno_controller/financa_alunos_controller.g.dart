@@ -16,6 +16,13 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
           Computed<List<dynamic>>(() => super.inscriptionNotPay,
               name: '_AreaFinanceiraAluno.inscriptionNotPay'))
       .value;
+  Computed<List<dynamic>>? _$inscriptionPayComputed;
+
+  @override
+  List<dynamic> get inscriptionPay => (_$inscriptionPayComputed ??=
+          Computed<List<dynamic>>(() => super.inscriptionPay,
+              name: '_AreaFinanceiraAluno.inscriptionPay'))
+      .value;
   Computed<List<dynamic>>? _$monthlyNotPayComputed;
 
   @override
@@ -74,13 +81,13 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
       Atom(name: '_AreaFinanceiraAluno.total', context: context);
 
   @override
-  int? get total {
+  double? get total {
     _$totalAtom.reportRead();
     return super.total;
   }
 
   @override
-  set total(int? value) {
+  set total(double? value) {
     _$totalAtom.reportWrite(value, super.total, () {
       super.total = value;
     });
@@ -90,13 +97,13 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
       Atom(name: '_AreaFinanceiraAluno.naoPago', context: context);
 
   @override
-  int? get naoPago {
+  double? get naoPago {
     _$naoPagoAtom.reportRead();
     return super.naoPago;
   }
 
   @override
-  set naoPago(int? value) {
+  set naoPago(double? value) {
     _$naoPagoAtom.reportWrite(value, super.naoPago, () {
       super.naoPago = value;
     });
@@ -178,6 +185,7 @@ paymentList: ${paymentList},
 paymentLists: ${paymentLists},
 list: ${list},
 inscriptionNotPay: ${inscriptionNotPay},
+inscriptionPay: ${inscriptionPay},
 monthlyNotPay: ${monthlyNotPay},
 paymentPago: ${paymentPago},
 paymentNaoPago: ${paymentNaoPago}
