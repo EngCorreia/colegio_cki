@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/pagamentoInscricao.dart';

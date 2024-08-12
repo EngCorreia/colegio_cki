@@ -29,8 +29,8 @@ class _FinancasAlunoState extends State<FinancasAluno> {
     super.initState();
     if(StudentInformation.userID!.isNotEmpty){
       financa.getPaymentListStudent();
-      financa.leituraFilhosFinancas();
-      financa.getPaymentListStudent();
+      //financa.leituraFilhosFinancas();
+     // financa.getPaymentListStudent();
     }
   }
   

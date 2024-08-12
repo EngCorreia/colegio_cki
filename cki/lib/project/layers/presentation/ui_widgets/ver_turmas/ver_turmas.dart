@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cki/modules/finances/domain/entities/paymentEntity.dart';
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -23,7 +24,7 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
     super.initState();
     log("***** ${StudentInformation.status}");
     if(StudentInformation.status == 1 && StudentInformation.userID!.isNotEmpty){
-      financa.leituraFilhosFinancas();
+      financa.getPaymentListStudent();
     }
   }
 
@@ -43,7 +44,7 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
 
             Observer(builder: (_)=> Padding(
               padding: const EdgeInsets.only(top: 15),
-              child: Text("${financa.list.length} Filho(s)",style: TextStyle(
+              child: Text("${financa.paymentList.length} Filho(s)",style: TextStyle(
                   fontFamily: SettingsCki.segoeEui,
                   fontSize: 18,
                   fontWeight: FontWeight.bold
@@ -61,7 +62,7 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
         ),
 
         body: StudentInformation.status != 0 ? Observer(
-          builder: (_)=> financa.list.isEmpty ? Center(
+          builder: (_)=> financa.paymentList.isEmpty ? Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,10 +79,10 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
             children: [
               Expanded(
                 child: ListView.builder(
-                    itemCount: financa.list.length,
+                    itemCount: financa.paymentList.length,
                     itemBuilder: (context,index) => turmas(
                       index: index,
-                      turmas: financa.list
+                      turmas: financa.paymentList
                     ),
                 ),
               ),
@@ -114,10 +115,10 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
     );
   }
 
-  Widget turmas({required List<dynamic> turmas, required int index}){
+  Widget turmas({required List<PaymentEntity> turmas, required int index}){
     return  GestureDetector(
       onTap: (){
-        var classe = turmas[index]["classe"].toString();
+        var classe = turmas[index].classe.toString();
         Navigator.push(context, MaterialPageRoute(builder: (context)=> TurmasDosAlunos(
           classeName: classe,
         )));
@@ -153,7 +154,7 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("Nome: ${turmas[index]["nomeAluno"]}",style: TextStyle(
+                child: Text("Nome: ${turmas[index].name}",style: TextStyle(
                     fontFamily: SettingsCki.segoeEui,
                     fontWeight: FontWeight.normal,
                     color: Colors.white,
@@ -163,9 +164,10 @@ class _ListaDeTurmasState extends State<ListaDeTurmas> {
 
               Padding(
                 padding: const EdgeInsets.only(left: 8,right: 8,bottom: 8),
-                child: Text("Classe: ${turmas[index]["classe"]}",style: TextStyle(
+                child: Text("Classe: ${turmas[index].classe}",style: TextStyle(
                     fontFamily: SettingsCki.segoeEui,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
                     color: Colors.white
                 ),),
               ),
