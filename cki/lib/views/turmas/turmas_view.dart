@@ -20,7 +20,8 @@ class ListClassViewView extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(builder: (context)=> const RequestAtlView(
-              )));
+              description: "Alunos internos",
+              values: 35000,)));
             },
             leading: ClipOval(
               child: Image.asset(
@@ -52,7 +53,8 @@ class ListClassViewView extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(builder: (context)=> const RequestAtlView(
-              )));
+              values: 40000,
+              description: "Alunos externos",)));
             },
             leading: ClipOval(
               child:Image.asset(

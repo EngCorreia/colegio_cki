@@ -20,6 +20,8 @@ class AtlView extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(builder: (context)=> const RequestAtlView(
+                values: 35000,
+                description: "Alunos internos",
               )));
             },
             leading: ClipOval(
@@ -52,6 +54,8 @@ class AtlView extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(builder: (context)=> const RequestAtlView(
+                values: 40000,
+                description: "Alunos externos",
               )));
             },
             leading: ClipOval(
@@ -83,6 +87,7 @@ class AtlView extends StatelessWidget {
         ],
       );
     }
+
     return ViewModelBuilder<AtlViewModel>.reactive(
         viewModelBuilder: ()=> AtlViewModel(),
         builder: (context,model,child){

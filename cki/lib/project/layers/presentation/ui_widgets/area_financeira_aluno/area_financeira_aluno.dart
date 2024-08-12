@@ -20,7 +20,6 @@ class FinancasAluno extends StatefulWidget {
 }
 
 class _FinancasAlunoState extends State<FinancasAluno> {
-
   var financa = AreaFinanceiraAluno();
   String get secondLogo => dotenv.env['LOGO_IMAGE_SECOND']!;
   
@@ -29,8 +28,6 @@ class _FinancasAlunoState extends State<FinancasAluno> {
     super.initState();
     if(StudentInformation.userID!.isNotEmpty){
       financa.getPaymentListStudent();
-      //financa.leituraFilhosFinancas();
-     // financa.getPaymentListStudent();
     }
   }
   
