@@ -1,11 +1,10 @@
+
 import 'package:cki/views/request_atl/request_atl_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import '../../project/layers/core/configuration/configuration.dart';
 import '../../project/layers/presentation/controllers/financa_aluno_controller/financa_alunos_controller.dart';
-
 
 class RequestAtlView extends StatefulWidget {
   final int values;
@@ -242,86 +241,139 @@ class _RequestAtlViewState extends State<RequestAtlView> {
       return Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-            child: Container(
+         Visibility(
+           visible: widget.description == "Alunos internos",
+           child: Padding(
+             padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+             child: Container(
+               height: 50,
+               margin: const EdgeInsets.symmetric(vertical: 8),
+               decoration: BoxDecoration(
+                   color: Colors.white38,
+                   borderRadius: BorderRadius.circular(10),
+                   boxShadow: [
+                     BoxShadow(
+                         color: Colors.black.withOpacity(.1),
+                         blurRadius: 15,
+                         offset: const Offset(0.0, 0.0))
+                   ]),
+               child: DropdownButtonFormField<String>(
+                 isExpanded: true,
+                 value: value,
+                 borderRadius: BorderRadius.circular(15),
+                 onChanged: (data) {
+                   value = data;
+                 },
+                 hint: const Text("Adicionar alunos",
+                   style: TextStyle(fontWeight: FontWeight.w300),
+                 ),
+                 items: List.generate(financa.paymentList.length, (index) {
+                   var e = financa.paymentList[index].name;
+                   return DropdownMenuItem(
+                     value: e,
+                     child: Container(
+                       margin: const EdgeInsets.symmetric(horizontal: 20),
+                       child: SizedBox(
+                           width: MediaQuery.sizeOf(context).width - 50,
+                           child: Text(e.toString(),
+                               style: const TextStyle(fontSize: 14))),
+                     ),
+                   );
+                 }),
+                 autovalidateMode: AutovalidateMode.onUserInteraction,
+                 validator: (value) {
+                   if (value == null) {
+                     return "Texto invalido";
+                   }
+                   return null;
+                 },
+                 decoration: const InputDecoration(
+                   floatingLabelBehavior: FloatingLabelBehavior.auto,
+                   alignLabelWithHint: true,
+                   contentPadding: EdgeInsets.only(
+                       left: 8, right: 8, top: 12, bottom: 12),
+                   isDense: true,
+                   filled: true,
+                   fillColor: Colors.white,
+                   enabledBorder: OutlineInputBorder(
+                     borderSide: BorderSide(color: Colors.transparent),
+                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                   ),
+                   border: OutlineInputBorder(
+                     borderSide: BorderSide(color: Color(0x4DFFFFFF)),
+                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                   ),
+                   disabledBorder: OutlineInputBorder(
+                     borderSide: BorderSide(color: Color(0x4DFFFFFF)),
+                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                   ),
+                   focusedBorder: OutlineInputBorder(
+                     borderSide: BorderSide(color: Colors.blueAccent),
+                     borderRadius:
+                     BorderRadius.all(Radius.circular(10.0)),
+                   ),
+                   errorBorder: OutlineInputBorder(
+                     borderSide: BorderSide(color: Colors.transparent),
+                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                   ),
+                   focusedErrorBorder: OutlineInputBorder(
+                     borderSide: BorderSide(color: Colors.transparent),
+                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                   ),
+                 ),
+               ),
+             ),
+           ),
+         ),
+
+          Visibility(
+            visible: widget.description == "Alunos externos",
+            child: Padding(
+            padding: const EdgeInsets.only(top: 10,left: 10,right: 10),
+            child: SizedBox(
+              //width: 200,
               height: 50,
-              margin: const EdgeInsets.symmetric(vertical: 8),
-              decoration: BoxDecoration(
-                  color: Colors.white38,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black.withOpacity(.1),
-                        blurRadius: 15,
-                        offset: const Offset(0.0, 0.0))
-                  ]),
-              child: DropdownButtonFormField<String>(
-                isExpanded: true,
-                value: value,
-                borderRadius: BorderRadius.circular(15),
-                onChanged: (data) {
-                  value = data;
+              child: TextFormField(
+                //controller: note1,
+                minLines: 1,
+                onChanged: (value) {
+                  //widget.teachersEntity.name = value;
                 },
-                hint: const Text("Adicionar alunos",
-                  style: TextStyle(fontWeight: FontWeight.w300),
-                ),
-                items: List.generate(financa.paymentList.length, (index) {
-                  var e = financa.paymentList[index].name;
-                  return DropdownMenuItem(
-                    value: e,
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      child: SizedBox(
-                          width: MediaQuery.sizeOf(context).width - 50,
-                          child: Text(e.toString(),
-                              style: const TextStyle(fontSize: 14))),
-                    ),
-                  );
-                }),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value == null) {
-                    return "Texto invalido";
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  floatingLabelBehavior: FloatingLabelBehavior.auto,
-                  alignLabelWithHint: true,
-                  contentPadding: EdgeInsets.only(
-                      left: 8, right: 8, top: 12, bottom: 12),
-                  isDense: true,
-                  filled: true,
-                  fillColor: Colors.white,
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0x4DFFFFFF)),
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.text,
+                textAlign: TextAlign.left,
+                decoration: InputDecoration(
+                  hintText: "Nome completo",
+                  //label: const Text("nota"),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue),
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
                   disabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0x4DFFFFFF)),
+                    borderSide: BorderSide(color: Colors.grey.shade100),
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue),
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueAccent),
-                    borderRadius:
-                    BorderRadius.all(Radius.circular(10.0)),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.transparent),
+                  errorBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.transparent),
+                  focusedErrorBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
                 ),
+
               ),
             ),
+          ),
+          ),
+
+          Container(
+            height: 50,
           ),
 
           const Divider(),
@@ -432,7 +484,7 @@ class _RequestAtlViewState extends State<RequestAtlView> {
                           child: Column(
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   IconButton(
                                     icon: const Icon(Icons.arrow_back),
@@ -449,38 +501,7 @@ class _RequestAtlViewState extends State<RequestAtlView> {
                                       color: Colors.white,
                                     ),
                                   ),
-                                  GestureDetector(
-                                    onTap: () async {
-                                    },
-                                    child: Container(
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                          color: Colors.blue[900],
-                                          borderRadius: BorderRadius.circular(25),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              color: Colors.white,
-                                              blurRadius: 1,
-                                              spreadRadius: 1,
-                                              // offset: const Offset(2, 2),
-                                            ),
-                                          ],
-                                        ),
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(left: 10, right: 10),
-                                            child: Text(
-                                              " Gravar Registo ",
-                                              style: TextStyle(
-                                                  fontFamily: SettingsCki.segoeEui,
-                                                  fontWeight: FontWeight.normal,
-                                                  color: Colors.white,
-                                                  fontSize: 12),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                  ),
+
                                 ],
                               ),
                               const SizedBox(

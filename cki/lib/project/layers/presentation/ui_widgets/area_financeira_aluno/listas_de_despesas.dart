@@ -484,7 +484,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                         width: 10,
                       ),
                       Text(
-                        "PAGAMENTO DE TRANSPORTE",
+                        "PAGAMENTO TRANSPORTE",
                         style: TextStyle(
                             fontFamily: SettingsCki.segoeEui,
                             fontWeight: FontWeight.bold,
