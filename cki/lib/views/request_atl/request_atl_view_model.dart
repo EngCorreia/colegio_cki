@@ -42,6 +42,13 @@ class RequestAtlViewViewModel extends BaseViewModel{
       var resultStudent = studentLis[index];
       jsonMap.clear();
       for(int value = 0; value < studentMonthLis.length; value++){
+        /*"atl":[{
+          "status": 1,
+          "data": DateTime.now(),
+          "valor": 0,
+          "mes": converteDay(day: Timestamp.now().toDate().month),
+         }],
+    */
         var list = {
           "mes": studentMonthLis[value].toString().toLowerCase(),
           "status": 0,
@@ -53,8 +60,8 @@ class RequestAtlViewViewModel extends BaseViewModel{
       if(StudentInformation.status == 1 && StudentInformation.userID!.isNotEmpty){
         try{
           var gravaFinancas = FirebaseFirestore.instance.collection(Collections.school).doc(Collections.colegioName).
-          collection(Collections.collectionAnoLectivo).doc(Collections.anoLectivo).collection("transporte")
-              .doc(getId(resultStudent));
+          collection(Collections.collectionAnoLectivo)
+              .doc(Collections.anoLectivo).collection("cki-financas").doc(getId(resultStudent));
           var json = {
             "mensalidade": jsonMap
           };
