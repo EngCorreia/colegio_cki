@@ -1,7 +1,7 @@
 import '../../domain/entities/uniforme_entity.dart';
 
 class UniformModel extends UniformEntity{
-  const UniformModel({
+  UniformModel({
     required super.status,
     required super.data,
     required super.mes,
@@ -13,7 +13,7 @@ class UniformModel extends UniformEntity{
       lists.add(UniformModel(
           mes: res["mes"],
           status: res["status"],
-          data: res["data"].toString(),
+          data: res["data"],
           valor: res["valor"],
       ));
     }

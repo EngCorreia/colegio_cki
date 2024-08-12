@@ -1,6 +1,7 @@
 
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/estatistica_financas/transfer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -26,27 +27,16 @@ class _PropinasAtlState extends State<PropinasAtl> {
   void initState() {
     super.initState();
     financa.getPaymentStudentById(studentId: widget.idAluno);
-    financa.readControlFinance(studentId: widget.idAluno);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*bottomNavigationBar: Row(
-        children: [
-          buildNavBarItem(Icons.home, 0),
-          buildNavBarItem(Icons.card_giftcard, 1),
-          buildNavBarItem(Icons.camera, 2),
-          buildNavBarItem(Icons.pie_chart, 3),
-          buildNavBarItem(Icons.person, 4),
-        ],
-      ),
-      */
-
-      floatingActionButton: FloatingActionButton(
+      /*floatingActionButton: FloatingActionButton(
         onPressed: (){},
         child: const Icon(Icons.payments_outlined),
       ),
+      */
       body: Stack(
         children: [
           Column(
@@ -72,7 +62,7 @@ class _PropinasAtlState extends State<PropinasAtl> {
                               Navigator.pop(context);
                             },
                           ),
-                          Text("Relatório / Propinas ATL",
+                          Text("Relatório / Proppina ATL",
                             style: TextStyle(
                               fontFamily: SettingsCki.segoeEui,
                               fontSize: 18.0,
@@ -80,9 +70,42 @@ class _PropinasAtlState extends State<PropinasAtl> {
                               color: Colors.white,
                             ),
                           ),
-                          const Icon(
-                            Icons.notifications,
-                            color: Colors.white,
+                          const Stack(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(11),
+                                child: Icon(
+                                  Icons.notifications,
+                                  size: 26,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              /*Observer(
+                                builder: (_) => financa.inscriptionNotPay.isNotEmpty
+                                    ? Positioned(top: 6, right: 6,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(1),
+                                    decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    constraints: const BoxConstraints(
+                                      minWidth: 18,
+                                      minHeight: 18,
+                                    ),
+                                    child: Text(
+                                      "${financa.inscriptionNotPay.length}",
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ):Container(),
+                              ),
+                              */
+                            ],
                           ),
                         ],
                       ),
@@ -142,7 +165,7 @@ class _PropinasAtlState extends State<PropinasAtl> {
                                   Observer(builder: (_)=>
                                       RichText(
                                         text: TextSpan(
-                                            text: "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.total)} Kzs",
+                                            text: "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.totalAtl)} Kzs",
                                             style: TextStyle(
                                               fontSize: 20,
                                               fontFamily: SettingsCki.segoeEui,
@@ -179,7 +202,7 @@ class _PropinasAtlState extends State<PropinasAtl> {
                           alignment: Alignment.centerLeft,
                           child: Padding(
                             padding: EdgeInsets.only(left: 20),
-                            child: Text("Actividades",
+                            child: Text("Mêses do ano",
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -194,12 +217,13 @@ class _PropinasAtlState extends State<PropinasAtl> {
                               height: MediaQuery.of(context).size.height,
                               width: MediaQuery.of(context).size.width,
                               child: ListView.builder(
-                                  itemCount: financa.paymentList.length,
+                                  itemCount: financa.paymentEntity != null ? financa.paymentEntity!.atlList.length : 0,
                                   itemBuilder: (context,index){
                                     var pay = Payment(
-                                        date:financa.paymentEntity!.atlList[index].data,
-                                        status: financa.paymentEntity!.atlList[index].status,
-                                        value: financa.paymentEntity!.atlList[index].valor
+                                      date: financa.paymentEntity!.atlList[index].data,
+                                      status: financa.paymentEntity!.atlList[index].status,
+                                      value: financa.paymentEntity!.atlList[index].valor,
+                                      idDocument: financa.paymentEntity!.atlList[index].mes,
                                     );
                                     return paymentUI(payment: pay);
                                   }),
@@ -263,7 +287,7 @@ class _PropinasAtlState extends State<PropinasAtl> {
                             ],
                           ),
                           Observer(builder: (_)=>Text(
-                            "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.total)} Kzs",
+                            "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.totalAtl)} Kzs",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: SettingsCki.segoeEui,
@@ -295,7 +319,7 @@ class _PropinasAtlState extends State<PropinasAtl> {
                             ],
                           ),
                           Observer(builder: (_)=>Text(
-                            "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.naoPago)} Kzs",
+                            "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.naoPagoAtl)} Kzs",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: SettingsCki.segoeEui,
@@ -309,8 +333,8 @@ class _PropinasAtlState extends State<PropinasAtl> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Observer(builder: (_)=>Text(
-                    "Pagou - se um total de ${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.total)} Kzs neste ano",
+                  Observer(builder: (_)=> Text(
+                    "Pagou - se um total de ${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.totalAtl)} Kzs neste ano",
                     style: TextStyle(
                       fontSize: 13,
                       fontFamily: SettingsCki.segoeEui,
@@ -360,6 +384,11 @@ class _PropinasAtlState extends State<PropinasAtl> {
 
 
   Widget paymentUI({required Payment payment}){
+    // Criando um Timestamp a partir de segundos e nanossegundos
+    Timestamp customTimestamp = payment.date;
+    DateTime dateTime = customTimestamp.toDate();
+    String formattedDateTime = DateFormat('E, d MMM yyyy HH:mm:ss').format(dateTime);
+
     return  payment.status != 0 ? GestureDetector(
       onTap: () async {
         //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
@@ -396,22 +425,31 @@ class _PropinasAtlState extends State<PropinasAtl> {
                           color: Colors.white,
                           fontSize: 16
                       ),),
-                      const SizedBox(width: 15,),
-
-                      const Icon(FontAwesomeIcons.download,color: Colors.white,)
+                      Expanded(child:
+                      Container()),
+                      const Padding(
+                        padding: EdgeInsets.only(right: 8),
+                        child: Icon(FontAwesomeIcons.download,color: Colors.white,),
+                      )
                     ],
                   ),
 
-                  Text("Data: ${payment.date.toDate()}",style: TextStyle(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Data: $formattedDateTime",style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                          fontSize: 16
+                      ),),
+                    ),
+                  ),
+
+                  Text("status: Propina para ATL mes de ${payment.idDocument} 2024 / 2025 Paga",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.normal,
-                      color: Colors.white,
-                      fontSize: 16
-                  ),),
-
-                  Text("status: Mensalidade de ${payment.idDocument.toString().toUpperCase()} 2023 / 2024 Paga",style: TextStyle(
-                      fontFamily: SettingsCki.segoeEui,
-                      fontWeight: FontWeight.bold,
                       color: Colors.white,
                       fontSize: 18
                   ),),
@@ -457,29 +495,35 @@ class _PropinasAtlState extends State<PropinasAtl> {
                           color: Colors.white,
                           fontSize: 16
                       ),),
-                      const SizedBox(width: 30,),
-
-                      const Icon(FontAwesomeIcons.download,color: Colors.white,)
+                      Expanded(child:
+                      Container()),
+                      const Padding(
+                        padding: EdgeInsets.only(right: 8),
+                        child: Icon(FontAwesomeIcons.download,color: Colors.white,),
+                      )
                     ],
                   ),
 
-                  Text("Data: ${payment.date.toDate()}",style: TextStyle(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Data: $formattedDateTime",style: TextStyle(
+                          fontFamily: SettingsCki.segoeEui,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                          fontSize: 16
+                      ),),
+                    ),
+                  ),
+
+                  Text("Status: Propina para ATL mes de ${payment.idDocument} 2024 / 2025 Não Paga",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.normal,
                       color: Colors.white,
-                      fontSize: 16
+                      fontSize: 18
                   ),),
 
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text("status: Mensalidade de ${payment.idDocument.toString().toUpperCase()} 2023 / 2024 Não paga",style: TextStyle(
-                        fontFamily: SettingsCki.segoeEui,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 18
-                    ),),
-                  ),
                 ],
               ),
             ),
@@ -502,12 +546,12 @@ class _PropinasAtlState extends State<PropinasAtl> {
         decoration: index == _selectedItemIndex
             ? BoxDecoration(
             border:
-            Border(bottom: BorderSide(width: 4, color: Colors.green)),
+            const Border(bottom: BorderSide(width: 4, color: Colors.green)),
             gradient: LinearGradient(colors: [
               Colors.green.withOpacity(0.3),
               Colors.green.withOpacity(0.016),
             ], begin: Alignment.bottomCenter, end: Alignment.topCenter))
-            : BoxDecoration(),
+            : const BoxDecoration(),
         child: Icon(
           icon,
           color: index == _selectedItemIndex ? const Color(0XFF00B868) : Colors.grey,
@@ -605,7 +649,7 @@ class _PropinasAtlState extends State<PropinasAtl> {
       onTap: () => Navigator.of(context).push(
           MaterialPageRoute(builder: (BuildContext context) => TransferPage())),
       child: Container(
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         height: 90,
         width: 85,
         decoration: BoxDecoration(
@@ -617,13 +661,13 @@ class _PropinasAtlState extends State<PropinasAtl> {
               icon,
               color: iconColor,
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text(
               title,
               style:
-              TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
+              const TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
             )
           ],
         ),

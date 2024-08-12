@@ -2,7 +2,7 @@
 import '../../domain/entities/tranport_entity.dart';
 
 class TransportModel extends TransportEntity{
-  const TransportModel({
+  TransportModel({
     required super.status,
     required super.data,
     required super.mes,
@@ -14,7 +14,7 @@ class TransportModel extends TransportEntity{
       lists.add(TransportModel(
         mes: res["mes"],
         status: res["status"],
-        data: res["data"].toString(),
+        data: res["data"],
         valor: res["valor"],
       ));
     }

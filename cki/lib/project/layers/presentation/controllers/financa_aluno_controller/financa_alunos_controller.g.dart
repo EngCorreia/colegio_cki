@@ -37,6 +37,62 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
       (_$monthlyPayComputed ??= Computed<List<dynamic>>(() => super.monthlyPay,
               name: '_AreaFinanceiraAluno.monthlyPay'))
           .value;
+  Computed<List<dynamic>>? _$atlNotPayComputed;
+
+  @override
+  List<dynamic> get atlNotPay =>
+      (_$atlNotPayComputed ??= Computed<List<dynamic>>(() => super.atlNotPay,
+              name: '_AreaFinanceiraAluno.atlNotPay'))
+          .value;
+  Computed<List<dynamic>>? _$atlPayComputed;
+
+  @override
+  List<dynamic> get atlPay =>
+      (_$atlPayComputed ??= Computed<List<dynamic>>(() => super.atlPay,
+              name: '_AreaFinanceiraAluno.atlPay'))
+          .value;
+  Computed<List<dynamic>>? _$booksNotPayComputed;
+
+  @override
+  List<dynamic> get booksNotPay => (_$booksNotPayComputed ??=
+          Computed<List<dynamic>>(() => super.booksNotPay,
+              name: '_AreaFinanceiraAluno.booksNotPay'))
+      .value;
+  Computed<List<dynamic>>? _$booksPayComputed;
+
+  @override
+  List<dynamic> get booksPay =>
+      (_$booksPayComputed ??= Computed<List<dynamic>>(() => super.booksPay,
+              name: '_AreaFinanceiraAluno.booksPay'))
+          .value;
+  Computed<List<dynamic>>? _$uniformNotPayComputed;
+
+  @override
+  List<dynamic> get uniformNotPay => (_$uniformNotPayComputed ??=
+          Computed<List<dynamic>>(() => super.uniformNotPay,
+              name: '_AreaFinanceiraAluno.uniformNotPay'))
+      .value;
+  Computed<List<dynamic>>? _$uniformPayComputed;
+
+  @override
+  List<dynamic> get uniformPay =>
+      (_$uniformPayComputed ??= Computed<List<dynamic>>(() => super.uniformPay,
+              name: '_AreaFinanceiraAluno.uniformPay'))
+          .value;
+  Computed<List<dynamic>>? _$transportNotPayComputed;
+
+  @override
+  List<dynamic> get transportNotPay => (_$transportNotPayComputed ??=
+          Computed<List<dynamic>>(() => super.transportNotPay,
+              name: '_AreaFinanceiraAluno.transportNotPay'))
+      .value;
+  Computed<List<dynamic>>? _$transportPayComputed;
+
+  @override
+  List<dynamic> get transportPay => (_$transportPayComputed ??=
+          Computed<List<dynamic>>(() => super.transportPay,
+              name: '_AreaFinanceiraAluno.transportPay'))
+      .value;
   Computed<List<Payment>>? _$paymentPagoComputed;
 
   @override
@@ -113,6 +169,134 @@ mixin _$AreaFinanceiraAluno on _AreaFinanceiraAluno, Store {
   set naoPagoMonthly(double? value) {
     _$naoPagoMonthlyAtom.reportWrite(value, super.naoPagoMonthly, () {
       super.naoPagoMonthly = value;
+    });
+  }
+
+  late final _$totalAtlAtom =
+      Atom(name: '_AreaFinanceiraAluno.totalAtl', context: context);
+
+  @override
+  double? get totalAtl {
+    _$totalAtlAtom.reportRead();
+    return super.totalAtl;
+  }
+
+  @override
+  set totalAtl(double? value) {
+    _$totalAtlAtom.reportWrite(value, super.totalAtl, () {
+      super.totalAtl = value;
+    });
+  }
+
+  late final _$naoPagoAtlAtom =
+      Atom(name: '_AreaFinanceiraAluno.naoPagoAtl', context: context);
+
+  @override
+  double? get naoPagoAtl {
+    _$naoPagoAtlAtom.reportRead();
+    return super.naoPagoAtl;
+  }
+
+  @override
+  set naoPagoAtl(double? value) {
+    _$naoPagoAtlAtom.reportWrite(value, super.naoPagoAtl, () {
+      super.naoPagoAtl = value;
+    });
+  }
+
+  late final _$totalBooksAtom =
+      Atom(name: '_AreaFinanceiraAluno.totalBooks', context: context);
+
+  @override
+  double? get totalBooks {
+    _$totalBooksAtom.reportRead();
+    return super.totalBooks;
+  }
+
+  @override
+  set totalBooks(double? value) {
+    _$totalBooksAtom.reportWrite(value, super.totalBooks, () {
+      super.totalBooks = value;
+    });
+  }
+
+  late final _$naoPagoBooksAtom =
+      Atom(name: '_AreaFinanceiraAluno.naoPagoBooks', context: context);
+
+  @override
+  double? get naoPagoBooks {
+    _$naoPagoBooksAtom.reportRead();
+    return super.naoPagoBooks;
+  }
+
+  @override
+  set naoPagoBooks(double? value) {
+    _$naoPagoBooksAtom.reportWrite(value, super.naoPagoBooks, () {
+      super.naoPagoBooks = value;
+    });
+  }
+
+  late final _$totalUniformAtom =
+      Atom(name: '_AreaFinanceiraAluno.totalUniform', context: context);
+
+  @override
+  double? get totalUniform {
+    _$totalUniformAtom.reportRead();
+    return super.totalUniform;
+  }
+
+  @override
+  set totalUniform(double? value) {
+    _$totalUniformAtom.reportWrite(value, super.totalUniform, () {
+      super.totalUniform = value;
+    });
+  }
+
+  late final _$naoPagoUniformAtom =
+      Atom(name: '_AreaFinanceiraAluno.naoPagoUniform', context: context);
+
+  @override
+  double? get naoPagoUniform {
+    _$naoPagoUniformAtom.reportRead();
+    return super.naoPagoUniform;
+  }
+
+  @override
+  set naoPagoUniform(double? value) {
+    _$naoPagoUniformAtom.reportWrite(value, super.naoPagoUniform, () {
+      super.naoPagoUniform = value;
+    });
+  }
+
+  late final _$totalTransportAtom =
+      Atom(name: '_AreaFinanceiraAluno.totalTransport', context: context);
+
+  @override
+  double? get totalTransport {
+    _$totalTransportAtom.reportRead();
+    return super.totalTransport;
+  }
+
+  @override
+  set totalTransport(double? value) {
+    _$totalTransportAtom.reportWrite(value, super.totalTransport, () {
+      super.totalTransport = value;
+    });
+  }
+
+  late final _$naoPagoTransportAtom =
+      Atom(name: '_AreaFinanceiraAluno.naoPagoTransport', context: context);
+
+  @override
+  double? get naoPagoTransport {
+    _$naoPagoTransportAtom.reportRead();
+    return super.naoPagoTransport;
+  }
+
+  @override
+  set naoPagoTransport(double? value) {
+    _$naoPagoTransportAtom.reportWrite(value, super.naoPagoTransport, () {
+      super.naoPagoTransport = value;
     });
   }
 
@@ -219,6 +403,14 @@ payment: ${payment},
 paymentEntity: ${paymentEntity},
 totalMonthly: ${totalMonthly},
 naoPagoMonthly: ${naoPagoMonthly},
+totalAtl: ${totalAtl},
+naoPagoAtl: ${naoPagoAtl},
+totalBooks: ${totalBooks},
+naoPagoBooks: ${naoPagoBooks},
+totalUniform: ${totalUniform},
+naoPagoUniform: ${naoPagoUniform},
+totalTransport: ${totalTransport},
+naoPagoTransport: ${naoPagoTransport},
 total: ${total},
 naoPago: ${naoPago},
 inscriptionList: ${inscriptionList},
@@ -229,6 +421,14 @@ inscriptionNotPay: ${inscriptionNotPay},
 inscriptionPay: ${inscriptionPay},
 monthlyNotPay: ${monthlyNotPay},
 monthlyPay: ${monthlyPay},
+atlNotPay: ${atlNotPay},
+atlPay: ${atlPay},
+booksNotPay: ${booksNotPay},
+booksPay: ${booksPay},
+uniformNotPay: ${uniformNotPay},
+uniformPay: ${uniformPay},
+transportNotPay: ${transportNotPay},
+transportPay: ${transportPay},
 paymentPago: ${paymentPago},
 paymentNaoPago: ${paymentNaoPago}
     ''';

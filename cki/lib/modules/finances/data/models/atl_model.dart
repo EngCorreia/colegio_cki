@@ -1,7 +1,7 @@
 import '../../domain/entities/atl_entity.dart';
 
 class AtlModel extends AtlEntity{
-  const AtlModel({
+  AtlModel({
     required super.status,
     required super.data,
     required super.mes,
@@ -13,7 +13,7 @@ class AtlModel extends AtlEntity{
       lists.add( AtlModel(
           mes: res["mes"],
           status: res["status"],
-          data: res["data"].toString(),
+          data: res["data"],
           valor: res["valor"],
       ));
     }

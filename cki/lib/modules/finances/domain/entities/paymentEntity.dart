@@ -1,4 +1,5 @@
 import 'package:cki/modules/finances/domain/entities/monthlyEntity.dart';
+import 'package:cki/modules/finances/domain/entities/tranport_entity.dart';
 import 'package:cki/modules/finances/domain/entities/uniforme_entity.dart';
 import 'package:equatable/equatable.dart';
 import 'atl_entity.dart';
@@ -15,6 +16,7 @@ class PaymentEntity extends Equatable{
   final List<UniformEntity> uniformList;
   final List<BooksEntity> booksList;
   final List<InscriptionEntity> inscriptionList;
+  final List<TransportEntity> transportList;
   final String uuid;
 
   const PaymentEntity({
@@ -26,6 +28,7 @@ class PaymentEntity extends Equatable{
     required this.atlList,
     required this.uniformList,
     required this.inscriptionList,
+    required this.transportList,
     required this.booksList,
     required this.uuid});
 
@@ -40,6 +43,7 @@ class PaymentEntity extends Equatable{
     atlList,
     uniformList,
     booksList,
-    inscriptionList
+    inscriptionList,
+    transportList
   ];
 }

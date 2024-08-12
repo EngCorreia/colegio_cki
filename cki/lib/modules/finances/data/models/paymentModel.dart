@@ -1,4 +1,5 @@
 
+import 'package:cki/modules/finances/data/models/tranport_model.dart';
 import 'package:cki/modules/finances/data/models/uniforme_model.dart';
 import '../../domain/entities/paymentEntity.dart';
 import 'atl_model.dart';
@@ -16,6 +17,7 @@ class PaymentModels extends PaymentEntity{
     required super.atlList,
     required super.uniformList,
     required super.inscriptionList,
+    required super.transportList,
     required super.booksList,
     required super.uuid});
 
@@ -31,6 +33,7 @@ class PaymentModels extends PaymentEntity{
       uniformList: UniformModel.formJson(json: json["uniforme"]),
       booksList: BooksModel.formJson(json: json["livro"]),
       inscriptionList: InscriptionModel.formJson(json: json["inscricao"]),
+      transportList: TransportModel.formJson(json: json["transport"])
     );
   }
 }

@@ -10,16 +10,16 @@ import 'package:intl/intl.dart';
 import '../../../domain/entities/pagamento_entity/pagamento_entity.dart';
 import '../../controllers/financa_aluno_controller/financa_alunos_controller.dart';
 
-class PropinasBooks extends StatefulWidget {
+class PropinasUniforme extends StatefulWidget {
   final String idAluno;
   final String studentName;
 
-  const PropinasBooks({super.key, required this.idAluno, required this.studentName});
+  const PropinasUniforme({super.key, required this.idAluno, required this.studentName});
   @override
-  _PropinasBooksState createState() => _PropinasBooksState();
+  _PropinasUniformeState createState() => _PropinasUniformeState();
 }
 
-class _PropinasBooksState extends State<PropinasBooks> {
+class _PropinasUniformeState extends State<PropinasUniforme> {
   int _selectedItemIndex = 2;
   var financa = AreaFinanceiraAluno();
 
@@ -57,7 +57,7 @@ class _PropinasBooksState extends State<PropinasBooks> {
                               Navigator.pop(context);
                             },
                           ),
-                          Text("Relatório / Pagamento de livros",
+                          Text("Relatório / Pagamento Uniforme",
                             style: TextStyle(
                               fontFamily: SettingsCki.segoeEui,
                               fontSize: 18.0,
@@ -160,7 +160,7 @@ class _PropinasBooksState extends State<PropinasBooks> {
                                   Observer(builder: (_)=>
                                       RichText(
                                         text: TextSpan(
-                                            text: "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.totalBooks)} Kzs",
+                                            text: "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.totalUniform)} Kzs",
                                             style: TextStyle(
                                               fontSize: 20,
                                               fontFamily: SettingsCki.segoeEui,
@@ -212,13 +212,13 @@ class _PropinasBooksState extends State<PropinasBooks> {
                               height: MediaQuery.of(context).size.height,
                               width: MediaQuery.of(context).size.width,
                               child: ListView.builder(
-                                  itemCount: financa.paymentEntity != null ? financa.paymentEntity!.booksList.length : 0,
+                                  itemCount: financa.paymentEntity != null ? financa.paymentEntity!.uniformList.length : 0,
                                   itemBuilder: (context,index){
                                     var pay = Payment(
-                                      date: financa.paymentEntity!.booksList[index].data,
-                                      status: financa.paymentEntity!.booksList[index].status,
-                                      value: financa.paymentEntity!.booksList[index].valor,
-                                      idDocument: financa.paymentEntity!.booksList[index].mes,
+                                      date: financa.paymentEntity!.uniformList[index].data,
+                                      status: financa.paymentEntity!.uniformList[index].status,
+                                      value: financa.paymentEntity!.uniformList[index].valor,
+                                      idDocument: financa.paymentEntity!.uniformList[index].mes,
                                     );
                                     return paymentUI(payment: pay);
                                   }),
@@ -282,7 +282,7 @@ class _PropinasBooksState extends State<PropinasBooks> {
                             ],
                           ),
                           Observer(builder: (_)=>Text(
-                            "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.totalBooks)} Kzs",
+                            "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.totalUniform)} Kzs",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: SettingsCki.segoeEui,
@@ -314,7 +314,7 @@ class _PropinasBooksState extends State<PropinasBooks> {
                             ],
                           ),
                           Observer(builder: (_)=>Text(
-                            "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.naoPagoBooks)} Kzs",
+                            "${NumberFormat.currency(locale: "pt",symbol: "",decimalDigits: 2).format(financa.naoPagoUniform)} Kzs",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: SettingsCki.segoeEui,
@@ -442,7 +442,7 @@ class _PropinasBooksState extends State<PropinasBooks> {
                     ),
                   ),
 
-                  Text("Status: Pagamento de livro mes de ${payment.idDocument} 2024 / 2025 Paga",style: TextStyle(
+                  Text("Status: Pagamento de uniforme mes de ${payment.idDocument} 2024 / 2025 Paga",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.normal,
                       color: Colors.white,
@@ -512,7 +512,7 @@ class _PropinasBooksState extends State<PropinasBooks> {
                     ),
                   ),
 
-                  Text("Status: Pagamento de livro mes de ${payment.idDocument} 2024 / 2025 Não Paga",style: TextStyle(
+                  Text("Status: Pagamento de uniforme mes de ${payment.idDocument} 2024 / 2025 Não Paga",style: TextStyle(
                       fontFamily: SettingsCki.segoeEui,
                       fontWeight: FontWeight.normal,
                       color: Colors.white,

@@ -2,7 +2,10 @@ import 'dart:developer';
 
 import 'package:cki/project/layers/core/configuration/configuration.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/pagamentoInscricao.dart';
+import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/pagamento_livros.dart';
+import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/paymentUniforme.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/propina_atl.dart';
+import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/propina_transport.dart';
 import 'package:cki/project/layers/presentation/ui_widgets/area_financeira_aluno/propinas_aluno.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -153,6 +156,7 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                                 children: [
                                   inscriptionMonth(),
                                   paymentMonth(),
+                                  paymentTransport(),
                                   paymentAtl(),
                                   paymentBooks(),
                                   paymentUniform(),
@@ -419,6 +423,125 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
     );
   }
 
+  Widget paymentTransport() {
+    return GestureDetector(
+      onTap: () async {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PropinasTransport(
+                  idAluno: widget.paymentEntity!.documentId,
+                  studentName: widget.paymentEntity!.name,
+                )));
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.8),
+                blurRadius: 8,
+              )
+            ],
+            border: Border.all(
+              width: 1.5,
+              color: Colors.white10,
+            ),
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: 80.0,
+                        height: 80.0,
+                        decoration: BoxDecoration(
+                          color: const Color(0XFF00B686),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(.1),
+                                blurRadius: 8,
+                                spreadRadius: 3)
+                          ],
+                          border: Border.all(
+                            width: 1.5,
+                            color: Colors.white,
+                          ),
+                          borderRadius: BorderRadius.circular(40.0),
+                        ),
+                        padding: const EdgeInsets.all(5),
+                        child: const CircleAvatar(
+                          backgroundImage: AssetImage(
+                              "assets/images/cki_images/bus-min.png"), //assets/course/books.png
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "PAGAMENTO DE TRANSPORTE",
+                        style: TextStyle(
+                            fontFamily: SettingsCki.segoeEui,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black.withOpacity(0.7),
+                            fontSize: 15),
+                      ),
+
+                      Expanded(child: Container()),
+                      Stack(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(11),
+                            child: Icon(
+                              Icons.notifications,
+                              size: 26,
+                              color: Colors.black54,
+                            ),
+                          ),
+                          financa.transportNotPay.isNotEmpty
+                              ? Positioned(
+                            top: 6,
+                            right: 6,
+                            child: Container(
+                              padding: const EdgeInsets.all(1),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              constraints: const BoxConstraints(
+                                minWidth: 18,
+                                minHeight: 18,
+                              ),
+                              child: Text(
+                                "${financa.transportNotPay.length}",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ) : Container(),
+
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget paymentAtl() {
     return GestureDetector(
       onTap: () async {
@@ -488,8 +611,44 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             color: Colors.black.withOpacity(0.7),
                             fontSize: 15),
                       ),
-                      const SizedBox(
-                        width: 10,
+
+                      Expanded(child: Container()),
+                      Stack(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(11),
+                            child: Icon(
+                              Icons.notifications,
+                              size: 26,
+                              color: Colors.black54,
+                            ),
+                          ),
+                          financa.atlNotPay.isNotEmpty
+                              ? Positioned(
+                            top: 6,
+                            right: 6,
+                            child: Container(
+                              padding: const EdgeInsets.all(1),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              constraints: const BoxConstraints(
+                                minWidth: 18,
+                                minHeight: 18,
+                              ),
+                              child: Text(
+                                "${financa.atlNotPay.length}",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ) : Container(),
+
+                        ],
                       ),
                     ],
                   ),
@@ -505,7 +664,13 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
   Widget paymentBooks() {
     return GestureDetector(
       onTap: () async {
-        //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PropinasBooks(
+                  idAluno: widget.paymentEntity!.documentId,
+                  studentName: widget.paymentEntity!.name,
+                )));
       },
       child: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
@@ -565,9 +730,46 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             color: Colors.black.withOpacity(0.7),
                             fontSize: 15),
                       ),
-                      const SizedBox(
-                        width: 10,
+
+                      Expanded(child: Container()),
+                      Stack(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(11),
+                            child: Icon(
+                              Icons.notifications,
+                              size: 26,
+                              color: Colors.black54,
+                            ),
+                          ),
+                          financa.booksNotPay.isNotEmpty
+                              ? Positioned(
+                            top: 6,
+                            right: 6,
+                            child: Container(
+                              padding: const EdgeInsets.all(1),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              constraints: const BoxConstraints(
+                                minWidth: 18,
+                                minHeight: 18,
+                              ),
+                              child: Text(
+                                "${financa.booksNotPay.length}",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ) : Container(),
+
+                        ],
                       ),
+
                     ],
                   ),
                 ],
@@ -582,7 +784,14 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
   Widget paymentUniform() {
     return GestureDetector(
       onTap: () async {
-        //Navigator.push(context, MaterialPageRoute(builder: (context)=> const NovaMatricula()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PropinasUniforme(
+                  idAluno: widget.paymentEntity!.documentId,
+                  studentName: widget.paymentEntity!.name,
+                )));
+
       },
       child: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
@@ -642,8 +851,44 @@ class _MenuFinanceiroAlunoState extends State<MenuFinanceiroAluno> {
                             color: Colors.black.withOpacity(0.7),
                             fontSize: 15),
                       ),
-                      const SizedBox(
-                        width: 10,
+
+                      Expanded(child: Container()),
+                      Stack(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(11),
+                            child: Icon(
+                              Icons.notifications,
+                              size: 26,
+                              color: Colors.black54,
+                            ),
+                          ),
+                          financa.uniformNotPay.isNotEmpty
+                              ? Positioned(
+                            top: 6,
+                            right: 6,
+                            child: Container(
+                              padding: const EdgeInsets.all(1),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              constraints: const BoxConstraints(
+                                minWidth: 18,
+                                minHeight: 18,
+                              ),
+                              child: Text(
+                                "${financa.uniformNotPay.length}",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ) : Container(),
+
+                        ],
                       ),
                     ],
                   ),

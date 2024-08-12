@@ -41,9 +41,9 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
                 "nome": result["nome_aluno"],
                 "classe": classe,
                 "atl":[{
-                  "status": 0,
+                  "status": 1,
                   "data": DateTime.now(),
-                  "valor": 1,
+                  "valor": 0,
                   "mes": converteDay(day: Timestamp.now().toDate().month),
                 }],
                 "inscricao":[{
@@ -69,6 +69,12 @@ class SaveNewStudentDataSourceImp implements SaveNewStudentDataSource {
 
                 "uniforme":[{
                   "status": 0,
+                  "data": DateTime.now(),
+                  "valor": 0,
+                  "mes": converteDay(day: Timestamp.now().toDate().month),
+                }],
+                "transport":[{
+                  "status": 1,
                   "data": DateTime.now(),
                   "valor": 0,
                   "mes": converteDay(day: Timestamp.now().toDate().month),

@@ -1,7 +1,7 @@
 import '../../domain/entities/books_entity.dart';
 
 class BooksModel extends BooksEntity{
-  const BooksModel({
+  BooksModel({
     required super.status,
     required super.data,
     required super.mes,
@@ -13,7 +13,7 @@ class BooksModel extends BooksEntity{
       lists.add(BooksModel(
           mes: res["mes"],
           status: res["status"],
-          data: res["data"].toString(),
+          data: res["data"],
           valor: res["valor"],
       ));
     }

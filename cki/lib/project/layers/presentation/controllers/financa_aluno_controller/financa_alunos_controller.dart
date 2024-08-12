@@ -29,6 +29,30 @@ abstract class _AreaFinanceiraAluno with Store {
   double? naoPagoMonthly = 0.0;
 
   @observable
+  double? totalAtl = 0.0;
+
+  @observable
+  double? naoPagoAtl = 0.0;
+
+  @observable
+  double? totalBooks = 0.0;
+
+  @observable
+  double? naoPagoBooks = 0.0;
+
+  @observable
+  double? totalUniform = 0.0;
+
+  @observable
+  double? naoPagoUniform = 0.0;
+
+  @observable
+  double? totalTransport = 0.0;
+
+  @observable
+  double? naoPagoTransport = 0.0;
+
+  @observable
   double? total = 0.0;
 
   @observable
@@ -51,6 +75,22 @@ abstract class _AreaFinanceiraAluno with Store {
   List<dynamic> get monthlyNotPay => paymentEntity!.monthlyList.where((element) => element.status == 0).toList();
   @computed
   List<dynamic> get monthlyPay => paymentEntity!.monthlyList.where((element) => element.status == 1).toList();
+  @computed
+  List<dynamic> get atlNotPay => paymentEntity!.atlList.where((element) => element.status == 0).toList();
+  @computed
+  List<dynamic> get atlPay => paymentEntity!.atlList.where((element) => element.status == 1).toList();
+  @computed
+  List<dynamic> get booksNotPay => paymentEntity!.booksList.where((element) => element.status == 0).toList();
+  @computed
+  List<dynamic> get booksPay => paymentEntity!.booksList.where((element) => element.status == 1).toList();
+  @computed
+  List<dynamic> get uniformNotPay => paymentEntity!.uniformList.where((element) => element.status == 0).toList();
+  @computed
+  List<dynamic> get uniformPay => paymentEntity!.uniformList.where((element) => element.status == 1).toList();
+  @computed
+  List<dynamic> get transportNotPay => paymentEntity!.transportList.where((element) => element.status == 0).toList();
+  @computed
+  List<dynamic> get transportPay => paymentEntity!.transportList.where((element) => element.status == 1).toList();
 
   //-----------------------------------------------------------------------
 
@@ -109,6 +149,110 @@ abstract class _AreaFinanceiraAluno with Store {
         naoPagoMonthly = double.parse(pay.valor.toString());
       }else if(monthlyNotPay.length >= 2){
         naoPagoMonthly  = (naoPagoMonthly ! + pay.valor);
+      }
+    }
+  }
+
+  void pagoATL(){
+    totalAtl = 0.0;
+    for(var pay in atlPay){
+      if(atlPay.isEmpty){
+        totalAtl = 0.0;
+      }else if(atlPay.length == 1){
+        totalAtl = double.parse(pay.valor!.toString());
+      }else if(atlPay.length >= 2){
+        totalAtl  = totalAtl! + double.parse(pay.valor!.toString());
+      }
+    }
+  }
+
+  void pagoNATL(){
+    naoPagoAtl = 0.0;
+    for(var pay in atlNotPay){
+      if(atlNotPay.isEmpty){
+        naoPagoAtl = 0.0;
+      }else if(atlNotPay.length < 2){
+        naoPagoAtl = double.parse(pay.valor.toString());
+      }else if(atlNotPay.length >= 2){
+        naoPagoAtl  = (naoPagoAtl! + pay.valor);
+      }
+    }
+  }
+
+  void pagoBooks(){
+    totalBooks = 0.0;
+    for(var pay in booksPay){
+      if(booksPay.isEmpty){
+        totalBooks = 0.0;
+      }else if(booksPay.length == 1){
+        totalBooks = double.parse(pay.valor!.toString());
+      }else if(booksPay.length >= 2){
+        totalBooks  = totalBooks! + double.parse(pay.valor!.toString());
+      }
+    }
+  }
+
+  void pagoNBooks(){
+    naoPagoBooks = 0.0;
+    for(var pay in booksNotPay){
+      if(atlNotPay.isEmpty){
+        naoPagoBooks = 0.0;
+      }else if(booksNotPay.length < 2){
+        naoPagoBooks = double.parse(pay.valor.toString());
+      }else if(booksNotPay.length >= 2){
+        naoPagoBooks  = (naoPagoBooks! + pay.valor);
+      }
+    }
+  }
+
+  void pagoUniform(){
+    totalUniform = 0.0;
+    for(var pay in uniformPay){
+      if(uniformPay.isEmpty){
+        totalUniform = 0.0;
+      }else if(uniformPay.length == 1){
+        totalUniform = double.parse(pay.valor!.toString());
+      }else if(uniformPay.length >= 2){
+        totalUniform  = totalUniform! + double.parse(pay.valor!.toString());
+      }
+    }
+  }
+
+  void pagoNUniform(){
+    naoPagoUniform = 0.0;
+    for(var pay in uniformNotPay){
+      if(uniformNotPay.isEmpty){
+        naoPagoUniform = 0.0;
+      }else if(uniformNotPay.length < 2){
+        naoPagoUniform = double.parse(pay.valor.toString());
+      }else if(uniformNotPay.length >= 2){
+        naoPagoUniform  = (naoPagoUniform! + pay.valor);
+      }
+    }
+  }
+
+  void pagoTransport(){
+    totalTransport = 0.0;
+    for(var pay in transportPay){
+      if(transportPay.isEmpty){
+        totalTransport = 0.0;
+      }else if(transportPay.length == 1){
+        totalTransport = double.parse(pay.valor!.toString());
+      }else if(transportPay.length >= 2){
+        totalTransport  = totalTransport! + double.parse(pay.valor!.toString());
+      }
+    }
+  }
+
+  void pagoNTransport(){
+    naoPagoTransport = 0.0;
+    for(var pay in transportNotPay){
+      if(transportNotPay.isEmpty){
+        naoPagoTransport = 0.0;
+      }else if(transportNotPay.length < 2){
+        naoPagoTransport = double.parse(pay.valor.toString());
+      }else if(transportNotPay.length >= 2){
+        naoPagoTransport  = (naoPagoTransport! + pay.valor);
       }
     }
   }
@@ -329,6 +473,18 @@ abstract class _AreaFinanceiraAluno with Store {
 
         pagoMonthly();
         pagoNMonthly();
+
+        pagoATL();
+        pagoNATL();
+
+        pagoBooks();
+        pagoNBooks();
+
+        pagoUniform();
+        pagoNUniform();
+
+        pagoTransport();
+        pagoNTransport();
       });
     }catch(e){
       log(e.toString());

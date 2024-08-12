@@ -3,10 +3,10 @@ import 'package:equatable/equatable.dart';
 
 class UniformEntity extends Equatable{
   final int status;
-  final String data;
+  var data;
   final String mes;
   final int valor;
-  const UniformEntity({required this.status, required this.data, required this.mes, required this.valor});
+  UniformEntity({required this.status, this.data, required this.mes, required this.valor});
   @override
   List<Object?> get props => [
     status,
